@@ -249,6 +249,9 @@ dotnet_diagnostic.S3453.severity                                              = 
 # Move class into a named namespace. (C# 10)
 dotnet_diagnostic.S3903.severity                                              = none
 
+# Enable XML documentation output.
+dotnet_diagnostic.SA0001.severity                                             = none
+
 # The keyword 'new' should be followed by a space. (C# 9)
 dotnet_diagnostic.SA1000.severity                                             = none
 
