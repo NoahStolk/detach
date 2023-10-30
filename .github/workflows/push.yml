@@ -21,6 +21,6 @@ jobs:
     - name: Pack
       run: dotnet pack src/Detach -c Release -o .
     - name: Push
-      run: dotnet nuget push *.nupkg -s github -k ${NUGET_SECRET} -n --skip-duplicate
+      run: dotnet nuget push *.nupkg -s nuget.org -k ${NUGET_SECRET} -n --skip-duplicate
       env:
         NUGET_SECRET: ${{ secrets.NUGET_SECRET }}

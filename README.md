@@ -1,6 +1,6 @@
 # Detach
 
-Helper code for game engines and games.
+Reusable helper code for game engines, games, and other 3D real time applications.
 
 ## Planned APIs
 

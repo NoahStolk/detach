@@ -5,9 +5,13 @@ namespace Detach.Extensions;
 
 public static class QuaternionExtensions
 {
-	public static void Randomize(this ref Quaternion quaternion, float randomizeAmount, Random? random = null)
+	public static void Randomize(this ref Quaternion quaternion, float randomizeAmount)
 	{
-		random ??= Random.Shared;
+		Randomize(ref quaternion, randomizeAmount, Random.Shared);
+	}
+
+	public static void Randomize(this ref Quaternion quaternion, float randomizeAmount, Random random)
+	{
 		quaternion.X += random.RandomFloat(-randomizeAmount, randomizeAmount);
 		quaternion.Y += random.RandomFloat(-randomizeAmount, randomizeAmount);
 		quaternion.Z += random.RandomFloat(-randomizeAmount, randomizeAmount);

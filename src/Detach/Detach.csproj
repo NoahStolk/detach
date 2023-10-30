@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package information">
-    <PackageId>Detach</PackageId>
+    <PackageId>NoahStolk.Detach</PackageId>
     <Authors>Noah Stolk</Authors>
     <Copyright>Copyright © Noah Stolk</Copyright>
     <RepositoryType>git</RepositoryType>
