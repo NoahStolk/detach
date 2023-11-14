@@ -9,7 +9,7 @@ public static class Sphere
 		return Vector3.DistanceSquared(sphereOrigin, point) <= sphereRadius * sphereRadius;
 	}
 
-	public static bool IntersectsSphere(Vector3 sphereOriginA, float sphereRadiusA, Vector3 sphereOriginB, float sphereRadiusB)
+	public static bool IntersectsOrContainsSphere(Vector3 sphereOriginA, float sphereRadiusA, Vector3 sphereOriginB, float sphereRadiusB)
 	{
 		return Vector3.DistanceSquared(sphereOriginA, sphereOriginB) <= (sphereRadiusA + sphereRadiusB) * (sphereRadiusA + sphereRadiusB);
 	}

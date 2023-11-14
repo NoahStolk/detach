@@ -9,7 +9,7 @@ public static class Circle
 		return Vector2.DistanceSquared(circleOrigin, point) <= circleRadius * circleRadius;
 	}
 
-	public static bool IntersectsCircle(Vector2 circleOriginA, float circleRadiusA, Vector2 circleOriginB, float circleRadiusB)
+	public static bool IntersectsOrContainsCircle(Vector2 circleOriginA, float circleRadiusA, Vector2 circleOriginB, float circleRadiusB)
 	{
 		return Vector2.DistanceSquared(circleOriginA, circleOriginB) <= (circleRadiusA + circleRadiusB) * (circleRadiusA + circleRadiusB);
 	}

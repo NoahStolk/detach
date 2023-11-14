@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0
+
+### Changed
+
+- Renamed `Sphere.IntersectsSphere` to `Sphere.IntersectsOrContainsSphere`.
+- Renamed `Circle.IntersectsCircle` to `Circle.IntersectsOrContainsCircle`.
+
 ## 0.2.0
 
 ### Added
