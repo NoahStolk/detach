@@ -6,6 +6,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- Updated to .NET 8.0.
 - Renamed `Sphere.IntersectsSphere` to `Sphere.IntersectsOrContainsSphere`.
 - Renamed `Circle.IntersectsCircle` to `Circle.IntersectsOrContainsCircle`.
 
