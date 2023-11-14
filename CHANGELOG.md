@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.1
+
+### Added
+
+- Added `Inline.Span` overloads for `Matrix3x2` and `Matrix4x4`.
+
 ## 0.3.0
 
 ### Changed

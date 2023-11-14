@@ -83,6 +83,60 @@ public static class Inline
 		return _buffer.AsSpan(0, charsWritten);
 	}
 
+	public static ReadOnlySpan<char> Span(Matrix3x2 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+	{
+		int charsWritten = 0;
+		TryWrite(_buffer, ref charsWritten, value.M11, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M12, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M21, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M22, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M31, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M32, format, provider);
+		return _buffer.AsSpan(0, charsWritten);
+	}
+
+	public static ReadOnlySpan<char> Span(Matrix4x4 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+	{
+		int charsWritten = 0;
+		TryWrite(_buffer, ref charsWritten, value.M11, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M12, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M13, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M14, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M21, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M22, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M23, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M24, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M31, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M32, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M33, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M34, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M41, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M42, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M43, format, provider);
+		TryWriteString(_buffer, ref charsWritten, ", ");
+		TryWrite(_buffer, ref charsWritten, value.M44, format, provider);
+		return _buffer.AsSpan(0, charsWritten);
+	}
+
 	public static ReadOnlySpan<char> Span(string str)
 	{
 		return str.AsSpan();
