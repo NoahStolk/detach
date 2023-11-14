@@ -5,80 +5,80 @@ namespace Detach.Extensions;
 
 public static class BinaryWriterExtensions
 {
-	public static void WriteAsHalfPrecision(this BinaryWriter binaryWriter, Vector2 vector)
+	public static void WriteAsHalfPrecision(this BinaryWriter bw, Vector2 vector)
 	{
-		binaryWriter.Write((Half)vector.X);
-		binaryWriter.Write((Half)vector.Y);
+		bw.Write((Half)vector.X);
+		bw.Write((Half)vector.Y);
 	}
 
-	public static void WriteAsHalfPrecision(this BinaryWriter binaryWriter, Vector3 vector)
+	public static void WriteAsHalfPrecision(this BinaryWriter bw, Vector3 vector)
 	{
-		binaryWriter.Write((Half)vector.X);
-		binaryWriter.Write((Half)vector.Y);
-		binaryWriter.Write((Half)vector.Z);
+		bw.Write((Half)vector.X);
+		bw.Write((Half)vector.Y);
+		bw.Write((Half)vector.Z);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Vector2 vector)
+	public static void Write(this BinaryWriter bw, Vector2 vector)
 	{
-		binaryWriter.Write(vector.X);
-		binaryWriter.Write(vector.Y);
+		bw.Write(vector.X);
+		bw.Write(vector.Y);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Vector3 vector)
+	public static void Write(this BinaryWriter bw, Vector3 vector)
 	{
-		binaryWriter.Write(vector.X);
-		binaryWriter.Write(vector.Y);
-		binaryWriter.Write(vector.Z);
+		bw.Write(vector.X);
+		bw.Write(vector.Y);
+		bw.Write(vector.Z);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Vector4 vector)
+	public static void Write(this BinaryWriter bw, Vector4 vector)
 	{
-		binaryWriter.Write(vector.X);
-		binaryWriter.Write(vector.Y);
-		binaryWriter.Write(vector.Z);
-		binaryWriter.Write(vector.W);
+		bw.Write(vector.X);
+		bw.Write(vector.Y);
+		bw.Write(vector.Z);
+		bw.Write(vector.W);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Plane plane)
+	public static void Write(this BinaryWriter bw, Plane plane)
 	{
-		binaryWriter.Write(plane.Normal);
-		binaryWriter.Write(plane.D);
+		bw.Write(plane.Normal);
+		bw.Write(plane.D);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Quaternion quaternion)
+	public static void Write(this BinaryWriter bw, Quaternion quaternion)
 	{
-		binaryWriter.Write(quaternion.X);
-		binaryWriter.Write(quaternion.Y);
-		binaryWriter.Write(quaternion.Z);
-		binaryWriter.Write(quaternion.W);
+		bw.Write(quaternion.X);
+		bw.Write(quaternion.Y);
+		bw.Write(quaternion.Z);
+		bw.Write(quaternion.W);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Matrix4x4 matrix)
+	public static void Write(this BinaryWriter bw, Matrix4x4 matrix)
 	{
-		binaryWriter.Write(matrix.M11);
-		binaryWriter.Write(matrix.M12);
-		binaryWriter.Write(matrix.M13);
-		binaryWriter.Write(matrix.M14);
-		binaryWriter.Write(matrix.M21);
-		binaryWriter.Write(matrix.M22);
-		binaryWriter.Write(matrix.M23);
-		binaryWriter.Write(matrix.M24);
-		binaryWriter.Write(matrix.M31);
-		binaryWriter.Write(matrix.M32);
-		binaryWriter.Write(matrix.M33);
-		binaryWriter.Write(matrix.M34);
-		binaryWriter.Write(matrix.M41);
-		binaryWriter.Write(matrix.M42);
-		binaryWriter.Write(matrix.M43);
-		binaryWriter.Write(matrix.M44);
+		bw.Write(matrix.M11);
+		bw.Write(matrix.M12);
+		bw.Write(matrix.M13);
+		bw.Write(matrix.M14);
+		bw.Write(matrix.M21);
+		bw.Write(matrix.M22);
+		bw.Write(matrix.M23);
+		bw.Write(matrix.M24);
+		bw.Write(matrix.M31);
+		bw.Write(matrix.M32);
+		bw.Write(matrix.M33);
+		bw.Write(matrix.M34);
+		bw.Write(matrix.M41);
+		bw.Write(matrix.M42);
+		bw.Write(matrix.M43);
+		bw.Write(matrix.M44);
 	}
 
-	public static void Write(this BinaryWriter binaryWriter, Color color)
+	public static void Write(this BinaryWriter bw, Color color)
 	{
-		binaryWriter.Write(color.R);
-		binaryWriter.Write(color.G);
-		binaryWriter.Write(color.B);
-		binaryWriter.Write(color.A);
+		bw.Write(color.R);
+		bw.Write(color.G);
+		bw.Write(color.B);
+		bw.Write(color.A);
 	}
 
 	public static void WriteLengthPrefixedList<T>(this BinaryWriter bw, List<T> list, Action<BinaryWriter, T> writer)
