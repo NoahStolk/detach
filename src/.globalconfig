@@ -345,6 +345,9 @@ dotnet_diagnostic.SA1027.severity                                             = 
 # Prefix local calls with this.
 dotnet_diagnostic.SA1101.severity                                             = none
 
+# The parameters should all be placed on the same line or each parameter should be placed on its own line.
+dotnet_diagnostic.SA1117.severity                                             = none
+
 # Do not use regions.
 dotnet_diagnostic.SA1124.severity                                             = none
 
