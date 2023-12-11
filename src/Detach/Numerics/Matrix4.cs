@@ -131,55 +131,33 @@ public struct Matrix4
 		}
 	}
 
-	public static Matrix4 operator *(Matrix4 matrix, float scalar)
+	public static Matrix4 operator *(Matrix4 left, float right)
 	{
 		return new(
-			matrix.M11 * scalar, matrix.M12 * scalar, matrix.M13 * scalar, matrix.M14 * scalar,
-			matrix.M21 * scalar, matrix.M22 * scalar, matrix.M23 * scalar, matrix.M24 * scalar,
-			matrix.M31 * scalar, matrix.M32 * scalar, matrix.M33 * scalar, matrix.M34 * scalar,
-			matrix.M41 * scalar, matrix.M42 * scalar, matrix.M43 * scalar, matrix.M44 * scalar);
+			left.M11 * right, left.M12 * right, left.M13 * right, left.M14 * right,
+			left.M21 * right, left.M22 * right, left.M23 * right, left.M24 * right,
+			left.M31 * right, left.M32 * right, left.M33 * right, left.M34 * right,
+			left.M41 * right, left.M42 * right, left.M43 * right, left.M44 * right);
 	}
 
-	public static Matrix4 operator *(Matrix4 matrixA, Matrix4 matrixB)
+	public static Matrix4 operator *(Matrix4 left, Matrix4 right)
 	{
 		return new(
-			matrixA.M11 * matrixB.M11 + matrixA.M12 * matrixB.M21 + matrixA.M13 * matrixB.M31 + matrixA.M14 * matrixB.M41,
-			matrixA.M11 * matrixB.M12 + matrixA.M12 * matrixB.M22 + matrixA.M13 * matrixB.M32 + matrixA.M14 * matrixB.M42,
-			matrixA.M11 * matrixB.M13 + matrixA.M12 * matrixB.M23 + matrixA.M13 * matrixB.M33 + matrixA.M14 * matrixB.M43,
-			matrixA.M11 * matrixB.M14 + matrixA.M12 * matrixB.M24 + matrixA.M13 * matrixB.M34 + matrixA.M14 * matrixB.M44,
-			matrixA.M21 * matrixB.M11 + matrixA.M22 * matrixB.M21 + matrixA.M23 * matrixB.M31 + matrixA.M24 * matrixB.M41,
-			matrixA.M21 * matrixB.M12 + matrixA.M22 * matrixB.M22 + matrixA.M23 * matrixB.M32 + matrixA.M24 * matrixB.M42,
-			matrixA.M21 * matrixB.M13 + matrixA.M22 * matrixB.M23 + matrixA.M23 * matrixB.M33 + matrixA.M24 * matrixB.M43,
-			matrixA.M21 * matrixB.M14 + matrixA.M22 * matrixB.M24 + matrixA.M23 * matrixB.M34 + matrixA.M24 * matrixB.M44,
-			matrixA.M31 * matrixB.M11 + matrixA.M32 * matrixB.M21 + matrixA.M33 * matrixB.M31 + matrixA.M34 * matrixB.M41,
-			matrixA.M31 * matrixB.M12 + matrixA.M32 * matrixB.M22 + matrixA.M33 * matrixB.M32 + matrixA.M34 * matrixB.M42,
-			matrixA.M31 * matrixB.M13 + matrixA.M32 * matrixB.M23 + matrixA.M33 * matrixB.M33 + matrixA.M34 * matrixB.M43,
-			matrixA.M31 * matrixB.M14 + matrixA.M32 * matrixB.M24 + matrixA.M33 * matrixB.M34 + matrixA.M34 * matrixB.M44,
-			matrixA.M41 * matrixB.M11 + matrixA.M42 * matrixB.M21 + matrixA.M43 * matrixB.M31 + matrixA.M44 * matrixB.M41,
-			matrixA.M41 * matrixB.M12 + matrixA.M42 * matrixB.M22 + matrixA.M43 * matrixB.M32 + matrixA.M44 * matrixB.M42,
-			matrixA.M41 * matrixB.M13 + matrixA.M42 * matrixB.M23 + matrixA.M43 * matrixB.M33 + matrixA.M44 * matrixB.M43,
-			matrixA.M41 * matrixB.M14 + matrixA.M42 * matrixB.M24 + matrixA.M43 * matrixB.M34 + matrixA.M44 * matrixB.M44);
-	}
-
-	public Matrix4 Transpose()
-	{
-		return new(
-			M11, M21, M31, M41,
-			M12, M22, M32, M42,
-			M13, M23, M33, M43,
-			M14, M24, M34, M44);
-	}
-
-	public float Determinant()
-	{
-		return
-			M11 * M22 * M33 * M44 + M11 * M23 * M34 * M42 + M11 * M24 * M32 * M43
-			+ M12 * M21 * M34 * M43 + M12 * M23 * M31 * M44 + M12 * M24 * M33 * M41
-			+ M13 * M21 * M32 * M44 + M13 * M22 * M34 * M41 + M13 * M24 * M31 * M42
-			+ M14 * M21 * M33 * M42 + M14 * M22 * M31 * M43 + M14 * M23 * M32 * M41
-			- M11 * M22 * M34 * M43 - M11 * M23 * M32 * M44 - M11 * M24 * M33 * M42
-			- M12 * M21 * M33 * M44 - M12 * M23 * M34 * M41 - M12 * M24 * M31 * M43
-			- M13 * M21 * M34 * M42 - M13 * M22 * M31 * M44 - M13 * M24 * M32 * M41
-			- M14 * M21 * M32 * M43 - M14 * M22 * M33 * M41 - M14 * M23 * M31 * M42;
+			left.M11 * right.M11 + left.M12 * right.M21 + left.M13 * right.M31 + left.M14 * right.M41,
+			left.M11 * right.M12 + left.M12 * right.M22 + left.M13 * right.M32 + left.M14 * right.M42,
+			left.M11 * right.M13 + left.M12 * right.M23 + left.M13 * right.M33 + left.M14 * right.M43,
+			left.M11 * right.M14 + left.M12 * right.M24 + left.M13 * right.M34 + left.M14 * right.M44,
+			left.M21 * right.M11 + left.M22 * right.M21 + left.M23 * right.M31 + left.M24 * right.M41,
+			left.M21 * right.M12 + left.M22 * right.M22 + left.M23 * right.M32 + left.M24 * right.M42,
+			left.M21 * right.M13 + left.M22 * right.M23 + left.M23 * right.M33 + left.M24 * right.M43,
+			left.M21 * right.M14 + left.M22 * right.M24 + left.M23 * right.M34 + left.M24 * right.M44,
+			left.M31 * right.M11 + left.M32 * right.M21 + left.M33 * right.M31 + left.M34 * right.M41,
+			left.M31 * right.M12 + left.M32 * right.M22 + left.M33 * right.M32 + left.M34 * right.M42,
+			left.M31 * right.M13 + left.M32 * right.M23 + left.M33 * right.M33 + left.M34 * right.M43,
+			left.M31 * right.M14 + left.M32 * right.M24 + left.M33 * right.M34 + left.M34 * right.M44,
+			left.M41 * right.M11 + left.M42 * right.M21 + left.M43 * right.M31 + left.M44 * right.M41,
+			left.M41 * right.M12 + left.M42 * right.M22 + left.M43 * right.M32 + left.M44 * right.M42,
+			left.M41 * right.M13 + left.M42 * right.M23 + left.M43 * right.M33 + left.M44 * right.M43,
+			left.M41 * right.M14 + left.M42 * right.M24 + left.M43 * right.M34 + left.M44 * right.M44);
 	}
 }
