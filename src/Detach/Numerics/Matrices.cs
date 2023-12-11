@@ -134,28 +134,28 @@ public static class Matrices
 		return result;
 	}
 
-	public static TMatrixOut Multiply<TMatrixA, TMatrixB, TMatrixOut>(TMatrixA matrixA, int aRows, int aCols, TMatrixB matrixB, int bRows, int bCols)
+	public static TMatrixOut Multiply<TMatrixA, TMatrixB, TMatrixOut>(TMatrixA matrixA, TMatrixB matrixB)
 		where TMatrixA : IMatrixOperations<TMatrixA>
 		where TMatrixB : IMatrixOperations<TMatrixB>
 		where TMatrixOut : IMatrixOperations<TMatrixOut>
 	{
-		if (aCols != bRows)
+		if (TMatrixA.Cols != TMatrixB.Rows)
 			throw new ArgumentException("The number of columns in the first matrix must be equal to the number of rows in the second matrix.");
 
 		TMatrixOut matrixResult = TMatrixOut.CreateDefault();
-		for (int i = 0; i < aRows; i++)
+		for (int i = 0; i < TMatrixA.Rows; i++)
 		{
-			for (int j = 0; j < bCols; j++)
+			for (int j = 0; j < TMatrixB.Cols; j++)
 			{
-				TMatrixOut.Set(ref matrixResult, bCols * i + j, 0.0f);
-				for (int k = 0; k < bRows; k++)
+				TMatrixOut.Set(ref matrixResult, TMatrixB.Cols * i + j, 0.0f);
+				for (int k = 0; k < TMatrixB.Rows; k++)
 				{
-					int aIndex = aCols * i + k;
-					int bIndex = bCols * k + j;
+					int aIndex = TMatrixA.Cols * i + k;
+					int bIndex = TMatrixB.Cols * k + j;
 
-					float value = TMatrixOut.Get(matrixResult, bCols * i + j);
+					float value = TMatrixOut.Get(matrixResult, TMatrixB.Cols * i + j);
 
-					TMatrixOut.Set(ref matrixResult, bCols * i + j, value + TMatrixA.Get(matrixA, aIndex) * TMatrixB.Get(matrixB, bIndex));
+					TMatrixOut.Set(ref matrixResult, TMatrixB.Cols * i + j, value + TMatrixA.Get(matrixA, aIndex) * TMatrixB.Get(matrixB, bIndex));
 				}
 			}
 		}

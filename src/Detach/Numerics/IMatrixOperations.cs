@@ -3,6 +3,12 @@
 public interface IMatrixOperations<TSelf>
 	where TSelf : IMatrixOperations<TSelf>
 {
+	static abstract TSelf Identity { get; }
+
+	static abstract int Rows { get; }
+
+	static abstract int Cols { get; }
+
 	static abstract TSelf CreateDefault();
 
 	static abstract float Get(TSelf matrix, int index);

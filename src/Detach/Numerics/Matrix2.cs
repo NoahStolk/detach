@@ -29,6 +29,8 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 	}
 
 	public static Matrix2 Identity => new(1, 0, 0, 1);
+	public static int Rows => 2;
+	public static int Cols => 2;
 
 	public float this[int index]
 	{
@@ -51,7 +53,7 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 
 	public static Matrix2 operator *(Matrix2 left, Matrix2 right)
 	{
-		return Matrices.Multiply<Matrix2, Matrix2, Matrix2>(left, 2, 2, right, 2, 2);
+		return Matrices.Multiply<Matrix2, Matrix2, Matrix2>(left, right);
 	}
 
 	public Span<float> AsSpan()
