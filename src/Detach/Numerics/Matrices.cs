@@ -26,56 +26,22 @@ public static class Matrices
 			matrix4.M14, matrix4.M24, matrix4.M34, matrix4.M44);
 	}
 
-	public static float Determinant(Matrix2 matrix2)
-	{
-		return matrix2.M11 * matrix2.M22 - matrix2.M12 * matrix2.M21;
-	}
-
-	public static float Determinant(Matrix3 matrix3)
-	{
-		return
-			matrix3.M11 * matrix3.M22 * matrix3.M33
-			+ matrix3.M12 * matrix3.M23 * matrix3.M31
-			+ matrix3.M13 * matrix3.M21 * matrix3.M32
-			- matrix3.M13 * matrix3.M22 * matrix3.M31
-			- matrix3.M12 * matrix3.M21 * matrix3.M33
-			- matrix3.M11 * matrix3.M23 * matrix3.M32;
-	}
-
-	public static float Determinant(Matrix4 matrix4)
-	{
-		return
-			matrix4.M11 * matrix4.M22 * matrix4.M33 * matrix4.M44 + matrix4.M11 * matrix4.M23 * matrix4.M34 * matrix4.M42 + matrix4.M11 * matrix4.M24 * matrix4.M32 * matrix4.M43
-			+ matrix4.M12 * matrix4.M21 * matrix4.M34 * matrix4.M43 + matrix4.M12 * matrix4.M23 * matrix4.M31 * matrix4.M44 + matrix4.M12 * matrix4.M24 * matrix4.M33 * matrix4.M41
-			+ matrix4.M13 * matrix4.M21 * matrix4.M32 * matrix4.M44 + matrix4.M13 * matrix4.M22 * matrix4.M34 * matrix4.M41 + matrix4.M13 * matrix4.M24 * matrix4.M31 * matrix4.M42
-			+ matrix4.M14 * matrix4.M21 * matrix4.M33 * matrix4.M42 + matrix4.M14 * matrix4.M22 * matrix4.M31 * matrix4.M43 + matrix4.M14 * matrix4.M23 * matrix4.M32 * matrix4.M41
-			- matrix4.M11 * matrix4.M22 * matrix4.M34 * matrix4.M43 - matrix4.M11 * matrix4.M23 * matrix4.M32 * matrix4.M44 - matrix4.M11 * matrix4.M24 * matrix4.M33 * matrix4.M42
-			- matrix4.M12 * matrix4.M21 * matrix4.M33 * matrix4.M44 - matrix4.M12 * matrix4.M23 * matrix4.M34 * matrix4.M41 - matrix4.M12 * matrix4.M24 * matrix4.M31 * matrix4.M43
-			- matrix4.M13 * matrix4.M21 * matrix4.M34 * matrix4.M42 - matrix4.M13 * matrix4.M22 * matrix4.M31 * matrix4.M44 - matrix4.M13 * matrix4.M24 * matrix4.M32 * matrix4.M41
-			- matrix4.M14 * matrix4.M21 * matrix4.M32 * matrix4.M43 - matrix4.M14 * matrix4.M22 * matrix4.M33 * matrix4.M41 - matrix4.M14 * matrix4.M23 * matrix4.M31 * matrix4.M42;
-	}
-
 	public static Matrix2 Cut(Matrix3 matrix3, int row, int col)
 	{
 		Matrix2 result = default;
+		int index = 0;
 
-		int i = 0;
-		for (int r = 0; r < 3; r++)
+		for (int i = 0; i < 3; i++)
 		{
-			if (r == row)
-				continue;
-
-			int j = 0;
-			for (int c = 0; c < 3; c++)
+			for (int j = 0; j < 3; j++)
 			{
-				if (c == col)
+				if (i == row || j == col)
 					continue;
 
-				result[i, j] = matrix3[r, c];
-				j++;
+				int target = index++;
+				int source = 3 * i + j;
+				result[target] = matrix3[source];
 			}
-
-			i++;
 		}
 
 		return result;
@@ -92,9 +58,7 @@ public static class Matrices
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 3; j++)
-			{
-				result[i, j] = Determinant(Cut(matrix3, i, j));
-			}
+				result[i, j] = Matrix2.Determinant(Cut(matrix3, i, j));
 		}
 
 		return result;

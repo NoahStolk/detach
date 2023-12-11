@@ -99,6 +99,19 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		return MemoryMarshal.CreateSpan(ref M11, 16);
 	}
 
+	public static float Determinant(Matrix4 matrix)
+	{
+		return
+			matrix.M11 * matrix.M22 * matrix.M33 * matrix.M44 + matrix.M11 * matrix.M23 * matrix.M34 * matrix.M42 + matrix.M11 * matrix.M24 * matrix.M32 * matrix.M43
+			+ matrix.M12 * matrix.M21 * matrix.M34 * matrix.M43 + matrix.M12 * matrix.M23 * matrix.M31 * matrix.M44 + matrix.M12 * matrix.M24 * matrix.M33 * matrix.M41
+			+ matrix.M13 * matrix.M21 * matrix.M32 * matrix.M44 + matrix.M13 * matrix.M22 * matrix.M34 * matrix.M41 + matrix.M13 * matrix.M24 * matrix.M31 * matrix.M42
+			+ matrix.M14 * matrix.M21 * matrix.M33 * matrix.M42 + matrix.M14 * matrix.M22 * matrix.M31 * matrix.M43 + matrix.M14 * matrix.M23 * matrix.M32 * matrix.M41
+			- matrix.M11 * matrix.M22 * matrix.M34 * matrix.M43 - matrix.M11 * matrix.M23 * matrix.M32 * matrix.M44 - matrix.M11 * matrix.M24 * matrix.M33 * matrix.M42
+			- matrix.M12 * matrix.M21 * matrix.M33 * matrix.M44 - matrix.M12 * matrix.M23 * matrix.M34 * matrix.M41 - matrix.M12 * matrix.M24 * matrix.M31 * matrix.M43
+			- matrix.M13 * matrix.M21 * matrix.M34 * matrix.M42 - matrix.M13 * matrix.M22 * matrix.M31 * matrix.M44 - matrix.M13 * matrix.M24 * matrix.M32 * matrix.M41
+			- matrix.M14 * matrix.M21 * matrix.M32 * matrix.M43 - matrix.M14 * matrix.M22 * matrix.M33 * matrix.M41 - matrix.M14 * matrix.M23 * matrix.M31 * matrix.M42;
+	}
+
 	public static Matrix4 CreateDefault()
 	{
 		return default;
