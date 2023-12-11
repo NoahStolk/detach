@@ -94,69 +94,25 @@ public struct Matrix3
 		}
 	}
 
-	public static Matrix3 operator *(Matrix3 matrix, float scalar)
+	public static Matrix3 operator *(Matrix3 left, float right)
 	{
 		return new(
-			matrix.M11 * scalar, matrix.M12 * scalar, matrix.M13 * scalar,
-			matrix.M21 * scalar, matrix.M22 * scalar, matrix.M23 * scalar,
-			matrix.M31 * scalar, matrix.M32 * scalar, matrix.M33 * scalar);
+			left.M11 * right, left.M12 * right, left.M13 * right,
+			left.M21 * right, left.M22 * right, left.M23 * right,
+			left.M31 * right, left.M32 * right, left.M33 * right);
 	}
 
-	public static Matrix3 operator *(Matrix3 matrixA, Matrix3 matrixB)
+	public static Matrix3 operator *(Matrix3 left, Matrix3 right)
 	{
 		return new(
-			matrixA.M11 * matrixB.M11 + matrixA.M12 * matrixB.M21 + matrixA.M13 * matrixB.M31,
-			matrixA.M11 * matrixB.M12 + matrixA.M12 * matrixB.M22 + matrixA.M13 * matrixB.M32,
-			matrixA.M11 * matrixB.M13 + matrixA.M12 * matrixB.M23 + matrixA.M13 * matrixB.M33,
-			matrixA.M21 * matrixB.M11 + matrixA.M22 * matrixB.M21 + matrixA.M23 * matrixB.M31,
-			matrixA.M21 * matrixB.M12 + matrixA.M22 * matrixB.M22 + matrixA.M23 * matrixB.M32,
-			matrixA.M21 * matrixB.M13 + matrixA.M22 * matrixB.M23 + matrixA.M23 * matrixB.M33,
-			matrixA.M31 * matrixB.M11 + matrixA.M32 * matrixB.M21 + matrixA.M33 * matrixB.M31,
-			matrixA.M31 * matrixB.M12 + matrixA.M32 * matrixB.M22 + matrixA.M33 * matrixB.M32,
-			matrixA.M31 * matrixB.M13 + matrixA.M32 * matrixB.M23 + matrixA.M33 * matrixB.M33);
-	}
-
-	public Matrix3 Transpose()
-	{
-		return new(
-			M11, M21, M31,
-			M12, M22, M32,
-			M13, M23, M33);
-	}
-
-	public float Determinant()
-	{
-		return M11 * M22 * M33 + M12 * M23 * M31 + M13 * M21 * M32 - M13 * M22 * M31 - M12 * M21 * M33 - M11 * M23 * M32;
-	}
-
-	public Matrix3 Minor()
-	{
-		Matrix3 result = default;
-		for (int i = 0; i < 3; i++)
-		{
-			for (int j = 0; j < 3; j++)
-			{
-				result[i, j] = Matrix2.Cut(this, i, j).Determinant();
-			}
-		}
-
-		return result;
-	}
-
-	public Matrix3 Cofactor()
-	{
-		Matrix3 minor = Minor();
-		Matrix3 result = default;
-		for (int i = 0; i < 3; i++)
-		{
-			int sign = i % 2 == 0 ? 1 : -1;
-			for (int j = 0; j < 3; j++)
-			{
-				result[i, j] = minor[i, j] * sign;
-				sign *= -1;
-			}
-		}
-
-		return result;
+			left.M11 * right.M11 + left.M12 * right.M21 + left.M13 * right.M31,
+			left.M11 * right.M12 + left.M12 * right.M22 + left.M13 * right.M32,
+			left.M11 * right.M13 + left.M12 * right.M23 + left.M13 * right.M33,
+			left.M21 * right.M11 + left.M22 * right.M21 + left.M23 * right.M31,
+			left.M21 * right.M12 + left.M22 * right.M22 + left.M23 * right.M32,
+			left.M21 * right.M13 + left.M22 * right.M23 + left.M23 * right.M33,
+			left.M31 * right.M11 + left.M32 * right.M21 + left.M33 * right.M31,
+			left.M31 * right.M12 + left.M32 * right.M22 + left.M33 * right.M32,
+			left.M31 * right.M13 + left.M32 * right.M23 + left.M33 * right.M33);
 	}
 }

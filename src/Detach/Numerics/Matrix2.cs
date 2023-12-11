@@ -63,79 +63,19 @@ public struct Matrix2
 		}
 	}
 
-	public static Matrix2 operator *(Matrix2 matrix, float scalar)
+	public static Matrix2 operator *(Matrix2 left, float right)
 	{
 		return new(
-			matrix.M11 * scalar, matrix.M12 * scalar,
-			matrix.M21 * scalar, matrix.M22 * scalar);
+			left.M11 * right, left.M12 * right,
+			left.M21 * right, left.M22 * right);
 	}
 
-	public static Matrix2 operator *(Matrix2 matrixA, Matrix2 matrixB)
+	public static Matrix2 operator *(Matrix2 left, Matrix2 right)
 	{
 		return new(
-			matrixA.M11 * matrixB.M11 + matrixA.M12 * matrixB.M21,
-			matrixA.M11 * matrixB.M12 + matrixA.M12 * matrixB.M22,
-			matrixA.M21 * matrixB.M11 + matrixA.M22 * matrixB.M21,
-			matrixA.M21 * matrixB.M12 + matrixA.M22 * matrixB.M22);
-	}
-
-	public Matrix2 Transpose()
-	{
-		return new(
-			M11, M21,
-			M12, M22);
-	}
-
-	public float Determinant()
-	{
-		return M11 * M22 - M12 * M21;
-	}
-
-	public static Matrix2 Cut(Matrix3 matrix3, int row, int col)
-	{
-		Matrix2 result = default;
-
-		int i = 0;
-		int j = 0;
-		for (int r = 0; r < 3; r++)
-		{
-			if (r == row)
-				continue;
-
-			for (int c = 0; c < 3; c++)
-			{
-				if (c == col)
-					continue;
-
-				result[i, j] = matrix3[r, c];
-				j++;
-			}
-
-			i++;
-		}
-
-		return result;
-	}
-
-	public Matrix2 Minor()
-	{
-		return new(M22, M21, M12, M11);
-	}
-
-	public Matrix2 Cofactor()
-	{
-		Matrix2 minor = Minor();
-		Matrix2 result = default;
-		for (int i = 0; i < 2; i++)
-		{
-			int sign = i % 2 == 0 ? 1 : -1;
-			for (int j = 0; j < 2; j++)
-			{
-				result[i, j] = minor[i, j] * sign;
-				sign *= -1;
-			}
-		}
-
-		return result;
+			left.M11 * right.M11 + left.M12 * right.M21,
+			left.M11 * right.M12 + left.M12 * right.M22,
+			left.M21 * right.M11 + left.M22 * right.M21,
+			left.M21 * right.M12 + left.M22 * right.M22);
 	}
 }
