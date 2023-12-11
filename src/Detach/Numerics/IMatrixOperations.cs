@@ -9,6 +9,8 @@ public interface IMatrixOperations<TSelf>
 
 	static abstract int Cols { get; }
 
+	static abstract float Determinant(TSelf matrix);
+
 	static abstract TSelf CreateDefault();
 
 	static abstract float Get(TSelf matrix, int index);

@@ -77,6 +77,17 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		return MemoryMarshal.CreateSpan(ref M11, 9);
 	}
 
+	public static float Determinant(Matrix3 matrix)
+	{
+		return
+			matrix.M11 * matrix.M22 * matrix.M33
+			+ matrix.M12 * matrix.M23 * matrix.M31
+			+ matrix.M13 * matrix.M21 * matrix.M32
+			- matrix.M13 * matrix.M22 * matrix.M31
+			- matrix.M12 * matrix.M21 * matrix.M33
+			- matrix.M11 * matrix.M23 * matrix.M32;
+	}
+
 	public static Matrix3 CreateDefault()
 	{
 		return default;

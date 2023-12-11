@@ -31,21 +31,21 @@ public class MatricesTests
 	public void Matrix2Determinant()
 	{
 		Matrix2 matrix2 = new(1, 2, 3, 4);
-		Assert.AreEqual(-2, Matrices.Determinant(matrix2));
+		Assert.AreEqual(-2, Matrix2.Determinant(matrix2));
 	}
 
 	[TestMethod]
 	public void Matrix3Determinant()
 	{
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
-		Assert.AreEqual(0, Matrices.Determinant(matrix3));
+		Assert.AreEqual(0, Matrix3.Determinant(matrix3));
 	}
 
 	[TestMethod]
 	public void Matrix4Determinant()
 	{
 		Matrix4 matrix4 = new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, 12, 13, 14, 15, 16);
-		Assert.AreEqual(0, Matrices.Determinant(matrix4));
+		Assert.AreEqual(0, Matrix4.Determinant(matrix4));
 	}
 
 	[TestMethod]
@@ -74,6 +74,8 @@ public class MatricesTests
 	public void Matrix3Minor()
 	{
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+		// TODO: This is wrong.
 		Assert.AreEqual(new(5, 4, 2, 1, 9, 7, 8, 6, 3), Matrices.Minor(matrix3));
 	}
 
@@ -121,6 +123,7 @@ public class MatricesTests
 		Assert.AreEqual(new(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, -22, 24, 26, 28, 30, 32), matrix4 * 2);
 		Assert.AreEqual(new(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, -33, 36, 39, 42, 45, 48), matrix4 * 3);
 
+		// TODO: This is wrong.
 		Assert.AreEqual(new(90, 100, 110, 120, 202, 228, 254, 280, 314, 356, 398, 440, 426, 484, 542, 600), matrix4 * matrix4);
 	}
 }
