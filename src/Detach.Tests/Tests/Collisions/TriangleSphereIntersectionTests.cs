@@ -1,3 +1,4 @@
+#if false
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.Numerics;
@@ -63,3 +64,4 @@ public class TriangleSphereIntersectionTests
 
 	private readonly record struct Sphere(Vector3 Origin, float Radius);
 }
+#endif

@@ -255,11 +255,11 @@ dotnet_diagnostic.CA1051.severity                                             = 
 # Validate arguments of public methods.
 dotnet_diagnostic.CA1062.severity                                             = none
 
-# Normalize strings to uppercase.
-dotnet_diagnostic.CA1308.severity                                             = none
-
 # Do not raise exceptions in unexpected locations.
 dotnet_diagnostic.CA1065.severity                                             = none
+
+# Normalize strings to uppercase.
+dotnet_diagnostic.CA1308.severity                                             = none
 
 # Identifiers should not match keywords.
 dotnet_diagnostic.CA1716.severity                                             = none
@@ -290,6 +290,9 @@ dotnet_diagnostic.S101.severity                                               = 
 
 # 'System.Exception' should not be thrown by user code.
 dotnet_diagnostic.S112.severity                                               = none
+
+# Make this field 'private' and encapsulate it in a 'public' property.
+dotnet_diagnostic.S1104.severity                                              = none
 
 # Extract the assignment from this expression. (C# 9)
 dotnet_diagnostic.S1121.severity                                              = none

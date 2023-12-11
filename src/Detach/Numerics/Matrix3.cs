@@ -1,6 +1,8 @@
-﻿namespace Detach.Numerics;
+﻿using System.Runtime.InteropServices;
 
-public struct Matrix3
+namespace Detach.Numerics;
+
+public record struct Matrix3 : IMatrixOperations<Matrix3>
 {
 	public float M11;
 	public float M12;
@@ -25,73 +27,34 @@ public struct Matrix3
 		M33 = m33;
 	}
 
+	public Matrix3(Span<float> span)
+	{
+		if (span.Length != 9)
+			throw new ArgumentException("Span must have length of 9.", nameof(span));
+
+		M11 = span[0];
+		M12 = span[1];
+		M13 = span[2];
+		M21 = span[3];
+		M22 = span[4];
+		M23 = span[5];
+		M31 = span[6];
+		M32 = span[7];
+		M33 = span[8];
+	}
+
 	public static Matrix3 Identity => new(1, 0, 0, 0, 1, 0, 0, 0, 1);
+
+	public float this[int index]
+	{
+		get => Get(this, index);
+		set => Set(ref this, index, value);
+	}
 
 	public float this[int row, int col]
 	{
-		get => row switch
-		{
-			0 => col switch
-			{
-				0 => M11,
-				1 => M12,
-				2 => M13,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			1 => col switch
-			{
-				0 => M21,
-				1 => M22,
-				2 => M23,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			2 => col switch
-			{
-				0 => M31,
-				1 => M32,
-				2 => M33,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			_ => throw new IndexOutOfRangeException(),
-		};
-		set
-		{
-			switch (row)
-			{
-				case 0:
-					switch (col)
-					{
-						case 0: M11 = value; break;
-						case 1: M12 = value; break;
-						case 2: M13 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-				case 1:
-					switch (col)
-					{
-						case 0: M21 = value; break;
-						case 1: M22 = value; break;
-						case 2: M23 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-				case 2:
-					switch (col)
-					{
-						case 0: M31 = value; break;
-						case 1: M32 = value; break;
-						case 2: M33 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-				default:
-					throw new IndexOutOfRangeException();
-			}
-		}
+		get => Get(this, row, col);
+		set => Set(ref this, row, col, value);
 	}
 
 	public static Matrix3 operator *(Matrix3 left, float right)
@@ -104,15 +67,118 @@ public struct Matrix3
 
 	public static Matrix3 operator *(Matrix3 left, Matrix3 right)
 	{
-		return new(
-			left.M11 * right.M11 + left.M12 * right.M21 + left.M13 * right.M31,
-			left.M11 * right.M12 + left.M12 * right.M22 + left.M13 * right.M32,
-			left.M11 * right.M13 + left.M12 * right.M23 + left.M13 * right.M33,
-			left.M21 * right.M11 + left.M22 * right.M21 + left.M23 * right.M31,
-			left.M21 * right.M12 + left.M22 * right.M22 + left.M23 * right.M32,
-			left.M21 * right.M13 + left.M22 * right.M23 + left.M23 * right.M33,
-			left.M31 * right.M11 + left.M32 * right.M21 + left.M33 * right.M31,
-			left.M31 * right.M12 + left.M32 * right.M22 + left.M33 * right.M32,
-			left.M31 * right.M13 + left.M32 * right.M23 + left.M33 * right.M33);
+		return Matrices.Multiply<Matrix3, Matrix3, Matrix3>(left, 3, 3, right, 3, 3);
+	}
+
+	public Span<float> AsSpan()
+	{
+		return MemoryMarshal.CreateSpan(ref M11, 9);
+	}
+
+	public static Matrix3 CreateDefault()
+	{
+		return default;
+	}
+
+	public static float Get(Matrix3 matrix, int index)
+	{
+		return index switch
+		{
+			0 => matrix.M11,
+			1 => matrix.M12,
+			2 => matrix.M13,
+			3 => matrix.M21,
+			4 => matrix.M22,
+			5 => matrix.M23,
+			6 => matrix.M31,
+			7 => matrix.M32,
+			8 => matrix.M33,
+			_ => throw new IndexOutOfRangeException(),
+		};
+	}
+
+	public static float Get(Matrix3 matrix, int row, int col)
+	{
+		return row switch
+		{
+			0 => col switch
+			{
+				0 => matrix.M11,
+				1 => matrix.M12,
+				2 => matrix.M13,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			1 => col switch
+			{
+				0 => matrix.M21,
+				1 => matrix.M22,
+				2 => matrix.M23,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			2 => col switch
+			{
+				0 => matrix.M31,
+				1 => matrix.M32,
+				2 => matrix.M33,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			_ => throw new IndexOutOfRangeException(),
+		};
+	}
+
+	public static void Set(ref Matrix3 matrix, int index, float value)
+	{
+		switch (index)
+		{
+			case 0: matrix.M11 = value; break;
+			case 1: matrix.M12 = value; break;
+			case 2: matrix.M13 = value; break;
+			case 3: matrix.M21 = value; break;
+			case 4: matrix.M22 = value; break;
+			case 5: matrix.M23 = value; break;
+			case 6: matrix.M31 = value; break;
+			case 7: matrix.M32 = value; break;
+			case 8: matrix.M33 = value; break;
+			default: throw new IndexOutOfRangeException();
+		}
+	}
+
+	public static void Set(ref Matrix3 matrix, int row, int col, float value)
+	{
+		switch (row)
+		{
+			case 0:
+				switch (col)
+				{
+					case 0: matrix.M11 = value; break;
+					case 1: matrix.M12 = value; break;
+					case 2: matrix.M13 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+			case 1:
+				switch (col)
+				{
+					case 0: matrix.M21 = value; break;
+					case 1: matrix.M22 = value; break;
+					case 2: matrix.M23 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+			case 2:
+				switch (col)
+				{
+					case 0: matrix.M31 = value; break;
+					case 1: matrix.M32 = value; break;
+					case 2: matrix.M33 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+			default:
+				throw new IndexOutOfRangeException();
+		}
 	}
 }
