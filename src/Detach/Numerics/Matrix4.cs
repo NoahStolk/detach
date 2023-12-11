@@ -1,6 +1,8 @@
-﻿namespace Detach.Numerics;
+﻿using System.Runtime.InteropServices;
 
-public struct Matrix4
+namespace Detach.Numerics;
+
+public record struct Matrix4 : IMatrixOperations<Matrix4>
 {
 	public float M11;
 	public float M12;
@@ -39,96 +41,41 @@ public struct Matrix4
 		M44 = m44;
 	}
 
+	public Matrix4(Span<float> span)
+	{
+		if (span.Length != 16)
+			throw new ArgumentException("Span must have length of 16.", nameof(span));
+
+		M11 = span[0];
+		M12 = span[1];
+		M13 = span[2];
+		M14 = span[3];
+		M21 = span[4];
+		M22 = span[5];
+		M23 = span[6];
+		M24 = span[7];
+		M31 = span[8];
+		M32 = span[9];
+		M33 = span[10];
+		M34 = span[11];
+		M41 = span[12];
+		M42 = span[13];
+		M43 = span[14];
+		M44 = span[15];
+	}
+
 	public static Matrix4 Identity => new(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+
+	public float this[int index]
+	{
+		get => Get(this, index);
+		set => Set(ref this, index, value);
+	}
 
 	public float this[int row, int col]
 	{
-		get => row switch
-		{
-			0 => col switch
-			{
-				0 => M11,
-				1 => M12,
-				2 => M13,
-				3 => M14,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			1 => col switch
-			{
-				0 => M21,
-				1 => M22,
-				2 => M23,
-				3 => M24,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			2 => col switch
-			{
-				0 => M31,
-				1 => M32,
-				2 => M33,
-				3 => M34,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			3 => col switch
-			{
-				0 => M41,
-				1 => M42,
-				2 => M43,
-				3 => M44,
-				_ => throw new IndexOutOfRangeException(),
-			},
-			_ => throw new IndexOutOfRangeException(),
-		};
-		set
-		{
-			switch (row)
-			{
-				case 0:
-					switch (col)
-					{
-						case 0: M11 = value; break;
-						case 1: M12 = value; break;
-						case 2: M13 = value; break;
-						case 3: M14 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-				case 1:
-					switch (col)
-					{
-						case 0: M21 = value; break;
-						case 1: M22 = value; break;
-						case 2: M23 = value; break;
-						case 3: M24 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-				case 2:
-					switch (col)
-					{
-						case 0: M31 = value; break;
-						case 1: M32 = value; break;
-						case 2: M33 = value; break;
-						case 3: M34 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-				case 3:
-					switch (col)
-					{
-						case 0: M41 = value; break;
-						case 1: M42 = value; break;
-						case 2: M43 = value; break;
-						case 3: M44 = value; break;
-						default: throw new IndexOutOfRangeException();
-					}
-
-					break;
-			}
-		}
+		get => Get(this, row, col);
+		set => Set(ref this, row, col, value);
 	}
 
 	public static Matrix4 operator *(Matrix4 left, float right)
@@ -142,22 +89,155 @@ public struct Matrix4
 
 	public static Matrix4 operator *(Matrix4 left, Matrix4 right)
 	{
-		return new(
-			left.M11 * right.M11 + left.M12 * right.M21 + left.M13 * right.M31 + left.M14 * right.M41,
-			left.M11 * right.M12 + left.M12 * right.M22 + left.M13 * right.M32 + left.M14 * right.M42,
-			left.M11 * right.M13 + left.M12 * right.M23 + left.M13 * right.M33 + left.M14 * right.M43,
-			left.M11 * right.M14 + left.M12 * right.M24 + left.M13 * right.M34 + left.M14 * right.M44,
-			left.M21 * right.M11 + left.M22 * right.M21 + left.M23 * right.M31 + left.M24 * right.M41,
-			left.M21 * right.M12 + left.M22 * right.M22 + left.M23 * right.M32 + left.M24 * right.M42,
-			left.M21 * right.M13 + left.M22 * right.M23 + left.M23 * right.M33 + left.M24 * right.M43,
-			left.M21 * right.M14 + left.M22 * right.M24 + left.M23 * right.M34 + left.M24 * right.M44,
-			left.M31 * right.M11 + left.M32 * right.M21 + left.M33 * right.M31 + left.M34 * right.M41,
-			left.M31 * right.M12 + left.M32 * right.M22 + left.M33 * right.M32 + left.M34 * right.M42,
-			left.M31 * right.M13 + left.M32 * right.M23 + left.M33 * right.M33 + left.M34 * right.M43,
-			left.M31 * right.M14 + left.M32 * right.M24 + left.M33 * right.M34 + left.M34 * right.M44,
-			left.M41 * right.M11 + left.M42 * right.M21 + left.M43 * right.M31 + left.M44 * right.M41,
-			left.M41 * right.M12 + left.M42 * right.M22 + left.M43 * right.M32 + left.M44 * right.M42,
-			left.M41 * right.M13 + left.M42 * right.M23 + left.M43 * right.M33 + left.M44 * right.M43,
-			left.M41 * right.M14 + left.M42 * right.M24 + left.M43 * right.M34 + left.M44 * right.M44);
+		return Matrices.Multiply<Matrix4, Matrix4, Matrix4>(left, 4, 4, right, 4, 4);
+	}
+
+	public Span<float> AsSpan()
+	{
+		return MemoryMarshal.CreateSpan(ref M11, 16);
+	}
+
+	public static Matrix4 CreateDefault()
+	{
+		return default;
+	}
+
+	public static float Get(Matrix4 matrix, int index)
+	{
+		return index switch
+		{
+			0 => matrix.M11,
+			1 => matrix.M12,
+			2 => matrix.M13,
+			3 => matrix.M14,
+			4 => matrix.M21,
+			5 => matrix.M22,
+			6 => matrix.M23,
+			7 => matrix.M24,
+			8 => matrix.M31,
+			9 => matrix.M32,
+			10 => matrix.M33,
+			11 => matrix.M34,
+			12 => matrix.M41,
+			13 => matrix.M42,
+			14 => matrix.M43,
+			15 => matrix.M44,
+			_ => throw new IndexOutOfRangeException(),
+		};
+	}
+
+	public static float Get(Matrix4 matrix, int row, int col)
+	{
+		return row switch
+		{
+			0 => col switch
+			{
+				0 => matrix.M11,
+				1 => matrix.M12,
+				2 => matrix.M13,
+				3 => matrix.M14,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			1 => col switch
+			{
+				0 => matrix.M21,
+				1 => matrix.M22,
+				2 => matrix.M23,
+				3 => matrix.M24,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			2 => col switch
+			{
+				0 => matrix.M31,
+				1 => matrix.M32,
+				2 => matrix.M33,
+				3 => matrix.M34,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			3 => col switch
+			{
+				0 => matrix.M41,
+				1 => matrix.M42,
+				2 => matrix.M43,
+				3 => matrix.M44,
+				_ => throw new IndexOutOfRangeException(),
+			},
+			_ => throw new IndexOutOfRangeException(),
+		};
+	}
+
+	public static void Set(ref Matrix4 matrix, int index, float value)
+	{
+		switch (index)
+		{
+			case 0: matrix.M11 = value; break;
+			case 1: matrix.M12 = value; break;
+			case 2: matrix.M13 = value; break;
+			case 3: matrix.M14 = value; break;
+			case 4: matrix.M21 = value; break;
+			case 5: matrix.M22 = value; break;
+			case 6: matrix.M23 = value; break;
+			case 7: matrix.M24 = value; break;
+			case 8: matrix.M31 = value; break;
+			case 9: matrix.M32 = value; break;
+			case 10: matrix.M33 = value; break;
+			case 11: matrix.M34 = value; break;
+			case 12: matrix.M41 = value; break;
+			case 13: matrix.M42 = value; break;
+			case 14: matrix.M43 = value; break;
+			case 15: matrix.M44 = value; break;
+			default: throw new IndexOutOfRangeException();
+		}
+	}
+
+	public static void Set(ref Matrix4 matrix, int row, int col, float value)
+	{
+		switch (row)
+		{
+			case 0:
+				switch (col)
+				{
+					case 0: matrix.M11 = value; break;
+					case 1: matrix.M12 = value; break;
+					case 2: matrix.M13 = value; break;
+					case 3: matrix.M14 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+			case 1:
+				switch (col)
+				{
+					case 0: matrix.M21 = value; break;
+					case 1: matrix.M22 = value; break;
+					case 2: matrix.M23 = value; break;
+					case 3: matrix.M24 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+			case 2:
+				switch (col)
+				{
+					case 0: matrix.M31 = value; break;
+					case 1: matrix.M32 = value; break;
+					case 2: matrix.M33 = value; break;
+					case 3: matrix.M34 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+			case 3:
+				switch (col)
+				{
+					case 0: matrix.M41 = value; break;
+					case 1: matrix.M42 = value; break;
+					case 2: matrix.M43 = value; break;
+					case 3: matrix.M44 = value; break;
+					default: throw new IndexOutOfRangeException();
+				}
+
+				break;
+		}
 	}
 }
