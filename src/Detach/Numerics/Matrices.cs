@@ -64,40 +64,6 @@ public static class Matrices
 		return result;
 	}
 
-	public static Matrix2 Cofactor(Matrix2 matrix2)
-	{
-		Matrix2 minor = Minor(matrix2);
-		Matrix2 result = default;
-		for (int i = 0; i < 2; i++)
-		{
-			int sign = i % 2 == 0 ? 1 : -1;
-			for (int j = 0; j < 2; j++)
-			{
-				result[i, j] = minor[i, j] * sign;
-				sign *= -1;
-			}
-		}
-
-		return result;
-	}
-
-	public static Matrix3 Cofactor(Matrix3 matrix3)
-	{
-		Matrix3 minor = Minor(matrix3);
-		Matrix3 result = default;
-		for (int i = 0; i < 3; i++)
-		{
-			int sign = i % 2 == 0 ? 1 : -1;
-			for (int j = 0; j < 3; j++)
-			{
-				result[i, j] = minor[i, j] * sign;
-				sign *= -1;
-			}
-		}
-
-		return result;
-	}
-
 	public static TMatrixOut Multiply<TMatrixA, TMatrixB, TMatrixOut>(TMatrixA matrixA, TMatrixB matrixB)
 		where TMatrixA : IMatrixOperations<TMatrixA>
 		where TMatrixB : IMatrixOperations<TMatrixB>
@@ -125,5 +91,30 @@ public static class Matrices
 		}
 
 		return matrixResult;
+	}
+
+	public static TMatrixOut Cofactor<TMatrix, TMatrixOut>(TMatrix matrixMinor)
+		where TMatrix : IMatrixOperations<TMatrix>
+		where TMatrixOut : IMatrixOperations<TMatrixOut>
+	{
+		TMatrixOut result = TMatrixOut.CreateDefault();
+		for (int i = 0; i < TMatrix.Rows; i++)
+		{
+			for (int j = 0; j < TMatrix.Cols; j++)
+			{
+				// float value = TMatrix.Get(matrix, i, j);
+				// if ((i + j) % 2 == 1)
+				// 	value = -value;
+				//
+				// TMatrixOut.Set(ref result, TMatrix.Cols * i + j, value);
+
+				int t = TMatrix.Cols * j + i;
+				int s = TMatrix.Cols * i + j; // ??
+				float sign = MathF.Pow(-1f, i + j); // (t % 2 == 0) ? 1.0f : -1.0f;
+				TMatrixOut.Set(ref result, t, TMatrix.Get(matrixMinor, s) * sign);
+			}
+		}
+
+		return result;
 	}
 }

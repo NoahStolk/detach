@@ -39,6 +39,11 @@ public class MatricesTests
 	{
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
 		Assert.AreEqual(0, Matrix3.Determinant(matrix3));
+
+		Matrix3 matrix = new(4, 3, 2, 1, 9, 7, 8, 6, 3);
+
+		// TODO: Check if this is correct.
+		Assert.AreEqual(-45, Matrix3.Determinant(matrix));
 	}
 
 	[TestMethod]
@@ -83,14 +88,14 @@ public class MatricesTests
 	public void Matrix2Cofactor()
 	{
 		Matrix2 matrix2 = new(1, 2, 3, 4);
-		Assert.AreEqual(new(4, -3, -2, 1), Matrices.Cofactor(matrix2));
+		Assert.AreEqual(new(4, -3, -2, 1), Matrix2.Cofactor(matrix2));
 	}
 
 	[TestMethod]
 	public void Matrix3Cofactor()
 	{
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
-		Assert.AreEqual(new(5, -4, 2, -1, -9, 7, -8, 6, 3), Matrices.Cofactor(matrix3));
+		Assert.AreEqual(new(5, -4, 2, -1, -9, 7, -8, 6, 3), Matrix3.Cofactor(matrix3));
 	}
 
 	[TestMethod]
