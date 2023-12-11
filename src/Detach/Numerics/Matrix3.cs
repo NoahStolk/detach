@@ -79,13 +79,17 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 
 	public static float Determinant(Matrix3 matrix)
 	{
-		return
-			matrix.M11 * matrix.M22 * matrix.M33
-			+ matrix.M12 * matrix.M23 * matrix.M31
-			+ matrix.M13 * matrix.M21 * matrix.M32
-			- matrix.M13 * matrix.M22 * matrix.M31
-			- matrix.M12 * matrix.M21 * matrix.M33
-			- matrix.M11 * matrix.M23 * matrix.M32;
+		float result = 0;
+		Matrix3 cofactor = Cofactor(matrix);
+		for (int i = 0; i < 3; i++)
+			result += matrix[i] * cofactor[0, i];
+
+		return result;
+	}
+
+	public static Matrix3 Cofactor(Matrix3 matrix)
+	{
+		return Matrices.Cofactor<Matrix3, Matrix3>(Matrices.Minor(matrix));
 	}
 
 	public static Matrix3 CreateDefault()
