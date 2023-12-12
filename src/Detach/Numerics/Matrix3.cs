@@ -112,6 +112,16 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		return Matrices.Cofactor<Matrix3, Matrix3>(Minor(matrix));
 	}
 
+	public static Matrix3 Adjugate(Matrix3 matrix)
+	{
+		return Matrices.Adjugate(matrix);
+	}
+
+	public static Matrix3 Inverse(Matrix3 matrix)
+	{
+		return Matrices.Inverse(matrix);
+	}
+
 	public static Matrix3 CreateDefault()
 	{
 		return default;
