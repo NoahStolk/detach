@@ -122,6 +122,41 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		return Matrices.Inverse(matrix);
 	}
 
+	public static Matrix3 CreateRotation(float yaw, float pitch, float roll)
+	{
+		return CreateRotationZ(roll) * CreateRotationX(pitch) * CreateRotationY(yaw);
+	}
+
+	public static Matrix3 CreateRotationZ(float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		return new(
+			cos, sin, 0,
+			-sin, cos, 0,
+			0, 0, 1);
+	}
+
+	public static Matrix3 CreateRotationX(float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		return new(
+			1, 0, 0,
+			0, cos, sin,
+			0, -sin, cos);
+	}
+
+	public static Matrix3 CreateRotationY(float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		return new(
+			cos, 0, -sin,
+			0, 1, 0,
+			sin, 0, cos);
+	}
+
 	public static Matrix3 CreateDefault()
 	{
 		return default;
