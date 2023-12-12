@@ -61,6 +61,13 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 		return MemoryMarshal.CreateSpan(ref M11, 4);
 	}
 
+	public static Matrix2 Transpose(Matrix2 matrix)
+	{
+		return new(
+			matrix.M11, matrix.M21,
+			matrix.M12, matrix.M22);
+	}
+
 	public static float Determinant(Matrix2 matrix)
 	{
 		return matrix.M11 * matrix.M22 - matrix.M12 * matrix.M21;
