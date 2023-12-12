@@ -46,4 +46,17 @@ public static class Geometry2D
 		Vector2 localPoint = rotVector + rectangle.HalfExtents;
 		return PointInRectangle(localPoint, localRectangle);
 	}
+
+	public static bool LineCircle(LineSegment2D line, Circle circle)
+	{
+		Vector2 ab = line.End - line.Start;
+		float t = Vector2.Dot(circle.Position - line.Start, ab) / Vector2.Dot(ab, ab);
+		if (t < 0 || t > 1)
+			return false;
+
+		Vector2 closestPoint = line.Start + ab * t;
+
+		LineSegment2D circleToClosest = new(circle.Position, closestPoint);
+		return circleToClosest.LengthSquared <= circle.Radius * circle.Radius;
+	}
 }
