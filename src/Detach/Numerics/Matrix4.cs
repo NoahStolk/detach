@@ -234,6 +234,25 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 			0, 0, 0, 1);
 	}
 
+	public static Matrix4 AxisAngle(Vector3 axis, float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		float t = 1 - cos;
+
+		axis = Vector3.Normalize(axis);
+
+		float x = axis.X;
+		float y = axis.Y;
+		float z = axis.Z;
+
+		return new(
+			t * x * x + cos, t * x * y + sin * z, t * x * z - sin * y, 0,
+			t * x * y - sin * z, t * y * y + cos, t * y * z + sin * x, 0,
+			t * x * z + sin * y, t * y * z - sin * x, t * z * z + cos, 0,
+			0, 0, 0, 1);
+	}
+
 	public static Matrix4 CreateDefault()
 	{
 		return default;
