@@ -1,4 +1,6 @@
-﻿namespace Detach.Numerics;
+﻿using System.Numerics;
+
+namespace Detach.Numerics;
 
 public static class Matrices
 {
@@ -44,6 +46,30 @@ public static class Matrices
 		return result;
 	}
 
+	public static Vector3 MultiplyPoint(Vector3 vector3, Matrix4 matrix4)
+	{
+		float x = vector3.X * matrix4.M11 + vector3.Y * matrix4.M21 + vector3.Z * matrix4.M31 + matrix4.M41;
+		float y = vector3.X * matrix4.M12 + vector3.Y * matrix4.M22 + vector3.Z * matrix4.M32 + matrix4.M42;
+		float z = vector3.X * matrix4.M13 + vector3.Y * matrix4.M23 + vector3.Z * matrix4.M33 + matrix4.M43;
+		return new(x, y, z);
+	}
+
+	public static Vector3 MultiplyVector(Vector3 vector3, Matrix4 matrix4)
+	{
+		float x = vector3.X * matrix4.M11 + vector3.Y * matrix4.M21 + vector3.Z * matrix4.M31;
+		float y = vector3.X * matrix4.M12 + vector3.Y * matrix4.M22 + vector3.Z * matrix4.M32;
+		float z = vector3.X * matrix4.M13 + vector3.Y * matrix4.M23 + vector3.Z * matrix4.M33;
+		return new(x, y, z);
+	}
+
+	public static Vector3 MultiplyVector(Vector3 vector3, Matrix3 matrix3)
+	{
+		float x = Vector3.Dot(vector3, new(matrix3.M11, matrix3.M21, matrix3.M31));
+		float y = Vector3.Dot(vector3, new(matrix3.M12, matrix3.M22, matrix3.M32));
+		float z = Vector3.Dot(vector3, new(matrix3.M13, matrix3.M23, matrix3.M33));
+		return Vector3.Normalize(new(x, y, z));
+	}
+
 	public static TMatrixOut Multiply<TMatrixA, TMatrixB, TMatrixOut>(TMatrixA matrixA, TMatrixB matrixB)
 		where TMatrixA : IMatrixOperations<TMatrixA>
 		where TMatrixB : IMatrixOperations<TMatrixB>
@@ -52,7 +78,7 @@ public static class Matrices
 		if (TMatrixA.Cols != TMatrixB.Rows)
 			throw new ArgumentException("The number of columns in the first matrix must be equal to the number of rows in the second matrix.");
 
-		TMatrixOut matrixResult = TMatrixOut.CreateDefault();
+		TMatrixOut matrixResult = TMatrixOut.Default();
 		for (int i = 0; i < TMatrixA.Rows; i++)
 		{
 			for (int j = 0; j < TMatrixB.Cols; j++)
@@ -77,7 +103,7 @@ public static class Matrices
 		where TMatrix : IMatrixOperations<TMatrix>
 		where TMatrixOut : IMatrixOperations<TMatrixOut>
 	{
-		TMatrixOut result = TMatrixOut.CreateDefault();
+		TMatrixOut result = TMatrixOut.Default();
 		for (int i = 0; i < TMatrix.Rows; i++)
 		{
 			for (int j = 0; j < TMatrix.Cols; j++)

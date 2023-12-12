@@ -123,12 +123,12 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		return Matrices.Inverse(matrix);
 	}
 
-	public static Matrix3 CreateRotation(float yaw, float pitch, float roll)
+	public static Matrix3 Rotation(float yaw, float pitch, float roll)
 	{
-		return CreateRotationZ(roll) * CreateRotationX(pitch) * CreateRotationY(yaw);
+		return RotationZ(roll) * RotationX(pitch) * RotationY(yaw);
 	}
 
-	public static Matrix3 CreateRotationZ(float angleInRadians)
+	public static Matrix3 RotationZ(float angleInRadians)
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
@@ -138,7 +138,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			0, 0, 1);
 	}
 
-	public static Matrix3 CreateRotationX(float angleInRadians)
+	public static Matrix3 RotationX(float angleInRadians)
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
@@ -148,7 +148,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			0, -sin, cos);
 	}
 
-	public static Matrix3 CreateRotationY(float angleInRadians)
+	public static Matrix3 RotationY(float angleInRadians)
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
@@ -176,7 +176,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			t * x * z + sin * y, t * y * z - sin * x, t * z * z + cos);
 	}
 
-	public static Matrix3 CreateDefault()
+	public static Matrix3 Default()
 	{
 		return default;
 	}
