@@ -34,16 +34,16 @@ public static class Geometry2D
 		return point.X >= min.X && point.X <= max.X && point.Y >= min.Y && point.Y <= max.Y;
 	}
 
-	public static bool PointInOrientedRectangle(Vector2 point, OrientedRectangle rectangle)
+	public static bool PointInOrientedRectangle(Vector2 point, OrientedRectangle orientedRectangle)
 	{
-		Vector2 rotVector = point - rectangle.Position;
-		float theta = -rectangle.RotationInRadians;
+		Vector2 rotVector = point - orientedRectangle.Position;
+		float theta = -orientedRectangle.RotationInRadians;
 		Matrix2 zRotation = new(
 			MathF.Cos(theta), MathF.Sin(theta),
 			-MathF.Sin(theta), MathF.Cos(theta));
 		rotVector = Matrices.Multiply(rotVector, zRotation);
-		Rectangle localRectangle = new(Vector2.Zero, rectangle.HalfExtents * 2);
-		Vector2 localPoint = rotVector + rectangle.HalfExtents;
+		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
+		Vector2 localPoint = rotVector + orientedRectangle.HalfExtents;
 		return PointInRectangle(localPoint, localRectangle);
 	}
 
@@ -78,5 +78,19 @@ public static class Geometry2D
 
 		float t = (tMin < 0) ? tMax : tMin;
 		return t > 0 && t * t < line.LengthSquared;
+	}
+
+	public static bool LineOrientedRectangle(LineSegment2D line, OrientedRectangle orientedRectangle)
+	{
+		float theta = -orientedRectangle.RotationInRadians;
+		Matrix2 zRotation = new(
+			MathF.Cos(theta), MathF.Sin(theta),
+			-MathF.Sin(theta), MathF.Cos(theta));
+
+		LineSegment2D localLine = new(
+			Matrices.Multiply(line.Start - orientedRectangle.Position, zRotation) + orientedRectangle.HalfExtents,
+			Matrices.Multiply(line.End - orientedRectangle.Position, zRotation) + orientedRectangle.HalfExtents);
+		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
+		return LineRectangle(localLine, localRectangle);
 	}
 }
