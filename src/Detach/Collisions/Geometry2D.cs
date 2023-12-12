@@ -34,14 +34,16 @@ public static class Geometry2D
 		return point.X >= min.X && point.X <= max.X && point.Y >= min.Y && point.Y <= max.Y;
 	}
 
-	// public static bool PointInOrientedRectangle(Vector2 point, OrientedRectangle rectangle)
-	// {
-	// 	Vector2 rotVector = point - rectangle.Position;
-	// 	float theta = -rectangle.Rotation;
-	// 	Matrix2 zRotation = new(MathF.Cos(theta), MathF.Sin(theta), -MathF.Sin(theta), MathF.Cos(theta));
-	// 	Vector2 rotated = Matrices.Multiply(rotVector, zRotation);
-	// 	Rectangle localRectangle = new(Vector2.Zero, rectangle.HalfExtents * 2);
-	// 	Vector2 localPoint = rotated + rectangle.HalfExtents;
-	// 	return PointInRectangle(localPoint, localRectangle);
-	// }
+	public static bool PointInOrientedRectangle(Vector2 point, OrientedRectangle rectangle)
+	{
+		Vector2 rotVector = point - rectangle.Position;
+		float theta = -rectangle.RotationInRadians;
+		Matrix2 zRotation = new(
+			MathF.Cos(theta), MathF.Sin(theta),
+			-MathF.Sin(theta), MathF.Cos(theta));
+		rotVector = Matrices.Multiply(rotVector, zRotation);
+		Rectangle localRectangle = new(Vector2.Zero, rectangle.HalfExtents * 2);
+		Vector2 localPoint = rotVector + rectangle.HalfExtents;
+		return PointInRectangle(localPoint, localRectangle);
+	}
 }
