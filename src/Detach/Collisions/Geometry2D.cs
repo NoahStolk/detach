@@ -59,4 +59,24 @@ public static class Geometry2D
 		LineSegment2D circleToClosest = new(circle.Position, closestPoint);
 		return circleToClosest.LengthSquared <= circle.Radius * circle.Radius;
 	}
+
+	public static bool LineRectangle(LineSegment2D line, Rectangle rectangle)
+	{
+		if (PointInRectangle(line.Start, rectangle) || PointInRectangle(line.End, rectangle))
+			return true;
+
+		Vector2 norm = Vector2.Normalize(line.End - line.Start);
+		norm.X = (norm.X != 0) ? 1 / norm.X : 0;
+		norm.Y = (norm.Y != 0) ? 1 / norm.Y : 0;
+		Vector2 min = (rectangle.GetMin() - line.Start) * norm;
+		Vector2 max = (rectangle.GetMax() - line.Start) * norm;
+
+		float tMin = MathF.Max(MathF.Min(min.X, max.X), MathF.Min(min.Y, max.Y));
+		float tMax = MathF.Min(MathF.Max(min.X, max.X), MathF.Max(min.Y, max.Y));
+		if (tMax < 0 || tMin > tMax)
+			return false;
+
+		float t = (tMin < 0) ? tMax : tMin;
+		return t > 0 && t * t < line.LengthSquared;
+	}
 }
