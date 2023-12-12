@@ -10,21 +10,21 @@ public class MatricesTests
 	public void Matrix2Transpose()
 	{
 		Matrix2 matrix2 = new(1, 2, 3, 4);
-		Assert.AreEqual(new(1, 3, 2, 4), Matrices.Transpose(matrix2));
+		Assert.AreEqual(new(1, 3, 2, 4), Matrix2.Transpose(matrix2));
 	}
 
 	[TestMethod]
 	public void Matrix3Transpose()
 	{
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
-		Assert.AreEqual(new(1, 4, 7, 2, 5, 8, 3, 6, 9), Matrices.Transpose(matrix3));
+		Assert.AreEqual(new(1, 4, 7, 2, 5, 8, 3, 6, 9), Matrix3.Transpose(matrix3));
 	}
 
 	[TestMethod]
 	public void Matrix4Transpose()
 	{
 		Matrix4 matrix4 = new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
-		Assert.AreEqual(new(1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15, 4, 8, 12, 16), Matrices.Transpose(matrix4));
+		Assert.AreEqual(new(1, 5, 9, 13, 2, 6, 10, 14, 3, 7, 11, 15, 4, 8, 12, 16), Matrix4.Transpose(matrix4));
 	}
 
 	[TestMethod]

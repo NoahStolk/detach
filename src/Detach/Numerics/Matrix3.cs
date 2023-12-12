@@ -77,6 +77,14 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		return MemoryMarshal.CreateSpan(ref M11, 9);
 	}
 
+	public static Matrix3 Transpose(Matrix3 matrix)
+	{
+		return new(
+			matrix.M11, matrix.M21, matrix.M31,
+			matrix.M12, matrix.M22, matrix.M32,
+			matrix.M13, matrix.M23, matrix.M33);
+	}
+
 	public static float Determinant(Matrix3 matrix)
 	{
 		float result = 0;

@@ -2,30 +2,6 @@
 
 public static class Matrices
 {
-	public static Matrix2 Transpose(Matrix2 matrix2)
-	{
-		return new(
-			matrix2.M11, matrix2.M21,
-			matrix2.M12, matrix2.M22);
-	}
-
-	public static Matrix3 Transpose(Matrix3 matrix3)
-	{
-		return new(
-			matrix3.M11, matrix3.M21, matrix3.M31,
-			matrix3.M12, matrix3.M22, matrix3.M32,
-			matrix3.M13, matrix3.M23, matrix3.M33);
-	}
-
-	public static Matrix4 Transpose(Matrix4 matrix4)
-	{
-		return new(
-			matrix4.M11, matrix4.M21, matrix4.M31, matrix4.M41,
-			matrix4.M12, matrix4.M22, matrix4.M32, matrix4.M42,
-			matrix4.M13, matrix4.M23, matrix4.M33, matrix4.M43,
-			matrix4.M14, matrix4.M24, matrix4.M34, matrix4.M44);
-	}
-
 	public static Matrix2 Cut(Matrix3 matrix3, int row, int col)
 	{
 		Matrix2 result = default;
