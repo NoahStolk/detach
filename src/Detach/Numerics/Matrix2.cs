@@ -73,9 +73,14 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 		return matrix.M11 * matrix.M22 - matrix.M12 * matrix.M21;
 	}
 
+	public static Matrix2 Minor(Matrix2 matrix)
+	{
+		return new(matrix.M22, matrix.M21, matrix.M12, matrix.M11);
+	}
+
 	public static Matrix2 Cofactor(Matrix2 matrix)
 	{
-		return Matrices.Cofactor<Matrix2, Matrix2>(Matrices.Minor(matrix));
+		return Matrices.Cofactor<Matrix2, Matrix2>(Minor(matrix));
 	}
 
 	public static Matrix2 CreateDefault()

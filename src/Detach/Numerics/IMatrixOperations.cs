@@ -13,6 +13,10 @@ public interface IMatrixOperations<TSelf>
 
 	static abstract float Determinant(TSelf matrix);
 
+	static abstract TSelf Minor(TSelf matrix);
+
+	static abstract TSelf Cofactor(TSelf matrix);
+
 	static abstract TSelf CreateDefault();
 
 	static abstract float Get(TSelf matrix, int index);

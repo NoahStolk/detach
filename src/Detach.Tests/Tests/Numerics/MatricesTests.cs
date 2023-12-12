@@ -72,7 +72,7 @@ public class MatricesTests
 	public void Matrix2Minor()
 	{
 		Matrix2 matrix2 = new(1, 2, 3, 4);
-		Assert.AreEqual(new(4, 3, 2, 1), Matrices.Minor(matrix2));
+		Assert.AreEqual(new(4, 3, 2, 1), Matrix2.Minor(matrix2));
 	}
 
 	[TestMethod]
@@ -81,7 +81,7 @@ public class MatricesTests
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
 
 		// TODO: This is wrong.
-		Assert.AreEqual(new(5, 4, 2, 1, 9, 7, 8, 6, 3), Matrices.Minor(matrix3));
+		Assert.AreEqual(new(5, 4, 2, 1, 9, 7, 8, 6, 3), Matrix3.Minor(matrix3));
 	}
 
 	[TestMethod]

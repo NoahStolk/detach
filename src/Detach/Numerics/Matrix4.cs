@@ -118,9 +118,21 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		return result;
 	}
 
+	public static Matrix4 Minor(Matrix4 matrix)
+	{
+		Matrix4 result = default;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+				result[i, j] = Matrix3.Determinant(Matrices.Cut(matrix, i, j));
+		}
+
+		return result;
+	}
+
 	public static Matrix4 Cofactor(Matrix4 matrix)
 	{
-		return Matrices.Cofactor<Matrix4, Matrix4>(Matrices.Minor(matrix));
+		return Matrices.Cofactor<Matrix4, Matrix4>(Minor(matrix));
 	}
 
 	public static Matrix4 CreateDefault()
