@@ -50,6 +50,8 @@ public class MatricesTests
 	public void Matrix4Determinant()
 	{
 		Matrix4 matrix4 = new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, 12, 13, 14, 15, 16);
+
+		// TODO: This is wrong.
 		Assert.AreEqual(0, Matrix4.Determinant(matrix4));
 	}
 
@@ -88,6 +90,8 @@ public class MatricesTests
 	public void Matrix2Cofactor()
 	{
 		Matrix2 matrix2 = new(1, 2, 3, 4);
+
+		// TODO: This is probably wrong.
 		Assert.AreEqual(new(4, -3, -2, 1), Matrix2.Cofactor(matrix2));
 	}
 
@@ -95,6 +99,8 @@ public class MatricesTests
 	public void Matrix3Cofactor()
 	{
 		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+		// TODO: This is probably wrong.
 		Assert.AreEqual(new(5, -4, 2, -1, -9, 7, -8, 6, 3), Matrix3.Cofactor(matrix3));
 	}
 

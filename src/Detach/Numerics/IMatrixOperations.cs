@@ -9,6 +9,10 @@ public interface IMatrixOperations<TSelf>
 
 	static abstract int Cols { get; }
 
+	static abstract TSelf operator *(TSelf left, float right);
+
+	static abstract TSelf operator *(TSelf left, TSelf right);
+
 	static abstract TSelf Transpose(TSelf matrix);
 
 	static abstract float Determinant(TSelf matrix);
@@ -16,6 +20,10 @@ public interface IMatrixOperations<TSelf>
 	static abstract TSelf Minor(TSelf matrix);
 
 	static abstract TSelf Cofactor(TSelf matrix);
+
+	static abstract TSelf Adjugate(TSelf matrix);
+
+	static abstract TSelf Inverse(TSelf matrix);
 
 	static abstract TSelf CreateDefault();
 
