@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace Detach.Numerics;
 
@@ -155,6 +156,24 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			cos, 0, -sin,
 			0, 1, 0,
 			sin, 0, cos);
+	}
+
+	public static Matrix3 AxisAngle(Vector3 axis, float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		float t = 1 - cos;
+
+		axis = Vector3.Normalize(axis);
+
+		float x = axis.X;
+		float y = axis.Y;
+		float z = axis.Z;
+
+		return new(
+			t * x * x + cos, t * x * y + sin * z, t * x * z - sin * y,
+			t * x * y - sin * z, t * y * y + cos, t * y * z + sin * x,
+			t * x * z + sin * y, t * y * z - sin * x, t * z * z + cos);
 	}
 
 	public static Matrix3 CreateDefault()
