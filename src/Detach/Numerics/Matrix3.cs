@@ -95,9 +95,21 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		return result;
 	}
 
+	public static Matrix3 Minor(Matrix3 matrix)
+	{
+		Matrix3 result = default;
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+				result[i, j] = Matrix2.Determinant(Matrices.Cut(matrix, i, j));
+		}
+
+		return result;
+	}
+
 	public static Matrix3 Cofactor(Matrix3 matrix)
 	{
-		return Matrices.Cofactor<Matrix3, Matrix3>(Matrices.Minor(matrix));
+		return Matrices.Cofactor<Matrix3, Matrix3>(Minor(matrix));
 	}
 
 	public static Matrix3 CreateDefault()
