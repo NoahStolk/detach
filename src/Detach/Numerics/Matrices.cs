@@ -97,4 +97,20 @@ public static class Matrices
 
 		return result;
 	}
+
+	public static TMatrix Adjugate<TMatrix>(TMatrix matrix)
+		where TMatrix : IMatrixOperations<TMatrix>
+	{
+		return TMatrix.Transpose(TMatrix.Cofactor(matrix));
+	}
+
+	public static TMatrix Inverse<TMatrix>(TMatrix matrix)
+		where TMatrix : IMatrixOperations<TMatrix>
+	{
+		float determinant = TMatrix.Determinant(matrix);
+		if (determinant == 0)
+			return TMatrix.Identity;
+
+		return TMatrix.Adjugate(matrix) * (1f / determinant);
+	}
 }

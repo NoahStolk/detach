@@ -135,6 +135,16 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		return Matrices.Cofactor<Matrix4, Matrix4>(Minor(matrix));
 	}
 
+	public static Matrix4 Adjugate(Matrix4 matrix)
+	{
+		return Matrices.Adjugate(matrix);
+	}
+
+	public static Matrix4 Inverse(Matrix4 matrix)
+	{
+		return Matrices.Inverse(matrix);
+	}
+
 	public static Matrix4 CreateDefault()
 	{
 		return default;
