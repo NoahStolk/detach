@@ -93,6 +93,20 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 		return Matrices.Inverse(matrix);
 	}
 
+	public static Matrix2 FastInverse(Matrix2 matrix)
+	{
+		float determinant = matrix.M11 * matrix.M22 - matrix.M12 * matrix.M21;
+		if (determinant == 0)
+			return Identity;
+
+		float invDet = 1.0f / determinant;
+		float m11 = matrix.M22 * invDet;
+		float m12 = -matrix.M12 * invDet;
+		float m21 = -matrix.M21 * invDet;
+		float m22 = matrix.M11 * invDet;
+		return new(m11, m12, m21, m22);
+	}
+
 	public static Matrix2 CreateDefault()
 	{
 		return default;

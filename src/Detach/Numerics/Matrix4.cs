@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace Detach.Numerics;
 
@@ -67,6 +68,28 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 	public static Matrix4 Identity => new(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 	public static int Rows => 4;
 	public static int Cols => 4;
+
+	public Vector3 Translation
+	{
+		get => new(M41, M42, M43);
+		set
+		{
+			M41 = value.X;
+			M42 = value.Y;
+			M43 = value.Z;
+		}
+	}
+
+	public Vector3 Scale
+	{
+		get => new(M11, M22, M33);
+		set
+		{
+			M11 = value.X;
+			M22 = value.Y;
+			M33 = value.Z;
+		}
+	}
 
 	public float this[int index]
 	{
@@ -143,6 +166,72 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 	public static Matrix4 Inverse(Matrix4 matrix)
 	{
 		return Matrices.Inverse(matrix);
+	}
+
+	public static Matrix4 CreateTranslation(float x, float y, float z)
+	{
+		return new(
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 0,
+			x, y, z, 1);
+	}
+
+	public static Matrix4 CreateTranslation(Vector3 translation)
+	{
+		return CreateTranslation(translation.X, translation.Y, translation.Z);
+	}
+
+	public static Matrix4 CreateScale(float x, float y, float z)
+	{
+		return new(
+			x, 0, 0, 0,
+			0, y, 0, 0,
+			0, 0, z, 0,
+			0, 0, 0, 1);
+	}
+
+	public static Matrix4 CreateScale(Vector3 scale)
+	{
+		return CreateScale(scale.X, scale.Y, scale.Z);
+	}
+
+	public static Matrix4 CreateRotation(float yaw, float pitch, float roll)
+	{
+		return CreateRotationZ(roll) * CreateRotationX(pitch) * CreateRotationY(yaw);
+	}
+
+	public static Matrix4 CreateRotationZ(float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		return new(
+			cos, sin, 0, 0,
+			-sin, cos, 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1);
+	}
+
+	public static Matrix4 CreateRotationX(float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		return new(
+			1, 0, 0, 0,
+			0, cos, sin, 0,
+			0, -sin, cos, 0,
+			0, 0, 0, 1);
+	}
+
+	public static Matrix4 CreateRotationY(float angleInRadians)
+	{
+		float sin = MathF.Sin(angleInRadians);
+		float cos = MathF.Cos(angleInRadians);
+		return new(
+			cos, 0, -sin, 0,
+			0, 1, 0, 0,
+			sin, 0, cos, 0,
+			0, 0, 0, 1);
 	}
 
 	public static Matrix4 CreateDefault()
