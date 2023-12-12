@@ -196,12 +196,12 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		return CreateScale(scale.X, scale.Y, scale.Z);
 	}
 
-	public static Matrix4 CreateRotation(float yaw, float pitch, float roll)
+	public static Matrix4 Rotation(float yaw, float pitch, float roll)
 	{
-		return CreateRotationZ(roll) * CreateRotationX(pitch) * CreateRotationY(yaw);
+		return RotationZ(roll) * RotationX(pitch) * RotationY(yaw);
 	}
 
-	public static Matrix4 CreateRotationZ(float angleInRadians)
+	public static Matrix4 RotationZ(float angleInRadians)
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
@@ -212,7 +212,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 			0, 0, 0, 1);
 	}
 
-	public static Matrix4 CreateRotationX(float angleInRadians)
+	public static Matrix4 RotationX(float angleInRadians)
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
@@ -223,7 +223,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 			0, 0, 0, 1);
 	}
 
-	public static Matrix4 CreateRotationY(float angleInRadians)
+	public static Matrix4 RotationY(float angleInRadians)
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
@@ -253,7 +253,60 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 			0, 0, 0, 1);
 	}
 
-	public static Matrix4 CreateDefault()
+	public static Matrix4 Transform(Vector3 scale, Vector3 rotationInRadians, Vector3 translation)
+	{
+		return CreateScale(scale) * Rotation(rotationInRadians.X, rotationInRadians.Y, rotationInRadians.Z) * CreateTranslation(translation);
+	}
+
+	public static Matrix4 Transform(Vector3 scale, Vector3 rotationAxis, float rotationAngleInRadians, Vector3 translation)
+	{
+		return CreateScale(scale) * AxisAngle(rotationAxis, rotationAngleInRadians) * CreateTranslation(translation);
+	}
+
+	public static Matrix4 LookAt(Vector3 position, Vector3 target, Vector3 up)
+	{
+		Vector3 zAxis = Vector3.Normalize(target - position);
+		Vector3 xAxis = Vector3.Normalize(Vector3.Cross(up, zAxis));
+		Vector3 yAxis = Vector3.Normalize(Vector3.Cross(zAxis, xAxis));
+
+		return new(
+			xAxis.X, yAxis.X, zAxis.X, 0,
+			xAxis.Y, yAxis.Y, zAxis.Y, 0,
+			xAxis.Z, yAxis.Z, zAxis.Z, 0,
+			-Vector3.Dot(xAxis, position), -Vector3.Dot(yAxis, position), -Vector3.Dot(zAxis, position), 1);
+	}
+
+	public static Matrix4 Projection(float fovInRadians, float aspectRatio, float near, float far)
+	{
+		float yScale = 1 / MathF.Tan(fovInRadians / 2);
+		float xScale = yScale / aspectRatio;
+		float zScale = far / (far - near);
+		float zTranslation = -near * zScale;
+
+		return new(
+			xScale, 0, 0, 0,
+			0, yScale, 0, 0,
+			0, 0, zScale, 1,
+			0, 0, zTranslation, 0);
+	}
+
+	public static Matrix4 Orthographic(float left, float right, float bottom, float top, float near, float far)
+	{
+		float xScale = 2 / (right - left);
+		float yScale = 2 / (top - bottom);
+		float zScale = 1 / (far - near);
+		float xTranslation = (left + right) / (left - right);
+		float yTranslation = (top + bottom) / (bottom - top);
+		float zTranslation = near / (near - far);
+
+		return new(
+			xScale, 0, 0, 0,
+			0, yScale, 0, 0,
+			0, 0, zScale, 0,
+			xTranslation, yTranslation, zTranslation, 1);
+	}
+
+	public static Matrix4 Default()
 	{
 		return default;
 	}

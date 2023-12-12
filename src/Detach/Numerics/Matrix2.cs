@@ -107,7 +107,7 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 		return new(m11, m12, m21, m22);
 	}
 
-	public static Matrix2 CreateDefault()
+	public static Matrix2 Default()
 	{
 		return default;
 	}
