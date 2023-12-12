@@ -70,6 +70,18 @@ public static class Matrices
 		return Vector3.Normalize(new(x, y, z));
 	}
 
+	public static Vector2 Multiply(Vector2 vector, Matrix2 matrix)
+	{
+		Vector2 result = default;
+		for (int i = 0; i < 2; i++)
+		{
+			for (int j = 0; j < 2; j++)
+				result[i] += vector[j] * matrix[2 * j + i];
+		}
+
+		return result;
+	}
+
 	public static TMatrixOut Multiply<TMatrixA, TMatrixB, TMatrixOut>(TMatrixA matrixA, TMatrixB matrixB)
 		where TMatrixA : IMatrixOperations<TMatrixA>
 		where TMatrixB : IMatrixOperations<TMatrixB>
