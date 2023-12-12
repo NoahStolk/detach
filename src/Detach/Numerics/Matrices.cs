@@ -23,6 +23,27 @@ public static class Matrices
 		return result;
 	}
 
+	public static Matrix3 Cut(Matrix4 matrix4, int row, int col)
+	{
+		Matrix3 result = default;
+		int index = 0;
+
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				if (i == row || j == col)
+					continue;
+
+				int target = index++;
+				int source = 4 * i + j;
+				result[target] = matrix4[source];
+			}
+		}
+
+		return result;
+	}
+
 	public static Matrix2 Minor(Matrix2 matrix2)
 	{
 		return new(matrix2.M22, matrix2.M21, matrix2.M12, matrix2.M11);
@@ -35,6 +56,18 @@ public static class Matrices
 		{
 			for (int j = 0; j < 3; j++)
 				result[i, j] = Matrix2.Determinant(Cut(matrix3, i, j));
+		}
+
+		return result;
+	}
+
+	public static Matrix4 Minor(Matrix4 matrix4)
+	{
+		Matrix4 result = default;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+				result[i, j] = Matrix3.Determinant(Cut(matrix4, i, j));
 		}
 
 		return result;
