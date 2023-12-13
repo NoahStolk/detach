@@ -93,4 +93,41 @@ public static class Geometry2D
 		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return LineRectangle(localLine, localRectangle);
 	}
+
+	public static bool CircleCircle(Circle circle1, Circle circle2)
+	{
+		LineSegment2D line = new(circle1.Position, circle2.Position);
+		float radii = circle1.Radius + circle2.Radius;
+		return line.LengthSquared <= radii * radii;
+	}
+
+	public static bool CircleRectangle(Circle circle, Rectangle rectangle)
+	{
+		if (PointInRectangle(circle.Position, rectangle))
+			return true;
+
+		Vector2 min = rectangle.GetMin();
+		Vector2 max = rectangle.GetMax();
+
+		Vector2 closestPoint = new(
+			Math.Clamp(circle.Position.X, min.X, max.X),
+			Math.Clamp(circle.Position.Y, min.Y, max.Y));
+
+		LineSegment2D circleToClosest = new(circle.Position, closestPoint);
+		return circleToClosest.LengthSquared <= circle.Radius * circle.Radius;
+	}
+
+	public static bool CircleOrientedRectangle(Circle circle, OrientedRectangle orientedRectangle)
+	{
+		float theta = -orientedRectangle.RotationInRadians;
+		Matrix2 zRotation = new(
+			MathF.Cos(theta), MathF.Sin(theta),
+			-MathF.Sin(theta), MathF.Cos(theta));
+
+		Circle localCircle = new(
+			Matrices.Multiply(circle.Position - orientedRectangle.Position, zRotation) + orientedRectangle.HalfExtents,
+			circle.Radius);
+		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
+		return CircleRectangle(localCircle, localRectangle);
+	}
 }
