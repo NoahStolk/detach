@@ -130,4 +130,82 @@ public static class Geometry2D
 		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return CircleRectangle(localCircle, localRectangle);
 	}
+
+	public static bool RectangleRectangle(Rectangle rectangle1, Rectangle rectangle2)
+	{
+		Vector2 min1 = rectangle1.GetMin();
+		Vector2 max1 = rectangle1.GetMax();
+		Vector2 min2 = rectangle2.GetMin();
+		Vector2 max2 = rectangle2.GetMax();
+
+		return min1.X <= max2.X && max1.X >= min2.X && min1.Y <= max2.Y && max1.Y >= min2.Y;
+	}
+
+	private static bool OverlapOnAxis(Rectangle rectangle1, Rectangle rectangle2, Vector2 axis)
+	{
+		Interval2D interval1 = rectangle1.GetInterval(axis);
+		Interval2D interval2 = rectangle2.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	private static bool OverlapOnAxis(Rectangle rectangle, OrientedRectangle orientedRectangle, Vector2 axis)
+	{
+		Interval2D interval1 = rectangle.GetInterval(axis);
+		Interval2D interval2 = orientedRectangle.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	public static bool RectangleRectangleSat(Rectangle rectangle1, Rectangle rectangle2)
+	{
+		Span<Vector2> axes = stackalloc Vector2[] { new(1, 0), new(0, 1) };
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(rectangle1, rectangle2, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static bool RectangleOrientedRectangleSat(Rectangle rectangle, OrientedRectangle orientedRectangle)
+	{
+		Span<Vector2> axes = stackalloc Vector2[] { new(1, 0), new(0, 1), default, default };
+
+		Matrix2 zRotation = new(
+			MathF.Cos(orientedRectangle.RotationInRadians), MathF.Sin(orientedRectangle.RotationInRadians),
+			-MathF.Sin(orientedRectangle.RotationInRadians), MathF.Cos(orientedRectangle.RotationInRadians));
+
+		Vector2 axis = Vector2.Normalize(orientedRectangle.HalfExtents with { Y = 0 });
+		axes[2] = Matrices.Multiply(axis, zRotation);
+
+		axis = Vector2.Normalize(orientedRectangle.HalfExtents with { X = 0 });
+		axes[3] = Matrices.Multiply(axis, zRotation);
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(rectangle, orientedRectangle, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static bool OrientedRectangleOrientedRectangleSat(OrientedRectangle orientedRectangle1, OrientedRectangle orientedRectangle2)
+	{
+		Rectangle local1 = new(Vector2.Zero, orientedRectangle1.HalfExtents * 2);
+		Vector2 rotVector = orientedRectangle2.Position - orientedRectangle1.Position;
+		OrientedRectangle local2 = new(orientedRectangle2.Position, orientedRectangle2.HalfExtents, orientedRectangle2.RotationInRadians);
+		local2.RotationInRadians -= orientedRectangle1.RotationInRadians;
+
+		float theta = -orientedRectangle1.RotationInRadians;
+		Matrix2 zRotation = new(
+			MathF.Cos(theta), MathF.Sin(theta),
+			-MathF.Sin(theta), MathF.Cos(theta));
+
+		rotVector = Matrices.Multiply(rotVector, zRotation);
+		local2.Position = rotVector + orientedRectangle1.HalfExtents;
+
+		return RectangleOrientedRectangleSat(local1, local2);
+	}
 }

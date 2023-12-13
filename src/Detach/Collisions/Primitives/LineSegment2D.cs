@@ -2,7 +2,7 @@
 
 namespace Detach.Collisions.Primitives;
 
-public struct LineSegment2D
+public record struct LineSegment2D
 {
 	public Vector2 Start;
 	public Vector2 End;

@@ -2,7 +2,7 @@
 
 namespace Detach.Collisions.Primitives;
 
-public struct Circle
+public record struct Circle
 {
 	public Vector2 Position;
 	public float Radius;
