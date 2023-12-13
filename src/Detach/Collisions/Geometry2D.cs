@@ -208,4 +208,49 @@ public static class Geometry2D
 
 		return RectangleOrientedRectangleSat(local1, local2);
 	}
+
+	public static Circle ContainingCircle(Vector2[] points)
+	{
+		if (points.Length == 0)
+			throw new ArgumentException("The array must contain at least one point.", nameof(points));
+
+		Vector2 center = Vector2.Zero;
+		for (int i = 0; i < points.Length; i++)
+			center += points[i];
+		center /= points.Length;
+
+		float radius = 0;
+		for (int i = 0; i < points.Length; i++)
+		{
+			float distance = (points[i] - center).LengthSquared();
+			if (distance > radius)
+				radius = distance;
+		}
+
+		return new(center, MathF.Sqrt(radius));
+	}
+
+	public static Rectangle ContainingRectangle(Vector2[] points)
+	{
+		if (points.Length == 0)
+			throw new ArgumentException("The array must contain at least one point.", nameof(points));
+
+		Vector2 min = points[0];
+		Vector2 max = points[0];
+
+		for (int i = 1; i < points.Length; i++)
+		{
+			if (points[i].X < min.X)
+				min.X = points[i].X;
+			else if (points[i].X > max.X)
+				max.X = points[i].X;
+
+			if (points[i].Y < min.Y)
+				min.Y = points[i].Y;
+			else if (points[i].Y > max.Y)
+				max.Y = points[i].Y;
+		}
+
+		return Rectangle.FromMinMax(min, max);
+	}
 }
