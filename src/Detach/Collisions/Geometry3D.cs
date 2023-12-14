@@ -175,6 +175,27 @@ public static class Geometry3D
 		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
 	}
 
+	private static bool OverlapOnAxis(Aabb aabb, Triangle triangle, Vector3 axis)
+	{
+		Interval interval1 = aabb.GetInterval(axis);
+		Interval interval2 = triangle.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	private static bool OverlapOnAxis(Obb obb, Triangle triangle, Vector3 axis)
+	{
+		Interval interval1 = obb.GetInterval(axis);
+		Interval interval2 = triangle.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	private static bool OverlapOnAxis(Triangle triangle1, Triangle triangle2, Vector3 axis)
+	{
+		Interval interval1 = triangle1.GetInterval(axis);
+		Interval interval2 = triangle2.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
 	public static bool AabbObbSat(Aabb aabb, Obb obb)
 	{
 		Span<Vector3> axes = stackalloc Vector3[15];
@@ -385,5 +406,230 @@ public static class Geometry3D
 
 		float t = (plane.D - nA) / nAb;
 		return t is >= 0 and <= 1;
+	}
+
+	public static bool PointInTriangle(Vector3 point, Triangle triangle)
+	{
+		Vector3 a = triangle.A - point;
+		Vector3 b = triangle.B - point;
+		Vector3 c = triangle.C - point;
+
+		Vector3 normPbc = Vector3.Cross(b, c);
+		Vector3 normPca = Vector3.Cross(c, a);
+		Vector3 normPab = Vector3.Cross(a, b);
+
+		if (Vector3.Dot(normPbc, normPca) < 0)
+			return false;
+
+		return Vector3.Dot(normPbc, normPab) >= 0;
+	}
+
+	public static Vector3 ClosestPointOnTriangle(Vector3 point, Triangle triangle)
+	{
+		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Vector3 closest = ClosestPointOnPlane(plane, point);
+		if (PointInTriangle(closest, triangle))
+			return closest;
+
+		Vector3 c1 = ClosestPointOnLine(point, new LineSegment3D(triangle.A, triangle.B));
+		Vector3 c2 = ClosestPointOnLine(point, new LineSegment3D(triangle.B, triangle.C));
+		Vector3 c3 = ClosestPointOnLine(point, new LineSegment3D(triangle.C, triangle.A));
+
+		float d1 = Vector3.DistanceSquared(point, c1);
+		float d2 = Vector3.DistanceSquared(point, c2);
+		float d3 = Vector3.DistanceSquared(point, c3);
+
+		if (d1 < d2 && d1 < d3)
+			return c1;
+
+		if (d2 < d1 && d2 < d3)
+			return c2;
+
+		return c3;
+	}
+
+	public static bool TriangleSphere(Triangle triangle, Sphere sphere)
+	{
+		Vector3 closest = ClosestPointOnTriangle(sphere.Position, triangle);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		return distanceSquared <= sphere.Radius * sphere.Radius;
+	}
+
+	public static bool TriangleAabb(Triangle triangle, Aabb aabb)
+	{
+		Vector3 f0 = triangle.B - triangle.A;
+		Vector3 f1 = triangle.C - triangle.B;
+		Vector3 f2 = triangle.A - triangle.C;
+
+		Vector3 u0 = new(1, 0, 0);
+		Vector3 u1 = new(0, 1, 0);
+		Vector3 u2 = new(0, 0, 1);
+
+		Span<Vector3> axes = stackalloc Vector3[]
+		{
+			u0,
+			u1,
+			u2,
+
+			Vector3.Cross(f0, f1),
+
+			Vector3.Cross(u0, f0),
+			Vector3.Cross(u0, f1),
+			Vector3.Cross(u0, f2),
+			Vector3.Cross(u1, f0),
+			Vector3.Cross(u1, f1),
+			Vector3.Cross(u1, f2),
+			Vector3.Cross(u2, f0),
+			Vector3.Cross(u2, f1),
+			Vector3.Cross(u2, f2),
+		};
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(aabb, triangle, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static bool TriangleObb(Triangle triangle, Obb obb)
+	{
+		Vector3 f0 = triangle.B - triangle.A;
+		Vector3 f1 = triangle.C - triangle.B;
+		Vector3 f2 = triangle.A - triangle.C;
+		Vector3 u0 = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
+		Vector3 u1 = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
+		Vector3 u2 = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
+
+		Span<Vector3> axes = stackalloc Vector3[]
+		{
+			u0,
+			u1,
+			u2,
+
+			Vector3.Cross(f0, f1),
+
+			Vector3.Cross(u0, f0),
+			Vector3.Cross(u0, f1),
+			Vector3.Cross(u0, f2),
+			Vector3.Cross(u1, f0),
+			Vector3.Cross(u1, f1),
+			Vector3.Cross(u1, f2),
+			Vector3.Cross(u2, f0),
+			Vector3.Cross(u2, f1),
+			Vector3.Cross(u2, f2),
+		};
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(obb, triangle, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static float PlaneEquation(Vector3 point, Plane plane)
+	{
+		return Vector3.Dot(point, plane.Normal) - plane.D;
+	}
+
+	public static bool TrianglePlane(Triangle triangle, Plane plane)
+	{
+		float side1 = PlaneEquation(triangle.A, plane);
+		float side2 = PlaneEquation(triangle.B, plane);
+		float side3 = PlaneEquation(triangle.C, plane);
+
+		if (side1 == 0 && side2 == 0 && side3 == 0)
+			return true;
+
+		if (side1 > 0 && side2 > 0 && side3 > 0)
+			return false;
+
+		if (side1 < 0 && side2 < 0 && side3 < 0)
+			return false;
+
+		return true;
+	}
+
+	public static bool TriangleTriangle(Triangle triangle1, Triangle triangle2)
+	{
+		Vector3 f0 = triangle1.B - triangle1.A;
+		Vector3 f1 = triangle1.C - triangle1.B;
+		Vector3 f2 = triangle1.A - triangle1.C;
+		Vector3 u0 = triangle2.B - triangle2.A;
+		Vector3 u1 = triangle2.C - triangle2.B;
+		Vector3 u2 = triangle2.A - triangle2.C;
+
+		Span<Vector3> axes = stackalloc Vector3[]
+		{
+			Vector3.Cross(f0, f1),
+
+			Vector3.Cross(u0, u1),
+
+			Vector3.Cross(u0, f0),
+			Vector3.Cross(u0, f1),
+			Vector3.Cross(u0, f2),
+			Vector3.Cross(u1, f0),
+			Vector3.Cross(u1, f1),
+			Vector3.Cross(u1, f2),
+			Vector3.Cross(u2, f0),
+			Vector3.Cross(u2, f1),
+			Vector3.Cross(u2, f2),
+		};
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(triangle1, triangle2, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static Vector3 SatCrossEdge(Vector3 a, Vector3 b, Vector3 c, Vector3 d)
+	{
+		Vector3 ab = a - b;
+		Vector3 cd = c - d;
+		Vector3 result = Vector3.Cross(ab, cd);
+		if (result.LengthSquared() > float.Epsilon)
+			return result;
+
+		Vector3 axis = Vector3.Cross(ab, c - a);
+		result = Vector3.Cross(ab, axis);
+		if (result.LengthSquared() > float.Epsilon)
+			return result;
+
+		return Vector3.Zero;
+	}
+
+	public static bool TriangleTriangleRobust(Triangle triangle1, Triangle triangle2)
+	{
+		Span<Vector3> axes = stackalloc Vector3[]
+		{
+			SatCrossEdge(triangle1.A, triangle1.B, triangle1.B, triangle2.C),
+			SatCrossEdge(triangle2.A, triangle2.B, triangle2.B, triangle1.C),
+
+			SatCrossEdge(triangle2.A, triangle2.B, triangle1.A, triangle1.B),
+			SatCrossEdge(triangle2.A, triangle2.B, triangle1.B, triangle1.C),
+			SatCrossEdge(triangle2.A, triangle2.B, triangle1.C, triangle1.A),
+
+			SatCrossEdge(triangle2.B, triangle2.C, triangle1.A, triangle1.B),
+			SatCrossEdge(triangle2.B, triangle2.C, triangle1.B, triangle1.C),
+			SatCrossEdge(triangle2.B, triangle2.C, triangle1.C, triangle1.A),
+
+			SatCrossEdge(triangle2.C, triangle2.A, triangle1.A, triangle1.B),
+			SatCrossEdge(triangle2.C, triangle2.A, triangle1.B, triangle1.C),
+			SatCrossEdge(triangle2.C, triangle2.A, triangle1.C, triangle1.A),
+		};
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(triangle1, triangle2, axes[i]) && axes[i].LengthSquared() > float.Epsilon)
+				return false;
+		}
+
+		return true;
 	}
 }
