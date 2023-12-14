@@ -16,7 +16,7 @@ public record struct OrientedRectangle
 		RotationInRadians = rotationInRadians;
 	}
 
-	public Interval2D GetInterval(Vector2 axis)
+	public Interval GetInterval(Vector2 axis)
 	{
 		Rectangle rectangle = new(Position - HalfExtents, HalfExtents * 2);
 		Vector2 min = rectangle.GetMin();
@@ -36,7 +36,7 @@ public record struct OrientedRectangle
 		for (int i = 0; i < vertices.Length; i++)
 			vertices[i] = Matrices.Multiply(vertices[i] - Position, zRotation) + Position;
 
-		Interval2D result = default;
+		Interval result = default;
 		float projection0 = Vector2.Dot(axis, vertices[0]);
 		result.Min = projection0;
 		result.Max = projection0;
