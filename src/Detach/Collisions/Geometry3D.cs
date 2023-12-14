@@ -160,4 +160,107 @@ public static class Geometry3D
 			&& min1.Y <= max2.Y && max1.Y >= min2.Y
 			&& min1.Z <= max2.Z && max1.Z >= min2.Z;
 	}
+
+	private static bool OverlapOnAxis(Aabb aabb, Obb obb, Vector3 axis)
+	{
+		Interval interval1 = aabb.GetInterval(axis);
+		Interval interval2 = obb.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	private static bool OverlapOnAxis(Obb obb1, Obb obb2, Vector3 axis)
+	{
+		Interval interval1 = obb1.GetInterval(axis);
+		Interval interval2 = obb2.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	public static bool AabbObbSat(Aabb aabb, Obb obb)
+	{
+		Span<Vector3> axes = stackalloc Vector3[15];
+		axes[0] = new(1, 0, 0);
+		axes[1] = new(0, 1, 0);
+		axes[2] = new(0, 0, 1);
+		axes[3] = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
+		axes[4] = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
+		axes[5] = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
+
+		for (int i = 0; i < 3; i++)
+		{
+			axes[6 + i * 3 + 0] = Vector3.Cross(axes[i], axes[0]);
+			axes[6 + i * 3 + 1] = Vector3.Cross(axes[i], axes[1]);
+			axes[6 + i * 3 + 2] = Vector3.Cross(axes[i], axes[2]);
+		}
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(aabb, obb, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static bool AabbPlane(Aabb aabb, Plane plane)
+	{
+		float pLen =
+			aabb.Size.X * Math.Abs(plane.Normal.X) +
+			aabb.Size.Y * Math.Abs(plane.Normal.Y) +
+			aabb.Size.Z * Math.Abs(plane.Normal.Z);
+
+		float dot = Vector3.Dot(plane.Normal, aabb.Origin);
+		float distance = dot - plane.D;
+		return Math.Abs(distance) <= pLen;
+	}
+
+	public static bool ObbObbSat(Obb obb1, Obb obb2)
+	{
+		Span<Vector3> axes = stackalloc Vector3[15];
+		axes[0] = new(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
+		axes[1] = new(obb1.Orientation.M21, obb1.Orientation.M22, obb1.Orientation.M23);
+		axes[2] = new(obb1.Orientation.M31, obb1.Orientation.M32, obb1.Orientation.M33);
+		axes[3] = new(obb2.Orientation.M11, obb2.Orientation.M12, obb2.Orientation.M13);
+		axes[4] = new(obb2.Orientation.M21, obb2.Orientation.M22, obb2.Orientation.M23);
+		axes[5] = new(obb2.Orientation.M31, obb2.Orientation.M32, obb2.Orientation.M33);
+
+		for (int i = 0; i < 3; i++)
+		{
+			axes[6 + i * 3 + 0] = Vector3.Cross(axes[i], axes[0]);
+			axes[6 + i * 3 + 1] = Vector3.Cross(axes[i], axes[1]);
+			axes[6 + i * 3 + 2] = Vector3.Cross(axes[i], axes[2]);
+		}
+
+		for (int i = 0; i < axes.Length; i++)
+		{
+			if (!OverlapOnAxis(obb1, obb2, axes[i]))
+				return false;
+		}
+
+		return true;
+	}
+
+	public static bool ObbPlane(Obb obb, Plane plane)
+	{
+		Span<Vector3> axes = stackalloc Vector3[3]
+		{
+			new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13),
+			new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23),
+			new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33),
+		};
+
+		float pLen =
+			obb.Size.X * Math.Abs(Vector3.Dot(plane.Normal, axes[0])) +
+			obb.Size.Y * Math.Abs(Vector3.Dot(plane.Normal, axes[1])) +
+			obb.Size.Z * Math.Abs(Vector3.Dot(plane.Normal, axes[2]));
+
+		float dot = Vector3.Dot(plane.Normal, obb.Position);
+		float distance = dot - plane.D;
+		return Math.Abs(distance) <= pLen;
+	}
+
+	public static bool PlanePlane(Plane plane1, Plane plane2)
+	{
+		Vector3 cross = Vector3.Cross(plane1.Normal, plane2.Normal);
+		return cross.LengthSquared() > float.Epsilon;
+	}
 }

@@ -27,7 +27,7 @@ public record struct Rectangle
 		return new(MathF.Max(p1.X, p2.X), MathF.Max(p1.Y, p2.Y));
 	}
 
-	public Interval2D GetInterval(Vector2 axis)
+	public Interval GetInterval(Vector2 axis)
 	{
 		Vector2 min = GetMin();
 		Vector2 max = GetMax();
@@ -40,7 +40,7 @@ public record struct Rectangle
 			new(max.X, min.Y),
 		};
 
-		Interval2D result = default;
+		Interval result = default;
 		float projection0 = Vector2.Dot(axis, vertices[0]);
 		result.Min = projection0;
 		result.Max = projection0;

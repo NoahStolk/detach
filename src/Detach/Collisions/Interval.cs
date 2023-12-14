@@ -1,11 +1,11 @@
 ﻿namespace Detach.Collisions;
 
-public record struct Interval2D
+public record struct Interval
 {
 	public float Min;
 	public float Max;
 
-	public Interval2D(float min, float max)
+	public Interval(float min, float max)
 	{
 		Min = min;
 		Max = max;
