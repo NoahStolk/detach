@@ -349,4 +349,41 @@ public static class Geometry3D
 		float t = (plane.D - pn) / nd;
 		return t < 0 ? null : t;
 	}
+
+	public static bool Linetest(Sphere sphere, LineSegment3D line)
+	{
+		Vector3 closest = ClosestPointOnLine(sphere.Position, line);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		return distanceSquared <= sphere.Radius * sphere.Radius;
+	}
+
+	public static bool Linetest(Aabb aabb, LineSegment3D line)
+	{
+		Ray ray = new(line.Start, line.End - line.Start);
+		float? t = Raycast(aabb, ray);
+		if (!t.HasValue)
+			return false;
+
+		return t.Value >= 0 && t.Value * t.Value <= line.LengthSquared;
+	}
+
+	public static bool Linetest(Obb obb, LineSegment3D line)
+	{
+		Ray ray = new(line.Start, line.End - line.Start);
+		float? t = Raycast(obb, ray);
+		if (!t.HasValue)
+			return false;
+
+		return t.Value >= 0 && t.Value * t.Value <= line.LengthSquared;
+	}
+
+	public static bool Linetest(Plane plane, LineSegment3D line)
+	{
+		Vector3 ab = line.End - line.Start;
+		float nA = Vector3.Dot(plane.Normal, line.Start);
+		float nAb = Vector3.Dot(plane.Normal, ab);
+
+		float t = (plane.D - nA) / nAb;
+		return t is >= 0 and <= 1;
+	}
 }
