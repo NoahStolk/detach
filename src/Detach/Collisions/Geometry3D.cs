@@ -120,4 +120,44 @@ public static class Geometry3D
 		t = Math.Max(t, 0);
 		return ray.Origin + ray.Direction * t;
 	}
+
+	public static bool SphereSphere(Sphere sphere1, Sphere sphere2)
+	{
+		float distanceSquared = Vector3.DistanceSquared(sphere1.Position, sphere2.Position);
+		float radiusSum = sphere1.Radius + sphere2.Radius;
+		return distanceSquared <= radiusSum * radiusSum;
+	}
+
+	public static bool SphereAabb(Sphere sphere, Aabb aabb)
+	{
+		Vector3 closest = ClosestPointInAabb(aabb, sphere.Position);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		return distanceSquared <= sphere.Radius * sphere.Radius;
+	}
+
+	public static bool SphereObb(Sphere sphere, Obb obb)
+	{
+		Vector3 closest = ClosestPointInObb(obb, sphere.Position);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		return distanceSquared <= sphere.Radius * sphere.Radius;
+	}
+
+	public static bool SpherePlane(Sphere sphere, Plane plane)
+	{
+		Vector3 closest = ClosestPointOnPlane(plane, sphere.Position);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		return distanceSquared <= sphere.Radius * sphere.Radius;
+	}
+
+	public static bool AabbAabb(Aabb aabb1, Aabb aabb2)
+	{
+		Vector3 min1 = aabb1.GetMin();
+		Vector3 max1 = aabb1.GetMax();
+		Vector3 min2 = aabb2.GetMin();
+		Vector3 max2 = aabb2.GetMax();
+
+		return min1.X <= max2.X && max1.X >= min2.X
+			&& min1.Y <= max2.Y && max1.Y >= min2.Y
+			&& min1.Z <= max2.Z && max1.Z >= min2.Z;
+	}
 }
