@@ -263,4 +263,90 @@ public static class Geometry3D
 		Vector3 cross = Vector3.Cross(plane1.Normal, plane2.Normal);
 		return cross.LengthSquared() > float.Epsilon;
 	}
+
+	public static float? Raycast(Sphere sphere, Ray ray)
+	{
+		Vector3 e = sphere.Position - ray.Origin;
+		float radiusSquared = sphere.Radius * sphere.Radius;
+		float eSquared = e.LengthSquared();
+		float a = Vector3.Dot(e, ray.Direction);
+		float bSquared = eSquared - a * a;
+		float f = MathF.Sqrt(radiusSquared - bSquared);
+
+		if (radiusSquared - (eSquared - a * a) < 0)
+			return null;
+
+		if (eSquared < radiusSquared)
+			return a + f;
+
+		return a - f;
+	}
+
+	public static float? Raycast(Aabb aabb, Ray ray)
+	{
+		Vector3 min = aabb.GetMin();
+		Vector3 max = aabb.GetMax();
+		float t1 = (min.X - ray.Origin.X) / ray.Direction.X;
+		float t2 = (max.X - ray.Origin.X) / ray.Direction.X;
+		float t3 = (min.Y - ray.Origin.Y) / ray.Direction.Y;
+		float t4 = (max.Y - ray.Origin.Y) / ray.Direction.Y;
+		float t5 = (min.Z - ray.Origin.Z) / ray.Direction.Z;
+		float t6 = (max.Z - ray.Origin.Z) / ray.Direction.Z;
+
+		float tMin = Math.Max(Math.Max(Math.Min(t1, t2), Math.Min(t3, t4)), Math.Min(t5, t6));
+		float tMax = Math.Min(Math.Min(Math.Max(t1, t2), Math.Max(t3, t4)), Math.Max(t5, t6));
+
+		if (tMax < 0 || tMin > tMax)
+			return null;
+
+		return tMin < 0 ? tMax : tMin;
+	}
+
+	public static float? Raycast(Obb obb, Ray ray)
+	{
+		Vector3 x = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
+		Vector3 y = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
+		Vector3 z = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
+		Vector3 p = obb.Position - ray.Origin;
+		Vector3 f = new(
+			Vector3.Dot(x, ray.Direction),
+			Vector3.Dot(y, ray.Direction),
+			Vector3.Dot(z, ray.Direction));
+		Vector3 e = new(
+			Vector3.Dot(x, p),
+			Vector3.Dot(y, p),
+			Vector3.Dot(z, p));
+		Span<float> t = stackalloc float[6];
+		for (int i = 0; i < 3; i++)
+		{
+			if (Math.Abs(f[i]) < float.Epsilon)
+			{
+				if (-e[i] - obb.Size[i] > 0 || -e[i] + obb.Size[i] < 0)
+					return null;
+
+				f[i] = float.Epsilon; // Avoid division by 0.
+			}
+
+			t[i * 2 + 0] = (e[i] + obb.Size[i]) / f[i];
+			t[i * 2 + 1] = (e[i] - obb.Size[i]) / f[i];
+		}
+
+		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
+		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
+		if (tMax < 0 || tMin > tMax)
+			return null;
+
+		return tMin < 0 ? tMax : tMin;
+	}
+
+	public static float? Raycast(Plane plane, Ray ray)
+	{
+		float nd = Vector3.Dot(ray.Direction, plane.Normal);
+		if (nd >= 0)
+			return null;
+
+		float pn = Vector3.Dot(ray.Origin, plane.Normal);
+		float t = (plane.D - pn) / nd;
+		return t < 0 ? null : t;
+	}
 }
