@@ -35,6 +35,40 @@ public record struct Aabb
 			MathF.Max(p1.Z, p2.Z));
 	}
 
+	public Interval GetInterval(Vector3 axis)
+	{
+		Vector3 min = GetMin();
+		Vector3 max = GetMax();
+
+		Span<Vector3> vertices = stackalloc Vector3[]
+		{
+			new Vector3(min.X, min.Y, min.Z),
+			new Vector3(min.X, min.Y, max.Z),
+			new Vector3(min.X, max.Y, min.Z),
+			new Vector3(min.X, max.Y, max.Z),
+			new Vector3(max.X, min.Y, min.Z),
+			new Vector3(max.X, min.Y, max.Z),
+			new Vector3(max.X, max.Y, min.Z),
+			new Vector3(max.X, max.Y, max.Z),
+		};
+
+		Interval result = default;
+		float projection0 = Vector3.Dot(axis, vertices[0]);
+		result.Min = projection0;
+		result.Max = projection0;
+
+		for (int i = 1; i < 8; i++)
+		{
+			float projection = Vector3.Dot(axis, vertices[i]);
+			if (projection < result.Min)
+				result.Min = projection;
+			else if (projection > result.Max)
+				result.Max = projection;
+		}
+
+		return result;
+	}
+
 	public static Aabb FromMinMax(Vector3 min, Vector3 max)
 	{
 		return new Aabb((min + max) * 0.5f, (max - min) * 0.5f);
