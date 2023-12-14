@@ -98,4 +98,26 @@ public static class Geometry3D
 		t = Math.Clamp(t, 0, 1);
 		return line.Start + direction * t;
 	}
+
+	public static bool PointOnRay(Vector3 point, Ray ray)
+	{
+		if (point == ray.Origin)
+			return true;
+
+		Vector3 normalized = Vector3.Normalize(point - ray.Origin);
+		float dot = Vector3.Dot(normalized, ray.Direction);
+		return dot is >= 1 - float.Epsilon and <= 1 + float.Epsilon;
+	}
+
+	public static Vector3 ClosestPointOnRay(Vector3 point, Ray ray)
+	{
+		if (point == ray.Origin)
+			return point;
+
+		Vector3 normalized = Vector3.Normalize(point - ray.Origin);
+		float t = Vector3.Dot(normalized, ray.Direction);
+		t /= Vector3.Dot(ray.Direction, ray.Direction);
+		t = Math.Max(t, 0);
+		return ray.Origin + ray.Direction * t;
+	}
 }
