@@ -14,4 +14,44 @@ public record struct Triangle
 		B = b;
 		C = c;
 	}
+
+	public Vector3 this[int index]
+	{
+		get => index switch
+		{
+			0 => A,
+			1 => B,
+			2 => C,
+			_ => throw new IndexOutOfRangeException(),
+		};
+		set
+		{
+			switch (index)
+			{
+				case 0: A = value; break;
+				case 1: B = value; break;
+				case 2: C = value; break;
+				default: throw new IndexOutOfRangeException();
+			}
+		}
+	}
+
+	public Interval GetInterval(Vector3 axis)
+	{
+		Interval result = default;
+		float projection0 = Vector3.Dot(axis, this[0]);
+		result.Min = projection0;
+		result.Max = projection0;
+
+		for (int i = 1; i < 3; i++)
+		{
+			float projection = Vector3.Dot(axis, this[i]);
+			if (projection < result.Min)
+				result.Min = projection;
+			else if (projection > result.Max)
+				result.Max = projection;
+		}
+
+		return result;
+	}
 }
