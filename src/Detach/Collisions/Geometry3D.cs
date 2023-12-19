@@ -371,6 +371,18 @@ public static class Geometry3D
 		return t < 0 ? null : t;
 	}
 
+	public static float? Raycast(Triangle triangle, Ray ray)
+	{
+		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		float? t = Raycast(plane, ray);
+		if (!t.HasValue)
+			return null;
+
+		Vector3 result = ray.Origin + ray.Direction * t.Value;
+		Vector3 barycentric = Barycentric(result, triangle);
+		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 } ? t : null;
+	}
+
 	public static bool Linetest(Sphere sphere, LineSegment3D line)
 	{
 		Vector3 closest = ClosestPointOnLine(sphere.Position, line);
@@ -406,6 +418,13 @@ public static class Geometry3D
 
 		float t = (plane.D - nA) / nAb;
 		return t is >= 0 and <= 1;
+	}
+
+	public static bool Linetest(Triangle triangle, LineSegment3D line)
+	{
+		Ray ray = new(line.Start, line.End - line.Start);
+		float? t = Raycast(triangle, ray);
+		return t is >= 0 && t.Value * t.Value <= line.LengthSquared;
 	}
 
 	public static bool PointInTriangle(Vector3 point, Triangle triangle)
@@ -631,5 +650,53 @@ public static class Geometry3D
 		}
 
 		return true;
+	}
+
+	public static Vector3 Barycentric(Vector3 point, Triangle triangle)
+	{
+		Vector3 ap = point - triangle.A;
+		Vector3 bp = point - triangle.B;
+		Vector3 cp = point - triangle.C;
+
+		Vector3 ab = triangle.B - triangle.A;
+		Vector3 ac = triangle.C - triangle.A;
+		Vector3 bc = triangle.C - triangle.B;
+		Vector3 cb = triangle.B - triangle.C;
+		Vector3 ca = triangle.A - triangle.C;
+
+		Vector3 v = ab - Project(ab, cb);
+		float a = 1f - Vector3.Dot(v, ap) / Vector3.Dot(v, ab);
+
+		v = bc - Project(bc, ac);
+		float b = 1f - Vector3.Dot(v, bp) / Vector3.Dot(v, bc);
+
+		v = ca - Project(ca, ab);
+		float c = 1f - Vector3.Dot(v, cp) / Vector3.Dot(v, ca);
+
+		return new(a, b, c);
+	}
+
+	public static Vector2 Project(Vector2 length, Vector2 direction)
+	{
+		float dot = Vector2.Dot(length, direction);
+		float lengthSquared = direction.LengthSquared();
+		return direction * (dot / lengthSquared);
+	}
+
+	public static Vector3 Project(Vector3 length, Vector3 direction)
+	{
+		float dot = Vector3.Dot(length, direction);
+		float lengthSquared = direction.LengthSquared();
+		return direction * (dot / lengthSquared);
+	}
+
+	public static Vector2 Perpendicular(Vector2 length, Vector2 direction)
+	{
+		return length - Project(length, direction);
+	}
+
+	public static Vector3 Perpendicular(Vector3 length, Vector3 direction)
+	{
+		return length - Project(length, direction);
 	}
 }
