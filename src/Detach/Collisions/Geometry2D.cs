@@ -13,6 +13,8 @@ public static class Geometry2D
 		float dx = line.End.X - line.Start.X;
 		float m = dy / dx;
 
+		// TODO: Fix infinite slope.
+
 		// Find the y-intercept.
 		float b = line.Start.Y - m * line.Start.X;
 
@@ -51,7 +53,7 @@ public static class Geometry2D
 	{
 		Vector2 ab = line.End - line.Start;
 		float t = Vector2.Dot(circle.Position - line.Start, ab) / Vector2.Dot(ab, ab);
-		if (t < 0 || t > 1)
+		if (t is < 0 or > 1)
 			return false;
 
 		Vector2 closestPoint = line.Start + ab * t;
