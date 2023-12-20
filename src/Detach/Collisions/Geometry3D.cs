@@ -303,26 +303,96 @@ public static class Geometry3D
 		return true;
 	}
 
+	public static bool Raycast(Sphere sphere, Ray ray, out RaycastResult result)
+	{
+		result = default;
+
+		Vector3 e = sphere.Position - ray.Origin;
+		float radiusSquared = sphere.Radius * sphere.Radius;
+		float eSquared = e.LengthSquared();
+		float a = Vector3.Dot(e, ray.Direction);
+		float bSquared = eSquared - a * a;
+		float f = MathF.Sqrt(radiusSquared - bSquared);
+
+		if (radiusSquared - (eSquared - a * a) < 0)
+			return false;
+
+		result.Distance = eSquared < radiusSquared ? a + f : a - f;
+		result.Point = ray.Origin + ray.Direction * result.Distance;
+		result.Normal = Vector3.Normalize(result.Point - sphere.Position);
+		return true;
+	}
+
 	public static bool Raycast(Aabb aabb, Ray ray, out float distance)
 	{
 		distance = default;
 
 		Vector3 min = aabb.GetMin();
 		Vector3 max = aabb.GetMax();
-		float t1 = (min.X - ray.Origin.X) / ray.Direction.X;
-		float t2 = (max.X - ray.Origin.X) / ray.Direction.X;
-		float t3 = (min.Y - ray.Origin.Y) / ray.Direction.Y;
-		float t4 = (max.Y - ray.Origin.Y) / ray.Direction.Y;
-		float t5 = (min.Z - ray.Origin.Z) / ray.Direction.Z;
-		float t6 = (max.Z - ray.Origin.Z) / ray.Direction.Z;
+		Span<float> t = stackalloc float[6]
+		{
+			(min.X - ray.Origin.X) / ray.Direction.X,
+			(max.X - ray.Origin.X) / ray.Direction.X,
+			(min.Y - ray.Origin.Y) / ray.Direction.Y,
+			(max.Y - ray.Origin.Y) / ray.Direction.Y,
+			(min.Z - ray.Origin.Z) / ray.Direction.Z,
+			(max.Z - ray.Origin.Z) / ray.Direction.Z,
+		};
 
-		float tMin = Math.Max(Math.Max(Math.Min(t1, t2), Math.Min(t3, t4)), Math.Min(t5, t6));
-		float tMax = Math.Min(Math.Min(Math.Max(t1, t2), Math.Max(t3, t4)), Math.Max(t5, t6));
+		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
+		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
 
 		if (tMax < 0 || tMin > tMax)
 			return false;
 
 		distance = tMin < 0 ? tMax : tMin;
+		return true;
+	}
+
+	public static bool Raycast(Aabb aabb, Ray ray, out RaycastResult result)
+	{
+		result = default;
+
+		Vector3 min = aabb.GetMin();
+		Vector3 max = aabb.GetMax();
+		Span<float> t = stackalloc float[6]
+		{
+			(min.X - ray.Origin.X) / ray.Direction.X,
+			(max.X - ray.Origin.X) / ray.Direction.X,
+			(min.Y - ray.Origin.Y) / ray.Direction.Y,
+			(max.Y - ray.Origin.Y) / ray.Direction.Y,
+			(min.Z - ray.Origin.Z) / ray.Direction.Z,
+			(max.Z - ray.Origin.Z) / ray.Direction.Z,
+		};
+
+		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
+		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
+
+		if (tMax < 0 || tMin > tMax)
+			return false;
+
+		result.Distance = tMin < 0 ? tMax : tMin;
+		result.Point = ray.Origin + ray.Direction * result.Distance;
+
+		Span<Vector3> normals = stackalloc Vector3[]
+		{
+			new(-1, 0, 0),
+			new(1, 0, 0),
+			new(0, -1, 0),
+			new(0, 1, 0),
+			new(0, 0, -1),
+			new(0, 0, 1),
+		};
+
+		for (int i = 0; i < 6; i++)
+		{
+			if (Math.Abs(result.Distance - t[i]) < float.Epsilon)
+			{
+				result.Normal = normals[i];
+				break;
+			}
+		}
+
 		return true;
 	}
 
@@ -363,6 +433,67 @@ public static class Geometry3D
 			return false;
 
 		distance = tMin < 0 ? tMax : tMin;
+		return true;
+	}
+
+	public static bool Raycast(Obb obb, Ray ray, out RaycastResult result)
+	{
+		result = default;
+
+		Vector3 x = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
+		Vector3 y = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
+		Vector3 z = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
+		Vector3 p = obb.Position - ray.Origin;
+		Vector3 f = new(
+			Vector3.Dot(x, ray.Direction),
+			Vector3.Dot(y, ray.Direction),
+			Vector3.Dot(z, ray.Direction));
+		Vector3 e = new(
+			Vector3.Dot(x, p),
+			Vector3.Dot(y, p),
+			Vector3.Dot(z, p));
+		Span<float> t = stackalloc float[6];
+		for (int i = 0; i < 3; i++)
+		{
+			if (Math.Abs(f[i]) < float.Epsilon)
+			{
+				if (-e[i] - obb.Size[i] > 0 || -e[i] + obb.Size[i] < 0)
+					return false;
+
+				f[i] = float.Epsilon; // Avoid division by 0.
+			}
+
+			t[i * 2 + 0] = (e[i] + obb.Size[i]) / f[i];
+			t[i * 2 + 1] = (e[i] - obb.Size[i]) / f[i];
+		}
+
+		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
+		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
+		if (tMax < 0 || tMin > tMax)
+			return false;
+
+		result.Distance = tMin < 0 ? tMax : tMin;
+		result.Point = ray.Origin + ray.Direction * result.Distance;
+
+		Span<Vector3> normals = stackalloc Vector3[]
+		{
+			x,
+			x * -1,
+			y,
+			y * -1,
+			z,
+			z * -1,
+		};
+
+		for (int i = 0; i < 6; i++)
+		{
+			if (Math.Abs(result.Distance - t[i]) < float.Epsilon)
+			{
+				result.Normal = normals[i];
+				break;
+			}
+		}
+
 		return true;
 	}
 
