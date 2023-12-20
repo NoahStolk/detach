@@ -510,6 +510,24 @@ public static class Geometry3D
 		return distance >= 0;
 	}
 
+	public static bool Raycast(Plane plane, Ray ray, out RaycastResult result)
+	{
+		result = default;
+
+		float nd = Vector3.Dot(ray.Direction, plane.Normal);
+		if (nd >= 0)
+			return false;
+
+		float pn = Vector3.Dot(ray.Origin, plane.Normal);
+		result.Distance = (plane.D - pn) / nd;
+		if (result.Distance < 0)
+			return false;
+
+		result.Point = ray.Origin + ray.Direction * result.Distance;
+		result.Normal = Vector3.Normalize(plane.Normal);
+		return true;
+	}
+
 	public static bool Raycast(Triangle triangle, Ray ray, out float distance)
 	{
 		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
@@ -519,6 +537,25 @@ public static class Geometry3D
 		Vector3 result = ray.Origin + ray.Direction * distance;
 		Vector3 barycentric = Barycentric(result, triangle);
 		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 };
+	}
+
+	public static bool Raycast(Triangle triangle, Ray ray, out RaycastResult outDistance)
+	{
+		outDistance = default;
+
+		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		if (!Raycast(plane, ray, out RaycastResult planeResult))
+			return false;
+
+		Vector3 result = ray.Origin + ray.Direction * planeResult.Distance;
+		Vector3 barycentric = Barycentric(result, triangle);
+		if (barycentric is not { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 })
+			return false;
+
+		outDistance.Distance = planeResult.Distance;
+		outDistance.Point = ray.Origin + ray.Direction * outDistance.Distance;
+		outDistance.Normal = Vector3.Normalize(plane.Normal);
+		return true;
 	}
 
 	public static bool Linetest(Sphere sphere, LineSegment3D line)
