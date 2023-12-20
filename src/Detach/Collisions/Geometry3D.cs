@@ -285,8 +285,10 @@ public static class Geometry3D
 		return cross.LengthSquared() > float.Epsilon;
 	}
 
-	public static float? Raycast(Sphere sphere, Ray ray)
+	public static bool Raycast(Sphere sphere, Ray ray, out float distance)
 	{
+		distance = default;
+
 		Vector3 e = sphere.Position - ray.Origin;
 		float radiusSquared = sphere.Radius * sphere.Radius;
 		float eSquared = e.LengthSquared();
@@ -295,16 +297,16 @@ public static class Geometry3D
 		float f = MathF.Sqrt(radiusSquared - bSquared);
 
 		if (radiusSquared - (eSquared - a * a) < 0)
-			return null;
+			return false;
 
-		if (eSquared < radiusSquared)
-			return a + f;
-
-		return a - f;
+		distance = eSquared < radiusSquared ? a + f : a - f;
+		return true;
 	}
 
-	public static float? Raycast(Aabb aabb, Ray ray)
+	public static bool Raycast(Aabb aabb, Ray ray, out float distance)
 	{
+		distance = default;
+
 		Vector3 min = aabb.GetMin();
 		Vector3 max = aabb.GetMax();
 		float t1 = (min.X - ray.Origin.X) / ray.Direction.X;
@@ -318,13 +320,16 @@ public static class Geometry3D
 		float tMax = Math.Min(Math.Min(Math.Max(t1, t2), Math.Max(t3, t4)), Math.Max(t5, t6));
 
 		if (tMax < 0 || tMin > tMax)
-			return null;
+			return false;
 
-		return tMin < 0 ? tMax : tMin;
+		distance = tMin < 0 ? tMax : tMin;
+		return true;
 	}
 
-	public static float? Raycast(Obb obb, Ray ray)
+	public static bool Raycast(Obb obb, Ray ray, out float distance)
 	{
+		distance = default;
+
 		Vector3 x = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
 		Vector3 y = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
 		Vector3 z = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
@@ -343,7 +348,7 @@ public static class Geometry3D
 			if (Math.Abs(f[i]) < float.Epsilon)
 			{
 				if (-e[i] - obb.Size[i] > 0 || -e[i] + obb.Size[i] < 0)
-					return null;
+					return false;
 
 				f[i] = float.Epsilon; // Avoid division by 0.
 			}
@@ -355,32 +360,34 @@ public static class Geometry3D
 		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
 		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
 		if (tMax < 0 || tMin > tMax)
-			return null;
+			return false;
 
-		return tMin < 0 ? tMax : tMin;
+		distance = tMin < 0 ? tMax : tMin;
+		return true;
 	}
 
-	public static float? Raycast(Plane plane, Ray ray)
+	public static bool Raycast(Plane plane, Ray ray, out float distance)
 	{
+		distance = default;
+
 		float nd = Vector3.Dot(ray.Direction, plane.Normal);
 		if (nd >= 0)
-			return null;
+			return false;
 
 		float pn = Vector3.Dot(ray.Origin, plane.Normal);
-		float t = (plane.D - pn) / nd;
-		return t < 0 ? null : t;
+		distance = (plane.D - pn) / nd;
+		return distance >= 0;
 	}
 
-	public static float? Raycast(Triangle triangle, Ray ray)
+	public static bool Raycast(Triangle triangle, Ray ray, out float distance)
 	{
 		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
-		float? t = Raycast(plane, ray);
-		if (!t.HasValue)
-			return null;
+		if (!Raycast(plane, ray, out distance))
+			return false;
 
-		Vector3 result = ray.Origin + ray.Direction * t.Value;
+		Vector3 result = ray.Origin + ray.Direction * distance;
 		Vector3 barycentric = Barycentric(result, triangle);
-		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 } ? t : null;
+		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 };
 	}
 
 	public static bool Linetest(Sphere sphere, LineSegment3D line)
@@ -393,21 +400,19 @@ public static class Geometry3D
 	public static bool Linetest(Aabb aabb, LineSegment3D line)
 	{
 		Ray ray = new(line.Start, line.End - line.Start);
-		float? t = Raycast(aabb, ray);
-		if (!t.HasValue)
+		if (!Raycast(aabb, ray, out float distance))
 			return false;
 
-		return t.Value >= 0 && t.Value * t.Value <= line.LengthSquared;
+		return distance >= 0 && distance * distance <= line.LengthSquared;
 	}
 
 	public static bool Linetest(Obb obb, LineSegment3D line)
 	{
 		Ray ray = new(line.Start, line.End - line.Start);
-		float? t = Raycast(obb, ray);
-		if (!t.HasValue)
+		if (!Raycast(obb, ray, out float distance))
 			return false;
 
-		return t.Value >= 0 && t.Value * t.Value <= line.LengthSquared;
+		return distance >= 0 && distance * distance <= line.LengthSquared;
 	}
 
 	public static bool Linetest(Plane plane, LineSegment3D line)
@@ -423,8 +428,7 @@ public static class Geometry3D
 	public static bool Linetest(Triangle triangle, LineSegment3D line)
 	{
 		Ray ray = new(line.Start, line.End - line.Start);
-		float? t = Raycast(triangle, ray);
-		return t is >= 0 && t.Value * t.Value <= line.LengthSquared;
+		return Raycast(triangle, ray, out float t) && t >= 0 && t * t <= line.LengthSquared;
 	}
 
 	public static bool PointInTriangle(Vector3 point, Triangle triangle)
