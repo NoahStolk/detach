@@ -120,16 +120,9 @@ public static class Matrices
 		{
 			for (int j = 0; j < TMatrix.Cols; j++)
 			{
-				// float value = TMatrix.Get(matrix, i, j);
-				// if ((i + j) % 2 == 1)
-				// 	value = -value;
-				//
-				// TMatrixOut.Set(ref result, TMatrix.Cols * i + j, value);
-
-				int t = TMatrix.Cols * j + i;
-				int s = TMatrix.Cols * i + j; // ??
-				float sign = MathF.Pow(-1f, i + j); // (t % 2 == 0) ? 1.0f : -1.0f;
-				TMatrixOut.Set(ref result, t, TMatrix.Get(matrixMinor, s) * sign);
+				int index = TMatrix.Cols * j + i;
+				float sign = MathF.Pow(-1f, i + j);
+				TMatrixOut.Set(ref result, index, TMatrix.Get(matrixMinor, index) * sign);
 			}
 		}
 
