@@ -311,6 +311,19 @@ public class MatricesTests
 	}
 
 	[TestMethod]
+	public void MatrixMultiplyIncorrect()
+	{
+		Assert.ThrowsException<ArgumentException>(() => Matrices.Multiply<Matrix3, Matrix2, Matrix3>(
+			new(
+				1, 2, 3,
+				4, 5, 6,
+				7, 8, 9),
+			new(
+				1, 2,
+				3, 4)));
+	}
+
+	[TestMethod]
 	public void Matrix2Multiply()
 	{
 		Matrix2 matrix2 = new(
@@ -399,4 +412,8 @@ public class MatricesTests
 				426, 484, 212, 600),
 			matrix4 * matrix4);
 	}
+
+	// TODO: Matrix2: Adjugate, Inverse, FastInverse.
+	// TODO: Matrix3: Adjugate, Inverse, Rotation, RotationX, RotationY, RotationZ, AxisAngle.
+	// TODO: Matrix4: Adjugate, Inverse, CreateTranslation, CreateScale, Rotation, RotationX, RotationY, RotationZ, AxisAngle, Transform, LookAt, Projection, Orthographic.
 }
