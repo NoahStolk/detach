@@ -37,13 +37,14 @@ public class MatricesTests
 	[TestMethod]
 	public void Matrix3Determinant()
 	{
-		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
-		Assert.AreEqual(0, Matrix3.Determinant(matrix3));
-
-		Matrix3 matrix = new(4, 3, 2, 1, 9, 7, 8, 6, 3);
-
-		// TODO: Check if this is correct.
-		Assert.AreEqual(-45, Matrix3.Determinant(matrix));
+		Assert.AreEqual(0, Matrix3.Determinant(new(
+			1, 2, 3,
+			4, 5, 6,
+			7, 8, 9)));
+		Assert.AreEqual(-33, Matrix3.Determinant(new(
+			4, 3, 2,
+			1, 9, 7,
+			8, 6, 3)));
 	}
 
 	[TestMethod]
@@ -58,7 +59,10 @@ public class MatricesTests
 	[TestMethod]
 	public void Matrix3Cut()
 	{
-		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
+		Matrix3 matrix3 = new(
+			1, 2, 3,
+			4, 5, 6,
+			7, 8, 9);
 		Assert.AreEqual(new(5, 6, 8, 9), Matrices.Cut(matrix3, 0, 0));
 		Assert.AreEqual(new(4, 6, 7, 9), Matrices.Cut(matrix3, 0, 1));
 		Assert.AreEqual(new(4, 5, 7, 8), Matrices.Cut(matrix3, 0, 2));
@@ -80,28 +84,28 @@ public class MatricesTests
 	[TestMethod]
 	public void Matrix3Minor()
 	{
-		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
-
-		// TODO: This is wrong.
-		Assert.AreEqual(new(5, 4, 2, 1, 9, 7, 8, 6, 3), Matrix3.Minor(matrix3));
+		Assert.AreEqual(
+			new(
+				9, -24, -19,
+				44, 25, 2,
+				83, -79, 62),
+			Matrix3.Minor(new(
+				4, 6, -13,
+				-7, 5, 3,
+				1, 2, 3)));
 	}
 
 	[TestMethod]
 	public void Matrix2Cofactor()
 	{
-		Matrix2 matrix2 = new(1, 2, 3, 4);
-
-		// TODO: This is probably wrong.
-		Assert.AreEqual(new(4, -3, -2, 1), Matrix2.Cofactor(matrix2));
+		Assert.AreEqual(new(6, 2, -3, 5), Matrix2.Cofactor(new(5, 3, -2, 6)));
+		Assert.AreEqual(new(3, 2, -5, 6), Matrix2.Cofactor(new(6, 5, -2, 3)));
 	}
 
 	[TestMethod]
 	public void Matrix3Cofactor()
 	{
-		Matrix3 matrix3 = new(1, 2, 3, 4, 5, 6, 7, 8, 9);
-
-		// TODO: This is probably wrong.
-		Assert.AreEqual(new(5, -4, 2, -1, -9, 7, -8, 6, 3), Matrix3.Cofactor(matrix3));
+		Assert.AreEqual(new(-65, 15, -22, 125, -56, -12, 8, -29, 19), Matrix3.Cofactor(new(4, 7, 9, -1, 3, 5, 4, 10, -5)));
 	}
 
 	[TestMethod]
@@ -129,12 +133,33 @@ public class MatricesTests
 	[TestMethod]
 	public void Matrix4Multiply()
 	{
-		Matrix4 matrix4 = new(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, 12, 13, 14, 15, 16);
+		Matrix4 matrix4 = new(
+			1, 2, 3, 4,
+			5, 6, 7, 8,
+			9, 10, -11, 12,
+			13, 14, 15, 16);
 
-		Assert.AreEqual(new(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, -22, 24, 26, 28, 30, 32), matrix4 * 2);
-		Assert.AreEqual(new(3, 6, 9, 12, 15, 18, 21, 24, 27, 30, -33, 36, 39, 42, 45, 48), matrix4 * 3);
+		Assert.AreEqual(
+			new(
+				2, 4, 6, 8,
+				10, 12, 14, 16,
+				18, 20, -22, 24,
+				26, 28, 30, 32),
+			matrix4 * 2);
+		Assert.AreEqual(
+			new(
+				3, 6, 9, 12,
+				15, 18, 21, 24,
+				27, 30, -33, 36,
+				39, 42, 45, 48),
+			matrix4 * 3);
 
-		// TODO: This is wrong.
-		Assert.AreEqual(new(90, 100, 110, 120, 202, 228, 254, 280, 314, 356, 398, 440, 426, 484, 542, 600), matrix4 * matrix4);
+		Assert.AreEqual(
+			new(
+				90, 100, 44, 120,
+				202, 228, 100, 280,
+				116, 136, 398, 176,
+				426, 484, 212, 600),
+			matrix4 * matrix4);
 	}
 }
