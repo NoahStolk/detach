@@ -986,33 +986,33 @@ public static class Geometry3D
 		// TODO: Check if this is necessary.
 		// TODO: If it is, optimize it.
 		// Remove duplicate contact points.
-		Buffer24<Vector3> finalContactPoints = default;
-		int finalContactCount = 0;
-		for (int i = 0; i < result.ContactCount; i++)
-		{
-			Vector3 contact = result.Contacts[i];
-			bool duplicate = false;
-			for (int j = 0; j < finalContactCount; j++)
-			{
-				if (Vector3.DistanceSquared(contact, finalContactPoints[j]) < float.Epsilon)
-				{
-					duplicate = true;
-					break;
-				}
-			}
-
-			if (!duplicate)
-				finalContactPoints[finalContactCount++] = contact;
-		}
-
-		result.Contacts = finalContactPoints;
-		result.ContactCount = finalContactCount;
+		// Buffer24<Vector3> finalContactPoints = default;
+		// int finalContactCount = 0;
+		// for (int i = 0; i < result.ContactCount; i++)
+		// {
+		// 	Vector3 contact = result.Contacts[i];
+		// 	bool duplicate = false;
+		// 	for (int j = 0; j < finalContactCount; j++)
+		// 	{
+		// 		if (Vector3.DistanceSquared(contact, finalContactPoints[j]) < float.Epsilon)
+		// 		{
+		// 			duplicate = true;
+		// 			break;
+		// 		}
+		// 	}
+		//
+		// 	if (!duplicate)
+		// 		finalContactPoints[finalContactCount++] = contact;
+		// }
+		//
+		// result.Contacts = finalContactPoints;
+		// result.ContactCount = finalContactCount;
 		result.Colliding = true;
 		result.Normal = axis;
 		return result;
 	}
 
-	public static bool ClipToPlane(Plane plane, LineSegment3D line, out Vector3 result)
+	private static bool ClipToPlane(Plane plane, LineSegment3D line, out Vector3 result)
 	{
 		result = default;
 
@@ -1031,7 +1031,7 @@ public static class Geometry3D
 		return true;
 	}
 
-	public static int ClipEdgesToObb(Buffer12<LineSegment3D> edges, Obb obb, out Buffer12<Vector3> result)
+	private static int ClipEdgesToObb(Buffer12<LineSegment3D> edges, Obb obb, out Buffer12<Vector3> result)
 	{
 		int count = 0;
 		result = default;
@@ -1043,15 +1043,20 @@ public static class Geometry3D
 				if (count >= 12)
 					throw new InvalidOperationException("Too many contacts.");
 
-				if (ClipToPlane(planes[i], edges[j], out Vector3 intersection) && PointInObb(intersection, obb))
-					result[count++] = intersection;
+				if (ClipToPlane(planes[i], edges[j], out Vector3 intersection))
+				{
+					// The book uses PointInObb here, but that doesn't seem to work, since the points always lie just outside the obb after being clipped by the previous function.
+					// I don't understand why this check is needed. If the edge clips successfully, the intersection point should always be on one of the obb planes?
+					if (PointInObb(intersection, obb))
+						result[count++] = intersection;
+				}
 			}
 		}
 
 		return count;
 	}
 
-	public static float PenetrationDepthObb(Obb obb1, Obb obb2, Vector3 axis, out bool shouldFlip)
+	private static float PenetrationDepthObb(Obb obb1, Obb obb2, Vector3 axis, out bool shouldFlip)
 	{
 		shouldFlip = false;
 
