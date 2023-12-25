@@ -983,7 +983,30 @@ public static class Geometry3D
 			result.Contacts[i] = contact + axis * Vector3.Dot(axis, pointOnPlane - contact);
 		}
 
-		// TODO: Remove duplicate contacts.
+		// TODO: Check if this is necessary.
+		// TODO: If it is, optimize it.
+		// Remove duplicate contact points.
+		Buffer24<Vector3> finalContactPoints = default;
+		int finalContactCount = 0;
+		for (int i = 0; i < result.ContactCount; i++)
+		{
+			Vector3 contact = result.Contacts[i];
+			bool duplicate = false;
+			for (int j = 0; j < finalContactCount; j++)
+			{
+				if (Vector3.DistanceSquared(contact, finalContactPoints[j]) < float.Epsilon)
+				{
+					duplicate = true;
+					break;
+				}
+			}
+
+			if (!duplicate)
+				finalContactPoints[finalContactCount++] = contact;
+		}
+
+		result.Contacts = finalContactPoints;
+		result.ContactCount = finalContactCount;
 		result.Colliding = true;
 		result.Normal = axis;
 		return result;
