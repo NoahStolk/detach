@@ -2,8 +2,8 @@
 
 namespace Detach.Buffers;
 
-[InlineArray(72)]
-public struct Buffer72<T>
+[InlineArray(24)]
+public struct Buffer24<T>
 {
 	private T _0;
 }
