@@ -880,8 +880,8 @@ public static class Geometry3D
 		if (d.LengthSquared() > r * r)
 			return default;
 
-		Vector3 direction = Vector3.Normalize(d);
-		CollisionManifold result = default;
+		Vector3 direction = Vector3.Normalize(d); // TODO: Prevent NaN direction when spheres have the same position.
+		CollisionManifold result = CollisionManifold.Empty;
 		result.Colliding = true;
 		result.Normal = direction;
 		result.Depth = MathF.Abs(d.Length() - r) * 0.5f;
@@ -915,7 +915,7 @@ public static class Geometry3D
 
 		Vector3 outsidePoint = sphere.Position - normal * sphere.Radius;
 		float distance = (closestPoint - outsidePoint).Length();
-		CollisionManifold result = default;
+		CollisionManifold result = CollisionManifold.Empty;
 		result.Colliding = true;
 		result.Normal = normal;
 		result.Depth = distance * 0.5f;
@@ -926,7 +926,7 @@ public static class Geometry3D
 
 	public static CollisionManifold FindCollisionFeatures(Obb obb1, Obb obb2)
 	{
-		CollisionManifold result = default;
+		CollisionManifold result = CollisionManifold.Empty;
 
 		Span<Vector3> test = stackalloc Vector3[15];
 		test[0] = new(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
@@ -949,8 +949,8 @@ public static class Geometry3D
 				continue;
 
 			float depth = PenetrationDepthObb(obb1, obb2, test[i], out bool shouldFlip);
-			if (depth < 0)
-				return default;
+			if (depth <= 0)
+				return CollisionManifold.Empty;
 
 			if (depth < result.Depth)
 			{
@@ -963,11 +963,11 @@ public static class Geometry3D
 		}
 
 		if (hitNormal is null)
-			return default;
+			return CollisionManifold.Empty;
 
 		Vector3 axis = Vector3.Normalize(hitNormal.Value);
-		int count1 = ClipToEdgesObb(obb2.GetEdges(), obb1, out Buffer72<Vector3> c1);
-		int count2 = ClipToEdgesObb(obb1.GetEdges(), obb2, out Buffer72<Vector3> c2);
+		int count1 = ClipEdgesToObb(obb2.GetEdges(), obb1, out Buffer12<Vector3> c1);
+		int count2 = ClipEdgesToObb(obb1.GetEdges(), obb2, out Buffer12<Vector3> c2);
 		result.ContactCount = count1 + count2;
 		for (int i = 0; i < count1; i++)
 			result.Contacts[i] = c1[i];
@@ -1008,7 +1008,7 @@ public static class Geometry3D
 		return true;
 	}
 
-	public static int ClipToEdgesObb(Buffer12<LineSegment3D> edges, Obb obb, out Buffer72<Vector3> result)
+	public static int ClipEdgesToObb(Buffer12<LineSegment3D> edges, Obb obb, out Buffer12<Vector3> result)
 	{
 		int count = 0;
 		result = default;
@@ -1017,6 +1017,9 @@ public static class Geometry3D
 		{
 			for (int j = 0; j < 12; j++)
 			{
+				if (count >= 12)
+					throw new InvalidOperationException("Too many contacts.");
+
 				if (ClipToPlane(planes[i], edges[j], out Vector3 intersection) && PointInObb(intersection, obb))
 					result[count++] = intersection;
 			}
@@ -1038,8 +1041,8 @@ public static class Geometry3D
 
 		float len1 = i1.Max - i1.Min;
 		float len2 = i2.Max - i2.Min;
-		float min = Math.Max(i1.Min, i2.Min);
-		float max = Math.Min(i1.Max, i2.Max);
+		float min = Math.Min(i1.Min, i2.Min);
+		float max = Math.Max(i1.Max, i2.Max);
 
 		float length = max - min;
 		shouldFlip = i2.Min < i1.Min;
