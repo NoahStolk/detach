@@ -47,7 +47,7 @@ public static class Geometry3D
 				obb.Orientation[i * 3 + 1],
 				obb.Orientation[i * 3 + 2]);
 			float distance = Vector3.Dot(direction, axis);
-			if (distance > obb.Size[i] || distance < -obb.Size[i])
+			if (distance > obb.HalfExtents[i] || distance < -obb.HalfExtents[i])
 				return false;
 		}
 
@@ -65,7 +65,7 @@ public static class Geometry3D
 				obb.Orientation[i * 3 + 1],
 				obb.Orientation[i * 3 + 2]);
 			float distance = Vector3.Dot(direction, axis);
-			result += axis * Math.Clamp(distance, -obb.Size[i], obb.Size[i]);
+			result += axis * Math.Clamp(distance, -obb.HalfExtents[i], obb.HalfExtents[i]);
 		}
 
 		return result;
@@ -271,9 +271,9 @@ public static class Geometry3D
 		};
 
 		float pLen =
-			obb.Size.X * Math.Abs(Vector3.Dot(plane.Normal, axes[0])) +
-			obb.Size.Y * Math.Abs(Vector3.Dot(plane.Normal, axes[1])) +
-			obb.Size.Z * Math.Abs(Vector3.Dot(plane.Normal, axes[2]));
+			obb.HalfExtents.X * Math.Abs(Vector3.Dot(plane.Normal, axes[0])) +
+			obb.HalfExtents.Y * Math.Abs(Vector3.Dot(plane.Normal, axes[1])) +
+			obb.HalfExtents.Z * Math.Abs(Vector3.Dot(plane.Normal, axes[2]));
 
 		float dot = Vector3.Dot(plane.Normal, obb.Position);
 		float distance = dot - plane.D;
@@ -418,14 +418,14 @@ public static class Geometry3D
 		{
 			if (Math.Abs(f[i]) < float.Epsilon)
 			{
-				if (-e[i] - obb.Size[i] > 0 || -e[i] + obb.Size[i] < 0)
+				if (-e[i] - obb.HalfExtents[i] > 0 || -e[i] + obb.HalfExtents[i] < 0)
 					return false;
 
 				f[i] = float.Epsilon; // Avoid division by 0.
 			}
 
-			t[i * 2 + 0] = (e[i] + obb.Size[i]) / f[i];
-			t[i * 2 + 1] = (e[i] - obb.Size[i]) / f[i];
+			t[i * 2 + 0] = (e[i] + obb.HalfExtents[i]) / f[i];
+			t[i * 2 + 1] = (e[i] - obb.HalfExtents[i]) / f[i];
 		}
 
 		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
@@ -458,14 +458,14 @@ public static class Geometry3D
 		{
 			if (Math.Abs(f[i]) < float.Epsilon)
 			{
-				if (-e[i] - obb.Size[i] > 0 || -e[i] + obb.Size[i] < 0)
+				if (-e[i] - obb.HalfExtents[i] > 0 || -e[i] + obb.HalfExtents[i] < 0)
 					return false;
 
 				f[i] = float.Epsilon; // Avoid division by 0.
 			}
 
-			t[i * 2 + 0] = (e[i] + obb.Size[i]) / f[i];
-			t[i * 2 + 1] = (e[i] - obb.Size[i]) / f[i];
+			t[i * 2 + 0] = (e[i] + obb.HalfExtents[i]) / f[i];
+			t[i * 2 + 1] = (e[i] - obb.HalfExtents[i]) / f[i];
 		}
 
 		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
