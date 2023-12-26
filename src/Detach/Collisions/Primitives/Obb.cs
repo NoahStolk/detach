@@ -7,20 +7,20 @@ namespace Detach.Collisions.Primitives;
 public record struct Obb
 {
 	public Vector3 Position;
-	public Vector3 Size;
+	public Vector3 HalfExtents;
 	public Matrix3 Orientation;
 
-	public Obb(Vector3 position, Vector3 size, Matrix3 orientation)
+	public Obb(Vector3 position, Vector3 halfExtents, Matrix3 orientation)
 	{
 		Position = position;
-		Size = size;
+		HalfExtents = halfExtents;
 		Orientation = orientation;
 	}
 
 	public Interval GetInterval(Vector3 axis)
 	{
 		Vector3 c = Position;
-		Vector3 e = Size;
+		Vector3 e = HalfExtents;
 		Span<Vector3> axes = stackalloc Vector3[]
 		{
 			new(Orientation.M11, Orientation.M12, Orientation.M13),
@@ -60,7 +60,7 @@ public record struct Obb
 	public Buffer8<Vector3> GetVertices()
 	{
 		Vector3 c = Position;
-		Vector3 e = Size;
+		Vector3 e = HalfExtents;
 		Span<Vector3> axes = stackalloc Vector3[]
 		{
 			new(Orientation.M11, Orientation.M12, Orientation.M13),
@@ -112,7 +112,7 @@ public record struct Obb
 	public Buffer6<Plane> GetPlanes()
 	{
 		Vector3 c = Position;
-		Vector3 e = Size;
+		Vector3 e = HalfExtents;
 		Span<Vector3> axes = stackalloc Vector3[]
 		{
 			new(Orientation.M11, Orientation.M12, Orientation.M13),
