@@ -15,6 +15,9 @@ public static class MainWindow
 	{
 		if (ImGui.Begin("Main Window", ImGuiWindowFlags.NoCollapse))
 		{
+			// TODO: Create primitives by dragging mouse.
+			// TODO: Allow selecting, moving, and deleting primitives.
+			// TODO: Show collision results.
 			LineSegment2DPopup.Render(_lineSegments);
 			if (ImGui.Button("New line segment"))
 				ImGui.OpenPopup(LineSegment2DPopup.PopupName);
