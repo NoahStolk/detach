@@ -221,15 +221,15 @@ public static class Geometry2D
 			center += points[i];
 		center /= points.Length;
 
-		float radius = 0;
+		float radiusSquared = 0;
 		for (int i = 0; i < points.Length; i++)
 		{
-			float distance = (points[i] - center).LengthSquared();
-			if (distance > radius)
-				radius = distance;
+			float distanceSquared = (points[i] - center).LengthSquared();
+			if (distanceSquared > radiusSquared)
+				radiusSquared = distanceSquared;
 		}
 
-		return new(center, MathF.Sqrt(radius));
+		return new(center, MathF.Sqrt(radiusSquared));
 	}
 
 	public static Rectangle ContainingRectangle(Vector2[] points)
