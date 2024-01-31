@@ -59,6 +59,6 @@ public record struct Rectangle
 
 	public static Rectangle FromMinMax(Vector2 min, Vector2 max)
 	{
-		return new Rectangle(min, max - min);
+		return new(min, max - min);
 	}
 }
