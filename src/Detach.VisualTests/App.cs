@@ -1,4 +1,5 @@
 using Detach.VisualTests.Ui;
+using ImGuiGlfw;
 using Silk.NET.OpenGL;
 
 namespace Detach.VisualTests;
@@ -17,8 +18,14 @@ public static class App
 	private static double _accumulator;
 	private static double _frameTime;
 
-	public static unsafe void Run()
+	private static ImGuiController? _imGuiController;
+
+	public static ImGuiController ImGuiController => _imGuiController ?? throw new InvalidOperationException("ImGuiController is not initialized.");
+
+	public static unsafe void Run(ImGuiController imGuiController)
 	{
+		_imGuiController = imGuiController;
+
 		while (!Graphics.Glfw.WindowShouldClose(Graphics.Window))
 		{
 			double expectedNextFrame = Graphics.Glfw.GetTime() + _mainLoopLength;
@@ -62,5 +69,7 @@ public static class App
 		MainWindow.Render();
 
 		ImGuiController.Render();
+
+		Input.GlfwInput.PostRender();
 	}
 }
