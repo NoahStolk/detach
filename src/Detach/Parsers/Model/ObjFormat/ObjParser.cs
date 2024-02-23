@@ -8,9 +8,9 @@ public static class ObjParser
 {
 	public static ModelData Parse(byte[] fileContents)
 	{
-		List<Vector3> positions = new();
-		List<Vector2> textures = new();
-		List<Vector3> normals = new();
+		List<Vector3> positions = [];
+		List<Vector2> textures = [];
+		List<Vector3> normals = [];
 		Dictionary<string, List<Face>> meshes = new();
 
 		string text = Encoding.UTF8.GetString(fileContents);
@@ -33,7 +33,7 @@ public static class ObjParser
 						break;
 
 					string[] rawIndices = values[1..];
-					List<Face> faces = new();
+					List<Face> faces = [];
 					for (int j = 0; j < rawIndices.Length; j++)
 					{
 						string[] indexEntries = rawIndices[j].Split('/');
@@ -51,7 +51,7 @@ public static class ObjParser
 						if (meshes.TryGetValue(useMaterial, out List<Face>? value))
 							value.Add(face);
 						else
-							meshes.Add(useMaterial, new() { face });
+							meshes.Add(useMaterial, [face]);
 					}
 
 					break;
