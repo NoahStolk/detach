@@ -8,15 +8,14 @@ public static class ObjParser
 {
 	public static ModelData Parse(byte[] fileContents)
 	{
-		List<Vector3> positions = [];
-		List<Vector2> textures = [];
-		List<Vector3> normals = [];
-		Dictionary<string, List<Face>> meshes = new();
-
 		string text = Encoding.UTF8.GetString(fileContents);
 		string[] lines = text.Split('\n');
 
-		string useMaterial = string.Empty;
+		ModelBuildingContext context = new();
+
+		string currentObject = string.Empty;
+		string currentGroup = string.Empty;
+		string currentMaterial = string.Empty;
 		for (int i = 0; i < lines.Length; i++)
 		{
 			string line = lines[i];
@@ -24,10 +23,12 @@ public static class ObjParser
 
 			switch (values[0])
 			{
-				case "v": positions.Add(new(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
-				case "vt": textures.Add(new(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]))); break;
-				case "vn": normals.Add(new(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
-				case "usemtl": useMaterial = values[1].Trim(); break;
+				case "v": context.Positions.Add(new(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
+				case "vt": context.Textures.Add(new(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]))); break;
+				case "vn": context.Normals.Add(new(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
+				case "o": currentObject = values[1].Trim(); break;
+				case "g": currentGroup = values[1].Trim(); break;
+				case "usemtl": currentMaterial = values[1].Trim(); break;
 				case "f":
 					if (values.Length < 4) // Invalid face.
 						break;
@@ -48,18 +49,47 @@ public static class ObjParser
 
 					foreach (Face face in faces)
 					{
-						if (meshes.TryGetValue(useMaterial, out List<Face>? value))
-							value.Add(face);
-						else
-							meshes.Add(useMaterial, [face]);
+						MeshBuildingContext? mesh = context.Meshes.Find(m => m.ObjectName == currentObject);
+						if (mesh == null)
+						{
+							mesh = new()
+							{
+								GroupName = currentGroup,
+								MaterialName = currentMaterial,
+								ObjectName = currentObject,
+							};
+							context.Meshes.Add(mesh);
+						}
+
+						mesh.Faces.Add(face);
 					}
 
 					break;
 			}
 		}
 
-		return new(positions, textures, normals, meshes.Select(kvp => new MeshData(kvp.Key, kvp.Value)).ToList());
+		List<MeshData> meshes = context.Meshes.ConvertAll(mbc => new MeshData(mbc.ObjectName, mbc.GroupName, mbc.MaterialName, mbc.Faces));
+		return new(context.Positions, context.Textures, context.Normals, meshes);
 	}
 
-	private static float ParseVertexFloat(string value) => (float)double.Parse(value, NumberStyles.Float);
+	private static float ParseVertexFloat(string value)
+	{
+		return (float)double.Parse(value, NumberStyles.Float);
+	}
+
+	private sealed class ModelBuildingContext
+	{
+		public List<Vector3> Positions { get; } = [];
+		public List<Vector2> Textures { get; } = [];
+		public List<Vector3> Normals { get; } = [];
+		public List<MeshBuildingContext> Meshes { get; } = [];
+	}
+
+	private sealed class MeshBuildingContext
+	{
+		public required string ObjectName { get; init; }
+		public required string GroupName { get; init; }
+		public required string MaterialName { get; init; }
+		public List<Face> Faces { get; } = [];
+	}
 }

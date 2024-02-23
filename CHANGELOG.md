@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.0
+
+### Added
+
+- Added `ObjectName` and `GroupName` to `MeshData` record.
+
+### Changed
+
+- Meshes in .obj files are now grouped by object name rather than material name.
+
 ## 0.3.1
 
 ### Added

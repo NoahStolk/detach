@@ -1,3 +1,3 @@
 namespace Detach.Parsers.Model;
 
-public record MeshData(string MaterialName, IReadOnlyList<Face> Faces);
+public record MeshData(string ObjectName, string GroupName, string MaterialName, IReadOnlyList<Face> Faces);
