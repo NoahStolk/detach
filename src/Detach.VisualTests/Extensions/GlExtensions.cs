@@ -5,6 +5,7 @@ namespace Detach.VisualTests.Extensions;
 
 public static class GlExtensions
 {
+	// ReSharper disable once InconsistentNaming
 	public static void UniformMatrix4x4(this GL gl, int uniformLocation, Matrix4x4 value)
 	{
 		Span<float> data = stackalloc float[16]
