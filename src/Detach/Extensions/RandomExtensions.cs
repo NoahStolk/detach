@@ -12,7 +12,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="byte"/>.</returns>
 	public static byte RandomByte(this Random random, byte maxValue)
-		=> (byte)random.RandomInt(maxValue);
+	{
+		return (byte)random.RandomInt(maxValue);
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="byte"/> that is greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -22,7 +24,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="byte"/>.</returns>
 	public static byte RandomByte(this Random random, byte minValue, byte maxValue)
-		=> (byte)random.RandomInt(minValue, maxValue);
+	{
+		return (byte)random.RandomInt(minValue, maxValue);
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="int"/> that is greater than or equal to 0, and less than <paramref name="maxValue"/>.
@@ -31,7 +35,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="int"/>.</returns>
 	public static int RandomInt(this Random random, int maxValue)
-		=> random.Next(maxValue);
+	{
+		return random.Next(maxValue);
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="int"/> that is greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -52,7 +58,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="float"/>.</returns>
 	public static float RandomFloat(this Random random, float maxValue)
-		=> (float)random.NextDouble() * maxValue;
+	{
+		return (float)random.NextDouble() * maxValue;
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="float"/> that is greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -62,7 +70,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="float"/>.</returns>
 	public static float RandomFloat(this Random random, float minValue, float maxValue)
-		=> (float)random.NextDouble() * (maxValue - minValue) + minValue;
+	{
+		return (float)random.NextDouble() * (maxValue - minValue) + minValue;
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="double"/> that is greater than or equal to 0.0, and less than <paramref name="maxValue"/>.
@@ -71,7 +81,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="double"/>.</returns>
 	public static double RandomDouble(this Random random, double maxValue)
-		=> random.NextDouble() * maxValue;
+	{
+		return random.NextDouble() * maxValue;
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="double"/> that is greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -81,7 +93,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="double"/>.</returns>
 	public static double RandomDouble(this Random random, double minValue, double maxValue)
-		=> random.NextDouble() * (maxValue - minValue) + minValue;
+	{
+		return random.NextDouble() * (maxValue - minValue) + minValue;
+	}
 
 #if !PARAMS_SPAN // https://github.com/dotnet/csharplang/issues/1757
 	/// <summary>
@@ -208,7 +222,9 @@ public static class RandomExtensions
 	/// <param name="options">The span to choose from.</param>
 	/// <returns>The randomly chosen item.</returns>
 	public static T Choose<T>(this Random random, Span<T> options)
-		=> options[random.Next(options.Length)];
+	{
+		return options[random.Next(options.Length)];
+	}
 
 	/// <summary>
 	/// Returns true or false based on the <paramref name="percentage"/> parameter.
@@ -216,7 +232,9 @@ public static class RandomExtensions
 	/// <param name="random">The <see cref="Random"/> instance.</param>
 	/// <param name="percentage">The percentage ranging from 0 to 100.</param>
 	public static bool Chance(this Random random, float percentage)
-		=> random.RandomFloat(100) < percentage;
+	{
+		return random.RandomFloat(100) < percentage;
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector2"/> greater than or equal to <see cref="Vector2.Zero"/>, and less than a <see cref="Vector2"/> with axes that do not exceed <paramref name="maxValue"/>. Both axes for the returned <see cref="Vector2"/> are equal.
@@ -225,7 +243,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomEqualVector2(this Random random, float maxValue)
-		=> new(random.RandomFloat(maxValue));
+	{
+		return new(random.RandomFloat(maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector2"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>. Both axes for the returned <see cref="Vector2"/> are equal.
@@ -235,7 +255,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomEqualVector2(this Random random, float minValue, float maxValue)
-		=> new(random.RandomFloat(minValue, maxValue));
+	{
+		return new(random.RandomFloat(minValue, maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector2"/> greater than or equal to <see cref="Vector2.Zero"/>, and less than a <see cref="Vector2"/> with axes that do not exceed <paramref name="maxValue"/>.
@@ -244,7 +266,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, float maxValue)
-		=> new(random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+	{
+		return new(random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector2"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -254,7 +278,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, float minValue, float maxValue)
-		=> new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+	{
+		return new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector2"/> with axes that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
@@ -266,7 +292,9 @@ public static class RandomExtensions
 	/// <param name="maxValueY">The maximum Y value for the <see cref="Vector2"/>.</param>
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, float minValueX, float maxValueX, float minValueY, float maxValueY)
-		=> new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY));
+	{
+		return new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector2"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -276,7 +304,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, Vector2 minValue, Vector2 maxValue)
-		=> RandomVector2(random, minValue.X, maxValue.X, minValue.Y, maxValue.Y);
+	{
+		return RandomVector2(random, minValue.X, maxValue.X, minValue.Y, maxValue.Y);
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> greater than or equal to <see cref="Vector3.Zero"/>, and less than a <see cref="Vector3"/> with axes that do not exceed <paramref name="maxValue"/>. All axes for the returned <see cref="Vector3"/> are equal.
@@ -285,7 +315,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomEqualVector3(this Random random, float maxValue)
-		=> new(random.RandomFloat(maxValue));
+	{
+		return new(random.RandomFloat(maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>. All axes for the returned <see cref="Vector3"/> are equal.
@@ -295,7 +327,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomEqualVector3(this Random random, float minValue, float maxValue)
-		=> new(random.RandomFloat(minValue, maxValue));
+	{
+		return new(random.RandomFloat(minValue, maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> greater than or equal to <see cref="Vector3.Zero"/>, and less than a <see cref="Vector3"/> with axes that do not exceed <paramref name="maxValue"/>.
@@ -304,7 +338,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float maxValue)
-		=> new(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+	{
+		return new(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -314,7 +350,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float minValue, float maxValue)
-		=> new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+	{
+		return new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> greater than or equal to a <see cref="Vector3"/> with axes {-<paramref name="x"/>, -<paramref name="y"/>, -<paramref name="z"/>}, and less than a <see cref="Vector3"/> with axes {<paramref name="x"/>, <paramref name="y"/>, <paramref name="z"/>}.
@@ -325,7 +363,9 @@ public static class RandomExtensions
 	/// <param name="z">The Z value for the <see cref="Vector3"/>.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float x, float y, float z)
-		=> new(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z));
+	{
+		return new(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> with axes that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
@@ -339,7 +379,9 @@ public static class RandomExtensions
 	/// <param name="maxValueZ">The maximum Z value for the <see cref="Vector3"/>.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float minValueX, float maxValueX, float minValueY, float maxValueY, float minValueZ, float maxValueZ)
-		=> new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ));
+	{
+		return new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector3"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -349,7 +391,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, Vector3 minValue, Vector3 maxValue)
-		=> RandomVector3(random, minValue.X, maxValue.X, minValue.Y, maxValue.Y, minValue.Z, maxValue.Z);
+	{
+		return RandomVector3(random, minValue.X, maxValue.X, minValue.Y, maxValue.Y, minValue.Z, maxValue.Z);
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> greater than or equal to <see cref="Vector4.Zero"/>, and less than a <see cref="Vector4"/> with axes that do not exceed <paramref name="maxValue"/>. All axes for the returned <see cref="Vector4"/> are equal.
@@ -358,7 +402,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomEqualVector4(this Random random, float maxValue)
-		=> new(random.RandomFloat(maxValue));
+	{
+		return new(random.RandomFloat(maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>. All axes for the returned <see cref="Vector4"/> are equal.
@@ -368,7 +414,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomEqualVector4(this Random random, float minValue, float maxValue)
-		=> new(random.RandomFloat(minValue, maxValue));
+	{
+		return new(random.RandomFloat(minValue, maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> greater than or equal to <see cref="Vector4.Zero"/>, and less than a <see cref="Vector4"/> with axes that do not exceed <paramref name="maxValue"/>.
@@ -377,7 +425,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float maxValue)
-		=> new(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+	{
+		return new(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -387,7 +437,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float minValue, float maxValue)
-		=> new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+	{
+		return new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> greater than or equal to a <see cref="Vector4"/> with axes {-<paramref name="x"/>, -<paramref name="y"/>, -<paramref name="z"/>, -<paramref name="w"/>}, and less than a <see cref="Vector4"/> with axes {<paramref name="x"/>, <paramref name="y"/>, <paramref name="z"/>, <paramref name="w"/>}.
@@ -399,7 +451,9 @@ public static class RandomExtensions
 	/// <param name="w">The W value for the <see cref="Vector4"/>.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float x, float y, float z, float w)
-		=> new(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z), random.RandomFloat(-w, w));
+	{
+		return new(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z), random.RandomFloat(-w, w));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> with axes that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
@@ -415,7 +469,9 @@ public static class RandomExtensions
 	/// <param name="maxValueW">The maximum W value for the <see cref="Vector4"/>.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float minValueX, float maxValueX, float minValueY, float maxValueY, float minValueZ, float maxValueZ, float minValueW, float maxValueW)
-		=> new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ), random.RandomFloat(minValueW, maxValueW));
+	{
+		return new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ), random.RandomFloat(minValueW, maxValueW));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="Vector4"/> with axes that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
@@ -425,7 +481,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, Vector4 minValue, Vector4 maxValue)
-		=> RandomVector4(random, minValue.X, maxValue.X, minValue.Y, maxValue.Y, minValue.Z, maxValue.Z, minValue.W, maxValue.W);
+	{
+		return RandomVector4(random, minValue.X, maxValue.X, minValue.Y, maxValue.Y, minValue.Z, maxValue.Z, minValue.W, maxValue.W);
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="T:Vtx.Numerics.Color" /> with values that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
@@ -441,7 +499,9 @@ public static class RandomExtensions
 	/// <param name="maxValueW">The maximum W value for the <see cref="T:Vtx.Numerics.Color" />.</param>
 	/// <returns>The random <see cref="T:System.Numerics.Color" />.</returns>
 	public static Color RandomColor(this Random random, byte minValueX, byte maxValueX, byte minValueY, byte maxValueY, byte minValueZ, byte maxValueZ, byte minValueW, byte maxValueW)
-		=> new(random.RandomByte(minValueX, maxValueX), random.RandomByte(minValueY, maxValueY), random.RandomByte(minValueZ, maxValueZ), random.RandomByte(minValueW, maxValueW));
+	{
+		return new(random.RandomByte(minValueX, maxValueX), random.RandomByte(minValueY, maxValueY), random.RandomByte(minValueZ, maxValueZ), random.RandomByte(minValueW, maxValueW));
+	}
 
 	/// <summary>
 	/// Returns a random <see cref="T:Vtx.Numerics.Color" /> with values that are all greater than or equal to <paramref name="minValue" />, and less than <paramref name="maxValue" />.
@@ -451,7 +511,9 @@ public static class RandomExtensions
 	/// <param name="maxValue">The maximum value.</param>
 	/// <returns>The random <see cref="T:Vtx.Numerics.Color" />.</returns>
 	public static Color RandomColor(this Random random, Color minValue, Color maxValue)
-		=> random.RandomColor(minValue.R, maxValue.R, minValue.G, maxValue.G, minValue.B, maxValue.B, minValue.A, maxValue.A);
+	{
+		return random.RandomColor(minValue.R, maxValue.R, minValue.G, maxValue.G, minValue.B, maxValue.B, minValue.A, maxValue.A);
+	}
 
 	/// <summary>
 	/// Randomly flips the axes of the <see cref="Vector2"/>.

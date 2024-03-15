@@ -19,13 +19,19 @@ public static class VectorUtils
 	}
 
 	public static Vector2 Clamp(Vector2 vector, float min, float max)
-		=> new(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max));
+	{
+		return new(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max));
+	}
 
 	public static Vector3 Clamp(Vector3 vector, float min, float max)
-		=> new(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max), Math.Clamp(vector.Z, min, max));
+	{
+		return new(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max), Math.Clamp(vector.Z, min, max));
+	}
 
 	public static Vector4 Clamp(Vector4 vector, float min, float max)
-		=> new(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max), Math.Clamp(vector.Z, min, max), Math.Clamp(vector.W, min, max));
+	{
+		return new(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max), Math.Clamp(vector.Z, min, max), Math.Clamp(vector.W, min, max));
+	}
 
 	public static Vector3 Reflect(Vector3 direction, Vector3 normal)
 	{

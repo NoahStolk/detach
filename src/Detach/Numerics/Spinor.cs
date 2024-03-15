@@ -25,19 +25,29 @@ public readonly struct Spinor : IEquatable<Spinor>
 	}
 
 	public static Spinor operator +(Spinor left, Spinor right)
-		=> new(left._real + right._real, left._complex + right._complex);
+	{
+		return new(left._real + right._real, left._complex + right._complex);
+	}
 
 	public static Spinor operator *(Spinor left, Spinor right)
-		=> new(left._real * right._real - left._complex * right._complex, left._real * right._complex + left._complex * right._real);
+	{
+		return new(left._real * right._real - left._complex * right._complex, left._real * right._complex + left._complex * right._real);
+	}
 
 	public static bool operator ==(Spinor left, Spinor right)
-		=> left.Equals(right);
+	{
+		return left.Equals(right);
+	}
 
 	public static bool operator !=(Spinor left, Spinor right)
-		=> !(left == right);
+	{
+		return !(left == right);
+	}
 
 	public Spinor GetScale(float scale)
-		=> new(_real * scale, _complex * scale);
+	{
+		return new(_real * scale, _complex * scale);
+	}
 
 	public Spinor GetInvert()
 	{
@@ -46,10 +56,14 @@ public readonly struct Spinor : IEquatable<Spinor>
 	}
 
 	public float GetLength()
-		=> MathF.Sqrt(GetLengthSquared());
+	{
+		return MathF.Sqrt(GetLengthSquared());
+	}
 
 	public float GetLengthSquared()
-		=> _real * _real + _complex * _complex;
+	{
+		return _real * _real + _complex * _complex;
+	}
 
 	public Spinor GetNormalized()
 	{
@@ -58,7 +72,9 @@ public readonly struct Spinor : IEquatable<Spinor>
 	}
 
 	public float GetAngle()
-		=> MathF.Atan2(_complex, _real) * 2;
+	{
+		return MathF.Atan2(_complex, _real) * 2;
+	}
 
 	public Vector2 GetDirectionalVector()
 	{
@@ -67,7 +83,9 @@ public readonly struct Spinor : IEquatable<Spinor>
 	}
 
 	public static Spinor Lerp(Spinor from, Spinor to, float amount)
-		=> (from.GetScale(1 - amount) + to.GetScale(amount)).GetNormalized();
+	{
+		return (from.GetScale(1 - amount) + to.GetScale(amount)).GetNormalized();
+	}
 
 	public static Spinor Slerp(Spinor from, Spinor to, float amount)
 	{
@@ -110,10 +128,14 @@ public readonly struct Spinor : IEquatable<Spinor>
 	}
 
 	public static Spinor Add(Spinor left, Spinor right)
-		=> left + right;
+	{
+		return left + right;
+	}
 
 	public static Spinor Multiply(Spinor left, Spinor right)
-		=> left * right;
+	{
+		return left * right;
+	}
 
 	public override bool Equals(object? obj)
 	{
@@ -124,8 +146,12 @@ public readonly struct Spinor : IEquatable<Spinor>
 	}
 
 	public bool Equals(Spinor other)
-		=> _real == other._real && _complex == other._complex;
+	{
+		return _real == other._real && _complex == other._complex;
+	}
 
 	public override int GetHashCode()
-		=> HashCode.Combine(_real, _complex);
+	{
+		return HashCode.Combine(_real, _complex);
+	}
 }
