@@ -1,21 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
+  <PropertyGroup Label="Build properties">
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>nullable</WarningsAsErrors>
-    <AnalysisMode>All</AnalysisMode>
   </PropertyGroup>
 
-  <PropertyGroup Label="Package information">
-    <PackageId>NoahStolk.Detach</PackageId>
-    <Authors>Noah Stolk</Authors>
-    <Copyright>Copyright © Noah Stolk</Copyright>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-    <Version>0.4.0</Version>
-  </PropertyGroup>
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="NoahStolk.ImGuiGlfw" Version="0.5.0" />
+  </ItemGroup>
 
   <ItemGroup Label="Static code analysis">
     <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4">
@@ -26,11 +22,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Roslynator.Analyzers" Version="4.11.0">
+    <PackageReference Include="Roslynator.Analyzers" Version="4.10.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.20.0.85982">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.19.0.84025">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -40,8 +36,14 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup Label="Test configuration">
-    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
+  <ItemGroup>
+    <ProjectReference Include="..\Detach\Detach.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Label="Content">
+    <None Include="Content\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
