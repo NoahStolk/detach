@@ -149,7 +149,7 @@ internal readonly struct TgaImageData
 				bool isRlePacket = amountOfIdenticalPixels > 1;
 				if (isRlePacket)
 				{
-					binaryWriter.Write((byte)(0b1000_0000 | amountOfIdenticalPixels - 1));
+					binaryWriter.Write((byte)(0b1000_0000 | (amountOfIdenticalPixels - 1)));
 					binaryWriter.Write(currentColor.R);
 					binaryWriter.Write(currentColor.G);
 					binaryWriter.Write(currentColor.B);
@@ -178,6 +178,6 @@ internal readonly struct TgaImageData
 		byte g = span[1];
 		byte r = span[2];
 		byte a = pixelDepth == TgaPixelDepth.Bgra ? span[3] : (byte)0xFF;
-		return new(r, g, b, a);
+		return new Color(r, g, b, a);
 	}
 }

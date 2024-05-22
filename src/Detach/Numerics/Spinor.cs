@@ -26,12 +26,12 @@ public readonly struct Spinor : IEquatable<Spinor>
 
 	public static Spinor operator +(Spinor left, Spinor right)
 	{
-		return new(left._real + right._real, left._complex + right._complex);
+		return new Spinor(left._real + right._real, left._complex + right._complex);
 	}
 
 	public static Spinor operator *(Spinor left, Spinor right)
 	{
-		return new(left._real * right._real - left._complex * right._complex, left._real * right._complex + left._complex * right._real);
+		return new Spinor(left._real * right._real - left._complex * right._complex, left._real * right._complex + left._complex * right._real);
 	}
 
 	public static bool operator ==(Spinor left, Spinor right)
@@ -46,7 +46,7 @@ public readonly struct Spinor : IEquatable<Spinor>
 
 	public Spinor GetScale(float scale)
 	{
-		return new(_real * scale, _complex * scale);
+		return new Spinor(_real * scale, _complex * scale);
 	}
 
 	public Spinor GetInvert()
@@ -68,7 +68,7 @@ public readonly struct Spinor : IEquatable<Spinor>
 	public Spinor GetNormalized()
 	{
 		float length = GetLength();
-		return new(_real / length, _complex / length);
+		return new Spinor(_real / length, _complex / length);
 	}
 
 	public float GetAngle()
@@ -79,7 +79,7 @@ public readonly struct Spinor : IEquatable<Spinor>
 	public Vector2 GetDirectionalVector()
 	{
 		float angle = GetAngle();
-		return new(MathF.Cos(angle), MathF.Sin(angle));
+		return new Vector2(MathF.Cos(angle), MathF.Sin(angle));
 	}
 
 	public static Spinor Lerp(Spinor from, Spinor to, float amount)
@@ -117,7 +117,7 @@ public readonly struct Spinor : IEquatable<Spinor>
 			scale1 = amount;
 		}
 
-		return new(scale0 * from._real + scale1 * toReal, scale0 * from._complex + scale1 * toComplex);
+		return new Spinor(scale0 * from._real + scale1 * toReal, scale0 * from._complex + scale1 * toComplex);
 	}
 
 	public static float Slerp(float fromAngle, float toAngle, float amount)
@@ -139,15 +139,15 @@ public readonly struct Spinor : IEquatable<Spinor>
 
 	public override bool Equals(object? obj)
 	{
-		if (obj is not Spinor other)
-			return false;
-
-		return Equals(other);
+		return obj is Spinor other && Equals(other);
 	}
 
 	public bool Equals(Spinor other)
 	{
+		// ReSharper disable CompareOfFloatsByEqualityOperator
 		return _real == other._real && _complex == other._complex;
+
+		// ReSharper restore CompareOfFloatsByEqualityOperator
 	}
 
 	public override int GetHashCode()

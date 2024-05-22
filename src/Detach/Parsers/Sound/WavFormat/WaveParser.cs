@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Detach.Parsers.Sound.WavFormat;
 
 public static class WaveParser
@@ -71,7 +73,7 @@ public static class WaveParser
 
 			int sampleCount = dataSize / (bitsPerSample / 8) / channels;
 			double lengthInSeconds = sampleCount / (double)sampleRate;
-			return new(channels, sampleRate, byteRate, blockAlign, bitsPerSample, data, sampleCount, lengthInSeconds);
+			return new SoundData(channels, sampleRate, byteRate, blockAlign, bitsPerSample, data, sampleCount, lengthInSeconds);
 		}
 
 		throw new WaveParseException($"Could not find {FormatBytes(DataHeader)} header.");
@@ -82,7 +84,7 @@ public static class WaveParser
 			Span<char> asciiChars = stackalloc char[bytes.Length];
 			for (int i = 0; i < bytes.Length; i++)
 			{
-				string hex = bytes[i].ToString("X2");
+				string hex = bytes[i].ToString("X2", CultureInfo.InvariantCulture);
 				hexChars[i * 2] = hex[0];
 				hexChars[i * 2 + 1] = hex[1];
 

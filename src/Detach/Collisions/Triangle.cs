@@ -20,12 +20,12 @@ public static class Triangle
 		if (Vector3.Dot(c0, normal) <= 0 && Vector3.Dot(c1, normal) <= 0 && Vector3.Dot(c2, normal) <= 0)
 		{
 			float distance = (point0 - sphereOrigin).Length();
-			return new(normal * (sphereRadius - distance), point0);
+			return new ValueTuple<Vector3, Vector3>(normal * (sphereRadius - distance), point0);
 		}
 
 		float sphereRadiusSq = sphereRadius * sphereRadius;
 
-		// Calculate closest intersection point for every edge.
+		// Calculate the closest intersection point for every edge.
 		Vector3 point1 = ClosestPointOnLineSegment(triangleP1, triangleP2, sphereOrigin);
 		Vector3 point2 = ClosestPointOnLineSegment(triangleP2, triangleP3, sphereOrigin);
 		Vector3 point3 = ClosestPointOnLineSegment(triangleP3, triangleP1, sphereOrigin);
@@ -37,10 +37,10 @@ public static class Triangle
 		if (!intersects1 && !intersects2 && !intersects3)
 			return null;
 
-		// Find closest edge.
+		// Find the closest edge.
 		Vector3 closestPoint = GetClosestPoint(sphereOrigin, point1, point2, point3);
 		float distanceToBestPoint = (closestPoint - sphereOrigin).Length();
-		return new(normal * (sphereRadius - distanceToBestPoint), closestPoint);
+		return new ValueTuple<Vector3, Vector3>(normal * (sphereRadius - distanceToBestPoint), closestPoint);
 
 		static Vector3 GetNormal(Vector3 p1, Vector3 p2, Vector3 p3)
 		{

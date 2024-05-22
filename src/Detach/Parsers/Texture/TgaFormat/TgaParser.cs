@@ -37,6 +37,6 @@ public static class TgaParser
 
 		byte[] remainingBuffer = br.ReadBytes((int)(br.BaseStream.Length - br.BaseStream.Position));
 		TgaImageData imageData = new(header.Width, header.Height, Unsafe.As<byte[], ImmutableArray<byte>>(ref remainingBuffer), rightToLeft, topToBottom, header.ImageType.IsRunLengthEncoded(), pixelDepth);
-		return new(header.Width, header.Height, imageData.Read());
+		return new TextureData(header.Width, header.Height, imageData.Read());
 	}
 }

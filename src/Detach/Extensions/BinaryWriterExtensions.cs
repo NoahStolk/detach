@@ -85,7 +85,7 @@ public static class BinaryWriterExtensions
 	{
 		bw.Write(list.Count);
 
-		for (int i = 0; i < list.Count; i++)
-			writer(bw, list[i]);
+		foreach (T item in list)
+			writer(bw, item);
 	}
 }

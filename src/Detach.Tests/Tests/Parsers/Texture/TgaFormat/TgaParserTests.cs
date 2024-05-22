@@ -84,8 +84,8 @@ public class TgaParserTests
 		Assert.AreEqual(4, texture.Height);
 		Assert.AreEqual(4 * 4 * 4, texture.ColorData.Length);
 
-		for (int i = 0; i < texture.ColorData.Length; i++)
-			Assert.AreEqual(0xFF, texture.ColorData[i]);
+		foreach (byte component in texture.ColorData)
+			Assert.AreEqual(0xFF, component);
 	}
 
 	[TestMethod]

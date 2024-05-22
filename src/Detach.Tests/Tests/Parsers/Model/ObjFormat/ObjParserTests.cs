@@ -1,6 +1,7 @@
 ﻿using Detach.Parsers.Model;
 using Detach.Parsers.Model.ObjFormat;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Numerics;
 
 namespace Detach.Tests.Tests.Parsers.Model.ObjFormat;
 
@@ -18,9 +19,9 @@ public class ObjParserTests
 		Assert.AreEqual(8, modelData.Normals.Count);
 		Assert.AreEqual(1, modelData.Meshes.Count);
 
-		Assert.AreEqual(new(-0.5f, -0.5f, -0.5f), modelData.Positions[0]);
-		Assert.AreEqual(new(0, 1 / 3f), modelData.Textures[0]);
-		Assert.AreEqual(new(-0.57735027f, -0.57735027f, -0.57735027f), modelData.Normals[0]);
+		Assert.AreEqual(new Vector3(-0.5f, -0.5f, -0.5f), modelData.Positions[0]);
+		Assert.AreEqual(new Vector2(0, 1 / 3f), modelData.Textures[0]);
+		Assert.AreEqual(new Vector3(-0.57735027f, -0.57735027f, -0.57735027f), modelData.Normals[0]);
 
 		MeshData meshData = modelData.Meshes[0];
 		Assert.AreEqual("Cube1", meshData.ObjectName);
@@ -48,9 +49,9 @@ public class ObjParserTests
 		Assert.AreEqual(34, modelData.Normals.Count);
 		Assert.AreEqual(4, modelData.Meshes.Count);
 
-		Assert.AreEqual(new(3.8270212e-17f, 3.75000000f, 0.0000000e+0f), modelData.Positions[0]);
-		Assert.AreEqual(new(0, 0.43176447f), modelData.Textures[0]);
-		Assert.AreEqual(new(-0.23942607f, 0.96762892f, -7.9808688e-2f), modelData.Normals[0]);
+		Assert.AreEqual(new Vector3(3.8270212e-17f, 3.75000000f, 0.0000000e+0f), modelData.Positions[0]);
+		Assert.AreEqual(new Vector2(0, 0.43176447f), modelData.Textures[0]);
+		Assert.AreEqual(new Vector3(-0.23942607f, 0.96762892f, -7.9808688e-2f), modelData.Normals[0]);
 
 		MeshData torus = modelData.Meshes[0];
 		Assert.AreEqual("Torus", torus.ObjectName);

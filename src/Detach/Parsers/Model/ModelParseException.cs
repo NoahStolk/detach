@@ -1,8 +1,5 @@
-using System.Runtime.Serialization;
-
 namespace Detach.Parsers.Model;
 
-[Serializable]
 public class ModelParseException : Exception
 {
 	public ModelParseException()
@@ -16,11 +13,6 @@ public class ModelParseException : Exception
 
 	public ModelParseException(string? message, Exception? innerException)
 		: base(message, innerException)
-	{
-	}
-
-	protected ModelParseException(SerializationInfo info, StreamingContext context)
-		: base(info, context)
 	{
 	}
 }

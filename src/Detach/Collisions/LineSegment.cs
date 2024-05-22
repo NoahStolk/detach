@@ -42,12 +42,12 @@ public static class LineSegment
 
 		Vector2 collisionForce = Vector2.Normalize(circleOrigin - d) * (circleRadius - distanceSegmentToPoint);
 		Vector2 intersectionPoint = d + collisionForce;
-		return new(collisionForce, intersectionPoint);
+		return new ValueTuple<Vector2, Vector2>(collisionForce, intersectionPoint);
 
 		static Vector2 Project(Vector2 a, Vector2 b)
 		{
 			float k = Vector2.Dot(a, b) / Vector2.Dot(b, b);
-			return new(k * b.X, k * b.Y);
+			return new Vector2(k * b.X, k * b.Y);
 		}
 
 		static float Hypot2(Vector2 a, Vector2 b)
@@ -72,6 +72,6 @@ public static class LineSegment
 		float distSq1 = Vector2.DistanceSquared(origin, p1);
 		float distSq2 = Vector2.DistanceSquared(origin, p2);
 		float radius = MathF.Sqrt(MathF.Max(distSq1, distSq2));
-		return new(origin, radius);
+		return new ValueTuple<Vector2, float>(origin, radius);
 	}
 }

@@ -48,7 +48,7 @@ internal readonly struct TgaHeader
 		ushort height = br.ReadUInt16();
 		byte pixelDepth = br.ReadByte();
 		byte imageDescriptor = br.ReadByte();
-		return new(idLength, colorMapType, imageType, colorMapStartIndex, colorMapLength, colorMapEntrySize, originX, originY, width, height, pixelDepth, imageDescriptor);
+		return new TgaHeader(idLength, colorMapType, imageType, colorMapStartIndex, colorMapLength, colorMapEntrySize, originX, originY, width, height, pixelDepth, imageDescriptor);
 	}
 
 	public void Write(BinaryWriter bw)

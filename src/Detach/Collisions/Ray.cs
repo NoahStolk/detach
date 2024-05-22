@@ -82,12 +82,12 @@ public static class Ray
 		{
 			// Having a positive tMax and a negative tMin means the ray is inside the box.
 			// We expect the intersection distance to be 0 in that case.
-			< 0 when tMax > 0 => new(0, axis),
+			< 0 when tMax > 0 => new ValueTuple<float, int>(0, axis),
 
 			// A negative tMin means that the intersection point is behind the ray's origin.
 			// We discard these as not hitting the box.
 			< 0 => null,
-			_ => tMin.HasValue ? new(tMin.Value, axis) : null,
+			_ => tMin.HasValue ? new ValueTuple<float, int>(tMin.Value, axis) : null,
 		};
 	}
 

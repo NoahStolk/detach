@@ -244,7 +244,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomEqualVector2(this Random random, float maxValue)
 	{
-		return new(random.RandomFloat(maxValue));
+		return new Vector2(random.RandomFloat(maxValue));
 	}
 
 	/// <summary>
@@ -256,7 +256,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomEqualVector2(this Random random, float minValue, float maxValue)
 	{
-		return new(random.RandomFloat(minValue, maxValue));
+		return new Vector2(random.RandomFloat(minValue, maxValue));
 	}
 
 	/// <summary>
@@ -267,7 +267,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, float maxValue)
 	{
-		return new(random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+		return new Vector2(random.RandomFloat(maxValue), random.RandomFloat(maxValue));
 	}
 
 	/// <summary>
@@ -279,7 +279,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, float minValue, float maxValue)
 	{
-		return new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+		return new Vector2(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
 	}
 
 	/// <summary>
@@ -293,7 +293,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector2"/>.</returns>
 	public static Vector2 RandomVector2(this Random random, float minValueX, float maxValueX, float minValueY, float maxValueY)
 	{
-		return new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY));
+		return new Vector2(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY));
 	}
 
 	/// <summary>
@@ -316,7 +316,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomEqualVector3(this Random random, float maxValue)
 	{
-		return new(random.RandomFloat(maxValue));
+		return new Vector3(random.RandomFloat(maxValue));
 	}
 
 	/// <summary>
@@ -328,7 +328,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomEqualVector3(this Random random, float minValue, float maxValue)
 	{
-		return new(random.RandomFloat(minValue, maxValue));
+		return new Vector3(random.RandomFloat(minValue, maxValue));
 	}
 
 	/// <summary>
@@ -339,7 +339,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float maxValue)
 	{
-		return new(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+		return new Vector3(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
 	}
 
 	/// <summary>
@@ -351,7 +351,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float minValue, float maxValue)
 	{
-		return new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+		return new Vector3(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
 	}
 
 	/// <summary>
@@ -364,7 +364,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float x, float y, float z)
 	{
-		return new(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z));
+		return new Vector3(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z));
 	}
 
 	/// <summary>
@@ -380,7 +380,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector3"/>.</returns>
 	public static Vector3 RandomVector3(this Random random, float minValueX, float maxValueX, float minValueY, float maxValueY, float minValueZ, float maxValueZ)
 	{
-		return new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ));
+		return new Vector3(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ));
 	}
 
 	/// <summary>
@@ -403,7 +403,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomEqualVector4(this Random random, float maxValue)
 	{
-		return new(random.RandomFloat(maxValue));
+		return new Vector4(random.RandomFloat(maxValue));
 	}
 
 	/// <summary>
@@ -415,7 +415,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomEqualVector4(this Random random, float minValue, float maxValue)
 	{
-		return new(random.RandomFloat(minValue, maxValue));
+		return new Vector4(random.RandomFloat(minValue, maxValue));
 	}
 
 	/// <summary>
@@ -426,7 +426,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float maxValue)
 	{
-		return new(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
+		return new Vector4(random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue), random.RandomFloat(maxValue));
 	}
 
 	/// <summary>
@@ -438,7 +438,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float minValue, float maxValue)
 	{
-		return new(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
+		return new Vector4(random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue), random.RandomFloat(minValue, maxValue));
 	}
 
 	/// <summary>
@@ -452,7 +452,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float x, float y, float z, float w)
 	{
-		return new(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z), random.RandomFloat(-w, w));
+		return new Vector4(random.RandomFloat(-x, x), random.RandomFloat(-y, y), random.RandomFloat(-z, z), random.RandomFloat(-w, w));
 	}
 
 	/// <summary>
@@ -470,7 +470,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="Vector4"/>.</returns>
 	public static Vector4 RandomVector4(this Random random, float minValueX, float maxValueX, float minValueY, float maxValueY, float minValueZ, float maxValueZ, float minValueW, float maxValueW)
 	{
-		return new(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ), random.RandomFloat(minValueW, maxValueW));
+		return new Vector4(random.RandomFloat(minValueX, maxValueX), random.RandomFloat(minValueY, maxValueY), random.RandomFloat(minValueZ, maxValueZ), random.RandomFloat(minValueW, maxValueW));
 	}
 
 	/// <summary>
@@ -500,7 +500,7 @@ public static class RandomExtensions
 	/// <returns>The random <see cref="T:System.Numerics.Color" />.</returns>
 	public static Color RandomColor(this Random random, byte minValueX, byte maxValueX, byte minValueY, byte maxValueY, byte minValueZ, byte maxValueZ, byte minValueW, byte maxValueW)
 	{
-		return new(random.RandomByte(minValueX, maxValueX), random.RandomByte(minValueY, maxValueY), random.RandomByte(minValueZ, maxValueZ), random.RandomByte(minValueW, maxValueW));
+		return new Color(random.RandomByte(minValueX, maxValueX), random.RandomByte(minValueY, maxValueY), random.RandomByte(minValueZ, maxValueZ), random.RandomByte(minValueW, maxValueW));
 	}
 
 	/// <summary>
@@ -587,7 +587,7 @@ public static class RandomExtensions
 		}
 		while (w > 1);
 		float s = MathF.Sqrt((1 - z) / w);
-		return new(x, y, s * u, s * v);
+		return new Quaternion(x, y, s * u, s * v);
 	}
 
 	public static Quaternion RandomAxisAlignedQuaternion(this Random random)

@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Fixed
+
+- Fixed not always using invariant culture when parsing .obj and .wav data.
+
 ## 0.4.0
 
 ### Added
