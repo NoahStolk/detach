@@ -13,9 +13,9 @@ public static class ObjParser
 
 		ModelBuildingContext context = new();
 
-		string currentObject = string.Empty;
-		string currentGroup = string.Empty;
-		string currentMaterial = string.Empty;
+		string currentObjectName = string.Empty;
+		string currentGroupName = string.Empty;
+		string currentMaterialName = string.Empty;
 		foreach (string line in lines)
 		{
 			string[] values = line.Split(' ');
@@ -25,9 +25,9 @@ public static class ObjParser
 				case "v": context.Positions.Add(new Vector3(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
 				case "vt": context.Textures.Add(new Vector2(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]))); break;
 				case "vn": context.Normals.Add(new Vector3(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
-				case "o": currentObject = values[1].Trim(); break;
-				case "g": currentGroup = values[1].Trim(); break;
-				case "usemtl": currentMaterial = values[1].Trim(); break;
+				case "o": currentObjectName = values[1].Trim(); break;
+				case "g": currentGroupName = values[1].Trim(); break;
+				case "usemtl": currentMaterialName = values[1].Trim(); break;
 				case "f":
 					if (values.Length < 4) // Invalid face.
 						break;
@@ -48,14 +48,14 @@ public static class ObjParser
 
 					foreach (Face face in faces)
 					{
-						MeshBuildingContext? mesh = context.Meshes.Find(m => m.ObjectName == currentObject);
+						MeshBuildingContext? mesh = context.Meshes.Find(m => m.ObjectName == currentObjectName);
 						if (mesh == null)
 						{
 							mesh = new MeshBuildingContext
 							{
-								GroupName = currentGroup,
-								MaterialName = currentMaterial,
-								ObjectName = currentObject,
+								GroupName = currentGroupName,
+								MaterialName = currentMaterialName,
+								ObjectName = currentObjectName,
 							};
 							context.Meshes.Add(mesh);
 						}

@@ -2,7 +2,11 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## 0.5.0
+
+### Added
+
+- Added `MtlParser` class for parsing material files.
 
 ### Changed
 
