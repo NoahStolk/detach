@@ -4,6 +4,10 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
 
+### Changed
+
+- `Orientation` is now a `record struct`.
+
 ### Fixed
 
 - Fixed not always using invariant culture when parsing .obj and .wav data.

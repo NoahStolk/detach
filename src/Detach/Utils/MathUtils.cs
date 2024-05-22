@@ -15,6 +15,12 @@ public static class MathUtils
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Vector3 ToDegrees(Vector3 radians)
+	{
+		return radians * 180 / MathF.PI;
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static float ToRadians(float degrees)
 	{
 		return degrees * _toRad;
@@ -24,12 +30,6 @@ public static class MathUtils
 	public static Vector3 ToRadians(Vector3 degrees)
 	{
 		return degrees * MathF.PI / 180;
-	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Vector3 ToDegrees(Vector3 radians)
-	{
-		return radians * 180 / MathF.PI;
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
