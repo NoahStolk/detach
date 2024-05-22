@@ -176,4 +176,19 @@ public readonly record struct Color(byte R, byte G, byte B, byte A)
 	{
 		return new Color((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), (byte)(vector.W * byte.MaxValue));
 	}
+
+	public int ToRgbInt()
+	{
+		return (R << 24) + (G << 16) + (B << 8);
+	}
+
+	public int ToRgbaInt()
+	{
+		return (R << 24) + (G << 16) + (B << 8) + A;
+	}
+
+	public int ToArgbInt()
+	{
+		return (A << 24) + (R << 16) + (G << 8) + B;
+	}
 }
