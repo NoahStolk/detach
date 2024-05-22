@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.1
+
+### Added
+
+- Added `mtllib` support to `ObjParser`.
+- Added `MaterialLibraries` property to `ModelData` record.
+
 ## 0.5.0
 
 ### Added

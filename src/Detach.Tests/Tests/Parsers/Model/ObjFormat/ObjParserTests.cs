@@ -14,6 +14,8 @@ public class ObjParserTests
 		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath("Cube.obj"));
 
 		ModelData modelData = ObjParser.Parse(bytes);
+		Assert.AreEqual(1, modelData.MaterialLibraries.Count);
+		Assert.AreEqual("Cube.mtl", modelData.MaterialLibraries[0]);
 		Assert.AreEqual(8, modelData.Positions.Count);
 		Assert.AreEqual(21, modelData.Textures.Count);
 		Assert.AreEqual(8, modelData.Normals.Count);
@@ -44,6 +46,8 @@ public class ObjParserTests
 		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath("MultipleMeshes.obj"));
 
 		ModelData modelData = ObjParser.Parse(bytes);
+		Assert.AreEqual(1, modelData.MaterialLibraries.Count);
+		Assert.AreEqual("Test.mtl", modelData.MaterialLibraries[0]);
 		Assert.AreEqual(34, modelData.Positions.Count);
 		Assert.AreEqual(86, modelData.Textures.Count);
 		Assert.AreEqual(34, modelData.Normals.Count);

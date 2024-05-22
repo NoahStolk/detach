@@ -16,12 +16,14 @@ public static class ObjParser
 		string currentObjectName = string.Empty;
 		string currentGroupName = string.Empty;
 		string currentMaterialName = string.Empty;
+		List<string> materialLibraries = [];
 		foreach (string line in lines)
 		{
 			string[] values = line.Split(' ');
 
 			switch (values[0])
 			{
+				case "mtllib": materialLibraries.Add(values[1].Trim()); break;
 				case "v": context.Positions.Add(new Vector3(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
 				case "vt": context.Textures.Add(new Vector2(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]))); break;
 				case "vn": context.Normals.Add(new Vector3(ParseVertexFloat(values[1]), ParseVertexFloat(values[2]), ParseVertexFloat(values[3]))); break;
@@ -68,7 +70,7 @@ public static class ObjParser
 		}
 
 		List<MeshData> meshes = context.Meshes.ConvertAll(mbc => new MeshData(mbc.ObjectName, mbc.GroupName, mbc.MaterialName, mbc.Faces));
-		return new ModelData(context.Positions, context.Textures, context.Normals, meshes);
+		return new ModelData(materialLibraries, context.Positions, context.Textures, context.Normals, meshes);
 	}
 
 	private static float ParseVertexFloat(string value)
