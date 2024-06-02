@@ -1,5 +1,4 @@
 using Detach.VisualTests.Ui;
-using Detach.VisualTests.Ui.Windows;
 using ImGuiGlfw;
 using Silk.NET.OpenGL;
 

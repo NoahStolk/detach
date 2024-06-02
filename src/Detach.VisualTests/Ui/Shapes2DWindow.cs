@@ -3,7 +3,7 @@ using Detach.VisualTests.State;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.VisualTests.Ui.Windows;
+namespace Detach.VisualTests.Ui;
 
 public static class Shapes2DWindow
 {
@@ -25,7 +25,7 @@ public static class Shapes2DWindow
 
 	private static void RenderSideMenu()
 	{
-		if (ImGui.BeginChild("Shapes 2D Side Menu", new Vector2(384, 0), ImGuiChildFlags.Border))
+		if (ImGui.BeginChild("Shapes 2D Side Menu", new Vector2(512, 0), ImGuiChildFlags.Border))
 		{
 			if (ImGui.BeginCombo("SelectedShape", Shapes2DState.SelectedShapeType.ToString()))
 			{
@@ -39,12 +39,20 @@ public static class Shapes2DWindow
 				ImGui.EndCombo();
 			}
 
-			if (ImGui.Button("Clear"))
+			if (ImGui.Button("Clear all"))
 			{
 				Shapes2DState.LineSegments.Clear();
 				Shapes2DState.Circles.Clear();
 				Shapes2DState.Rectangles.Clear();
 				Shapes2DState.OrientedRectangles.Clear();
+			}
+
+			if (ImGui.CollapsingHeader("Shapes"))
+			{
+				ShapeTables.RenderLineSegment2Ds();
+				ShapeTables.RenderCircles();
+				ShapeTables.RenderRectangles();
+				ShapeTables.RenderOrientedRectangles();
 			}
 		}
 
