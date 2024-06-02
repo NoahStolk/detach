@@ -126,6 +126,8 @@ public static class Geometry2D
 
 	#endregion Line vs primitives
 
+	#region Circle vs primitives
+
 	public static bool CircleCircle(Circle circle1, Circle circle2)
 	{
 		LineSegment2D line = new(circle1.Position, circle2.Position);
@@ -163,6 +165,10 @@ public static class Geometry2D
 		return CircleRectangle(localCircle, localRectangle);
 	}
 
+	#endregion Circle vs primitives
+
+	#region Rectangle vs primitives
+
 	public static bool RectangleRectangle(Rectangle rectangle1, Rectangle rectangle2)
 	{
 		Vector2 min1 = rectangle1.GetMin();
@@ -171,20 +177,6 @@ public static class Geometry2D
 		Vector2 max2 = rectangle2.GetMax();
 
 		return min1.X <= max2.X && max1.X >= min2.X && min1.Y <= max2.Y && max1.Y >= min2.Y;
-	}
-
-	private static bool OverlapOnAxis(Rectangle rectangle1, Rectangle rectangle2, Vector2 axis)
-	{
-		Interval interval1 = rectangle1.GetInterval(axis);
-		Interval interval2 = rectangle2.GetInterval(axis);
-		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
-	}
-
-	private static bool OverlapOnAxis(Rectangle rectangle, OrientedRectangle orientedRectangle, Vector2 axis)
-	{
-		Interval interval1 = rectangle.GetInterval(axis);
-		Interval interval2 = orientedRectangle.GetInterval(axis);
-		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
 	}
 
 	public static bool RectangleRectangleSat(Rectangle rectangle1, Rectangle rectangle2)
@@ -223,6 +215,10 @@ public static class Geometry2D
 		return true;
 	}
 
+	#endregion Rectangle vs primitives
+
+	#region OrientedRectangle vs primitives
+
 	public static bool OrientedRectangleOrientedRectangleSat(OrientedRectangle orientedRectangle1, OrientedRectangle orientedRectangle2)
 	{
 		Rectangle local1 = new(Vector2.Zero, orientedRectangle1.HalfExtents * 2);
@@ -241,7 +237,11 @@ public static class Geometry2D
 		return RectangleOrientedRectangleSat(local1, local2);
 	}
 
-	public static Circle ContainingCircle(Vector2[] points)
+	#endregion OrientedRectangle vs primitives
+
+	#region Containing primitives from points
+
+	public static Circle ContainingCircle(ReadOnlySpan<Vector2> points)
 	{
 		if (points.Length == 0)
 			throw new ArgumentException("The array must contain at least one point.", nameof(points));
@@ -262,7 +262,7 @@ public static class Geometry2D
 		return new Circle(center, MathF.Sqrt(radiusSquared));
 	}
 
-	public static Rectangle ContainingRectangle(Vector2[] points)
+	public static Rectangle ContainingRectangle(ReadOnlySpan<Vector2> points)
 	{
 		if (points.Length == 0)
 			throw new ArgumentException("The array must contain at least one point.", nameof(points));
@@ -285,4 +285,24 @@ public static class Geometry2D
 
 		return Rectangle.FromMinMax(min, max);
 	}
+
+	#endregion Containing primitives from points
+
+	#region Private helpers
+
+	private static bool OverlapOnAxis(Rectangle rectangle1, Rectangle rectangle2, Vector2 axis)
+	{
+		Interval interval1 = rectangle1.GetInterval(axis);
+		Interval interval2 = rectangle2.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	private static bool OverlapOnAxis(Rectangle rectangle, OrientedRectangle orientedRectangle, Vector2 axis)
+	{
+		Interval interval1 = rectangle.GetInterval(axis);
+		Interval interval2 = orientedRectangle.GetInterval(axis);
+		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	#endregion Private helpers
 }

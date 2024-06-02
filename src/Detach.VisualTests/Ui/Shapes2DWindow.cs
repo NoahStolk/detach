@@ -60,6 +60,7 @@ public static class Shapes2DWindow
 
 			if (ImGui.CollapsingHeader("Collisions"))
 			{
+				// TODO: Generate test code from the current scenario.
 				for (int i = 0; i < Shapes2DState.LineSegments.Count; i++)
 				{
 					LineSegment2D lineSegment = Shapes2DState.LineSegments[i];
