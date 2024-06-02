@@ -20,7 +20,7 @@ public static class CirclePopup
 
 			if (ImGui.Button("Add##circle"))
 			{
-				circles.Add(new(_position, _radius));
+				circles.Add(new Circle(_position, _radius));
 				ImGui.CloseCurrentPopup();
 			}
 

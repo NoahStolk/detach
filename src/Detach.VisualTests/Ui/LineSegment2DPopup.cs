@@ -20,7 +20,7 @@ public static class LineSegment2DPopup
 
 			if (ImGui.Button("Add##line segment"))
 			{
-				lineSegments.Add(new(_lineSegmentStart, _lineSegmentEnd));
+				lineSegments.Add(new LineSegment2D(_lineSegmentStart, _lineSegmentEnd));
 				ImGui.CloseCurrentPopup();
 			}
 

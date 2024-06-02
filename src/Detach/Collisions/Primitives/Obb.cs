@@ -103,7 +103,7 @@ public record struct Obb
 		for (int i = 0; i < indices.Length; i++)
 		{
 			ValueTuple<int, int> index = indices[i];
-			result[i] = new(vertices[index.Item1], vertices[index.Item2]);
+			result[i] = new LineSegment3D(vertices[index.Item1], vertices[index.Item2]);
 		}
 
 		return result;
@@ -121,12 +121,12 @@ public record struct Obb
 		};
 
 		Buffer6<Plane> result = default;
-		result[0] = new(axes[0], Vector3.Dot(axes[0], c + axes[0] * e.X));
-		result[1] = new(-axes[0], -Vector3.Dot(axes[0], c - axes[0] * e.X));
-		result[2] = new(axes[1], Vector3.Dot(axes[1], c + axes[1] * e.Y));
-		result[3] = new(-axes[1], -Vector3.Dot(axes[1], c - axes[1] * e.Y));
-		result[4] = new(axes[2], Vector3.Dot(axes[2], c + axes[2] * e.Z));
-		result[5] = new(-axes[2], -Vector3.Dot(axes[2], c - axes[2] * e.Z));
+		result[0] = new Plane(axes[0], Vector3.Dot(axes[0], c + axes[0] * e.X));
+		result[1] = new Plane(-axes[0], -Vector3.Dot(axes[0], c - axes[0] * e.X));
+		result[2] = new Plane(axes[1], Vector3.Dot(axes[1], c + axes[1] * e.Y));
+		result[3] = new Plane(-axes[1], -Vector3.Dot(axes[1], c - axes[1] * e.Y));
+		result[4] = new Plane(axes[2], Vector3.Dot(axes[2], c + axes[2] * e.Z));
+		result[5] = new Plane(-axes[2], -Vector3.Dot(axes[2], c - axes[2] * e.Z));
 		return result;
 	}
 }

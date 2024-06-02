@@ -22,7 +22,7 @@ public static class OrientedRectanglePopup
 
 			if (ImGui.Button("Add##oriented rectangle"))
 			{
-				orientedRectangles.Add(new(_positionCenter, _halfExtents, _rotationInRadians));
+				orientedRectangles.Add(new OrientedRectangle(_positionCenter, _halfExtents, _rotationInRadians));
 				ImGui.CloseCurrentPopup();
 			}
 

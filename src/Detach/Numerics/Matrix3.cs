@@ -62,7 +62,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 
 	public static Matrix3 operator *(Matrix3 left, float right)
 	{
-		return new(
+		return new Matrix3(
 			left.M11 * right, left.M12 * right, left.M13 * right,
 			left.M21 * right, left.M22 * right, left.M23 * right,
 			left.M31 * right, left.M32 * right, left.M33 * right);
@@ -80,7 +80,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 
 	public static Matrix3 Transpose(Matrix3 matrix)
 	{
-		return new(
+		return new Matrix3(
 			matrix.M11, matrix.M21, matrix.M31,
 			matrix.M12, matrix.M22, matrix.M32,
 			matrix.M13, matrix.M23, matrix.M33);
@@ -132,7 +132,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
-		return new(
+		return new Matrix3(
 			cos, sin, 0,
 			-sin, cos, 0,
 			0, 0, 1);
@@ -142,7 +142,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
-		return new(
+		return new Matrix3(
 			1, 0, 0,
 			0, cos, sin,
 			0, -sin, cos);
@@ -152,7 +152,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
-		return new(
+		return new Matrix3(
 			cos, 0, -sin,
 			0, 1, 0,
 			sin, 0, cos);
@@ -170,7 +170,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		float y = axis.Y;
 		float z = axis.Z;
 
-		return new(
+		return new Matrix3(
 			t * x * x + cos, t * x * y + sin * z, t * x * z - sin * y,
 			t * x * y - sin * z, t * y * y + cos, t * y * z + sin * x,
 			t * x * z + sin * y, t * y * z - sin * x, t * z * z + cos);

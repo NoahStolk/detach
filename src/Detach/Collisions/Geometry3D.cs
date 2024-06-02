@@ -31,7 +31,7 @@ public static class Geometry3D
 		Vector3 min = aabb.GetMin();
 		Vector3 max = aabb.GetMax();
 
-		return new(
+		return new Vector3(
 			Math.Clamp(point.X, min.X, max.X),
 			Math.Clamp(point.Y, min.Y, max.Y),
 			Math.Clamp(point.Z, min.Z, max.Z));
@@ -200,12 +200,12 @@ public static class Geometry3D
 	public static bool AabbObbSat(Aabb aabb, Obb obb)
 	{
 		Span<Vector3> axes = stackalloc Vector3[15];
-		axes[0] = new(1, 0, 0);
-		axes[1] = new(0, 1, 0);
-		axes[2] = new(0, 0, 1);
-		axes[3] = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
-		axes[4] = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
-		axes[5] = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
+		axes[0] = new Vector3(1, 0, 0);
+		axes[1] = new Vector3(0, 1, 0);
+		axes[2] = new Vector3(0, 0, 1);
+		axes[3] = new Vector3(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
+		axes[4] = new Vector3(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
+		axes[5] = new Vector3(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -238,12 +238,12 @@ public static class Geometry3D
 	public static bool ObbObbSat(Obb obb1, Obb obb2)
 	{
 		Span<Vector3> axes = stackalloc Vector3[15];
-		axes[0] = new(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
-		axes[1] = new(obb1.Orientation.M21, obb1.Orientation.M22, obb1.Orientation.M23);
-		axes[2] = new(obb1.Orientation.M31, obb1.Orientation.M32, obb1.Orientation.M33);
-		axes[3] = new(obb2.Orientation.M11, obb2.Orientation.M12, obb2.Orientation.M13);
-		axes[4] = new(obb2.Orientation.M21, obb2.Orientation.M22, obb2.Orientation.M23);
-		axes[5] = new(obb2.Orientation.M31, obb2.Orientation.M32, obb2.Orientation.M33);
+		axes[0] = new Vector3(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
+		axes[1] = new Vector3(obb1.Orientation.M21, obb1.Orientation.M22, obb1.Orientation.M23);
+		axes[2] = new Vector3(obb1.Orientation.M31, obb1.Orientation.M32, obb1.Orientation.M33);
+		axes[3] = new Vector3(obb2.Orientation.M11, obb2.Orientation.M12, obb2.Orientation.M13);
+		axes[4] = new Vector3(obb2.Orientation.M21, obb2.Orientation.M22, obb2.Orientation.M23);
+		axes[5] = new Vector3(obb2.Orientation.M31, obb2.Orientation.M32, obb2.Orientation.M33);
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -846,7 +846,7 @@ public static class Geometry3D
 		v = ca - Project(ca, ab);
 		float c = 1f - Vector3.Dot(v, cp) / Vector3.Dot(v, ca);
 
-		return new(a, b, c);
+		return new Vector3(a, b, c);
 	}
 
 	public static Vector2 Project(Vector2 length, Vector2 direction)
@@ -929,12 +929,12 @@ public static class Geometry3D
 		CollisionManifold result = CollisionManifold.Empty;
 
 		Span<Vector3> test = stackalloc Vector3[15];
-		test[0] = new(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
-		test[1] = new(obb1.Orientation.M21, obb1.Orientation.M22, obb1.Orientation.M23);
-		test[2] = new(obb1.Orientation.M31, obb1.Orientation.M32, obb1.Orientation.M33);
-		test[3] = new(obb2.Orientation.M11, obb2.Orientation.M12, obb2.Orientation.M13);
-		test[4] = new(obb2.Orientation.M21, obb2.Orientation.M22, obb2.Orientation.M23);
-		test[5] = new(obb2.Orientation.M31, obb2.Orientation.M32, obb2.Orientation.M33);
+		test[0] = new Vector3(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
+		test[1] = new Vector3(obb1.Orientation.M21, obb1.Orientation.M22, obb1.Orientation.M23);
+		test[2] = new Vector3(obb1.Orientation.M31, obb1.Orientation.M32, obb1.Orientation.M33);
+		test[3] = new Vector3(obb2.Orientation.M11, obb2.Orientation.M12, obb2.Orientation.M13);
+		test[4] = new Vector3(obb2.Orientation.M21, obb2.Orientation.M22, obb2.Orientation.M23);
+		test[5] = new Vector3(obb2.Orientation.M31, obb2.Orientation.M32, obb2.Orientation.M33);
 		for (int i = 0; i < 3; i++)
 		{
 			test[6 + i * 3 + 0] = Vector3.Cross(test[i], test[0]);

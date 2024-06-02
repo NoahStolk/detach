@@ -229,7 +229,7 @@ public static class Geometry2D
 				radiusSquared = distanceSquared;
 		}
 
-		return new(center, MathF.Sqrt(radiusSquared));
+		return new Circle(center, MathF.Sqrt(radiusSquared));
 	}
 
 	public static Rectangle ContainingRectangle(Vector2[] points)

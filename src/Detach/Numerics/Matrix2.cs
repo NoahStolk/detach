@@ -46,7 +46,7 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 
 	public static Matrix2 operator *(Matrix2 left, float right)
 	{
-		return new(
+		return new Matrix2(
 			left.M11 * right, left.M12 * right,
 			left.M21 * right, left.M22 * right);
 	}
@@ -63,7 +63,7 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 
 	public static Matrix2 Transpose(Matrix2 matrix)
 	{
-		return new(
+		return new Matrix2(
 			matrix.M11, matrix.M21,
 			matrix.M12, matrix.M22);
 	}
@@ -75,7 +75,7 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 
 	public static Matrix2 Minor(Matrix2 matrix)
 	{
-		return new(matrix.M22, matrix.M21, matrix.M12, matrix.M11);
+		return new Matrix2(matrix.M22, matrix.M21, matrix.M12, matrix.M11);
 	}
 
 	public static Matrix2 Cofactor(Matrix2 matrix)
@@ -104,7 +104,7 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 		float m12 = -matrix.M12 * invDet;
 		float m21 = -matrix.M21 * invDet;
 		float m22 = matrix.M11 * invDet;
-		return new(m11, m12, m21, m22);
+		return new Matrix2(m11, m12, m21, m22);
 	}
 
 	public static Matrix2 Default()

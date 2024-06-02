@@ -17,14 +17,14 @@ public record struct Rectangle
 	{
 		Vector2 p1 = Position;
 		Vector2 p2 = Position + Size;
-		return new(MathF.Min(p1.X, p2.X), MathF.Min(p1.Y, p2.Y));
+		return new Vector2(MathF.Min(p1.X, p2.X), MathF.Min(p1.Y, p2.Y));
 	}
 
 	public Vector2 GetMax()
 	{
 		Vector2 p1 = Position;
 		Vector2 p2 = Position + Size;
-		return new(MathF.Max(p1.X, p2.X), MathF.Max(p1.Y, p2.Y));
+		return new Vector2(MathF.Max(p1.X, p2.X), MathF.Max(p1.Y, p2.Y));
 	}
 
 	public Interval GetInterval(Vector2 axis)
@@ -59,6 +59,6 @@ public record struct Rectangle
 
 	public static Rectangle FromMinMax(Vector2 min, Vector2 max)
 	{
-		return new(min, max - min);
+		return new Rectangle(min, max - min);
 	}
 }

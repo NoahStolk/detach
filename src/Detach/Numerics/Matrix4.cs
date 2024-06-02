@@ -105,7 +105,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 
 	public static Matrix4 operator *(Matrix4 left, float right)
 	{
-		return new(
+		return new Matrix4(
 			left.M11 * right, left.M12 * right, left.M13 * right, left.M14 * right,
 			left.M21 * right, left.M22 * right, left.M23 * right, left.M24 * right,
 			left.M31 * right, left.M32 * right, left.M33 * right, left.M34 * right,
@@ -124,7 +124,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 
 	public static Matrix4 Transpose(Matrix4 matrix)
 	{
-		return new(
+		return new Matrix4(
 			matrix.M11, matrix.M21, matrix.M31, matrix.M41,
 			matrix.M12, matrix.M22, matrix.M32, matrix.M42,
 			matrix.M13, matrix.M23, matrix.M33, matrix.M43,
@@ -170,7 +170,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 
 	public static Matrix4 CreateTranslation(float x, float y, float z)
 	{
-		return new(
+		return new Matrix4(
 			1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
@@ -184,7 +184,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 
 	public static Matrix4 CreateScale(float x, float y, float z)
 	{
-		return new(
+		return new Matrix4(
 			x, 0, 0, 0,
 			0, y, 0, 0,
 			0, 0, z, 0,
@@ -205,7 +205,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
-		return new(
+		return new Matrix4(
 			cos, sin, 0, 0,
 			-sin, cos, 0, 0,
 			0, 0, 1, 0,
@@ -216,7 +216,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
-		return new(
+		return new Matrix4(
 			1, 0, 0, 0,
 			0, cos, sin, 0,
 			0, -sin, cos, 0,
@@ -227,7 +227,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 	{
 		float sin = MathF.Sin(angleInRadians);
 		float cos = MathF.Cos(angleInRadians);
-		return new(
+		return new Matrix4(
 			cos, 0, -sin, 0,
 			0, 1, 0, 0,
 			sin, 0, cos, 0,
@@ -246,7 +246,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		float y = axis.Y;
 		float z = axis.Z;
 
-		return new(
+		return new Matrix4(
 			t * x * x + cos, t * x * y + sin * z, t * x * z - sin * y, 0,
 			t * x * y - sin * z, t * y * y + cos, t * y * z + sin * x, 0,
 			t * x * z + sin * y, t * y * z - sin * x, t * z * z + cos, 0,
@@ -269,7 +269,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		Vector3 xAxis = Vector3.Normalize(Vector3.Cross(up, zAxis));
 		Vector3 yAxis = Vector3.Normalize(Vector3.Cross(zAxis, xAxis));
 
-		return new(
+		return new Matrix4(
 			xAxis.X, yAxis.X, zAxis.X, 0,
 			xAxis.Y, yAxis.Y, zAxis.Y, 0,
 			xAxis.Z, yAxis.Z, zAxis.Z, 0,
@@ -283,7 +283,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		float zScale = far / (far - near);
 		float zTranslation = -near * zScale;
 
-		return new(
+		return new Matrix4(
 			xScale, 0, 0, 0,
 			0, yScale, 0, 0,
 			0, 0, zScale, 1,
@@ -299,7 +299,7 @@ public record struct Matrix4 : IMatrixOperations<Matrix4>
 		float yTranslation = (top + bottom) / (bottom - top);
 		float zTranslation = near / (near - far);
 
-		return new(
+		return new Matrix4(
 			xScale, 0, 0, 0,
 			0, yScale, 0, 0,
 			0, 0, zScale, 0,

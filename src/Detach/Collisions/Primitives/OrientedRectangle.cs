@@ -25,8 +25,8 @@ public record struct OrientedRectangle
 		Buffer4<Vector2> vertices = default;
 		vertices[0] = min;
 		vertices[1] = max;
-		vertices[2] = new(min.X, max.Y);
-		vertices[3] = new(max.X, min.Y);
+		vertices[2] = new Vector2(min.X, max.Y);
+		vertices[3] = new Vector2(max.X, min.Y);
 		Matrix2 zRotation = new(
 			MathF.Cos(RotationInRadians), MathF.Sin(RotationInRadians),
 			-MathF.Sin(RotationInRadians), MathF.Cos(RotationInRadians));

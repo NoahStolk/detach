@@ -51,7 +51,7 @@ public static class Matrices
 		float x = vector3.X * matrix4.M11 + vector3.Y * matrix4.M21 + vector3.Z * matrix4.M31 + matrix4.M41;
 		float y = vector3.X * matrix4.M12 + vector3.Y * matrix4.M22 + vector3.Z * matrix4.M32 + matrix4.M42;
 		float z = vector3.X * matrix4.M13 + vector3.Y * matrix4.M23 + vector3.Z * matrix4.M33 + matrix4.M43;
-		return new(x, y, z);
+		return new Vector3(x, y, z);
 	}
 
 	public static Vector3 MultiplyVector(Vector3 vector3, Matrix4 matrix4)
@@ -59,15 +59,15 @@ public static class Matrices
 		float x = vector3.X * matrix4.M11 + vector3.Y * matrix4.M21 + vector3.Z * matrix4.M31;
 		float y = vector3.X * matrix4.M12 + vector3.Y * matrix4.M22 + vector3.Z * matrix4.M32;
 		float z = vector3.X * matrix4.M13 + vector3.Y * matrix4.M23 + vector3.Z * matrix4.M33;
-		return new(x, y, z);
+		return new Vector3(x, y, z);
 	}
 
 	public static Vector3 MultiplyVector(Vector3 vector3, Matrix3 matrix3)
 	{
-		float x = Vector3.Dot(vector3, new(matrix3.M11, matrix3.M21, matrix3.M31));
-		float y = Vector3.Dot(vector3, new(matrix3.M12, matrix3.M22, matrix3.M32));
-		float z = Vector3.Dot(vector3, new(matrix3.M13, matrix3.M23, matrix3.M33));
-		return Vector3.Normalize(new(x, y, z));
+		float x = Vector3.Dot(vector3, new Vector3(matrix3.M11, matrix3.M21, matrix3.M31));
+		float y = Vector3.Dot(vector3, new Vector3(matrix3.M12, matrix3.M22, matrix3.M32));
+		float z = Vector3.Dot(vector3, new Vector3(matrix3.M13, matrix3.M23, matrix3.M33));
+		return Vector3.Normalize(new Vector3(x, y, z));
 	}
 
 	public static Vector2 Multiply(Vector2 vector, Matrix2 matrix)

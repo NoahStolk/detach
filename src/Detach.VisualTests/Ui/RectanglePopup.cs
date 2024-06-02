@@ -20,7 +20,7 @@ public static class RectanglePopup
 
 			if (ImGui.Button("Add##rectangle"))
 			{
-				rectangles.Add(new(_positionTopLeft, _size));
+				rectangles.Add(new Rectangle(_positionTopLeft, _size));
 				ImGui.CloseCurrentPopup();
 			}
 

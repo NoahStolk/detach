@@ -14,107 +14,107 @@ public class ObbTests
 	[TestMethod]
 	public void ObbGeometry()
 	{
-		Obb obb = new(new(0, 0, 0), new(1, 1, 1), Matrix3.Identity);
+		Obb obb = new(new Vector3(0, 0, 0), new Vector3(1, 1, 1), Matrix3.Identity);
 
 		Buffer6<Plane> planes = obb.GetPlanes();
-		AssertPlaneExists(planes, new(new(1, 0, 0), 1));
-		AssertPlaneExists(planes, new(new(0, 1, 0), 1));
-		AssertPlaneExists(planes, new(new(0, 0, 1), 1));
-		AssertPlaneExists(planes, new(new(-1, 0, 0), 1));
-		AssertPlaneExists(planes, new(new(0, -1, 0), 1));
-		AssertPlaneExists(planes, new(new(0, 0, -1), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(1, 0, 0), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 1, 0), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 0, 1), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(-1, 0, 0), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, -1, 0), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 0, -1), 1));
 
 		Buffer8<Vector3> vertices = obb.GetVertices();
-		AssertVertexExists(vertices, new(1, 1, 1));
-		AssertVertexExists(vertices, new(-1, 1, 1));
-		AssertVertexExists(vertices, new(1, -1, 1));
-		AssertVertexExists(vertices, new(1, 1, -1));
-		AssertVertexExists(vertices, new(-1, -1, 1));
-		AssertVertexExists(vertices, new(-1, 1, -1));
-		AssertVertexExists(vertices, new(1, -1, -1));
-		AssertVertexExists(vertices, new(-1, -1, -1));
+		AssertVertexExists(vertices, new Vector3(1, 1, 1));
+		AssertVertexExists(vertices, new Vector3(-1, 1, 1));
+		AssertVertexExists(vertices, new Vector3(1, -1, 1));
+		AssertVertexExists(vertices, new Vector3(1, 1, -1));
+		AssertVertexExists(vertices, new Vector3(-1, -1, 1));
+		AssertVertexExists(vertices, new Vector3(-1, 1, -1));
+		AssertVertexExists(vertices, new Vector3(1, -1, -1));
+		AssertVertexExists(vertices, new Vector3(-1, -1, -1));
 
 		Buffer12<LineSegment3D> edges = obb.GetEdges();
-		AssertEdgeExists(edges, new(new( 1,  1,  1), new(-1,  1,  1)));
-		AssertEdgeExists(edges, new(new( 1,  1,  1), new( 1, -1,  1)));
-		AssertEdgeExists(edges, new(new( 1,  1,  1), new( 1,  1, -1)));
-		AssertEdgeExists(edges, new(new(-1,  1,  1), new(-1, -1,  1)));
-		AssertEdgeExists(edges, new(new(-1,  1,  1), new(-1,  1, -1)));
-		AssertEdgeExists(edges, new(new( 1, -1,  1), new(-1, -1,  1)));
-		AssertEdgeExists(edges, new(new( 1, -1,  1), new( 1, -1, -1)));
-		AssertEdgeExists(edges, new(new( 1,  1, -1), new(-1,  1, -1)));
-		AssertEdgeExists(edges, new(new( 1,  1, -1), new( 1, -1, -1)));
-		AssertEdgeExists(edges, new(new(-1, -1,  1), new(-1, -1, -1)));
-		AssertEdgeExists(edges, new(new(-1,  1, -1), new(-1, -1, -1)));
-		AssertEdgeExists(edges, new(new( 1, -1, -1), new(-1, -1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1,  1,  1), new Vector3(-1,  1,  1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1,  1,  1), new Vector3( 1, -1,  1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1,  1,  1), new Vector3( 1,  1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1,  1,  1), new Vector3(-1, -1,  1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1,  1,  1), new Vector3(-1,  1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1, -1,  1), new Vector3(-1, -1,  1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1, -1,  1), new Vector3( 1, -1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1,  1, -1), new Vector3(-1,  1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1,  1, -1), new Vector3( 1, -1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, -1,  1), new Vector3(-1, -1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1,  1, -1), new Vector3(-1, -1, -1)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3( 1, -1, -1), new Vector3(-1, -1, -1)));
 
-		Obb obbMoved = new(new(1, 1, 1), new(1, 1, 1), Matrix3.Identity);
+		Obb obbMoved = new(new Vector3(1, 1, 1), new Vector3(1, 1, 1), Matrix3.Identity);
 
 		planes = obbMoved.GetPlanes();
-		AssertPlaneExists(planes, new(new(1, 0, 0), 2));
-		AssertPlaneExists(planes, new(new(0, 1, 0), 2));
-		AssertPlaneExists(planes, new(new(0, 0, 1), 2));
-		AssertPlaneExists(planes, new(new(-1, 0, 0), 0));
-		AssertPlaneExists(planes, new(new(0, -1, 0), 0));
-		AssertPlaneExists(planes, new(new(0, 0, -1), 0));
+		AssertPlaneExists(planes, new Plane(new Vector3(1, 0, 0), 2));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 1, 0), 2));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 0, 1), 2));
+		AssertPlaneExists(planes, new Plane(new Vector3(-1, 0, 0), 0));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, -1, 0), 0));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 0, -1), 0));
 
 		vertices = obbMoved.GetVertices();
-		AssertVertexExists(vertices, new(2, 2, 2));
-		AssertVertexExists(vertices, new(0, 2, 2));
-		AssertVertexExists(vertices, new(2, 0, 2));
-		AssertVertexExists(vertices, new(2, 2, 0));
-		AssertVertexExists(vertices, new(0, 0, 2));
-		AssertVertexExists(vertices, new(0, 2, 0));
-		AssertVertexExists(vertices, new(2, 0, 0));
-		AssertVertexExists(vertices, new(0, 0, 0));
+		AssertVertexExists(vertices, new Vector3(2, 2, 2));
+		AssertVertexExists(vertices, new Vector3(0, 2, 2));
+		AssertVertexExists(vertices, new Vector3(2, 0, 2));
+		AssertVertexExists(vertices, new Vector3(2, 2, 0));
+		AssertVertexExists(vertices, new Vector3(0, 0, 2));
+		AssertVertexExists(vertices, new Vector3(0, 2, 0));
+		AssertVertexExists(vertices, new Vector3(2, 0, 0));
+		AssertVertexExists(vertices, new Vector3(0, 0, 0));
 
 		edges = obbMoved.GetEdges();
-		AssertEdgeExists(edges, new(new(2, 2, 2), new(0, 2, 2)));
-		AssertEdgeExists(edges, new(new(2, 2, 2), new(2, 0, 2)));
-		AssertEdgeExists(edges, new(new(2, 2, 2), new(2, 2, 0)));
-		AssertEdgeExists(edges, new(new(0, 2, 2), new(0, 0, 2)));
-		AssertEdgeExists(edges, new(new(0, 2, 2), new(0, 2, 0)));
-		AssertEdgeExists(edges, new(new(2, 0, 2), new(0, 0, 2)));
-		AssertEdgeExists(edges, new(new(2, 0, 2), new(2, 0, 0)));
-		AssertEdgeExists(edges, new(new(2, 2, 0), new(0, 2, 0)));
-		AssertEdgeExists(edges, new(new(2, 2, 0), new(2, 0, 0)));
-		AssertEdgeExists(edges, new(new(0, 0, 2), new(0, 0, 0)));
-		AssertEdgeExists(edges, new(new(0, 2, 0), new(0, 0, 0)));
-		AssertEdgeExists(edges, new(new(2, 0, 0), new(0, 0, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 2, 2), new Vector3(0, 2, 2)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 2, 2), new Vector3(2, 0, 2)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 2, 2), new Vector3(2, 2, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(0, 2, 2), new Vector3(0, 0, 2)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(0, 2, 2), new Vector3(0, 2, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 0, 2), new Vector3(0, 0, 2)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 0, 2), new Vector3(2, 0, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 2, 0), new Vector3(0, 2, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 2, 0), new Vector3(2, 0, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(0, 0, 2), new Vector3(0, 0, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(0, 2, 0), new Vector3(0, 0, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(2, 0, 0), new Vector3(0, 0, 0)));
 
-		Obb obbTilted = new(new(0, 0, 0), new(1, 1, 1), Matrix3.RotationX(MathF.PI * 0.25f));
+		Obb obbTilted = new(new Vector3(0, 0, 0), new Vector3(1, 1, 1), Matrix3.RotationX(MathF.PI * 0.25f));
 
 		planes = obbTilted.GetPlanes();
-		AssertPlaneExists(planes, new(new(1, 0, 0), 1));
-		AssertPlaneExists(planes, new(new(-1, 0, 0), 1));
-		AssertPlaneExists(planes, new(new(0, 0.70710678118f, 0.70710678118f), 1));
-		AssertPlaneExists(planes, new(new(0, -0.70710678118f, 0.70710678118f), 1));
-		AssertPlaneExists(planes, new(new(0, 0.70710678118f, -0.70710678118f), 1));
-		AssertPlaneExists(planes, new(new(0, -0.70710678118f, -0.70710678118f), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(1, 0, 0), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(-1, 0, 0), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 0.70710678118f, 0.70710678118f), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, -0.70710678118f, 0.70710678118f), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, 0.70710678118f, -0.70710678118f), 1));
+		AssertPlaneExists(planes, new Plane(new Vector3(0, -0.70710678118f, -0.70710678118f), 1));
 
 		vertices = obbTilted.GetVertices();
-		AssertVertexExists(vertices, new(1, 0, 1.41421356237f));
-		AssertVertexExists(vertices, new(-1, 0, 1.41421356237f));
-		AssertVertexExists(vertices, new(1, 0, -1.41421356237f));
-		AssertVertexExists(vertices, new(-1, 0, -1.41421356237f));
-		AssertVertexExists(vertices, new(1, 1.41421356237f, 0));
-		AssertVertexExists(vertices, new(-1, 1.41421356237f, 0));
-		AssertVertexExists(vertices, new(1, -1.41421356237f, 0));
-		AssertVertexExists(vertices, new(-1, -1.41421356237f, 0));
+		AssertVertexExists(vertices, new Vector3(1, 0, 1.41421356237f));
+		AssertVertexExists(vertices, new Vector3(-1, 0, 1.41421356237f));
+		AssertVertexExists(vertices, new Vector3(1, 0, -1.41421356237f));
+		AssertVertexExists(vertices, new Vector3(-1, 0, -1.41421356237f));
+		AssertVertexExists(vertices, new Vector3(1, 1.41421356237f, 0));
+		AssertVertexExists(vertices, new Vector3(-1, 1.41421356237f, 0));
+		AssertVertexExists(vertices, new Vector3(1, -1.41421356237f, 0));
+		AssertVertexExists(vertices, new Vector3(-1, -1.41421356237f, 0));
 
 		edges = obbTilted.GetEdges();
-		AssertEdgeExists(edges, new(new(-1, 1.41421356237f, 0), new(-1, 0, 1.41421356237f)));
-		AssertEdgeExists(edges, new(new(-1, 1.41421356237f, 0), new(1, 1.41421356237f, 0)));
-		AssertEdgeExists(edges, new(new(-1, 1.41421356237f, 0), new(-1, 0, -1.41421356237f)));
-		AssertEdgeExists(edges, new(new(1, -1.41421356237f, 0), new(-1, -1.41421356237f, 0)));
-		AssertEdgeExists(edges, new(new(1, -1.41421356237f, 0), new(1, 0, -1.41421356237f)));
-		AssertEdgeExists(edges, new(new(1, -1.41421356237f, 0), new(1, 0, 1.41421356237f)));
-		AssertEdgeExists(edges, new(new(1, 0, 1.41421356237f), new(-1, 0, 1.41421356237f)));
-		AssertEdgeExists(edges, new(new(1, 0, 1.41421356237f), new(1, 1.41421356237f, 0)));
-		AssertEdgeExists(edges, new(new(-1, -1.41421356237f, 0), new(-1, 0, 1.41421356237f)));
-		AssertEdgeExists(edges, new(new(-1, -1.41421356237f, 0), new(-1, 0, -1.41421356237f)));
-		AssertEdgeExists(edges, new(new(-1, 0, -1.41421356237f), new(1, 0, -1.41421356237f)));
-		AssertEdgeExists(edges, new(new(1, 0, -1.41421356237f), new(1, 1.41421356237f, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, 1.41421356237f, 0), new Vector3(-1, 0, 1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, 1.41421356237f, 0), new Vector3(1, 1.41421356237f, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, 1.41421356237f, 0), new Vector3(-1, 0, -1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(1, -1.41421356237f, 0), new Vector3(-1, -1.41421356237f, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(1, -1.41421356237f, 0), new Vector3(1, 0, -1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(1, -1.41421356237f, 0), new Vector3(1, 0, 1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(1, 0, 1.41421356237f), new Vector3(-1, 0, 1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(1, 0, 1.41421356237f), new Vector3(1, 1.41421356237f, 0)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, -1.41421356237f, 0), new Vector3(-1, 0, 1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, -1.41421356237f, 0), new Vector3(-1, 0, -1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(-1, 0, -1.41421356237f), new Vector3(1, 0, -1.41421356237f)));
+		AssertEdgeExists(edges, new LineSegment3D(new Vector3(1, 0, -1.41421356237f), new Vector3(1, 1.41421356237f, 0)));
 	}
 
 	private static void AssertPlaneExists(Buffer6<Plane> planes, Plane plane)
