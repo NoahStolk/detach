@@ -84,6 +84,7 @@ public static class Geometry2D
 		if (t is < 0 or > 1)
 			return false;
 
+		// TODO: Is this wrong? Debug in visual tests by drawing the closest point.
 		Vector2 closestPoint = line.Start + ab * t;
 
 		LineSegment2D circleToClosest = new(circle.Position, closestPoint);
@@ -217,7 +218,7 @@ public static class Geometry2D
 
 	#endregion Rectangle vs primitives
 
-	#region OrientedRectangle vs primitives
+	#region Oriented rectangle vs primitives
 
 	public static bool OrientedRectangleOrientedRectangleSat(OrientedRectangle orientedRectangle1, OrientedRectangle orientedRectangle2)
 	{
@@ -237,7 +238,7 @@ public static class Geometry2D
 		return RectangleOrientedRectangleSat(local1, local2);
 	}
 
-	#endregion OrientedRectangle vs primitives
+	#endregion Oriented rectangle vs primitives
 
 	#region Public helpers
 
