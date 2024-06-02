@@ -20,17 +20,26 @@ public static class CollisionHandler
 			for (int j = i + 1; j < Shapes2DState.LineSegments.Count; j++)
 			{
 				LineSegment2D lineSegment2 = Shapes2DState.LineSegments[j];
-				Collisions.Add(new CollisionResult(lineSegment, lineSegment2, Geometry2D.LineLine(lineSegment, lineSegment2)));
+				Collisions.Add(new CollisionResult(lineSegment, lineSegment2, i, j, Geometry2D.LineLine(lineSegment, lineSegment2)));
 			}
 
-			foreach (Circle circle in Shapes2DState.Circles)
-				Collisions.Add(new CollisionResult(lineSegment, circle, Geometry2D.LineCircle(lineSegment, circle)));
+			for (int j = 0; j < Shapes2DState.Circles.Count; j++)
+			{
+				Circle circle = Shapes2DState.Circles[j];
+				Collisions.Add(new CollisionResult(lineSegment, circle, i, j, Geometry2D.LineCircle(lineSegment, circle)));
+			}
 
-			foreach (Rectangle rectangle in Shapes2DState.Rectangles)
-				Collisions.Add(new CollisionResult(lineSegment, rectangle, Geometry2D.LineRectangle(lineSegment, rectangle)));
+			for (int j = 0; j < Shapes2DState.Rectangles.Count; j++)
+			{
+				Rectangle rectangle = Shapes2DState.Rectangles[j];
+				Collisions.Add(new CollisionResult(lineSegment, rectangle, i, j, Geometry2D.LineRectangle(lineSegment, rectangle)));
+			}
 
-			foreach (OrientedRectangle orientedRectangle in Shapes2DState.OrientedRectangles)
-				Collisions.Add(new CollisionResult(lineSegment, orientedRectangle, Geometry2D.LineOrientedRectangle(lineSegment, orientedRectangle)));
+			for (int j = 0; j < Shapes2DState.OrientedRectangles.Count; j++)
+			{
+				OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[j];
+				Collisions.Add(new CollisionResult(lineSegment, orientedRectangle, i, j, Geometry2D.LineOrientedRectangle(lineSegment, orientedRectangle)));
+			}
 		}
 
 		for (int i = 0; i < Shapes2DState.Circles.Count; i++)
@@ -40,14 +49,20 @@ public static class CollisionHandler
 			for (int j = i + 1; j < Shapes2DState.Circles.Count; j++)
 			{
 				Circle circle2 = Shapes2DState.Circles[j];
-				Collisions.Add(new CollisionResult(circle, circle2, Geometry2D.CircleCircle(circle, circle2)));
+				Collisions.Add(new CollisionResult(circle, circle2, i, j, Geometry2D.CircleCircle(circle, circle2)));
 			}
 
-			foreach (Rectangle rectangle in Shapes2DState.Rectangles)
-				Collisions.Add(new CollisionResult(circle, rectangle, Geometry2D.CircleRectangle(circle, rectangle)));
+			for (int j = 0; j < Shapes2DState.Rectangles.Count; j++)
+			{
+				Rectangle rectangle = Shapes2DState.Rectangles[j];
+				Collisions.Add(new CollisionResult(circle, rectangle, i, j, Geometry2D.CircleRectangle(circle, rectangle)));
+			}
 
-			foreach (OrientedRectangle orientedRectangle in Shapes2DState.OrientedRectangles)
-				Collisions.Add(new CollisionResult(circle, orientedRectangle, Geometry2D.CircleOrientedRectangle(circle, orientedRectangle)));
+			for (int j = 0; j < Shapes2DState.OrientedRectangles.Count; j++)
+			{
+				OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[j];
+				Collisions.Add(new CollisionResult(circle, orientedRectangle, i, j, Geometry2D.CircleOrientedRectangle(circle, orientedRectangle)));
+			}
 		}
 
 		for (int i = 0; i < Shapes2DState.Rectangles.Count; i++)
@@ -57,11 +72,14 @@ public static class CollisionHandler
 			for (int j = i + 1; j < Shapes2DState.Rectangles.Count; j++)
 			{
 				Rectangle rectangle2 = Shapes2DState.Rectangles[j];
-				Collisions.Add(new CollisionResult(rectangle, rectangle2, Geometry2D.RectangleRectangle(rectangle, rectangle2)));
+				Collisions.Add(new CollisionResult(rectangle, rectangle2, i, j, Geometry2D.RectangleRectangle(rectangle, rectangle2)));
 			}
 
-			foreach (OrientedRectangle orientedRectangle in Shapes2DState.OrientedRectangles)
-				Collisions.Add(new CollisionResult(rectangle, orientedRectangle, Geometry2D.RectangleOrientedRectangleSat(rectangle, orientedRectangle)));
+			for (int j = 0; j < Shapes2DState.OrientedRectangles.Count; j++)
+			{
+				OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[j];
+				Collisions.Add(new CollisionResult(rectangle, orientedRectangle, i, j, Geometry2D.RectangleOrientedRectangleSat(rectangle, orientedRectangle)));
+			}
 		}
 
 		for (int i = 0; i < Shapes2DState.OrientedRectangles.Count; i++)
@@ -71,7 +89,7 @@ public static class CollisionHandler
 			for (int j = i + 1; j < Shapes2DState.OrientedRectangles.Count; j++)
 			{
 				OrientedRectangle orientedRectangle2 = Shapes2DState.OrientedRectangles[j];
-				Collisions.Add(new CollisionResult(orientedRectangle, orientedRectangle2, Geometry2D.OrientedRectangleOrientedRectangleSat(orientedRectangle, orientedRectangle2)));
+				Collisions.Add(new CollisionResult(orientedRectangle, orientedRectangle2, i, j, Geometry2D.OrientedRectangleOrientedRectangleSat(orientedRectangle, orientedRectangle2)));
 			}
 		}
 	}
