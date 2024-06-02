@@ -1,14 +1,17 @@
-﻿using Detach.Collisions;
-using Detach.Collisions.Primitives;
+﻿using Detach.Collisions.Primitives;
+using Detach.VisualTests.Collisions;
 using Detach.VisualTests.State;
 using ImGuiNET;
 using System.Numerics;
+using System.Text;
 
 namespace Detach.VisualTests.Ui;
 
 // ReSharper disable ForCanBeConvertedToForeach
 public static class Shapes2DWindow
 {
+	private static string _unitTestCode = string.Empty;
+
 	public static void Render()
 	{
 		const float padding = 64;
@@ -58,43 +61,25 @@ public static class Shapes2DWindow
 				ShapeTables.RenderOrientedRectangles();
 			}
 
+			// TODO: Generate test code from the current scenario:
+			// - Generate all shapes (Circle circle0 = new(new Vector2(123, 234), 80);)
+			// - Generate all collisions (Assert.IsTrue(Geometry2D.CircleRectangle(circle0, rectangle0));)
+			// - etc.
+			ImGui.InputTextMultiline("Test code", ref _unitTestCode, 1024, new Vector2(0, 384));
+			if (ImGui.Button("Generate test code"))
+			{
+				StringBuilder stringBuilder = new();
+				stringBuilder.AppendLine("// Generated test code:");
+				stringBuilder.AppendLine();
+			}
+
 			if (ImGui.CollapsingHeader("Collisions"))
 			{
-				// TODO: Generate test code from the current scenario:
-				// - Generate all shapes (Circle circle0 = new(new Vector2(123, 234), 80);)
-				// - Generate all collisions (Assert.IsTrue(Geometry2D.CircleRectangle(circle0, rectangle0));)
-				// - etc.
-				for (int i = 0; i < Shapes2DState.LineSegments.Count; i++)
+				CollisionHandler.PerformCollisions();
+
+				foreach (CollisionResult collision in CollisionHandler.Collisions)
 				{
-					LineSegment2D lineSegment = Shapes2DState.LineSegments[i];
-
-					for (int j = i + 1; j < Shapes2DState.LineSegments.Count; j++)
-					{
-						LineSegment2D lineSegment2 = Shapes2DState.LineSegments[j];
-						if (Geometry2D.LineLine(lineSegment, lineSegment2))
-							ImGui.Text("LineSegment2D - LineSegment2D");
-					}
-
-					for (int j = 0; j < Shapes2DState.Circles.Count; j++)
-					{
-						Circle circle = Shapes2DState.Circles[j];
-						if (Geometry2D.LineCircle(lineSegment, circle))
-							ImGui.Text("LineSegment2D - Circle");
-					}
-
-					for (int j = 0; j < Shapes2DState.Rectangles.Count; j++)
-					{
-						Rectangle rectangle = Shapes2DState.Rectangles[j];
-						if (Geometry2D.LineRectangle(lineSegment, rectangle))
-							ImGui.Text("LineSegment2D - Rectangle");
-					}
-
-					for (int j = 0; j < Shapes2DState.OrientedRectangles.Count; j++)
-					{
-						OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[j];
-						if (Geometry2D.LineOrientedRectangle(lineSegment, orientedRectangle))
-							ImGui.Text("LineSegment2D - OrientedRectangle");
-					}
+					ImGui.TextColored(collision.IsColliding ? new Vector4(1, 0, 0.5f, 1) : Vector4.One, $"{collision.A} vs {collision.B}");
 				}
 			}
 		}
