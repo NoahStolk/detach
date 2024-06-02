@@ -239,7 +239,7 @@ public static class Geometry2D
 
 	#endregion OrientedRectangle vs primitives
 
-	#region Containing primitives from points
+	#region Public helpers
 
 	public static Circle ContainingCircle(ReadOnlySpan<Vector2> points)
 	{
@@ -286,7 +286,7 @@ public static class Geometry2D
 		return Rectangle.FromMinMax(min, max);
 	}
 
-	#endregion Containing primitives from points
+	#endregion Public helpers
 
 	#region Private helpers
 

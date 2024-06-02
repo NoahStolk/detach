@@ -872,38 +872,40 @@ public static class Geometry3D
 		return length - Project(length, direction);
 	}
 
-	public static CollisionManifold FindCollisionFeatures(Sphere sphere1, Sphere sphere2)
+	public static bool FindCollisionFeatures(Sphere sphere1, Sphere sphere2, out CollisionManifold collisionManifold)
 	{
+		collisionManifold = CollisionManifold.Empty;
+
 		float r = sphere1.Radius + sphere2.Radius;
 		Vector3 d = sphere2.Position - sphere1.Position;
 		if (d.LengthSquared() > r * r)
-			return default;
+			return false;
 
 		Vector3 direction = Vector3.Normalize(d); // TODO: Prevent NaN direction when spheres have the same position.
-		CollisionManifold result = CollisionManifold.Empty;
-		result.Colliding = true;
-		result.Normal = direction;
-		result.Depth = MathF.Abs(d.Length() - r) * 0.5f;
-		float dtp = sphere1.Radius - result.Depth;
+		collisionManifold.Normal = direction;
+		collisionManifold.Depth = MathF.Abs(d.Length() - r) * 0.5f;
+		float dtp = sphere1.Radius - collisionManifold.Depth;
 		Vector3 contact = sphere1.Position + direction * dtp;
-		result.ContactCount = 1;
-		result.Contacts[0] = contact;
-		return result;
+		collisionManifold.ContactCount = 1;
+		collisionManifold.Contacts[0] = contact;
+		return true;
 	}
 
-	public static CollisionManifold FindCollisionFeatures(Obb obb, Sphere sphere)
+	public static bool FindCollisionFeatures(Obb obb, Sphere sphere, out CollisionManifold collisionManifold)
 	{
+		collisionManifold = CollisionManifold.Empty;
+
 		Vector3 closestPoint = ClosestPointInObb(obb, sphere.Position);
 		float distanceSquared = (closestPoint - sphere.Position).LengthSquared();
 		if (distanceSquared > sphere.Radius * sphere.Radius)
-			return default;
+			return false;
 
 		Vector3 normal;
 		if (distanceSquared is > -float.Epsilon and < float.Epsilon)
 		{
 			float mSq = (closestPoint - obb.Position).LengthSquared();
 			if (mSq is > -float.Epsilon and < float.Epsilon)
-				return default;
+				return false;
 
 			normal = Vector3.Normalize(closestPoint - obb.Position);
 		}
@@ -914,18 +916,16 @@ public static class Geometry3D
 
 		Vector3 outsidePoint = sphere.Position - normal * sphere.Radius;
 		float distance = (closestPoint - outsidePoint).Length();
-		CollisionManifold result = CollisionManifold.Empty;
-		result.Colliding = true;
-		result.Normal = normal;
-		result.Depth = distance * 0.5f;
-		result.ContactCount = 1;
-		result.Contacts[0] = closestPoint + (outsidePoint - closestPoint) * 0.5f;
-		return result;
+		collisionManifold.Normal = normal;
+		collisionManifold.Depth = distance * 0.5f;
+		collisionManifold.ContactCount = 1;
+		collisionManifold.Contacts[0] = closestPoint + (outsidePoint - closestPoint) * 0.5f;
+		return true;
 	}
 
-	public static CollisionManifold FindCollisionFeatures(Obb obb1, Obb obb2)
+	public static bool FindCollisionFeatures(Obb obb1, Obb obb2, out CollisionManifold collisionManifold)
 	{
-		CollisionManifold result = CollisionManifold.Empty;
+		collisionManifold = CollisionManifold.Empty;
 
 		Span<Vector3> test = stackalloc Vector3[15];
 		test[0] = new Vector3(obb1.Orientation.M11, obb1.Orientation.M12, obb1.Orientation.M13);
@@ -949,37 +949,37 @@ public static class Geometry3D
 
 			float depth = PenetrationDepthObb(obb1, obb2, test[i], out bool shouldFlip);
 			if (depth <= 0)
-				return CollisionManifold.Empty;
+				return false;
 
-			if (depth < result.Depth)
+			if (depth < collisionManifold.Depth)
 			{
 				if (shouldFlip)
 					test[i] *= -1;
 
-				result.Depth = depth;
+				collisionManifold.Depth = depth;
 				hitNormal = test[i];
 			}
 		}
 
 		if (hitNormal is null)
-			return CollisionManifold.Empty;
+			return false;
 
 		Vector3 axis = Vector3.Normalize(hitNormal.Value);
 		int count1 = ClipEdgesToObb(obb2.GetEdges(), obb1, out Buffer12<Vector3> c1);
 		int count2 = ClipEdgesToObb(obb1.GetEdges(), obb2, out Buffer12<Vector3> c2);
-		result.ContactCount = count1 + count2;
+		collisionManifold.ContactCount = count1 + count2;
 		for (int i = 0; i < count1; i++)
-			result.Contacts[i] = c1[i];
+			collisionManifold.Contacts[i] = c1[i];
 		for (int i = 0; i < count2; i++)
-			result.Contacts[count1 + i] = c2[i];
+			collisionManifold.Contacts[count1 + i] = c2[i];
 
 		Interval interval = obb1.GetInterval(axis);
-		float distance = (interval.Max - interval.Min) * 0.5f - result.Depth * 0.5f;
+		float distance = (interval.Max - interval.Min) * 0.5f - collisionManifold.Depth * 0.5f;
 		Vector3 pointOnPlane = obb1.Position + axis * distance;
-		for (int i = result.ContactCount - 1; i >= 0; i--)
+		for (int i = collisionManifold.ContactCount - 1; i >= 0; i--)
 		{
-			Vector3 contact = result.Contacts[i];
-			result.Contacts[i] = contact + axis * Vector3.Dot(axis, pointOnPlane - contact);
+			Vector3 contact = collisionManifold.Contacts[i];
+			collisionManifold.Contacts[i] = contact + axis * Vector3.Dot(axis, pointOnPlane - contact);
 		}
 
 		// TODO: Check if this is necessary.
@@ -987,9 +987,9 @@ public static class Geometry3D
 		// Remove duplicate contact points.
 		// Buffer24<Vector3> finalContactPoints = default;
 		// int finalContactCount = 0;
-		// for (int i = 0; i < result.ContactCount; i++)
+		// for (int i = 0; i < collisionManifold.ContactCount; i++)
 		// {
-		// 	Vector3 contact = result.Contacts[i];
+		// 	Vector3 contact = collisionManifold.Contacts[i];
 		// 	bool duplicate = false;
 		// 	for (int j = 0; j < finalContactCount; j++)
 		// 	{
@@ -1004,11 +1004,10 @@ public static class Geometry3D
 		// 		finalContactPoints[finalContactCount++] = contact;
 		// }
 		//
-		// result.Contacts = finalContactPoints;
-		// result.ContactCount = finalContactCount;
-		result.Colliding = true;
-		result.Normal = axis;
-		return result;
+		// collisionManifold.Contacts = finalContactPoints;
+		// collisionManifold.ContactCount = finalContactCount;
+		collisionManifold.Normal = axis;
+		return true;
 	}
 
 	#endregion Public helpers
