@@ -312,6 +312,9 @@ dotnet_diagnostic.S2589.severity                                              = 
 # Static fields should not be used in generic types.
 dotnet_diagnostic.S2743.severity                                              = none
 
+# Loops should be simplified with "LINQ" expressions.
+dotnet_diagnostic.S3267.severity                                              = none
+
 # Extract this nested ternary operation into an independent statement.
 dotnet_diagnostic.S3358.severity                                              = none
 

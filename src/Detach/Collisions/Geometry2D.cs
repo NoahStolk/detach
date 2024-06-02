@@ -6,6 +6,8 @@ namespace Detach.Collisions;
 
 public static class Geometry2D
 {
+	#region Point vs primitives
+
 	public static bool PointOnLine(Vector2 point, LineSegment2D line)
 	{
 		// Find the slope.
@@ -47,6 +49,32 @@ public static class Geometry2D
 		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		Vector2 localPoint = rotVector + orientedRectangle.HalfExtents;
 		return PointInRectangle(localPoint, localRectangle);
+	}
+
+	#endregion Point vs primitives
+
+	#region Line vs primitives
+
+	public static bool LineLine(LineSegment2D line1, LineSegment2D line2)
+	{
+		Vector2 p = line1.Start;
+		Vector2 r = line1.End - line1.Start;
+		Vector2 q = line2.Start;
+		Vector2 s = line2.End - line2.Start;
+
+		float rCrossS = Cross(r, s);
+		if (rCrossS == 0)
+			return Cross(q - p, r) == 0;
+
+		float t = Cross(q - p, s) / rCrossS;
+		float u = Cross(q - p, r) / rCrossS;
+
+		return t is >= 0 and <= 1 && u is >= 0 and <= 1;
+
+		float Cross(Vector2 v1, Vector2 v2)
+		{
+			return (v1.X * v2.Y) - (v1.Y * v2.X);
+		}
 	}
 
 	public static bool LineCircle(LineSegment2D line, Circle circle)
@@ -95,6 +123,8 @@ public static class Geometry2D
 		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return LineRectangle(localLine, localRectangle);
 	}
+
+	#endregion Line vs primitives
 
 	public static bool CircleCircle(Circle circle1, Circle circle2)
 	{

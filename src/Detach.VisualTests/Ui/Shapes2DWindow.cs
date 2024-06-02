@@ -1,10 +1,12 @@
-﻿using Detach.Collisions.Primitives;
+﻿using Detach.Collisions;
+using Detach.Collisions.Primitives;
 using Detach.VisualTests.State;
 using ImGuiNET;
 using System.Numerics;
 
 namespace Detach.VisualTests.Ui;
 
+// ReSharper disable ForCanBeConvertedToForeach
 public static class Shapes2DWindow
 {
 	public static void Render()
@@ -49,10 +51,47 @@ public static class Shapes2DWindow
 
 			if (ImGui.CollapsingHeader("Shapes"))
 			{
+				// TODO: Allow deleting shapes.
 				ShapeTables.RenderLineSegment2Ds();
 				ShapeTables.RenderCircles();
 				ShapeTables.RenderRectangles();
 				ShapeTables.RenderOrientedRectangles();
+			}
+
+			if (ImGui.CollapsingHeader("Collisions"))
+			{
+				for (int i = 0; i < Shapes2DState.LineSegments.Count; i++)
+				{
+					LineSegment2D lineSegment = Shapes2DState.LineSegments[i];
+
+					for (int j = i + 1; j < Shapes2DState.LineSegments.Count; j++)
+					{
+						LineSegment2D lineSegment2 = Shapes2DState.LineSegments[j];
+						if (Geometry2D.LineLine(lineSegment, lineSegment2))
+							ImGui.Text("LineSegment2D - LineSegment2D");
+					}
+
+					for (int j = 0; j < Shapes2DState.Circles.Count; j++)
+					{
+						Circle circle = Shapes2DState.Circles[j];
+						if (Geometry2D.LineCircle(lineSegment, circle))
+							ImGui.Text("LineSegment2D - Circle");
+					}
+
+					for (int j = 0; j < Shapes2DState.Rectangles.Count; j++)
+					{
+						Rectangle rectangle = Shapes2DState.Rectangles[j];
+						if (Geometry2D.LineRectangle(lineSegment, rectangle))
+							ImGui.Text("LineSegment2D - Rectangle");
+					}
+
+					for (int j = 0; j < Shapes2DState.OrientedRectangles.Count; j++)
+					{
+						OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[j];
+						if (Geometry2D.LineOrientedRectangle(lineSegment, orientedRectangle))
+							ImGui.Text("LineSegment2D - OrientedRectangle");
+					}
+				}
 			}
 		}
 
@@ -67,7 +106,6 @@ public static class Shapes2DWindow
 			Vector2 mousePosition = ImGui.GetMousePos();
 			Vector2 relativeMousePosition = mousePosition - origin;
 
-			// TODO: Allow selecting, moving, and deleting primitives.
 			if (!Shapes2DState.IsCreatingShape && ImGui.IsWindowHovered() && ImGui.IsMouseClicked(ImGuiMouseButton.Left))
 			{
 				Shapes2DState.IsCreatingShape = true;
