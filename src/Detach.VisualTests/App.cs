@@ -1,4 +1,5 @@
 using Detach.VisualTests.Ui;
+using Detach.VisualTests.Ui.Windows;
 using ImGuiGlfw;
 using Silk.NET.OpenGL;
 
@@ -66,7 +67,7 @@ public static class App
 
 		Graphics.Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-		MainWindow.Render();
+		Shapes2DWindow.Render();
 
 		ImGuiController.Render();
 

@@ -2,9 +2,9 @@
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.VisualTests.Ui;
+namespace Detach.VisualTests.Ui.Windows;
 
-public static class MainWindow
+public static class Shapes2DWindow
 {
 	private static readonly List<LineSegment2D> _lineSegments = [];
 	private static readonly List<Circle> _circles = [];
@@ -13,7 +13,22 @@ public static class MainWindow
 
 	public static void Render()
 	{
-		if (ImGui.Begin("Main Window", ImGuiWindowFlags.NoCollapse))
+		ImGui.SetNextWindowPos(new Vector2(128, 64));
+		ImGui.SetNextWindowSize(new Vector2(1024, 1024));
+		if (ImGui.Begin("Shapes 2D", ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove))
+		{
+			RenderSideMenu();
+
+			ImGui.SameLine();
+			RenderViewer();
+		}
+
+		ImGui.End();
+	}
+
+	private static void RenderSideMenu()
+	{
+		if (ImGui.BeginChild("Shapes 2D Side Menu", new Vector2(256, 0), ImGuiChildFlags.Border))
 		{
 			// TODO: Create primitives by dragging mouse.
 			// TODO: Allow selecting, moving, and deleting primitives.
@@ -33,7 +48,15 @@ public static class MainWindow
 			OrientedRectanglePopup.Render(_orientedRectangles);
 			if (ImGui.Button("New oriented rectangle"))
 				ImGui.OpenPopup(OrientedRectanglePopup.PopupName);
+		}
 
+		ImGui.EndChild();
+	}
+
+	private static void RenderViewer()
+	{
+		if (ImGui.BeginChild("Shapes 2D Viewer", new Vector2(0, 0), ImGuiChildFlags.Border))
+		{
 			ImDrawListPtr drawList = ImGui.GetWindowDrawList();
 			Vector2 origin = ImGui.GetCursorScreenPos();
 			PositionedDrawList positionedDrawList = new(drawList, origin);
@@ -51,6 +74,6 @@ public static class MainWindow
 				positionedDrawList.AddOrientedRectangle(orientedRectangle, 0xFFFFFFFF);
 		}
 
-		ImGui.End();
+		ImGui.EndChild();
 	}
 }
