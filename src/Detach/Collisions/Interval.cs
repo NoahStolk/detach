@@ -2,7 +2,6 @@
 
 public record struct Interval
 {
-	// TODO: Use get-only properties.
 	public float Min;
 	public float Max;
 
