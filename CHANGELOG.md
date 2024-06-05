@@ -7,10 +7,15 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Added `VectorUtils.GetAngleFrom`.
+- TODO: Document all added collision types etc.
 
 ### Changed
 
 - Renamed `VectorUtils.GetAngle` to `VectorUtils.GetAngleBetween`.
+
+### Removed
+
+- TODO: Document all removed collision types etc.
 
 ## 0.5.1
 
