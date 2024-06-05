@@ -22,6 +22,8 @@ public static class App
 
 	public static ImGuiController ImGuiController => _imGuiController ?? throw new InvalidOperationException("ImGuiController is not initialized.");
 
+	public static double FrameTime => _frameTime;
+
 	public static unsafe void Run(ImGuiController imGuiController)
 	{
 		_imGuiController = imGuiController;

@@ -20,7 +20,7 @@ public class VectorUtilsTests
 	{
 		Vector2 vecA = StringUtils.ParseVector2(a);
 		Vector2 vecB = StringUtils.ParseVector2(b);
-		double angle = VectorUtils.GetAngle(vecA, vecB);
+		double angle = VectorUtils.GetAngleBetween(vecA, vecB);
 		Assert.AreEqual(expectedAngle, angle, 0.0001);
 	}
 
@@ -52,7 +52,7 @@ public class VectorUtilsTests
 	{
 		Vector3 vecA = StringUtils.ParseVector3(a);
 		Vector3 vecB = StringUtils.ParseVector3(b);
-		double angle = VectorUtils.GetAngle(vecA, vecB);
+		double angle = VectorUtils.GetAngleBetween(vecA, vecB);
 		Assert.AreEqual(expectedAngle, angle, 0.0001);
 	}
 

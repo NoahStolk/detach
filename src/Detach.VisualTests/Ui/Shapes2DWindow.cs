@@ -1,9 +1,10 @@
 ﻿using Detach.Collisions.Primitives;
+using Detach.Utils;
 using Detach.VisualTests.Collisions;
 using Detach.VisualTests.State;
+using Detach.VisualTests.TestCodeGenerator;
 using ImGuiNET;
 using System.Numerics;
-using System.Text;
 
 namespace Detach.VisualTests.Ui;
 
@@ -52,9 +53,11 @@ public static class Shapes2DWindow
 				Shapes2DState.OrientedRectangles.Clear();
 			}
 
+			// TODO: More controls:
+			// - Allow deleting shapes.
+			// - Allow rotating oriented rectangles.
 			if (ImGui.CollapsingHeader("Shapes"))
 			{
-				// TODO: Allow deleting shapes.
 				ShapeTables.RenderLineSegment2Ds();
 				ShapeTables.RenderCircles();
 				ShapeTables.RenderRectangles();
@@ -64,7 +67,7 @@ public static class Shapes2DWindow
 			CollisionHandler.PerformCollisions();
 			ImGui.InputTextMultiline("Test code", ref _unitTestCode, 1024, new Vector2(0, 384));
 			if (ImGui.Button("Generate test code"))
-				_unitTestCode = BuildTestCode();
+				_unitTestCode = Generator.BuildTestCode();
 
 			if (ImGui.CollapsingHeader("Collisions"))
 			{
@@ -76,76 +79,6 @@ public static class Shapes2DWindow
 		}
 
 		ImGui.EndChild();
-	}
-
-	private static string BuildTestCode()
-	{
-		StringBuilder sb = new();
-
-		for (int i = 0; i < Shapes2DState.LineSegments.Count; i++)
-		{
-			LineSegment2D lineSegment = Shapes2DState.LineSegments[i];
-			sb.AppendLine($"LineSegment2D {GetLocalName(lineSegment, i)} = new(new Vector2({lineSegment.Start.X}f, {lineSegment.Start.Y}f), new Vector2({lineSegment.End.X}f, {lineSegment.End.Y}f));");
-		}
-
-		for (int i = 0; i < Shapes2DState.Circles.Count; i++)
-		{
-			Circle circle = Shapes2DState.Circles[i];
-			sb.AppendLine($"Circle {GetLocalName(circle, i)} = new(new Vector2({circle.Position.X}f, {circle.Position.Y}f), {circle.Radius}f);");
-		}
-
-		for (int i = 0; i < Shapes2DState.Rectangles.Count; i++)
-		{
-			Rectangle rectangle = Shapes2DState.Rectangles[i];
-			sb.AppendLine($"Rectangle {GetLocalName(rectangle, i)} = new(new Vector2({rectangle.Position.X}f, {rectangle.Position.Y}f), new Vector2({rectangle.Size.X}f, {rectangle.Size.Y}f));");
-		}
-
-		for (int i = 0; i < Shapes2DState.OrientedRectangles.Count; i++)
-		{
-			OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[i];
-			sb.AppendLine($"OrientedRectangle {GetLocalName(orientedRectangle, i)} = new(new Vector2({orientedRectangle.Position.X}f, {orientedRectangle.Position.Y}f), new Vector2({orientedRectangle.HalfExtents.X}f, {orientedRectangle.HalfExtents.Y}f), {orientedRectangle.RotationInRadians}f);");
-		}
-
-		foreach (CollisionResult cr in CollisionHandler.Collisions)
-		{
-			string assertion = cr.IsColliding ? "Assert.IsTrue" : "Assert.IsFalse";
-			string functionName = $"{GetTypeName(cr.A)}{GetTypeName(cr.B)}";
-			if (functionName is "RectangleOrientedRectangle" or "OrientedRectangleOrientedRectangle")
-				functionName += "Sat";
-
-			string aName = GetLocalName(cr.A, cr.IndexA);
-			string bName = GetLocalName(cr.B, cr.IndexB);
-			sb.AppendLine($"{assertion}(Geometry2D.{functionName}({aName}, {bName}));");
-		}
-
-		return sb.ToString();
-
-		static string GetLocalName(object obj, int index)
-		{
-			return FirstCharToLower(GetTypeName(obj)) + index;
-		}
-
-		static string GetTypeName(object obj)
-		{
-			return obj switch
-			{
-				LineSegment2D => "Line",
-				Circle => "Circle",
-				Rectangle => "Rectangle",
-				OrientedRectangle => "OrientedRectangle",
-				_ => "Unknown",
-			};
-		}
-
-		static string FirstCharToLower(string str)
-		{
-			return str.Length switch
-			{
-				0 => string.Empty,
-				1 => char.ToLower(str[0]).ToString(),
-				_ => char.ToLower(str[0]) + str[1..],
-			};
-		}
 	}
 
 	private static void RenderViewer()
@@ -171,6 +104,29 @@ public static class Shapes2DWindow
 			ImDrawListPtr drawList = ImGui.GetWindowDrawList();
 			PositionedDrawList positionedDrawList = new(drawList, origin);
 
+			if (Shapes2DState.IsCreatingShape)
+			{
+				const uint color = 0xBBFFFFFF;
+				switch (Shapes2DState.SelectedShapeType)
+				{
+					case SelectedShapeType.LineSegment2D: positionedDrawList.AddLine(CreateLineSegment(Shapes2DState.ShapeStart, relativeMousePosition), color); break;
+					case SelectedShapeType.Circle: positionedDrawList.AddCircle(CreateCircle(Shapes2DState.ShapeStart, relativeMousePosition), color); break;
+					case SelectedShapeType.Rectangle: positionedDrawList.AddRectangle(Rectangle.FromMinMax(Shapes2DState.ShapeStart, relativeMousePosition), color); break;
+					case SelectedShapeType.OrientedRectangle: positionedDrawList.AddOrientedRectangle(CreateOrientedRectangle(Shapes2DState.ShapeStart, relativeMousePosition), color); break;
+				}
+
+				positionedDrawList.AddCircle(new Circle(Shapes2DState.ShapeStart, 5), 0xFF0000FF);
+
+				if (ImGui.BeginTooltip())
+				{
+					Vector2 direction = relativeMousePosition - Shapes2DState.ShapeStart;
+					ImGui.Text(direction.ToString());
+					ImGui.Text(VectorUtils.GetAngleFrom(direction).ToString("0.00"));
+
+					ImGui.EndTooltip();
+				}
+			}
+
 			foreach (LineSegment2D lineSegment in Shapes2DState.LineSegments)
 				positionedDrawList.AddLine(lineSegment, 0xFFFFFFFF);
 
@@ -191,11 +147,16 @@ public static class Shapes2DWindow
 	{
 		switch (Shapes2DState.SelectedShapeType)
 		{
-			case SelectedShapeType.LineSegment2D: Shapes2DState.LineSegments.Add(new LineSegment2D(start, end)); break;
+			case SelectedShapeType.LineSegment2D: Shapes2DState.LineSegments.Add(CreateLineSegment(start, end)); break;
 			case SelectedShapeType.Circle: Shapes2DState.Circles.Add(CreateCircle(start, end)); break;
 			case SelectedShapeType.Rectangle: Shapes2DState.Rectangles.Add(Rectangle.FromMinMax(start, end)); break;
 			case SelectedShapeType.OrientedRectangle: Shapes2DState.OrientedRectangles.Add(CreateOrientedRectangle(start, end)); break;
 		}
+	}
+
+	private static LineSegment2D CreateLineSegment(Vector2 start, Vector2 end)
+	{
+		return new LineSegment2D(start, end);
 	}
 
 	private static Circle CreateCircle(Vector2 start, Vector2 end)
@@ -209,7 +170,6 @@ public static class Shapes2DWindow
 	{
 		Vector2 average = (start + end) / 2;
 		Vector2 halfExtents = (end - start) / 2;
-		float rotation = MathF.Atan2(end.Y - start.Y, end.X - start.X);
-		return new OrientedRectangle(average, halfExtents, rotation);
+		return new OrientedRectangle(average, halfExtents, 0);
 	}
 }

@@ -9,6 +9,7 @@ namespace Detach.VisualTests.Ui;
 
 public readonly record struct PositionedDrawList(ImDrawListPtr DrawList, Vector2 Origin)
 {
+	// TODO: Hardcode colors and add transparency parameters.
 	public void AddLine(LineSegment2D lineSegment, uint color)
 	{
 		DrawList.AddLine(Origin + lineSegment.Start, Origin + lineSegment.End, color);

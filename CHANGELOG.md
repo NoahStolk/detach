@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Added
+
+- Added `VectorUtils.GetAngleFrom`.
+
+### Changed
+
+- Renamed `VectorUtils.GetAngle` to `VectorUtils.GetAngleBetween`.
+
 ## 0.5.1
 
 ### Added
