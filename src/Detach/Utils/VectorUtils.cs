@@ -4,28 +4,28 @@ namespace Detach.Utils;
 
 public static class VectorUtils
 {
-	public static float GetAngleFrom(Vector2 vector)
+	public static float GetAngleFrom(Vector2 directionalVector)
 	{
-		return MathF.Atan2(vector.Y, vector.X);
+		return MathF.Atan2(directionalVector.Y, directionalVector.X);
 	}
 
 	/// <summary>
 	/// Returns the angle in radians between two directional vectors.
 	/// </summary>
-	public static float GetAngleBetween(Vector2 a, Vector2 b)
+	public static float GetAngleBetween(Vector2 directionA, Vector2 directionB)
 	{
-		float dotProduct = a.X * b.X + a.Y * b.Y;
-		float determinant = a.X * b.Y - a.Y * b.X;
+		float dotProduct = directionA.X * directionB.X + directionA.Y * directionB.Y;
+		float determinant = directionA.X * directionB.Y - directionA.Y * directionB.X;
 		return MathF.Atan2(determinant, dotProduct);
 	}
 
 	/// <summary>
 	/// Returns the angle in radians between two directional vectors.
 	/// </summary>
-	public static float GetAngleBetween(Vector3 a, Vector3 b)
+	public static float GetAngleBetween(Vector3 directionA, Vector3 directionB)
 	{
-		float dotProduct = Vector3.Dot(a, b);
-		float determinant = Vector3.Cross(a, b).Length();
+		float dotProduct = Vector3.Dot(directionA, directionB);
+		float determinant = Vector3.Cross(directionA, directionB).Length();
 		return MathF.Atan2(determinant, dotProduct);
 	}
 
