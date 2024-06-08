@@ -4,6 +4,9 @@ namespace Detach.Utils;
 
 public static class VectorUtils
 {
+	/// <summary>
+	/// Returns the angle in radians of the directional vector.
+	/// </summary>
 	public static float GetAngleFrom(Vector2 directionalVector)
 	{
 		return MathF.Atan2(directionalVector.Y, directionalVector.X);
