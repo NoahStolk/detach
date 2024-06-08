@@ -255,11 +255,11 @@ dotnet_diagnostic.CA1051.severity                                             = 
 # Validate arguments of public methods.
 dotnet_diagnostic.CA1062.severity                                             = none
 
-# Normalize strings to uppercase.
-dotnet_diagnostic.CA1308.severity                                             = none
-
 # Do not raise exceptions in unexpected locations.
 dotnet_diagnostic.CA1065.severity                                             = none
+
+# Normalize strings to uppercase.
+dotnet_diagnostic.CA1308.severity                                             = none
 
 # Identifiers should not match keywords.
 dotnet_diagnostic.CA1716.severity                                             = none
@@ -291,6 +291,9 @@ dotnet_diagnostic.S101.severity                                               = 
 # 'System.Exception' should not be thrown by user code.
 dotnet_diagnostic.S112.severity                                               = none
 
+# Make this field 'private' and encapsulate it in a 'public' property.
+dotnet_diagnostic.S1104.severity                                              = none
+
 # Extract the assignment from this expression. (C# 9)
 dotnet_diagnostic.S1121.severity                                              = none
 
@@ -308,6 +311,9 @@ dotnet_diagnostic.S2589.severity                                              = 
 
 # Static fields should not be used in generic types.
 dotnet_diagnostic.S2743.severity                                              = none
+
+# Loops should be simplified with "LINQ" expressions.
+dotnet_diagnostic.S3267.severity                                              = none
 
 # Extract this nested ternary operation into an independent statement.
 dotnet_diagnostic.S3358.severity                                              = none
@@ -344,6 +350,9 @@ dotnet_diagnostic.SA1027.severity                                             = 
 
 # Prefix local calls with this.
 dotnet_diagnostic.SA1101.severity                                             = none
+
+# The parameters should all be placed on the same line or each parameter should be placed on its own line.
+dotnet_diagnostic.SA1117.severity                                             = none
 
 # Do not use regions.
 dotnet_diagnostic.SA1124.severity                                             = none
