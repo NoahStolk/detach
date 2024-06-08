@@ -4,10 +4,27 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
 
+Rewrote collisions entirely.
+
 ### Added
 
 - Added `VectorUtils.GetAngleFrom`.
-- TODO: Document all added collision types etc.
+- Added `CollisionManifold`, `Interval`, and `RaycastResult` structs.
+- Added `Geometry2D` and `Geometry3D` static classes for 2D and 3D collision detection.
+- Added collision primitives:
+  - `Aabb`
+  - `Circle`
+  - `LineSegment2D`
+  - `LineSegment3D`
+  - `Obb`
+  - `OrientedRectangle`
+  - `Ray`
+  - `Rectangle`
+  - `Sphere`
+  - `Triangle`
+- Added `Matrix2`, `Matrix3`, and `Matrix4` structs.
+- Added `Matrices` static class for matrix operations.
+- Added `IMatrixOperations` interface containing static abstract methods, properties, and operators for matrix operations.
 
 ### Changed
 
@@ -15,7 +32,14 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Removed
 
-- TODO: Document all removed collision types etc.
+- Removed old collision types:
+  - `AxisAlignedRectangle`
+  - `Circle`
+  - `LineSegment`
+  - `Ray`
+  - `Sphere`
+  - `Triangle`
+  - `ViewFrustum`
 
 ## 0.5.1
 
