@@ -9,7 +9,7 @@ public static class ObjParser
 	public static ModelData Parse(byte[] fileContents)
 	{
 		string text = Encoding.UTF8.GetString(fileContents);
-		string[] lines = text.Split('\n');
+		string[] lines = text.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 		ModelBuildingContext context = new();
 
@@ -19,7 +19,7 @@ public static class ObjParser
 		List<string> materialLibraries = [];
 		foreach (string line in lines)
 		{
-			string[] values = line.Split(' ');
+			string[] values = line.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 			switch (values[0])
 			{

@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.6.1
+
+### Fixed
+
+- Fixed `ObjParser` crashing when encountering additional spaces in `.obj` files.
+
 ## 0.6.0
 
 Rewrote collisions entirely.
