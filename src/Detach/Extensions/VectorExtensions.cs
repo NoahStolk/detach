@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Detach.Extensions;
 
-public static class VectorExtensions
+public static partial class VectorExtensions
 {
 	public static Vector2 Round(this Vector2 vector, int digits)
 	{
