@@ -14,7 +14,7 @@
     <Copyright>Copyright © Noah Stolk</Copyright>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-    <Version>0.6.1</Version>
+    <Version>0.7.0</Version>
   </PropertyGroup>
 
   <ItemGroup Label="Static code analysis">
@@ -42,6 +42,39 @@
 
   <ItemGroup Label="Test configuration">
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Extensions\BinaryReaderExtensionsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BinaryReaderExtensionsTemplate.g.cs</LastGenOutput>
+    </None>
+    <None Update="Extensions\BinaryWriterExtensionsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BinaryWriterExtensionsTemplate.g.cs</LastGenOutput>
+    </None>
+    <None Update="Extensions\VectorExtensionsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VectorExtensionsTemplate.g.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Extensions\BinaryReaderExtensionsTemplate.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BinaryReaderExtensionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions\BinaryWriterExtensionsTemplate.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BinaryWriterExtensionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions\VectorExtensionsTemplate.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VectorExtensionsTemplate.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

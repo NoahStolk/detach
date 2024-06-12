@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Detach.Extensions;
 
-public static class BinaryWriterExtensions
+public static partial class BinaryWriterExtensions
 {
 	public static void WriteAsHalfPrecision(this BinaryWriter bw, Vector2 vector)
 	{

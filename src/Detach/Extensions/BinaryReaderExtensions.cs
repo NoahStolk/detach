@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Detach.Extensions;
 
-public static class BinaryReaderExtensions
+public static partial class BinaryReaderExtensions
 {
 	public static Vector2 ReadVector2AsHalfPrecision(this BinaryReader br)
 	{
