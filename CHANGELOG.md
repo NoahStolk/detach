@@ -15,6 +15,8 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 
 - Renamed `Color` to `Rgba` to avoid conflicts with System.Drawing.
+- Renamed `ReadColor` in `BinaryReaderExtensions` to `ReadRgba`.
+- Renamed `RandomColor` in `RandomExtensions` to `RandomRgba`.
 - The `A` parameter in the `Rgba` constructor is now optional. 
 
 ### Removed
