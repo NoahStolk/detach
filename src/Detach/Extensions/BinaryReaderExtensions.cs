@@ -48,7 +48,11 @@ public static class BinaryReaderExtensions
 	// ReSharper disable once InconsistentNaming
 	public static Matrix4x4 ReadMatrix4x4(this BinaryReader br)
 	{
-		return new Matrix4x4(br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+		return new Matrix4x4(
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
 	}
 
 	public static Color ReadColor(this BinaryReader br)
