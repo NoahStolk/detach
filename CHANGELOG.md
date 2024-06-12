@@ -2,6 +2,27 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.8.0
+
+### Added
+
+- Added utility methods to pack `Rgba` data into an `int` and vice versa:
+  - `ToRgbaInt`
+  - `ToArgbInt`
+  - `FromRgbaInt`
+  - `FromArgbInt`
+
+### Changed
+
+- Renamed `Color` to `Rgba` to avoid conflicts with System.Drawing.
+- Renamed `ReadColor` in `BinaryReaderExtensions` to `ReadRgba`.
+- Renamed `RandomColor` in `RandomExtensions` to `RandomRgba`.
+- The `A` parameter in the `Rgba` constructor is now optional. 
+
+### Removed
+
+- Removed `ReadableColorForBrightness` from `Rgba`.
+
 ## 0.7.0
 
 ### Added

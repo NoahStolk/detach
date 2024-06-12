@@ -57,16 +57,16 @@ internal readonly struct TgaImageData
 
 					if (isRlePacket)
 					{
-						Color color = ReadColor(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
+						Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
 						readPosition += bytesPerPixel;
 
 						for (int k = 0; k < packetLength; k++)
 						{
 							int pixelWriteIndex = (i * _width + j) * 4;
-							bytes[pixelWriteIndex + 0] = color.R;
-							bytes[pixelWriteIndex + 1] = color.G;
-							bytes[pixelWriteIndex + 2] = color.B;
-							bytes[pixelWriteIndex + 3] = color.A;
+							bytes[pixelWriteIndex + 0] = rgba.R;
+							bytes[pixelWriteIndex + 1] = rgba.G;
+							bytes[pixelWriteIndex + 2] = rgba.B;
+							bytes[pixelWriteIndex + 3] = rgba.A;
 
 							j += columnIncrement;
 						}
@@ -75,14 +75,14 @@ internal readonly struct TgaImageData
 					{
 						for (int k = 0; k < packetLength; k++)
 						{
-							Color color = ReadColor(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
+							Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
 							readPosition += bytesPerPixel;
 
 							int pixelWriteIndex = (i * _width + j) * 4;
-							bytes[pixelWriteIndex + 0] = color.R;
-							bytes[pixelWriteIndex + 1] = color.G;
-							bytes[pixelWriteIndex + 2] = color.B;
-							bytes[pixelWriteIndex + 3] = color.A;
+							bytes[pixelWriteIndex + 0] = rgba.R;
+							bytes[pixelWriteIndex + 1] = rgba.G;
+							bytes[pixelWriteIndex + 2] = rgba.B;
+							bytes[pixelWriteIndex + 3] = rgba.A;
 
 							j += columnIncrement;
 						}
@@ -99,12 +99,12 @@ internal readonly struct TgaImageData
 				for (int j = columnStart; _rightToLeft ? j >= 0 : j < _width; j += columnIncrement)
 				{
 					int pixelReadIndex = (i * _width + j) * bytesPerPixel;
-					Color color = ReadColor(_pixelDepth, _data.Slice(pixelReadIndex, bytesPerPixel).AsSpan());
+					Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(pixelReadIndex, bytesPerPixel).AsSpan());
 
-					bytes[writePosition + 0] = color.R;
-					bytes[writePosition + 1] = color.G;
-					bytes[writePosition + 2] = color.B;
-					bytes[writePosition + 3] = color.A;
+					bytes[writePosition + 0] = rgba.R;
+					bytes[writePosition + 1] = rgba.G;
+					bytes[writePosition + 2] = rgba.B;
+					bytes[writePosition + 3] = rgba.A;
 					writePosition += 4;
 				}
 			}
@@ -129,13 +129,13 @@ internal readonly struct TgaImageData
 		{
 			for (int j = 0; j < _width; j++)
 			{
-				Color currentColor = ReadColor(_pixelDepth, _data.Slice((i * _width + j) * bytesPerPixel, bytesPerPixel).AsSpan());
+				Rgba currentRgba = ReadRgba(_pixelDepth, _data.Slice((i * _width + j) * bytesPerPixel, bytesPerPixel).AsSpan());
 
 				int amountOfIdenticalPixels = 1;
 				while (j + amountOfIdenticalPixels < _width && amountOfIdenticalPixels < 128)
 				{
-					Color nextColor = ReadColor(_pixelDepth, _data.Slice((i * _width + j + amountOfIdenticalPixels) * bytesPerPixel, bytesPerPixel).AsSpan());
-					if (currentColor == nextColor)
+					Rgba nextRgba = ReadRgba(_pixelDepth, _data.Slice((i * _width + j + amountOfIdenticalPixels) * bytesPerPixel, bytesPerPixel).AsSpan());
+					if (currentRgba == nextRgba)
 						amountOfIdenticalPixels++;
 					else
 						break;
@@ -150,10 +150,10 @@ internal readonly struct TgaImageData
 				if (isRlePacket)
 				{
 					binaryWriter.Write((byte)(0b1000_0000 | (amountOfIdenticalPixels - 1)));
-					binaryWriter.Write(currentColor.R);
-					binaryWriter.Write(currentColor.G);
-					binaryWriter.Write(currentColor.B);
-					binaryWriter.Write(currentColor.A);
+					binaryWriter.Write(currentRgba.R);
+					binaryWriter.Write(currentRgba.G);
+					binaryWriter.Write(currentRgba.B);
+					binaryWriter.Write(currentRgba.A);
 				}
 				else
 				{
@@ -162,22 +162,22 @@ internal readonly struct TgaImageData
 
 					for (int k = 0; k < amountOfIdenticalPixels; k++)
 					{
-						binaryWriter.Write(currentColor.R);
-						binaryWriter.Write(currentColor.G);
-						binaryWriter.Write(currentColor.B);
-						binaryWriter.Write(currentColor.A);
+						binaryWriter.Write(currentRgba.R);
+						binaryWriter.Write(currentRgba.G);
+						binaryWriter.Write(currentRgba.B);
+						binaryWriter.Write(currentRgba.A);
 					}
 				}
 			}
 		}
 	}
 
-	private static Color ReadColor(TgaPixelDepth pixelDepth, ReadOnlySpan<byte> span)
+	private static Rgba ReadRgba(TgaPixelDepth pixelDepth, ReadOnlySpan<byte> span)
 	{
 		byte b = span[0];
 		byte g = span[1];
 		byte r = span[2];
 		byte a = pixelDepth == TgaPixelDepth.Bgra ? span[3] : (byte)0xFF;
-		return new Color(r, g, b, a);
+		return new Rgba(r, g, b, a);
 	}
 }

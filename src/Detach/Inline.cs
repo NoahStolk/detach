@@ -70,7 +70,7 @@ public static class Inline
 		return _buffer.AsSpan(0, charsWritten);
 	}
 
-	public static ReadOnlySpan<char> Span(Color value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+	public static ReadOnlySpan<char> Span(Rgba value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
 		int charsWritten = 0;
 		TryWrite(_buffer, ref charsWritten, value.R, format, provider);
