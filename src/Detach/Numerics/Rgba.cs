@@ -4,25 +4,25 @@ using System.Runtime.CompilerServices;
 
 namespace Detach.Numerics;
 
-public readonly record struct Rgba(byte R, byte G, byte B, byte A)
+public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue)
 {
 	public static Rgba Invisible => default;
 
-	public static Rgba White => new(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-	public static Rgba Black => new(byte.MinValue, byte.MinValue, byte.MinValue, byte.MaxValue);
+	public static Rgba White => new(byte.MaxValue, byte.MaxValue, byte.MaxValue);
+	public static Rgba Black => new(byte.MinValue, byte.MinValue, byte.MinValue);
 
 	public static Rgba HalfTransparentWhite => new(byte.MaxValue, byte.MaxValue, byte.MaxValue, byte.MaxValue / 2);
 	public static Rgba HalfTransparentBlack => new(byte.MinValue, byte.MinValue, byte.MinValue, byte.MaxValue / 2);
 
-	public static Rgba Red => new(byte.MaxValue, byte.MinValue, byte.MinValue, byte.MaxValue);
-	public static Rgba Green => new(byte.MinValue, byte.MaxValue, byte.MinValue, byte.MaxValue);
-	public static Rgba Blue => new(byte.MinValue, byte.MinValue, byte.MaxValue, byte.MaxValue);
+	public static Rgba Red => new(byte.MaxValue, byte.MinValue, byte.MinValue);
+	public static Rgba Green => new(byte.MinValue, byte.MaxValue, byte.MinValue);
+	public static Rgba Blue => new(byte.MinValue, byte.MinValue, byte.MaxValue);
 
-	public static Rgba Yellow => new(byte.MaxValue, byte.MaxValue, byte.MinValue, byte.MaxValue);
-	public static Rgba Aqua => new(byte.MinValue, byte.MaxValue, byte.MaxValue, byte.MaxValue);
-	public static Rgba Purple => new(byte.MaxValue, byte.MinValue, byte.MaxValue, byte.MaxValue);
+	public static Rgba Yellow => new(byte.MaxValue, byte.MaxValue, byte.MinValue);
+	public static Rgba Aqua => new(byte.MinValue, byte.MaxValue, byte.MaxValue);
+	public static Rgba Purple => new(byte.MaxValue, byte.MinValue, byte.MaxValue);
 
-	public static Rgba Orange => new(byte.MaxValue, byte.MaxValue / 2, byte.MinValue, byte.MaxValue);
+	public static Rgba Orange => new(byte.MaxValue, byte.MaxValue / 2, byte.MinValue);
 
 	public static implicit operator Vector3(Rgba rgba)
 	{
@@ -134,7 +134,7 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A)
 			throw new ArgumentOutOfRangeException(nameof(value));
 
 		byte component = (byte)(value * byte.MaxValue);
-		return new Rgba(component, component, component, byte.MaxValue);
+		return new Rgba(component, component, component);
 	}
 
 	public static Rgba FromHsv(float hue, float saturation, float value)
@@ -153,28 +153,23 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A)
 
 		return hi switch
 		{
-			0 => new Rgba(v, t, p, byte.MaxValue),
-			1 => new Rgba(q, v, p, byte.MaxValue),
-			2 => new Rgba(p, v, t, byte.MaxValue),
-			3 => new Rgba(p, q, v, byte.MaxValue),
-			4 => new Rgba(t, p, v, byte.MaxValue),
-			_ => new Rgba(v, p, q, byte.MaxValue),
+			0 => new Rgba(v, t, p),
+			1 => new Rgba(q, v, p),
+			2 => new Rgba(p, v, t),
+			3 => new Rgba(p, q, v),
+			4 => new Rgba(t, p, v),
+			_ => new Rgba(v, p, q),
 		};
 	}
 
 	public static Rgba FromVector3(Vector3 vector)
 	{
-		return new Rgba((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), byte.MaxValue);
+		return new Rgba((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue));
 	}
 
 	public static Rgba FromVector4(Vector4 vector)
 	{
 		return new Rgba((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), (byte)(vector.W * byte.MaxValue));
-	}
-
-	public int ToRgbInt()
-	{
-		return (R << 24) + (G << 16) + (B << 8);
 	}
 
 	public int ToRgbaInt()
@@ -185,5 +180,15 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A)
 	public int ToArgbInt()
 	{
 		return (A << 24) + (R << 16) + (G << 8) + B;
+	}
+
+	public static Rgba FromRgbaInt(int rgba)
+	{
+		return new Rgba((byte)(rgba >> 24), (byte)(rgba >> 16), (byte)(rgba >> 8), (byte)rgba);
+	}
+
+	public static Rgba FromArgbInt(int argb)
+	{
+		return new Rgba((byte)(argb >> 16), (byte)(argb >> 8), (byte)argb, (byte)(argb >> 24));
 	}
 }
