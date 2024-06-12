@@ -73,12 +73,12 @@ public static partial class BinaryWriterExtensions
 		bw.Write(matrix.M44);
 	}
 
-	public static void Write(this BinaryWriter bw, Color color)
+	public static void Write(this BinaryWriter bw, Rgba rgba)
 	{
-		bw.Write(color.R);
-		bw.Write(color.G);
-		bw.Write(color.B);
-		bw.Write(color.A);
+		bw.Write(rgba.R);
+		bw.Write(rgba.G);
+		bw.Write(rgba.B);
+		bw.Write(rgba.A);
 	}
 
 	public static void WriteLengthPrefixedList<T>(this BinaryWriter bw, List<T> list, Action<BinaryWriter, T> writer)

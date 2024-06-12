@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.8.0
+
+### Changed
+
+- Renamed `Color` to `Rgba` to avoid conflicts with System.Drawing.
+
+### Removed
+
+- Removed `ReadableColorForBrightness` from `Rgba`.
+
 ## 0.7.0
 
 ### Added

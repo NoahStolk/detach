@@ -55,9 +55,9 @@ public static partial class BinaryReaderExtensions
 			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
 	}
 
-	public static Color ReadColor(this BinaryReader br)
+	public static Rgba ReadRgba(this BinaryReader br)
 	{
-		return new Color(br.ReadByte(), br.ReadByte(), br.ReadByte(), br.ReadByte());
+		return new Rgba(br.ReadByte(), br.ReadByte(), br.ReadByte(), br.ReadByte());
 	}
 
 	public static List<T> ReadLengthPrefixedList<T>(this BinaryReader br, Func<BinaryReader, T> reader)
