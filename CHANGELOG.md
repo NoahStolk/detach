@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.9.0
+
+### Added
+
+- Added `Rgb` struct.
+
 ## 0.8.0
 
 ### Added

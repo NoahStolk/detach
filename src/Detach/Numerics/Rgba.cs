@@ -6,6 +6,11 @@ namespace Detach.Numerics;
 
 public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue)
 {
+	public Rgba(Rgb rgb)
+		: this(rgb.R, rgb.G, rgb.B)
+	{
+	}
+
 	public static Rgba Invisible => default;
 
 	public static Rgba White => new(byte.MaxValue, byte.MaxValue, byte.MaxValue);
@@ -60,7 +65,7 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 
 	public int GetPerceivedBrightness()
 	{
-		return (int)Math.Sqrt(R * R * 0.299 + G * G * 0.587 + B * B * 0.114);
+		return Colors.GetPerceivedBrightness(R, G, B);
 	}
 
 	public Rgba Intensify(byte component)
@@ -93,25 +98,7 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 
 	public int GetHue()
 	{
-		byte min = Math.Min(Math.Min(R, G), B);
-		byte max = Math.Max(Math.Max(R, G), B);
-
-		if (min == max)
-			return 0;
-
-		float hue;
-		if (max == R)
-			hue = (G - B) / (float)(max - min);
-		else if (max == G)
-			hue = 2f + (B - R) / (float)(max - min);
-		else
-			hue = 4f + (R - G) / (float)(max - min);
-
-		hue *= 60;
-		if (hue < 0)
-			hue += 360;
-
-		return (int)Math.Round(hue);
+		return Colors.GetHue(R, G, B);
 	}
 
 	public static Rgba Lerp(Rgba value1, Rgba value2, float amount)
@@ -139,27 +126,7 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 
 	public static Rgba FromHsv(float hue, float saturation, float value)
 	{
-		saturation = Math.Clamp(saturation, 0, 1);
-		value = Math.Clamp(value, 0, 1);
-
-		int hi = (int)MathF.Floor(hue / 60) % 6;
-		float f = hue / 60 - MathF.Floor(hue / 60);
-
-		value *= byte.MaxValue;
-		byte v = (byte)value;
-		byte p = (byte)(value * (1 - saturation));
-		byte q = (byte)(value * (1 - f * saturation));
-		byte t = (byte)(value * (1 - (1 - f) * saturation));
-
-		return hi switch
-		{
-			0 => new Rgba(v, t, p),
-			1 => new Rgba(q, v, p),
-			2 => new Rgba(p, v, t),
-			3 => new Rgba(p, q, v),
-			4 => new Rgba(t, p, v),
-			_ => new Rgba(v, p, q),
-		};
+		return new Rgba(Rgb.FromHsv(hue, saturation, value));
 	}
 
 	public static Rgba FromVector3(Vector3 vector)
