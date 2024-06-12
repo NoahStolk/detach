@@ -45,6 +45,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Extensions\BinaryReaderExtensionsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BinaryReaderExtensionsTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Extensions\BinaryWriterExtensionsTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BinaryWriterExtensionsTemplate.cs</LastGenOutput>
+    </None>
     <None Update="Extensions\VectorExtensionsTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VectorExtensionsTemplate.cs</LastGenOutput>
@@ -52,6 +60,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Extensions\BinaryReaderExtensionsTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BinaryReaderExtensionsTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Extensions\BinaryWriterExtensionsTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BinaryWriterExtensionsTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="Extensions\VectorExtensionsTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
