@@ -8,10 +8,12 @@ namespace Detach.Tests.Tests.Parsers.Model.ObjFormat;
 [TestClass]
 public class ObjParserTests
 {
-	[TestMethod]
-	public void ParseCubeModel()
+	[DataTestMethod]
+	[DataRow("Cube.obj")]
+	[DataRow("CubeDuplicateSpaces.obj")]
+	public void ParseCubeModel(string fileName)
 	{
-		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath("Cube.obj"));
+		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath(fileName));
 
 		ModelData modelData = ObjParser.Parse(bytes);
 		Assert.AreEqual(1, modelData.MaterialLibraries.Count);
