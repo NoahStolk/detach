@@ -47,30 +47,30 @@
   <ItemGroup>
     <None Update="Extensions\BinaryReaderExtensionsTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BinaryReaderExtensionsTemplate.cs</LastGenOutput>
+      <LastGenOutput>BinaryReaderExtensionsTemplate.g.cs</LastGenOutput>
     </None>
     <None Update="Extensions\BinaryWriterExtensionsTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BinaryWriterExtensionsTemplate.cs</LastGenOutput>
+      <LastGenOutput>BinaryWriterExtensionsTemplate.g.cs</LastGenOutput>
     </None>
     <None Update="Extensions\VectorExtensionsTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VectorExtensionsTemplate.cs</LastGenOutput>
+      <LastGenOutput>VectorExtensionsTemplate.g.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Extensions\BinaryReaderExtensionsTemplate.cs">
+    <Compile Update="Extensions\BinaryReaderExtensionsTemplate.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BinaryReaderExtensionsTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="Extensions\BinaryWriterExtensionsTemplate.cs">
+    <Compile Update="Extensions\BinaryWriterExtensionsTemplate.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BinaryWriterExtensionsTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Update="Extensions\VectorExtensionsTemplate.cs">
+    <Compile Update="Extensions\VectorExtensionsTemplate.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VectorExtensionsTemplate.tt</DependentUpon>
