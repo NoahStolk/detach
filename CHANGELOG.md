@@ -7,6 +7,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Added `Rgb` struct.
+- Added constructor to `Rgba` struct accepting `Rgb` and `byte` parameters.
 
 ## 0.8.0
 

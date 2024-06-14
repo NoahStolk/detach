@@ -6,8 +6,8 @@ namespace Detach.Numerics;
 
 public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue)
 {
-	public Rgba(Rgb rgb)
-		: this(rgb.R, rgb.G, rgb.B)
+	public Rgba(Rgb rgb, byte a = byte.MaxValue)
+		: this(rgb.R, rgb.G, rgb.B, a)
 	{
 	}
 
@@ -79,16 +79,7 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 
 	public Rgba Desaturate(float f)
 	{
-		float r = R / (float)byte.MaxValue;
-		float g = G / (float)byte.MaxValue;
-		float b = B / (float)byte.MaxValue;
-
-		float l = 0.3f * r + 0.6f * g + 0.1f * b;
-		float newR = r + f * (l - r);
-		float newG = g + f * (l - g);
-		float newB = b + f * (l - b);
-
-		return new Rgba((byte)(newR * byte.MaxValue), (byte)(newG * byte.MaxValue), (byte)(newB * byte.MaxValue), A);
+		return new Rgba(new Rgb(R, G, B).Desaturate(f), A);
 	}
 
 	public Rgba Darken(float amount)
