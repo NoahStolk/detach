@@ -124,11 +124,11 @@ public static class Geometry3D
 		return ray.Origin + ray.Direction * t;
 	}
 
-	public static bool PointInTriangle(Vector3 point, Triangle triangle)
+	public static bool PointInTriangle(Vector3 point, Triangle3D triangle3D)
 	{
-		Vector3 a = triangle.A - point;
-		Vector3 b = triangle.B - point;
-		Vector3 c = triangle.C - point;
+		Vector3 a = triangle3D.A - point;
+		Vector3 b = triangle3D.B - point;
+		Vector3 c = triangle3D.C - point;
 
 		Vector3 normPbc = Vector3.Cross(b, c);
 		Vector3 normPca = Vector3.Cross(c, a);
@@ -140,16 +140,16 @@ public static class Geometry3D
 		return Vector3.Dot(normPbc, normPab) >= 0;
 	}
 
-	public static Vector3 ClosestPointOnTriangle(Vector3 point, Triangle triangle)
+	public static Vector3 ClosestPointOnTriangle(Vector3 point, Triangle3D triangle3D)
 	{
-		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Plane plane = Plane.CreateFromVertices(triangle3D.A, triangle3D.B, triangle3D.C);
 		Vector3 closest = ClosestPointOnPlane(plane, point);
-		if (PointInTriangle(closest, triangle))
+		if (PointInTriangle(closest, triangle3D))
 			return closest;
 
-		Vector3 c1 = ClosestPointOnLine(point, new LineSegment3D(triangle.A, triangle.B));
-		Vector3 c2 = ClosestPointOnLine(point, new LineSegment3D(triangle.B, triangle.C));
-		Vector3 c3 = ClosestPointOnLine(point, new LineSegment3D(triangle.C, triangle.A));
+		Vector3 c1 = ClosestPointOnLine(point, new LineSegment3D(triangle3D.A, triangle3D.B));
+		Vector3 c2 = ClosestPointOnLine(point, new LineSegment3D(triangle3D.B, triangle3D.C));
+		Vector3 c3 = ClosestPointOnLine(point, new LineSegment3D(triangle3D.C, triangle3D.A));
 
 		float d1 = Vector3.DistanceSquared(point, c1);
 		float d2 = Vector3.DistanceSquared(point, c2);
@@ -313,18 +313,18 @@ public static class Geometry3D
 
 	#region Triangle vs primitives
 
-	public static bool TriangleSphere(Triangle triangle, Sphere sphere)
+	public static bool TriangleSphere(Triangle3D triangle3D, Sphere sphere)
 	{
-		Vector3 closest = ClosestPointOnTriangle(sphere.Position, triangle);
+		Vector3 closest = ClosestPointOnTriangle(sphere.Position, triangle3D);
 		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
-	public static bool TriangleAabb(Triangle triangle, Aabb aabb)
+	public static bool TriangleAabb(Triangle3D triangle3D, Aabb aabb)
 	{
-		Vector3 f0 = triangle.B - triangle.A;
-		Vector3 f1 = triangle.C - triangle.B;
-		Vector3 f2 = triangle.A - triangle.C;
+		Vector3 f0 = triangle3D.B - triangle3D.A;
+		Vector3 f1 = triangle3D.C - triangle3D.B;
+		Vector3 f2 = triangle3D.A - triangle3D.C;
 
 		Vector3 u0 = new(1, 0, 0);
 		Vector3 u1 = new(0, 1, 0);
@@ -351,18 +351,18 @@ public static class Geometry3D
 
 		for (int i = 0; i < axes.Length; i++)
 		{
-			if (!OverlapOnAxis(aabb, triangle, axes[i]))
+			if (!OverlapOnAxis(aabb, triangle3D, axes[i]))
 				return false;
 		}
 
 		return true;
 	}
 
-	public static bool TriangleObb(Triangle triangle, Obb obb)
+	public static bool TriangleObb(Triangle3D triangle3D, Obb obb)
 	{
-		Vector3 f0 = triangle.B - triangle.A;
-		Vector3 f1 = triangle.C - triangle.B;
-		Vector3 f2 = triangle.A - triangle.C;
+		Vector3 f0 = triangle3D.B - triangle3D.A;
+		Vector3 f1 = triangle3D.C - triangle3D.B;
+		Vector3 f2 = triangle3D.A - triangle3D.C;
 		Vector3 u0 = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
 		Vector3 u1 = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
 		Vector3 u2 = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
@@ -388,18 +388,18 @@ public static class Geometry3D
 
 		for (int i = 0; i < axes.Length; i++)
 		{
-			if (!OverlapOnAxis(obb, triangle, axes[i]))
+			if (!OverlapOnAxis(obb, triangle3D, axes[i]))
 				return false;
 		}
 
 		return true;
 	}
 
-	public static bool TrianglePlane(Triangle triangle, Plane plane)
+	public static bool TrianglePlane(Triangle3D triangle3D, Plane plane)
 	{
-		float side1 = PlaneEquation(triangle.A, plane);
-		float side2 = PlaneEquation(triangle.B, plane);
-		float side3 = PlaneEquation(triangle.C, plane);
+		float side1 = PlaneEquation(triangle3D.A, plane);
+		float side2 = PlaneEquation(triangle3D.B, plane);
+		float side3 = PlaneEquation(triangle3D.C, plane);
 
 		if (side1 == 0 && side2 == 0 && side3 == 0)
 			return true;
@@ -413,7 +413,7 @@ public static class Geometry3D
 		return true;
 	}
 
-	public static bool TriangleTriangle(Triangle triangle1, Triangle triangle2)
+	public static bool TriangleTriangle(Triangle3D triangle1, Triangle3D triangle2)
 	{
 		Vector3 f0 = triangle1.B - triangle1.A;
 		Vector3 f1 = triangle1.C - triangle1.B;
@@ -448,7 +448,7 @@ public static class Geometry3D
 		return true;
 	}
 
-	public static bool TriangleTriangleRobust(Triangle triangle1, Triangle triangle2)
+	public static bool TriangleTriangleRobust(Triangle3D triangle1, Triangle3D triangle2)
 	{
 		Span<Vector3> axes = stackalloc Vector3[]
 		{
@@ -724,27 +724,27 @@ public static class Geometry3D
 		return true;
 	}
 
-	public static bool Raycast(Triangle triangle, Ray ray, out float distance)
+	public static bool Raycast(Triangle3D triangle3D, Ray ray, out float distance)
 	{
-		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Plane plane = Plane.CreateFromVertices(triangle3D.A, triangle3D.B, triangle3D.C);
 		if (!Raycast(plane, ray, out distance))
 			return false;
 
 		Vector3 result = ray.Origin + ray.Direction * distance;
-		Vector3 barycentric = Barycentric(result, triangle);
+		Vector3 barycentric = Barycentric(result, triangle3D);
 		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 };
 	}
 
-	public static bool Raycast(Triangle triangle, Ray ray, out RaycastResult outDistance)
+	public static bool Raycast(Triangle3D triangle3D, Ray ray, out RaycastResult outDistance)
 	{
 		outDistance = default;
 
-		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Plane plane = Plane.CreateFromVertices(triangle3D.A, triangle3D.B, triangle3D.C);
 		if (!Raycast(plane, ray, out RaycastResult planeResult))
 			return false;
 
 		Vector3 result = ray.Origin + ray.Direction * planeResult.Distance;
-		Vector3 barycentric = Barycentric(result, triangle);
+		Vector3 barycentric = Barycentric(result, triangle3D);
 		if (barycentric is not { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 })
 			return false;
 
@@ -793,10 +793,10 @@ public static class Geometry3D
 		return t is >= 0 and <= 1;
 	}
 
-	public static bool Linetest(Triangle triangle, LineSegment3D line)
+	public static bool Linetest(Triangle3D triangle3D, LineSegment3D line)
 	{
 		Ray ray = new(line.Start, line.End - line.Start);
-		return Raycast(triangle, ray, out float t) && t >= 0 && t * t <= line.LengthSquared;
+		return Raycast(triangle3D, ray, out float t) && t >= 0 && t * t <= line.LengthSquared;
 	}
 
 	#endregion Linetesting
@@ -824,17 +824,17 @@ public static class Geometry3D
 		return Vector3.Zero;
 	}
 
-	public static Vector3 Barycentric(Vector3 point, Triangle triangle)
+	public static Vector3 Barycentric(Vector3 point, Triangle3D triangle3D)
 	{
-		Vector3 ap = point - triangle.A;
-		Vector3 bp = point - triangle.B;
-		Vector3 cp = point - triangle.C;
+		Vector3 ap = point - triangle3D.A;
+		Vector3 bp = point - triangle3D.B;
+		Vector3 cp = point - triangle3D.C;
 
-		Vector3 ab = triangle.B - triangle.A;
-		Vector3 ac = triangle.C - triangle.A;
-		Vector3 bc = triangle.C - triangle.B;
-		Vector3 cb = triangle.B - triangle.C;
-		Vector3 ca = triangle.A - triangle.C;
+		Vector3 ab = triangle3D.B - triangle3D.A;
+		Vector3 ac = triangle3D.C - triangle3D.A;
+		Vector3 bc = triangle3D.C - triangle3D.B;
+		Vector3 cb = triangle3D.B - triangle3D.C;
+		Vector3 ca = triangle3D.A - triangle3D.C;
 
 		Vector3 v = ab - Project(ab, cb);
 		float a = 1f - Vector3.Dot(v, ap) / Vector3.Dot(v, ab);
@@ -1093,21 +1093,21 @@ public static class Geometry3D
 		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
 	}
 
-	private static bool OverlapOnAxis(Aabb aabb, Triangle triangle, Vector3 axis)
+	private static bool OverlapOnAxis(Aabb aabb, Triangle3D triangle3D, Vector3 axis)
 	{
 		Interval interval1 = aabb.GetInterval(axis);
-		Interval interval2 = triangle.GetInterval(axis);
+		Interval interval2 = triangle3D.GetInterval(axis);
 		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
 	}
 
-	private static bool OverlapOnAxis(Obb obb, Triangle triangle, Vector3 axis)
+	private static bool OverlapOnAxis(Obb obb, Triangle3D triangle3D, Vector3 axis)
 	{
 		Interval interval1 = obb.GetInterval(axis);
-		Interval interval2 = triangle.GetInterval(axis);
+		Interval interval2 = triangle3D.GetInterval(axis);
 		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
 	}
 
-	private static bool OverlapOnAxis(Triangle triangle1, Triangle triangle2, Vector3 axis)
+	private static bool OverlapOnAxis(Triangle3D triangle1, Triangle3D triangle2, Vector3 axis)
 	{
 		Interval interval1 = triangle1.GetInterval(axis);
 		Interval interval2 = triangle2.GetInterval(axis);

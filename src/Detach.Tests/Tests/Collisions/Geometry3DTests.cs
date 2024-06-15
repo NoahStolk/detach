@@ -11,7 +11,7 @@ public class Geometry3DTests
 	[TestMethod]
 	public void TriangleSphere()
 	{
-		Triangle triangleAtOriginFacingUp = new(new Vector3(-1.5f, 0, -0.5f), new Vector3(0.5f, 0, 1.5f), new Vector3(0.5f, 0, -0.5f));
+		Triangle3D triangleAtOriginFacingUp = new(new Vector3(-1.5f, 0, -0.5f), new Vector3(0.5f, 0, 1.5f), new Vector3(0.5f, 0, -0.5f));
 
 		// No collision.
 		Assert.IsFalse(Geometry3D.TriangleSphere(triangleAtOriginFacingUp, new Sphere(new Vector3(2.00f, 0.00f, 0.00f), 0.75f)));
