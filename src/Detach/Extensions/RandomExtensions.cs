@@ -486,30 +486,30 @@ public static class RandomExtensions
 	}
 
 	/// <summary>
-	/// Returns a random <see cref="Rgba" /> with values that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
+	/// Returns a random <see cref="Rgba"/> with values that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
 	/// </summary>
-	/// <param name="random">The <see cref="Random" /> instance.</param>
-	/// <param name="minValueX">The minimum X value for the <see cref="Rgba" />.</param>
-	/// <param name="maxValueX">The maximum X value for the <see cref="Rgba" />.</param>
-	/// <param name="minValueY">The minimum Y value for the <see cref="Rgba" />.</param>
-	/// <param name="maxValueY">The maximum Y value for the <see cref="Rgba" />.</param>
-	/// <param name="minValueZ">The minimum Z value for the <see cref="Rgba" />.</param>
-	/// <param name="maxValueZ">The maximum Z value for the <see cref="Rgba" />.</param>
-	/// <param name="minValueW">The minimum W value for the <see cref="Rgba" />.</param>
-	/// <param name="maxValueW">The maximum W value for the <see cref="Rgba" />.</param>
-	/// <returns>The random <see cref="Rgba" />.</returns>
+	/// <param name="random">The <see cref="Random"/> instance.</param>
+	/// <param name="minValueX">The minimum X value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueX">The maximum X value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueY">The minimum Y value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueY">The maximum Y value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueZ">The minimum Z value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueZ">The maximum Z value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueW">The minimum W value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueW">The maximum W value for the <see cref="Rgba"/>.</param>
+	/// <returns>The random <see cref="Rgba"/>.</returns>
 	public static Rgba RandomRgba(this Random random, byte minValueX, byte maxValueX, byte minValueY, byte maxValueY, byte minValueZ, byte maxValueZ, byte minValueW, byte maxValueW)
 	{
 		return new Rgba(random.RandomByte(minValueX, maxValueX), random.RandomByte(minValueY, maxValueY), random.RandomByte(minValueZ, maxValueZ), random.RandomByte(minValueW, maxValueW));
 	}
 
 	/// <summary>
-	/// Returns a random <see cref="Rgba" /> with values that are all greater than or equal to <paramref name="minValue" />, and less than <paramref name="maxValue" />.
+	/// Returns a random <see cref="Rgba"/> with values that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
 	/// </summary>
-	/// <param name="random">The <see cref="Random" /> instance.</param>
+	/// <param name="random">The <see cref="Random"/> instance.</param>
 	/// <param name="minValue">The minimum value.</param>
 	/// <param name="maxValue">The maximum value.</param>
-	/// <returns>The random <see cref="Rgba" />.</returns>
+	/// <returns>The random <see cref="Rgba"/>.</returns>
 	public static Rgba RandomRgba(this Random random, Rgba minValue, Rgba maxValue)
 	{
 		return random.RandomRgba(minValue.R, maxValue.R, minValue.G, maxValue.G, minValue.B, maxValue.B, minValue.A, maxValue.A);
