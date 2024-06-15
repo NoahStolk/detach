@@ -486,6 +486,34 @@ public static class RandomExtensions
 	}
 
 	/// <summary>
+	/// Returns a random <see cref="Rgb"/> with values that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
+	/// </summary>
+	/// <param name="random">The <see cref="Random"/> instance.</param>
+	/// <param name="minValueR">The minimum R value for the <see cref="Rgb"/>.</param>
+	/// <param name="maxValueR">The maximum R value for the <see cref="Rgb"/>.</param>
+	/// <param name="minValueG">The minimum G value for the <see cref="Rgb"/>.</param>
+	/// <param name="maxValueG">The maximum G value for the <see cref="Rgb"/>.</param>
+	/// <param name="minValueB">The minimum B value for the <see cref="Rgb"/>.</param>
+	/// <param name="maxValueB">The maximum B value for the <see cref="Rgb"/>.</param>
+	/// <returns>The random <see cref="Rgb"/>.</returns>
+	public static Rgb RandomRgb(this Random random, byte minValueR, byte maxValueR, byte minValueG, byte maxValueG, byte minValueB, byte maxValueB)
+	{
+		return new Rgb(random.RandomByte(minValueR, maxValueR), random.RandomByte(minValueG, maxValueG), random.RandomByte(minValueB, maxValueB));
+	}
+
+	/// <summary>
+	/// Returns a random <see cref="Rgb"/> with values that are all greater than or equal to <paramref name="minValue"/>, and less than <paramref name="maxValue"/>.
+	/// </summary>
+	/// <param name="random">The <see cref="Random"/> instance.</param>
+	/// <param name="minValue">The minimum value.</param>
+	/// <param name="maxValue">The maximum value.</param>
+	/// <returns>The random <see cref="Rgb"/>.</returns>
+	public static Rgb RandomRgb(this Random random, Rgb minValue, Rgb maxValue)
+	{
+		return random.RandomRgb(minValue.R, maxValue.R, minValue.G, maxValue.G, minValue.B, maxValue.B);
+	}
+
+	/// <summary>
 	/// Returns a random <see cref="Rgba"/> with values that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
 	/// </summary>
 	/// <param name="random">The <see cref="Random"/> instance.</param>

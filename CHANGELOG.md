@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.9.1
+
+### Added
+
+- Added `RandomRgb` extension methods to `RandomExtensions`.
+
 ## 0.9.0
 
 ### Added
