@@ -489,18 +489,18 @@ public static class RandomExtensions
 	/// Returns a random <see cref="Rgba"/> with values that are greater than or equal to the corresponding min parameters, and less than the corresponding max parameters.
 	/// </summary>
 	/// <param name="random">The <see cref="Random"/> instance.</param>
-	/// <param name="minValueX">The minimum X value for the <see cref="Rgba"/>.</param>
-	/// <param name="maxValueX">The maximum X value for the <see cref="Rgba"/>.</param>
-	/// <param name="minValueY">The minimum Y value for the <see cref="Rgba"/>.</param>
-	/// <param name="maxValueY">The maximum Y value for the <see cref="Rgba"/>.</param>
-	/// <param name="minValueZ">The minimum Z value for the <see cref="Rgba"/>.</param>
-	/// <param name="maxValueZ">The maximum Z value for the <see cref="Rgba"/>.</param>
-	/// <param name="minValueW">The minimum W value for the <see cref="Rgba"/>.</param>
-	/// <param name="maxValueW">The maximum W value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueR">The minimum R value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueR">The maximum R value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueG">The minimum G value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueG">The maximum G value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueB">The minimum B value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueB">The maximum B value for the <see cref="Rgba"/>.</param>
+	/// <param name="minValueA">The minimum A value for the <see cref="Rgba"/>.</param>
+	/// <param name="maxValueA">The maximum A value for the <see cref="Rgba"/>.</param>
 	/// <returns>The random <see cref="Rgba"/>.</returns>
-	public static Rgba RandomRgba(this Random random, byte minValueX, byte maxValueX, byte minValueY, byte maxValueY, byte minValueZ, byte maxValueZ, byte minValueW, byte maxValueW)
+	public static Rgba RandomRgba(this Random random, byte minValueR, byte maxValueR, byte minValueG, byte maxValueG, byte minValueB, byte maxValueB, byte minValueA, byte maxValueA)
 	{
-		return new Rgba(random.RandomByte(minValueX, maxValueX), random.RandomByte(minValueY, maxValueY), random.RandomByte(minValueZ, maxValueZ), random.RandomByte(minValueW, maxValueW));
+		return new Rgba(random.RandomByte(minValueR, maxValueR), random.RandomByte(minValueG, maxValueG), random.RandomByte(minValueB, maxValueB), random.RandomByte(minValueA, maxValueA));
 	}
 
 	/// <summary>
