@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Changed
+
+- Moved 2D and 3D primitives to `Detach.Collisions.Primitives2D` and `Detach.Collisions.Primitives3D` namespaces respectively.
+
 ## 0.9.1
 
 ### Added

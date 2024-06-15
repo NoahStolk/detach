@@ -1,9 +1,9 @@
 ﻿using Detach.Collisions;
-using Detach.Collisions.Primitives;
+using Detach.Collisions.Primitives2D;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
 
-namespace Detach.Tests.Tests.Collisions.Primitives;
+namespace Detach.Tests.Tests.Collisions.Primitives2D;
 
 [TestClass]
 public class RectangleTests

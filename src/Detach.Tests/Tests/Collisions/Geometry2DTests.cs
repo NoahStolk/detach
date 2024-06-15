@@ -1,5 +1,5 @@
 ﻿using Detach.Collisions;
-using Detach.Collisions.Primitives;
+using Detach.Collisions.Primitives2D;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
 

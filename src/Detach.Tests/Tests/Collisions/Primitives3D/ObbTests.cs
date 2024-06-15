@@ -1,10 +1,10 @@
 ﻿using Detach.Buffers;
-using Detach.Collisions.Primitives;
+using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
 
-namespace Detach.Tests.Tests.Collisions.Primitives;
+namespace Detach.Tests.Tests.Collisions.Primitives3D;
 
 [TestClass]
 public class ObbTests

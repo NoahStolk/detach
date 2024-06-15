@@ -1,5 +1,5 @@
 ﻿using Detach.Buffers;
-using Detach.Collisions.Primitives;
+using Detach.Collisions.Primitives2D;
 using ImGuiNET;
 using System.Numerics;
 using System.Runtime.CompilerServices;

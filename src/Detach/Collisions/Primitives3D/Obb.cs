@@ -2,7 +2,7 @@
 using Detach.Numerics;
 using System.Numerics;
 
-namespace Detach.Collisions.Primitives;
+namespace Detach.Collisions.Primitives3D;
 
 public record struct Obb
 {

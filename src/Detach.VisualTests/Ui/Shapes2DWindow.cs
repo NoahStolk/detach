@@ -1,4 +1,4 @@
-﻿using Detach.Collisions.Primitives;
+﻿using Detach.Collisions.Primitives2D;
 using Detach.Utils;
 using Detach.VisualTests.Collisions;
 using Detach.VisualTests.State;

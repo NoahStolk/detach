@@ -1,7 +1,7 @@
 ﻿using Detach.Collisions;
-using Detach.Collisions.Primitives;
+using Detach.Collisions.Primitives2D;
 using Detach.VisualTests.State;
-using Rectangle = Detach.Collisions.Primitives.Rectangle;
+using Rectangle = Detach.Collisions.Primitives2D.Rectangle;
 
 namespace Detach.VisualTests.Collisions;
 
