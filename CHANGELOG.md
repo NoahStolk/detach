@@ -6,7 +6,8 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Added `BoundingFrustum` class to `Detach.Collisions` namespace.
+- Added `Frustum` struct to `Detach.Collisions.Primitives3D` namespace.
+- Added `PointInFrustum` and `SphereFrustum` methods to `Geometry3D` class.
 
 ### Changed
 

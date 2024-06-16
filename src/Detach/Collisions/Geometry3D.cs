@@ -164,6 +164,18 @@ public static class Geometry3D
 		return c3;
 	}
 
+	public static bool PointInFrustum(Vector3 point, Frustum frustum)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			Plane plane = frustum[i];
+			if (point.X * plane.Normal.X + point.Y * plane.Normal.Y + point.Z * plane.Normal.Z + plane.D > 0)
+				return false;
+		}
+
+		return true;
+	}
+
 	#endregion Point vs primitives
 
 	#region Sphere vs primitives
@@ -194,6 +206,20 @@ public static class Geometry3D
 		Vector3 closest = ClosestPointOnPlane(plane, sphere.Position);
 		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
+	}
+
+	public static bool SphereFrustum(Sphere sphere, Frustum frustum)
+	{
+		if (PointInFrustum(sphere.Position, frustum))
+			return true;
+
+		for (int i = 0; i < 6; ++i)
+		{
+			if (SpherePlane(sphere, frustum[i]))
+				return true;
+		}
+
+		return false;
 	}
 
 	#endregion Sphere vs primitives
