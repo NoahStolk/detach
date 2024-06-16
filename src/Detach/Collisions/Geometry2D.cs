@@ -73,7 +73,7 @@ public static class Geometry2D
 
 		float Cross(Vector2 v1, Vector2 v2)
 		{
-			return (v1.X * v2.Y) - (v1.Y * v2.X);
+			return v1.X * v2.Y - v1.Y * v2.X;
 		}
 	}
 
@@ -97,8 +97,8 @@ public static class Geometry2D
 			return true;
 
 		Vector2 norm = Vector2.Normalize(line.End - line.Start);
-		norm.X = (norm.X != 0) ? 1 / norm.X : 0;
-		norm.Y = (norm.Y != 0) ? 1 / norm.Y : 0;
+		norm.X = norm.X != 0 ? 1 / norm.X : 0;
+		norm.Y = norm.Y != 0 ? 1 / norm.Y : 0;
 		Vector2 min = (rectangle.GetMin() - line.Start) * norm;
 		Vector2 max = (rectangle.GetMax() - line.Start) * norm;
 
@@ -107,7 +107,7 @@ public static class Geometry2D
 		if (tMax < 0 || tMin > tMax)
 			return false;
 
-		float t = (tMin < 0) ? tMax : tMin;
+		float t = tMin < 0 ? tMax : tMin;
 		return t > 0 && t * t < line.LengthSquared;
 	}
 
