@@ -8,6 +8,8 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Added `Frustum` struct to `Detach.Collisions.Primitives3D` namespace.
 - Added `PointInFrustum` and `SphereFrustum` methods to `Geometry3D` class.
+- Added `Triangle2D` struct to `Detach.Collisions.Primitives2D` namespace.
+- Added `PointInTriangle`, `LineTriangle`, `CircleTriangle`, `RectangleTriangle`, and `OrientedRectangleTriangle` methods to `Geometry2D` class.
 
 ### Changed
 
