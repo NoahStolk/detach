@@ -51,7 +51,6 @@ public static class Geometry2D
 		return PointInRectangle(localPoint, localRectangle);
 	}
 
-	// TODO: Add unit tests.
 	public static bool PointInTriangle(Vector2 point, Triangle2D triangle)
 	{
 		Vector2 a = triangle.A;
