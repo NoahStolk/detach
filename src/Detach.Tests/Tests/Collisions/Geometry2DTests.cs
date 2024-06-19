@@ -119,6 +119,21 @@ public class Geometry2DTests
 	}
 
 	[TestMethod]
+	public void PointInTriangle()
+	{
+		Triangle2D triangle = new(new Vector2(0, 0), new Vector2(5, 0), new Vector2(0, 5));
+		Assert.IsTrue(Geometry2D.PointInTriangle(new Vector2(0.1f, 0.1f), triangle));
+		Assert.IsTrue(Geometry2D.PointInTriangle(new Vector2(2, 2), triangle));
+		Assert.IsTrue(Geometry2D.PointInTriangle(new Vector2(0.1f, 4.8f), triangle));
+		Assert.IsFalse(Geometry2D.PointInTriangle(new Vector2(6, 0), triangle));
+		Assert.IsFalse(Geometry2D.PointInTriangle(new Vector2(0, 6), triangle));
+		Assert.IsFalse(Geometry2D.PointInTriangle(new Vector2(6, 6), triangle));
+		Assert.IsFalse(Geometry2D.PointInTriangle(new Vector2(0, -1), triangle));
+		Assert.IsFalse(Geometry2D.PointInTriangle(new Vector2(-1, 0), triangle));
+		Assert.IsFalse(Geometry2D.PointInTriangle(new Vector2(-1, -1), triangle));
+	}
+
+	[TestMethod]
 	public void TwoRectanglesColliding()
 	{
 		Rectangle rectangle0 = new(new Vector2(155f, 80f), new Vector2(88f, 121f));

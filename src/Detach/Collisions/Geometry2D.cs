@@ -51,6 +51,23 @@ public static class Geometry2D
 		return PointInRectangle(localPoint, localRectangle);
 	}
 
+	public static bool PointInTriangle(Vector2 point, Triangle2D triangle)
+	{
+		Vector2 a = triangle.A;
+		Vector2 b = triangle.B;
+		Vector2 c = triangle.C;
+
+		float asX = point.X - a.X;
+		float asY = point.Y - a.Y;
+
+		bool sAb = (b.X - a.X) * asY > (b.Y - a.Y) * asX;
+
+		if ((c.X - a.X) * asY > (c.Y - a.Y) * asX == sAb)
+			return false;
+
+		return (c.X - b.X) * (point.Y - b.Y) > (c.Y - b.Y) * (point.X - b.X) == sAb;
+	}
+
 	#endregion Point vs primitives
 
 	#region Line vs primitives
@@ -125,6 +142,17 @@ public static class Geometry2D
 		return LineRectangle(localLine, localRectangle);
 	}
 
+	public static bool LineTriangle(LineSegment2D line, Triangle2D triangle)
+	{
+		if (PointInTriangle(line.Start, triangle) || PointInTriangle(line.End, triangle))
+			return true;
+
+		LineSegment2D ab = new(triangle.A, triangle.B);
+		LineSegment2D bc = new(triangle.B, triangle.C);
+		LineSegment2D ca = new(triangle.C, triangle.A);
+		return LineLine(line, ab) || LineLine(line, bc) || LineLine(line, ca);
+	}
+
 	#endregion Line vs primitives
 
 	#region Circle vs primitives
@@ -164,6 +192,17 @@ public static class Geometry2D
 			circle.Radius);
 		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return CircleRectangle(localCircle, localRectangle);
+	}
+
+	public static bool CircleTriangle(Circle circle, Triangle2D triangle)
+	{
+		if (PointInTriangle(circle.Position, triangle))
+			return true;
+
+		LineSegment2D ab = new(triangle.A, triangle.B);
+		LineSegment2D bc = new(triangle.B, triangle.C);
+		LineSegment2D ca = new(triangle.C, triangle.A);
+		return LineCircle(ab, circle) || LineCircle(bc, circle) || LineCircle(ca, circle);
 	}
 
 	#endregion Circle vs primitives
@@ -216,6 +255,17 @@ public static class Geometry2D
 		return true;
 	}
 
+	public static bool RectangleTriangle(Rectangle rectangle, Triangle2D triangle)
+	{
+		if (PointInTriangle(rectangle.GetMin(), triangle) || PointInTriangle(rectangle.GetMax(), triangle))
+			return true;
+
+		LineSegment2D ab = new(triangle.A, triangle.B);
+		LineSegment2D bc = new(triangle.B, triangle.C);
+		LineSegment2D ca = new(triangle.C, triangle.A);
+		return LineRectangle(ab, rectangle) || LineRectangle(bc, rectangle) || LineRectangle(ca, rectangle);
+	}
+
 	#endregion Rectangle vs primitives
 
 	#region Oriented rectangle vs primitives
@@ -236,6 +286,17 @@ public static class Geometry2D
 		local2.Position = rotVector + orientedRectangle1.HalfExtents;
 
 		return RectangleOrientedRectangleSat(local1, local2);
+	}
+
+	public static bool OrientedRectangleTriangle(OrientedRectangle orientedRectangle, Triangle2D triangle)
+	{
+		if (PointInTriangle(orientedRectangle.Position, triangle))
+			return true;
+
+		LineSegment2D ab = new(triangle.A, triangle.B);
+		LineSegment2D bc = new(triangle.B, triangle.C);
+		LineSegment2D ca = new(triangle.C, triangle.A);
+		return LineOrientedRectangle(ab, orientedRectangle) || LineOrientedRectangle(bc, orientedRectangle) || LineOrientedRectangle(ca, orientedRectangle);
 	}
 
 	#endregion Oriented rectangle vs primitives
