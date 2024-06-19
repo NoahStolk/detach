@@ -35,24 +35,4 @@ public record struct Triangle2D
 			}
 		}
 	}
-
-	// TODO: Is this needed?
-	public Interval GetInterval(Vector2 axis)
-	{
-		Interval result = default;
-		float projection0 = Vector2.Dot(axis, this[0]);
-		result.Min = projection0;
-		result.Max = projection0;
-
-		for (int i = 1; i < 3; i++)
-		{
-			float projection = Vector2.Dot(axis, this[i]);
-			if (projection < result.Min)
-				result.Min = projection;
-			else if (projection > result.Max)
-				result.Max = projection;
-		}
-
-		return result;
-	}
 }
