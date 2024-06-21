@@ -60,6 +60,11 @@ public static partial class BinaryReaderExtensions
 		return new Rgba(br.ReadByte(), br.ReadByte(), br.ReadByte(), br.ReadByte());
 	}
 
+	public static Rgb ReadRgb(this BinaryReader br)
+	{
+		return new Rgb(br.ReadByte(), br.ReadByte(), br.ReadByte());
+	}
+
 	public static List<T> ReadLengthPrefixedList<T>(this BinaryReader br, Func<BinaryReader, T> reader)
 	{
 		int length = br.ReadInt32();

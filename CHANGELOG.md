@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.10.1
+
+### Added
+
+- Added `ReadRgb` extension method to `BinaryReaderExtensions`.
+- Added `Write` extension method accepting `Rgb` to `BinaryWriterExtensions`.
+
 ## 0.10.0
 
 ### Added

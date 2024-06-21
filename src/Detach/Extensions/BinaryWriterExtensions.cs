@@ -81,6 +81,13 @@ public static partial class BinaryWriterExtensions
 		bw.Write(rgba.A);
 	}
 
+	public static void Write(this BinaryWriter bw, Rgb rgb)
+	{
+		bw.Write(rgb.R);
+		bw.Write(rgb.G);
+		bw.Write(rgb.B);
+	}
+
 	public static void WriteLengthPrefixedList<T>(this BinaryWriter bw, List<T> list, Action<BinaryWriter, T> writer)
 	{
 		bw.Write(list.Count);
