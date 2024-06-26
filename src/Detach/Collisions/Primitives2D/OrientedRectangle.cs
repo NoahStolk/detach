@@ -19,7 +19,7 @@ public record struct OrientedRectangle
 
 	public Buffer4<Vector2> GetVertices()
 	{
-		Rectangle rectangle = new(Position - HalfExtents, HalfExtents * 2);
+		Rectangle rectangle = Rectangle.FromTopLeft(Position - HalfExtents, HalfExtents * 2);
 		Vector2 min = rectangle.GetMin();
 		Vector2 max = rectangle.GetMax();
 		Buffer4<Vector2> vertices = default;

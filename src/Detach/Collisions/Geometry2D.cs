@@ -46,7 +46,7 @@ public static class Geometry2D
 			MathF.Cos(theta), MathF.Sin(theta),
 			-MathF.Sin(theta), MathF.Cos(theta));
 		rotVector = Matrices.Multiply(rotVector, zRotation);
-		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
+		Rectangle localRectangle = Rectangle.FromTopLeft(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		Vector2 localPoint = rotVector + orientedRectangle.HalfExtents;
 		return PointInRectangle(localPoint, localRectangle);
 	}
@@ -138,7 +138,7 @@ public static class Geometry2D
 		LineSegment2D localLine = new(
 			Matrices.Multiply(line.Start - orientedRectangle.Position, zRotation) + orientedRectangle.HalfExtents,
 			Matrices.Multiply(line.End - orientedRectangle.Position, zRotation) + orientedRectangle.HalfExtents);
-		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
+		Rectangle localRectangle = Rectangle.FromTopLeft(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return LineRectangle(localLine, localRectangle);
 	}
 
@@ -190,7 +190,7 @@ public static class Geometry2D
 		Circle localCircle = new(
 			Matrices.Multiply(circle.Position - orientedRectangle.Position, zRotation) + orientedRectangle.HalfExtents,
 			circle.Radius);
-		Rectangle localRectangle = new(Vector2.Zero, orientedRectangle.HalfExtents * 2);
+		Rectangle localRectangle = Rectangle.FromTopLeft(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return CircleRectangle(localCircle, localRectangle);
 	}
 
@@ -272,7 +272,7 @@ public static class Geometry2D
 
 	public static bool OrientedRectangleOrientedRectangleSat(OrientedRectangle orientedRectangle1, OrientedRectangle orientedRectangle2)
 	{
-		Rectangle local1 = new(Vector2.Zero, orientedRectangle1.HalfExtents * 2);
+		Rectangle local1 = Rectangle.FromTopLeft(Vector2.Zero, orientedRectangle1.HalfExtents * 2);
 		Vector2 rotVector = orientedRectangle2.Position - orientedRectangle1.Position;
 		OrientedRectangle local2 = new(orientedRectangle2.Position, orientedRectangle2.HalfExtents, orientedRectangle2.RotationInRadians);
 		local2.RotationInRadians -= orientedRectangle1.RotationInRadians;

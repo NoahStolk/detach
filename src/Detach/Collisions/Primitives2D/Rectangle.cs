@@ -4,14 +4,23 @@ namespace Detach.Collisions.Primitives2D;
 
 public record struct Rectangle
 {
+	/// <summary>
+	/// The top-left corner of the rectangle.
+	/// </summary>
 	public Vector2 Position;
+
+	/// <summary>
+	/// The size of the rectangle.
+	/// </summary>
 	public Vector2 Size;
 
-	public Rectangle(Vector2 position, Vector2 size)
+	private Rectangle(Vector2 topLeftPosition, Vector2 size)
 	{
-		Position = position;
+		Position = topLeftPosition;
 		Size = size;
 	}
+
+	public Vector2 Center => Position + Size / 2;
 
 	public Vector2 GetMin()
 	{
@@ -60,5 +69,15 @@ public record struct Rectangle
 	public static Rectangle FromMinMax(Vector2 min, Vector2 max)
 	{
 		return new Rectangle(min, max - min);
+	}
+
+	public static Rectangle FromCenter(Vector2 center, Vector2 size)
+	{
+		return new Rectangle(center - size / 2, size);
+	}
+
+	public static Rectangle FromTopLeft(Vector2 topLeft, Vector2 size)
+	{
+		return new Rectangle(topLeft, size);
 	}
 }

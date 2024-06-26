@@ -2,6 +2,17 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.11.0
+
+### Added
+
+- Added `Rectangle.FromCenter` and `Rectangle.FromTopLeft` static methods.
+- Added `Rectangle.Center` property.
+
+### Removed
+
+- Removed public `Rectangle` constructor. Use `Rectangle.FromTopLeft` instead.
+
 ## 0.10.3
 
 ### Removed

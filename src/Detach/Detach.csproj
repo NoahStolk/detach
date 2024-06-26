@@ -14,7 +14,7 @@
     <Copyright>Copyright © Noah Stolk</Copyright>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-    <Version>0.10.3</Version>
+    <Version>0.11.0</Version>
   </PropertyGroup>
 
   <ItemGroup Label="Static code analysis">

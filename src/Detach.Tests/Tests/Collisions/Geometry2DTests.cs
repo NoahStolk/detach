@@ -77,7 +77,7 @@ public class Geometry2DTests
 	[TestMethod]
 	public void PointInRectangle()
 	{
-		Rectangle rectangleCenter = new(new Vector2(0, 0), new Vector2(5, 5));
+		Rectangle rectangleCenter = Rectangle.FromTopLeft(new Vector2(0, 0), new Vector2(5, 5));
 		Assert.IsTrue(Geometry2D.PointInRectangle(new Vector2(0, 0), rectangleCenter));
 		Assert.IsTrue(Geometry2D.PointInRectangle(new Vector2(3, 3), rectangleCenter));
 		Assert.IsTrue(Geometry2D.PointInRectangle(new Vector2(5, 5), rectangleCenter));
@@ -89,7 +89,7 @@ public class Geometry2DTests
 		Assert.IsFalse(Geometry2D.PointInRectangle(new Vector2(-1, 0), rectangleCenter));
 		Assert.IsFalse(Geometry2D.PointInRectangle(new Vector2(-1, -1), rectangleCenter));
 
-		Rectangle rectangleOffset = new(new Vector2(5, 5), new Vector2(5, 5));
+		Rectangle rectangleOffset = Rectangle.FromTopLeft(new Vector2(5, 5), new Vector2(5, 5));
 		Assert.IsTrue(Geometry2D.PointInRectangle(new Vector2(5, 5), rectangleOffset));
 		Assert.IsTrue(Geometry2D.PointInRectangle(new Vector2(8, 9), rectangleOffset));
 		Assert.IsTrue(Geometry2D.PointInRectangle(new Vector2(10, 5), rectangleOffset));
@@ -136,16 +136,16 @@ public class Geometry2DTests
 	[TestMethod]
 	public void TwoRectanglesColliding()
 	{
-		Rectangle rectangle0 = new(new Vector2(155f, 80f), new Vector2(88f, 121f));
-		Rectangle rectangle1 = new(new Vector2(211f, 156f), new Vector2(67f, 92f));
+		Rectangle rectangle0 = Rectangle.FromTopLeft(new Vector2(155f, 80f), new Vector2(88f, 121f));
+		Rectangle rectangle1 = Rectangle.FromTopLeft(new Vector2(211f, 156f), new Vector2(67f, 92f));
 		Assert.IsTrue(Geometry2D.RectangleRectangle(rectangle0, rectangle1));
 	}
 
 	[TestMethod]
 	public void TwoRectanglesNotColliding()
 	{
-		Rectangle rectangle0 = new(new Vector2(155f, 80f), new Vector2(88f, 75f));
-		Rectangle rectangle1 = new(new Vector2(211f, 156f), new Vector2(67f, 102f));
+		Rectangle rectangle0 = Rectangle.FromTopLeft(new Vector2(155f, 80f), new Vector2(88f, 75f));
+		Rectangle rectangle1 = Rectangle.FromTopLeft(new Vector2(211f, 156f), new Vector2(67f, 102f));
 		Assert.IsFalse(Geometry2D.RectangleRectangle(rectangle0, rectangle1));
 	}
 
@@ -173,8 +173,8 @@ public class Geometry2DTests
 		LineSegment2D line0 = new(new Vector2(129f, 182f), new Vector2(241f, 288f));
 		LineSegment2D line1 = new(new Vector2(229f, 205f), new Vector2(119f, 280f));
 		Circle circle0 = new(new Vector2(188f, 359.5f), 66.83001f);
-		Rectangle rectangle0 = new(new Vector2(76f, 213f), new Vector2(146f, 125f));
-		Rectangle rectangle1 = new(new Vector2(216f, 390f), new Vector2(69f, 54f));
+		Rectangle rectangle0 = Rectangle.FromTopLeft(new Vector2(76f, 213f), new Vector2(146f, 125f));
+		Rectangle rectangle1 = Rectangle.FromTopLeft(new Vector2(216f, 390f), new Vector2(69f, 54f));
 		Assert.IsTrue(Geometry2D.LineLine(line0, line1));
 		Assert.IsFalse(Geometry2D.LineCircle(line0, circle0));
 		Assert.IsTrue(Geometry2D.LineRectangle(line0, rectangle0));
