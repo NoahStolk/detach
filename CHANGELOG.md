@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.10.2
+
+### Added
+
+- Added more overloads for `VectorUtils.Clamp`.
+
 ## 0.10.1
 
 ### Added
