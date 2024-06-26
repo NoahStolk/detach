@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.10.3
+
+### Removed
+
+- Removed overloads added in 0.10.2. Use `Vector2.Clamp`, `Vector3.Clamp`, and `Vector4.Clamp` instead.
+
 ## 0.10.2
 
 ### Added

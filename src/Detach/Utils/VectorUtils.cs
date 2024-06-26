@@ -47,21 +47,6 @@ public static class VectorUtils
 		return new Vector4(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max), Math.Clamp(vector.Z, min, max), Math.Clamp(vector.W, min, max));
 	}
 
-	public static Vector2 Clamp(Vector2 vector, Vector2 min, Vector2 max)
-	{
-		return new Vector2(Math.Clamp(vector.X, min.X, max.X), Math.Clamp(vector.Y, min.Y, max.Y));
-	}
-
-	public static Vector3 Clamp(Vector3 vector, Vector3 min, Vector3 max)
-	{
-		return new Vector3(Math.Clamp(vector.X, min.X, max.X), Math.Clamp(vector.Y, min.Y, max.Y), Math.Clamp(vector.Z, min.Z, max.Z));
-	}
-
-	public static Vector4 Clamp(Vector4 vector, Vector4 min, Vector4 max)
-	{
-		return new Vector4(Math.Clamp(vector.X, min.X, max.X), Math.Clamp(vector.Y, min.Y, max.Y), Math.Clamp(vector.Z, min.Z, max.Z), Math.Clamp(vector.W, min.W, max.W));
-	}
-
 	public static Vector3 Reflect(Vector3 direction, Vector3 normal)
 	{
 		float dn = 2 * Vector3.Dot(direction, normal);
