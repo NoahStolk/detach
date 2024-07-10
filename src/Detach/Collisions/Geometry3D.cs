@@ -142,7 +142,7 @@ public static class Geometry3D
 
 	public static Vector3 ClosestPointOnTriangle(Vector3 point, Triangle3D triangle)
 	{
-		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Plane plane = CreatePlaneFromTriangle(triangle);
 		Vector3 closest = ClosestPointOnPlane(plane, point);
 		if (PointInTriangle(closest, triangle))
 			return closest;
@@ -741,18 +741,19 @@ public static class Geometry3D
 			return false;
 
 		float pn = Vector3.Dot(ray.Origin, plane.Normal);
-		result.Distance = (plane.D - pn) / nd;
-		if (result.Distance < 0)
+		float distance = (plane.D - pn) / nd;
+		if (distance < 0)
 			return false;
 
-		result.Point = ray.Origin + ray.Direction * result.Distance;
+		result.Point = ray.Origin + ray.Direction * distance;
+		result.Distance = distance;
 		result.Normal = Vector3.Normalize(plane.Normal);
 		return true;
 	}
 
 	public static bool Raycast(Triangle3D triangle, Ray ray, out float distance)
 	{
-		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Plane plane = CreatePlaneFromTriangle(triangle);
 		if (!Raycast(plane, ray, out distance))
 			return false;
 
@@ -761,22 +762,57 @@ public static class Geometry3D
 		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 };
 	}
 
-	public static bool Raycast(Triangle3D triangle, Ray ray, out RaycastResult outDistance)
+	// Old code for reference:
+#if false
+	public static Vector3? IntersectsTriangle(Vector3 rayPosition, Vector3 rayDirection, Vector3 triangleP1, Vector3 triangleP2, Vector3 triangleP3)
 	{
-		outDistance = default;
+		const float epsilon = 0.0000001f;
 
-		Plane plane = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+		Vector3 edge1 = triangleP2 - triangleP1;
+		Vector3 edge2 = triangleP3 - triangleP1;
+		Vector3 h = Vector3.Cross(rayDirection, edge2);
+		float a = Vector3.Dot(edge1, h);
+		if (a is > -epsilon and < epsilon)
+			return null; // Ray is parallel to the triangle.
+
+		float f = 1.0f / a;
+		Vector3 s = rayPosition - triangleP1;
+		float u = f * Vector3.Dot(s, h);
+		if (u is < 0.0f or > 1.0f)
+			return null;
+
+		Vector3 q = Vector3.Cross(s, edge1);
+		float v = f * Vector3.Dot(rayDirection, q);
+		if (v < 0.0f || u + v > 1.0f)
+			return null;
+
+		// At this stage we can compute t to find out where the intersection point is on the line.
+		float t = f * Vector3.Dot(edge2, q);
+		if (t <= epsilon)
+		{
+			// This means that there is a line intersection but not a ray intersection.
+			return null;
+		}
+
+		return rayPosition + rayDirection * t;
+	}
+#endif
+
+	public static bool Raycast(Triangle3D triangle, Ray ray, out RaycastResult raycastResult)
+	{
+		raycastResult = default;
+
+		Plane plane = CreatePlaneFromTriangle(triangle);
 		if (!Raycast(plane, ray, out RaycastResult planeResult))
 			return false;
 
-		Vector3 result = ray.Origin + ray.Direction * planeResult.Distance;
-		Vector3 barycentric = Barycentric(result, triangle);
+		Vector3 barycentric = Barycentric(planeResult.Point, triangle);
 		if (barycentric is not { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 })
 			return false;
 
-		outDistance.Distance = planeResult.Distance;
-		outDistance.Point = ray.Origin + ray.Direction * outDistance.Distance;
-		outDistance.Normal = Vector3.Normalize(plane.Normal);
+		raycastResult.Distance = planeResult.Distance;
+		raycastResult.Point = planeResult.Point;
+		raycastResult.Normal = planeResult.Normal;
 		return true;
 	}
 
@@ -1138,6 +1174,12 @@ public static class Geometry3D
 		Interval interval1 = triangle1.GetInterval(axis);
 		Interval interval2 = triangle2.GetInterval(axis);
 		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
+	}
+
+	internal static Plane CreatePlaneFromTriangle(Triangle3D triangle)
+	{
+		Vector3 normal = Vector3.Normalize(Vector3.Cross(triangle.B - triangle.A, triangle.C - triangle.A));
+		return new Plane(normal, Vector3.Dot(normal, triangle.A));
 	}
 
 	#endregion Private helpers

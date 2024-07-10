@@ -1,5 +1,6 @@
 using Detach.Collisions;
 using Detach.Collisions.Primitives3D;
+using Detach.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Numerics;
 
@@ -32,5 +33,166 @@ public class Geometry3DTests
 
 		// Should not be inside the triangle anymore, so perform edge tests.
 		Assert.IsTrue(Geometry3D.TriangleSphere(triangleAtOriginFacingUp, new Sphere(new Vector3(0.55f, 0.50f, 0.00f), 1.00f)));
+	}
+
+	[TestMethod]
+	public void CreatePlaneFromTriangle()
+	{
+		for (int i = 0; i < 1000; i++)
+		{
+			Triangle3D triangle = new()
+			{
+				A = Random.Shared.RandomVector3(-10, 10),
+				B = Random.Shared.RandomVector3(-10, 10),
+				C = Random.Shared.RandomVector3(-10, 10),
+			};
+			Plane plane = Geometry3D.CreatePlaneFromTriangle(triangle);
+			Plane planeBcl = Plane.CreateFromVertices(triangle.A, triangle.B, triangle.C);
+			AssertionUtils.AreEqual(plane.Normal, planeBcl.Normal);
+			Assert.AreEqual(plane.D, -planeBcl.D);
+		}
+	}
+
+	[TestMethod]
+	public void RaycastWithTriangle()
+	{
+		Triangle3D triangleAtOriginFacingUp = new()
+		{
+			A = new Vector3(-1.5f, 0, -0.5f),
+			B = new Vector3(+0.5f, 0, +1.5f),
+			C = new Vector3(+0.5f, 0, -0.5f),
+		};
+
+		Vector3 rayOrigin = new(0, 1, 0);
+		Ray rayShootingDown = new(rayOrigin, -Vector3.UnitY);
+		Ray rayShootingUp = new(rayOrigin, Vector3.UnitY);
+		Ray rayShootingRight = new(rayOrigin, Vector3.UnitX);
+		Ray rayShootingLeft = new(rayOrigin, -Vector3.UnitX);
+		Ray rayShootingForward = new(rayOrigin, Vector3.UnitZ);
+		Ray rayShootingBackward = new(rayOrigin, -Vector3.UnitZ);
+
+		// No collision.
+		Assert.IsFalse(Geometry3D.Raycast(triangleAtOriginFacingUp, rayShootingUp, out float _));
+		Assert.IsFalse(Geometry3D.Raycast(triangleAtOriginFacingUp, rayShootingRight, out float _));
+		Assert.IsFalse(Geometry3D.Raycast(triangleAtOriginFacingUp, rayShootingLeft, out float _));
+		Assert.IsFalse(Geometry3D.Raycast(triangleAtOriginFacingUp, rayShootingForward, out float _));
+		Assert.IsFalse(Geometry3D.Raycast(triangleAtOriginFacingUp, rayShootingBackward, out float _));
+
+		// Ray shooting down collides with triangle facing up, at point 0,0,0.
+		Assert.IsTrue(Geometry3D.Raycast(triangleAtOriginFacingUp, rayShootingDown, out RaycastResult result));
+		Assert.AreEqual(1, result.Distance);
+		Assert.AreEqual(Vector3.Zero, result.Point);
+		Assert.AreEqual(Vector3.UnitY, result.Normal);
+
+		// Transform the ray.
+		Ray diagonalRay = new(new Vector3(1, 1, 0), Vector3.Normalize(new Vector3(-1, -1, 0)));
+		Assert.IsTrue(Geometry3D.Raycast(triangleAtOriginFacingUp, diagonalRay, out RaycastResult resultDiagonal));
+		Assert.AreEqual(MathF.Sqrt(2), resultDiagonal.Distance, 0.0001f);
+		AssertionUtils.AreEqual(Vector3.Zero, resultDiagonal.Point);
+		AssertionUtils.AreEqual(Vector3.UnitY, resultDiagonal.Normal);
+
+		// Move the ray along the Z axis.
+		Ray diagonalRayMoved = new(new Vector3(1, 1, 3), Vector3.Normalize(new Vector3(-1, -1, 0)));
+		Assert.IsFalse(Geometry3D.Raycast(triangleAtOriginFacingUp, diagonalRayMoved, out RaycastResult _));
+
+		// Move the triangle along the Z axis.
+		Triangle3D movedTriangleFacingUp = new(new Vector3(-1.5f, 0, 2.5f), new Vector3(0.5f, 0, 4.5f), new Vector3(0.5f, 0, 2.5f));
+		Assert.IsTrue(Geometry3D.Raycast(movedTriangleFacingUp, diagonalRayMoved, out RaycastResult resultMoved));
+		Assert.AreEqual(MathF.Sqrt(2), resultMoved.Distance, 0.0001f);
+		AssertionUtils.AreEqual(new Vector3(0, 0, 3), resultMoved.Point);
+		AssertionUtils.AreEqual(Vector3.UnitY, resultMoved.Normal);
+
+		// Rotate the triangle.
+		Triangle3D movedAndRotatedTriangle = new()
+		{
+			A = new Vector3(0, -1, 2),
+			B = new Vector3(0, +1, 3),
+			C = new Vector3(0, -1, 4),
+		};
+		Assert.IsTrue(Geometry3D.Raycast(movedAndRotatedTriangle, diagonalRayMoved, out RaycastResult resultRotated));
+		Assert.AreEqual(MathF.Sqrt(2), resultRotated.Distance, 0.0001f);
+		AssertionUtils.AreEqual(new Vector3(0, 0, 3), resultRotated.Point);
+		AssertionUtils.AreEqual(Vector3.UnitX, resultRotated.Normal);
+
+		Triangle3D triangleFacingBackward = new()
+		{
+			A = new Vector3(-1, -1, -1),
+			B = new Vector3(+0, +1, -1),
+			C = new Vector3(+1, -1, -1),
+		};
+
+		// Z translations.
+		// ShootZRayOld(true, new Vector3(0, 0, -10));
+		// ShootZRayOld(true, new Vector3(0, 0, -1.01f));
+		// ShootZRayOld(false, new Vector3(0, 0, -1));
+		// ShootZRayOld(false, Vector3.Zero);
+		// ShootZRayOld(false, new Vector3(0, 0, 0.9f));
+		// ShootZRayOld(false, new Vector3(0, 0, 1));
+		// ShootZRayOld(false, new Vector3(0, 0, 10f));
+		// ShootZRayOld(false, new Vector3(0, 0, 1.1f));
+
+		ShootZRay(true, new Vector3(0, 0, -10));
+		ShootZRay(true, new Vector3(0, 0, -1.01f));
+		ShootZRay(true, new Vector3(0, 0, -1));
+		ShootZRay(false, Vector3.Zero);
+		ShootZRay(false, new Vector3(0, 0, 0.9f));
+		ShootZRay(false, new Vector3(0, 0, 1));
+		ShootZRay(false, new Vector3(0, 0, 10f));
+		ShootZRay(false, new Vector3(0, 0, 1.1f));
+
+		void ShootZRay(bool expected, Vector3 rayPosition)
+		{
+			Assert.AreEqual(expected, Geometry3D.Raycast(triangleFacingBackward, new Ray(rayPosition, Vector3.UnitZ), out RaycastResult _));
+		}
+
+		// void ShootZRayOld(bool expected, Vector3 rayPosition)
+		// {
+		// 	Vector3? oldResult = Geometry3D.IntersectsTriangle(rayPosition, Vector3.UnitZ, triangleFacingBackward.A, triangleFacingBackward.B, triangleFacingBackward.C);
+		// 	if (expected)
+		// 		Assert.IsNotNull(oldResult);
+		// 	else
+		// 		Assert.IsNull(oldResult);
+		// }
+	}
+
+	[TestMethod]
+	public void RaycastWithPlane()
+	{
+		Plane planeAtOriginFacingUp = new() { Normal = Vector3.UnitY, D = 0 };
+
+		Assert.IsFalse(Geometry3D.Raycast(planeAtOriginFacingUp, new Ray(Vector3.UnitY, Vector3.UnitY), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(planeAtOriginFacingUp, new Ray(Vector3.UnitY, Vector3.UnitX), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(planeAtOriginFacingUp, new Ray(Vector3.UnitY, -Vector3.UnitX), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(planeAtOriginFacingUp, new Ray(Vector3.UnitY, Vector3.UnitZ), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(planeAtOriginFacingUp, new Ray(Vector3.UnitY, -Vector3.UnitZ), out RaycastResult _));
+		ShootRayWithExpectedHit(1, Vector3.Zero, planeAtOriginFacingUp, new Ray(Vector3.UnitY, -Vector3.UnitY));
+
+		ShootRayWithExpectedHit(MathF.Sqrt(2), Vector3.Zero, planeAtOriginFacingUp, new Ray(new Vector3(1, 1, 0), Vector3.Normalize(new Vector3(-1, -1, 0))));
+
+		ShootRayWithExpectedHit(1, new Vector3(0, 0, 1), new Plane(Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, 2), -Vector3.UnitZ));
+		ShootRayWithExpectedHit(2, new Vector3(0, 0, 1), new Plane(Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, 3), -Vector3.UnitZ));
+		ShootRayWithExpectedHit(5, new Vector3(0, 0, 1), new Plane(Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, 6), -Vector3.UnitZ));
+
+		ShootRayWithExpectedHit(0.5f, new Vector3(0, 0, 1.5f), new Plane(Vector3.UnitZ, 1.5f), new Ray(new Vector3(0, 0, 2), -Vector3.UnitZ));
+		ShootRayWithExpectedHit(7, new Vector3(0, 0, -5), new Plane(Vector3.UnitZ, -5), new Ray(new Vector3(0, 0, 2), -Vector3.UnitZ));
+		ShootRayWithExpectedHit(3, new Vector3(0, 0, -5), new Plane(Vector3.UnitZ, -5), new Ray(new Vector3(0, 0, -2), -Vector3.UnitZ));
+
+		ShootRayWithExpectedHit(1, new Vector3(5, -5, 1), new Plane(Vector3.UnitZ, 1), new Ray(new Vector3(5, -5, 2), -Vector3.UnitZ));
+
+		Assert.IsTrue(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, -10f), Vector3.UnitZ), out RaycastResult _));
+		Assert.IsTrue(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, -1.01f), Vector3.UnitZ), out RaycastResult _));
+		Assert.IsTrue(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, -1f), Vector3.UnitZ), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, -0.9f), Vector3.UnitZ), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, 1f), Vector3.UnitZ), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, 10f), Vector3.UnitZ), out RaycastResult _));
+		Assert.IsFalse(Geometry3D.Raycast(new Plane(-Vector3.UnitZ, 1), new Ray(new Vector3(0, 0, 1.1f), Vector3.UnitZ), out RaycastResult _));
+
+		static void ShootRayWithExpectedHit(float expectedDistance, Vector3 expectedIntersectionPoint, Plane plane, Ray ray)
+		{
+			Assert.IsTrue(Geometry3D.Raycast(plane, ray, out RaycastResult result));
+			Assert.AreEqual(expectedDistance, result.Distance, 0.0001f);
+			AssertionUtils.AreEqual(expectedIntersectionPoint, result.Point);
+			AssertionUtils.AreEqual(plane.Normal, result.Normal);
+		}
 	}
 }

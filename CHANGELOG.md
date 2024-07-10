@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.11.1
+
+### Fixed
+
+- Fixed incorrect math in `Geometry3D` class caused by `Plane` distances being negated.
+
 ## 0.11.0
 
 ### Added
