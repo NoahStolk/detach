@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.11.2
+
+### Changed
+
+- Improved performance for `Geometry3D.Raycast(Triangle3D triangle, Ray ray, out RaycastResult raycastResult)` function.
+
 ## 0.11.1
 
 ### Fixed
