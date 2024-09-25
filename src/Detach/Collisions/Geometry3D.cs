@@ -308,12 +308,12 @@ public static class Geometry3D
 
 	public static bool ObbPlane(Obb obb, Plane plane)
 	{
-		Span<Vector3> axes = stackalloc Vector3[3]
-		{
+		Span<Vector3> axes =
+		[
 			new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13),
 			new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23),
 			new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33),
-		};
+		];
 
 		float pLen =
 			obb.HalfExtents.X * Math.Abs(Vector3.Dot(plane.Normal, axes[0])) +
@@ -356,8 +356,8 @@ public static class Geometry3D
 		Vector3 u1 = new(0, 1, 0);
 		Vector3 u2 = new(0, 0, 1);
 
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			u0,
 			u1,
 			u2,
@@ -373,7 +373,7 @@ public static class Geometry3D
 			Vector3.Cross(u2, f0),
 			Vector3.Cross(u2, f1),
 			Vector3.Cross(u2, f2),
-		};
+		];
 
 		for (int i = 0; i < axes.Length; i++)
 		{
@@ -393,8 +393,8 @@ public static class Geometry3D
 		Vector3 u1 = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
 		Vector3 u2 = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
 
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			u0,
 			u1,
 			u2,
@@ -410,7 +410,7 @@ public static class Geometry3D
 			Vector3.Cross(u2, f0),
 			Vector3.Cross(u2, f1),
 			Vector3.Cross(u2, f2),
-		};
+		];
 
 		for (int i = 0; i < axes.Length; i++)
 		{
@@ -448,8 +448,8 @@ public static class Geometry3D
 		Vector3 u1 = triangle2.C - triangle2.B;
 		Vector3 u2 = triangle2.A - triangle2.C;
 
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			Vector3.Cross(f0, f1),
 
 			Vector3.Cross(u0, u1),
@@ -463,7 +463,7 @@ public static class Geometry3D
 			Vector3.Cross(u2, f0),
 			Vector3.Cross(u2, f1),
 			Vector3.Cross(u2, f2),
-		};
+		];
 
 		for (int i = 0; i < axes.Length; i++)
 		{
@@ -476,8 +476,8 @@ public static class Geometry3D
 
 	public static bool TriangleTriangleRobust(Triangle3D triangle1, Triangle3D triangle2)
 	{
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			SatCrossEdge(triangle1.A, triangle1.B, triangle1.B, triangle2.C),
 			SatCrossEdge(triangle2.A, triangle2.B, triangle2.B, triangle1.C),
 
@@ -492,7 +492,7 @@ public static class Geometry3D
 			SatCrossEdge(triangle2.C, triangle2.A, triangle1.A, triangle1.B),
 			SatCrossEdge(triangle2.C, triangle2.A, triangle1.B, triangle1.C),
 			SatCrossEdge(triangle2.C, triangle2.A, triangle1.C, triangle1.A),
-		};
+		];
 
 		for (int i = 0; i < axes.Length; i++)
 		{
@@ -551,15 +551,15 @@ public static class Geometry3D
 
 		Vector3 min = aabb.GetMin();
 		Vector3 max = aabb.GetMax();
-		Span<float> t = stackalloc float[6]
-		{
+		Span<float> t =
+		[
 			(min.X - ray.Origin.X) / ray.Direction.X,
 			(max.X - ray.Origin.X) / ray.Direction.X,
 			(min.Y - ray.Origin.Y) / ray.Direction.Y,
 			(max.Y - ray.Origin.Y) / ray.Direction.Y,
 			(min.Z - ray.Origin.Z) / ray.Direction.Z,
 			(max.Z - ray.Origin.Z) / ray.Direction.Z,
-		};
+		];
 
 		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
 		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
@@ -577,15 +577,15 @@ public static class Geometry3D
 
 		Vector3 min = aabb.GetMin();
 		Vector3 max = aabb.GetMax();
-		Span<float> t = stackalloc float[6]
-		{
+		Span<float> t =
+		[
 			(min.X - ray.Origin.X) / ray.Direction.X,
 			(max.X - ray.Origin.X) / ray.Direction.X,
 			(min.Y - ray.Origin.Y) / ray.Direction.Y,
 			(max.Y - ray.Origin.Y) / ray.Direction.Y,
 			(min.Z - ray.Origin.Z) / ray.Direction.Z,
 			(max.Z - ray.Origin.Z) / ray.Direction.Z,
-		};
+		];
 
 		float tMin = Math.Max(Math.Max(Math.Min(t[0], t[1]), Math.Min(t[2], t[3])), Math.Min(t[4], t[5]));
 		float tMax = Math.Min(Math.Min(Math.Max(t[0], t[1]), Math.Max(t[2], t[3])), Math.Max(t[4], t[5]));
@@ -596,15 +596,15 @@ public static class Geometry3D
 		result.Distance = tMin < 0 ? tMax : tMin;
 		result.Point = ray.Origin + ray.Direction * result.Distance;
 
-		Span<Vector3> normals = stackalloc Vector3[]
-		{
+		Span<Vector3> normals =
+		[
 			new(-1, 0, 0),
 			new(1, 0, 0),
 			new(0, -1, 0),
 			new(0, 1, 0),
 			new(0, 0, -1),
 			new(0, 0, 1),
-		};
+		];
 
 		for (int i = 0; i < 6; i++)
 		{
@@ -697,15 +697,15 @@ public static class Geometry3D
 		result.Distance = tMin < 0 ? tMax : tMin;
 		result.Point = ray.Origin + ray.Direction * result.Distance;
 
-		Span<Vector3> normals = stackalloc Vector3[]
-		{
+		Span<Vector3> normals =
+		[
 			x,
 			x * -1,
 			y,
 			y * -1,
 			z,
 			z * -1,
-		};
+		];
 
 		for (int i = 0; i < 6; i++)
 		{
