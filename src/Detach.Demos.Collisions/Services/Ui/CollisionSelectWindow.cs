@@ -1,0 +1,42 @@
+﻿using Detach.Demos.Collisions.Services.CollisionScenes;
+using ImGuiNET;
+using System.Numerics;
+
+namespace Detach.Demos.Collisions.Services.Ui;
+
+public sealed class CollisionSelectWindow
+{
+	private readonly List<ICollisionScene> _collisionScenes =
+	[
+		new PointOnLine(),
+		new PointInCircle(),
+		new PointInRectangle(),
+		new PointInOrientedRectangle(),
+		new PointInTriangle(),
+	];
+
+	public void Render(float dt)
+	{
+		ImGui.SetNextWindowSizeConstraints(new Vector2(1024, 768), new Vector2(4096, 4096));
+		if (ImGui.Begin("Collisions"))
+		{
+			if (ImGui.BeginTabBar("CollisionsTabBar"))
+			{
+				foreach (ICollisionScene collisionScene in _collisionScenes)
+				{
+					if (ImGui.BeginTabItem(collisionScene.GetType().Name))
+					{
+						collisionScene.Update(dt);
+						collisionScene.Render();
+
+						ImGui.EndTabItem();
+					}
+				}
+
+				ImGui.EndTabBar();
+			}
+		}
+
+		ImGui.End();
+	}
+}
