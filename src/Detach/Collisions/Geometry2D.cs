@@ -8,7 +8,7 @@ public static class Geometry2D
 {
 	#region Point vs primitives
 
-	public static bool PointOnLine(Vector2 point, LineSegment2D line)
+	public static bool PointOnLine(Vector2 point, LineSegment2D line, float epsilon = 0.0001f)
 	{
 		// Find the slope.
 		float dy = line.End.Y - line.Start.Y;
@@ -21,7 +21,7 @@ public static class Geometry2D
 		float b = line.Start.Y - m * line.Start.X;
 
 		// Check if the point is on the line.
-		return MathF.Abs(point.Y - (m * point.X + b)) < 0.0001f;
+		return MathF.Abs(point.Y - (m * point.X + b)) < epsilon;
 	}
 
 	public static bool PointInCircle(Vector2 point, Circle circle)

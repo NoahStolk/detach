@@ -4,6 +4,10 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
 
+### Added
+
+- Added optional parameter `epsilon` to `Geometry2D.PointOnLine` method. 
+
 ### Changed
 
 - Renamed `OrientedRectangle.Position` to `OrientedRectangle.Center`.
