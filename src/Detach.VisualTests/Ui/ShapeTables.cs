@@ -115,7 +115,7 @@ public static class ShapeTables
 				ImGui.Text(Inline.Span(i));
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"Position##{i}"), ref orientedRectangle.Position, 0, 256, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Span($"Position##{i}"), ref orientedRectangle.Center, 0, 256, "%.0f"))
 					Shapes2DState.OrientedRectangles[i] = orientedRectangle;
 
 				ImGui.TableNextColumn();

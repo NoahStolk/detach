@@ -6,26 +6,40 @@ namespace Detach.Collisions.Primitives2D;
 
 public record struct OrientedRectangle
 {
-	public Vector2 Position;
+	/// <summary>
+	/// The center of the oriented rectangle.
+	/// </summary>
+	public Vector2 Center;
+
+	/// <summary>
+	/// The half-extents of the oriented rectangle.
+	/// </summary>
 	public Vector2 HalfExtents;
+
+	/// <summary>
+	/// The rotation of the oriented rectangle in radians.
+	/// </summary>
 	public float RotationInRadians;
 
-	public OrientedRectangle(Vector2 position, Vector2 halfExtents, float rotationInRadians)
+	public OrientedRectangle(Vector2 center, Vector2 halfExtents, float rotationInRadians)
 	{
-		Position = position;
+		Center = center;
 		HalfExtents = halfExtents;
 		RotationInRadians = rotationInRadians;
 	}
 
+	/// <summary>
+	/// Returns the vertices of the oriented rectangle in world space.
+	/// </summary>
 	public Buffer4<Vector2> GetVertices()
 	{
-		Rectangle rectangle = Rectangle.FromTopLeft(Position - HalfExtents, HalfExtents * 2);
+		Rectangle rectangle = Rectangle.FromTopLeft(Center - HalfExtents, HalfExtents * 2);
 		Vector2 min = rectangle.GetMin();
 		Vector2 max = rectangle.GetMax();
 		Buffer4<Vector2> vertices = default;
 		vertices[0] = min;
-		vertices[1] = max;
-		vertices[2] = new Vector2(min.X, max.Y);
+		vertices[1] = new Vector2(min.X, max.Y);
+		vertices[2] = max;
 		vertices[3] = new Vector2(max.X, min.Y);
 		Matrix2 zRotation = new(
 			MathF.Cos(RotationInRadians), MathF.Sin(RotationInRadians),
@@ -33,11 +47,14 @@ public record struct OrientedRectangle
 
 		// Rotate the vertices. This leaves us with the vertices of the oriented rectangle in world space.
 		for (int i = 0; i < 4; i++)
-			vertices[i] = Matrices.Multiply(vertices[i] - Position, zRotation) + Position;
+			vertices[i] = Matrices.Multiply(vertices[i] - Center, zRotation) + Center;
 
 		return vertices;
 	}
 
+	/// <summary>
+	/// Returns the interval of the oriented rectangle projected onto the given axis.
+	/// </summary>
 	public Interval GetInterval(Vector2 axis)
 	{
 		Buffer4<Vector2> vertices = GetVertices();

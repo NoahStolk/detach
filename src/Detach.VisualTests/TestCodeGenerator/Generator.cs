@@ -32,7 +32,7 @@ public static class Generator
 		for (int i = 0; i < Shapes2DState.OrientedRectangles.Count; i++)
 		{
 			OrientedRectangle orientedRectangle = Shapes2DState.OrientedRectangles[i];
-			sb.AppendLine($"OrientedRectangle {GetLocalName(orientedRectangle, i)} = new(new Vector2({orientedRectangle.Position.X}f, {orientedRectangle.Position.Y}f), new Vector2({orientedRectangle.HalfExtents.X}f, {orientedRectangle.HalfExtents.Y}f), {orientedRectangle.RotationInRadians}f);");
+			sb.AppendLine($"OrientedRectangle {GetLocalName(orientedRectangle, i)} = new(new Vector2({orientedRectangle.Center.X}f, {orientedRectangle.Center.Y}f), new Vector2({orientedRectangle.HalfExtents.X}f, {orientedRectangle.HalfExtents.Y}f), {orientedRectangle.RotationInRadians}f);");
 		}
 
 		foreach (CollisionResult cr in CollisionHandler.Collisions)

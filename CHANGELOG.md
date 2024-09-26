@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Changed
+
+- Renamed `OrientedRectangle.Position` to `OrientedRectangle.Center`.
+
+### Fixed
+
+- `OrientedRectangle.GetVertices()` now returns vertices in the correct order. The 2nd and 3rd vertices were swapped.
+
 ## 0.11.2
 
 ### Changed
