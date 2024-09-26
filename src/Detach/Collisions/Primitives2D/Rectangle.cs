@@ -41,13 +41,13 @@ public record struct Rectangle
 		Vector2 min = GetMin();
 		Vector2 max = GetMax();
 
-		Span<Vector2> vertices = stackalloc Vector2[]
-		{
+		Span<Vector2> vertices =
+		[
 			new(min.X, min.Y),
 			new(min.X, max.Y),
 			new(max.X, max.Y),
 			new(max.X, min.Y),
-		};
+		];
 
 		Interval result = default;
 		float projection0 = Vector2.Dot(axis, vertices[0]);

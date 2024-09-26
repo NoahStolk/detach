@@ -109,11 +109,11 @@ public static class RandomExtensions
 	public static T Choose<T>(this Random random, T option1, T option2)
 		where T : unmanaged
 	{
-		Span<T> span = stackalloc T[2]
-		{
+		Span<T> span =
+		[
 			option1,
 			option2,
-		};
+		];
 		return random.Choose(span);
 	}
 
@@ -129,12 +129,12 @@ public static class RandomExtensions
 	public static T Choose<T>(this Random random, T option1, T option2, T option3)
 		where T : unmanaged
 	{
-		Span<T> span = stackalloc T[3]
-		{
+		Span<T> span =
+		[
 			option1,
 			option2,
 			option3,
-		};
+		];
 		return random.Choose(span);
 	}
 
@@ -151,13 +151,13 @@ public static class RandomExtensions
 	public static T Choose<T>(this Random random, T option1, T option2, T option3, T option4)
 		where T : unmanaged
 	{
-		Span<T> span = stackalloc T[4]
-		{
+		Span<T> span =
+		[
 			option1,
 			option2,
 			option3,
 			option4,
-		};
+		];
 		return random.Choose(span);
 	}
 
@@ -175,14 +175,14 @@ public static class RandomExtensions
 	public static T Choose<T>(this Random random, T option1, T option2, T option3, T option4, T option5)
 		where T : unmanaged
 	{
-		Span<T> span = stackalloc T[5]
-		{
+		Span<T> span =
+		[
 			option1,
 			option2,
 			option3,
 			option4,
 			option5,
-		};
+		];
 		return random.Choose(span);
 	}
 
@@ -201,15 +201,15 @@ public static class RandomExtensions
 	public static T Choose<T>(this Random random, T option1, T option2, T option3, T option4, T option5, T option6)
 		where T : unmanaged
 	{
-		Span<T> span = stackalloc T[6]
-		{
+		Span<T> span =
+		[
 			option1,
 			option2,
 			option3,
 			option4,
 			option5,
 			option6,
-		};
+		];
 		return random.Choose(span);
 	}
 #endif

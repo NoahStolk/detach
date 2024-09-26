@@ -40,8 +40,8 @@ public record struct Aabb
 		Vector3 min = GetMin();
 		Vector3 max = GetMax();
 
-		Span<Vector3> vertices = stackalloc Vector3[]
-		{
+		Span<Vector3> vertices =
+		[
 			new Vector3(min.X, min.Y, min.Z),
 			new Vector3(min.X, min.Y, max.Z),
 			new Vector3(min.X, max.Y, min.Z),
@@ -50,7 +50,7 @@ public record struct Aabb
 			new Vector3(max.X, min.Y, max.Z),
 			new Vector3(max.X, max.Y, min.Z),
 			new Vector3(max.X, max.Y, max.Z),
-		};
+		];
 
 		Interval result = default;
 		float projection0 = Vector3.Dot(axis, vertices[0]);

@@ -21,15 +21,15 @@ public record struct Obb
 	{
 		Vector3 c = Position;
 		Vector3 e = HalfExtents;
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			new(Orientation.M11, Orientation.M12, Orientation.M13),
 			new(Orientation.M21, Orientation.M22, Orientation.M23),
 			new(Orientation.M31, Orientation.M32, Orientation.M33),
-		};
+		];
 
-		Span<Vector3> vertices = stackalloc Vector3[]
-		{
+		Span<Vector3> vertices =
+		[
 			c + axes[0] * e.X + axes[1] * e.Y + axes[2] * e.Z,
 			c - axes[0] * e.X + axes[1] * e.Y + axes[2] * e.Z,
 			c + axes[0] * e.X - axes[1] * e.Y + axes[2] * e.Z,
@@ -38,7 +38,7 @@ public record struct Obb
 			c + axes[0] * e.X - axes[1] * e.Y - axes[2] * e.Z,
 			c - axes[0] * e.X + axes[1] * e.Y - axes[2] * e.Z,
 			c - axes[0] * e.X - axes[1] * e.Y + axes[2] * e.Z,
-		};
+		];
 
 		Interval result = default;
 		float projection0 = Vector3.Dot(axis, vertices[0]);
@@ -61,12 +61,12 @@ public record struct Obb
 	{
 		Vector3 c = Position;
 		Vector3 e = HalfExtents;
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			new(Orientation.M11, Orientation.M12, Orientation.M13),
 			new(Orientation.M21, Orientation.M22, Orientation.M23),
 			new(Orientation.M31, Orientation.M32, Orientation.M33),
-		};
+		];
 
 		Buffer8<Vector3> result = default;
 		result[0] = c + axes[0] * e.X + axes[1] * e.Y + axes[2] * e.Z;
@@ -83,8 +83,8 @@ public record struct Obb
 	public Buffer12<LineSegment3D> GetEdges()
 	{
 		Buffer8<Vector3> vertices = GetVertices();
-		Span<ValueTuple<int, int>> indices = stackalloc ValueTuple<int, int>[]
-		{
+		Span<ValueTuple<int, int>> indices =
+		[
 			(6, 1),
 			(6, 3),
 			(6, 4),
@@ -97,7 +97,7 @@ public record struct Obb
 			(7, 4),
 			(4, 5),
 			(5, 3),
-		};
+		];
 
 		Buffer12<LineSegment3D> result = default;
 		for (int i = 0; i < indices.Length; i++)
@@ -113,12 +113,12 @@ public record struct Obb
 	{
 		Vector3 c = Position;
 		Vector3 e = HalfExtents;
-		Span<Vector3> axes = stackalloc Vector3[]
-		{
+		Span<Vector3> axes =
+		[
 			new(Orientation.M11, Orientation.M12, Orientation.M13),
 			new(Orientation.M21, Orientation.M22, Orientation.M23),
 			new(Orientation.M31, Orientation.M32, Orientation.M33),
-		};
+		];
 
 		Buffer6<Plane> result = default;
 		result[0] = new Plane(axes[0], Vector3.Dot(axes[0], c + axes[0] * e.X));

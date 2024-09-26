@@ -221,7 +221,7 @@ public static class Geometry2D
 
 	public static bool RectangleRectangleSat(Rectangle rectangle1, Rectangle rectangle2)
 	{
-		Span<Vector2> axes = stackalloc Vector2[] { new(1, 0), new(0, 1) };
+		Span<Vector2> axes = [new(1, 0), new(0, 1)];
 
 		for (int i = 0; i < axes.Length; i++)
 		{
@@ -234,7 +234,7 @@ public static class Geometry2D
 
 	public static bool RectangleOrientedRectangleSat(Rectangle rectangle, OrientedRectangle orientedRectangle)
 	{
-		Span<Vector2> axes = stackalloc Vector2[] { new(1, 0), new(0, 1), default, default };
+		Span<Vector2> axes = [new(1, 0), new(0, 1), default, default];
 
 		Matrix2 zRotation = new(
 			MathF.Cos(orientedRectangle.RotationInRadians), MathF.Sin(orientedRectangle.RotationInRadians),
