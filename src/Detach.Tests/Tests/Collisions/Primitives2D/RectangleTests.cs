@@ -61,4 +61,16 @@ public class RectangleTests
 		Assert.AreEqual(new Interval(-1, 1), rect.GetInterval(new Vector2(-1, 1)));
 		Assert.AreEqual(new Interval(-1, 1), rect.GetInterval(new Vector2(-1, 1)));
 	}
+
+	[TestMethod]
+	public void IntersectsSat()
+	{
+		long allocatedHeapBytes = GC.GetAllocatedBytesForCurrentThread();
+
+		Rectangle rect1 = Rectangle.FromTopLeft(new Vector2(0, 0), new Vector2(1, 1));
+		Rectangle rect2 = Rectangle.FromTopLeft(new Vector2(0.5f, 0.25f), new Vector2(0.25f, 1));
+		Assert.IsTrue(Geometry2D.RectangleRectangleSat(rect1, rect2));
+
+		Assert.AreEqual(allocatedHeapBytes, GC.GetAllocatedBytesForCurrentThread());
+	}
 }
