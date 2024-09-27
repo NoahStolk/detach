@@ -98,14 +98,12 @@ public static class Geometry2D
 	{
 		Vector2 ab = line.End - line.Start;
 		float t = Vector2.Dot(circle.Position - line.Start, ab) / Vector2.Dot(ab, ab);
-		if (t is < 0 or > 1)
-			return false;
+		t = Math.Clamp(t, 0, 1); // Clamp t to the range [0, 1] to ensure the closest point is on the segment.
 
-		// TODO: Is this wrong? Debug in visual tests by drawing the closest point.
-		Vector2 closestPoint = line.Start + ab * t;
+		Vector2 closestPoint = line.Start + t * ab;
+		float distanceSquared = Vector2.DistanceSquared(closestPoint, circle.Position);
 
-		LineSegment2D circleToClosest = new(circle.Position, closestPoint);
-		return circleToClosest.LengthSquared <= circle.Radius * circle.Radius;
+		return distanceSquared <= circle.Radius * circle.Radius;
 	}
 
 	public static bool LineRectangle(LineSegment2D line, Rectangle rectangle)
