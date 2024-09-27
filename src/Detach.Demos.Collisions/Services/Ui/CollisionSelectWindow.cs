@@ -27,6 +27,8 @@ public sealed class CollisionSelectWindow
 		new RectangleRectangleSat(),
 		new RectangleOrientedRectangleSat(),
 		new RectangleTriangle(),
+		new OrientedRectangleOrientedRectangleSat(),
+		new OrientedRectangleTriangle(),
 	];
 
 	public void Render(float dt)
