@@ -176,6 +176,17 @@ public static class Geometry3D
 		return true;
 	}
 
+	public static bool PointInCylinder(Vector3 point, Cylinder cylinder)
+	{
+		Vector2 pointXz = new(point.X, point.Z);
+		Vector2 positionXz = new(cylinder.Position.X, cylinder.Position.Z);
+
+		return
+			Vector2.DistanceSquared(pointXz, positionXz) <= cylinder.Radius * cylinder.Radius &&
+			point.Y >= cylinder.Position.Y &&
+			point.Y <= cylinder.Position.Y + cylinder.Height;
+	}
+
 	#endregion Point vs primitives
 
 	#region Sphere vs primitives
@@ -220,6 +231,21 @@ public static class Geometry3D
 		}
 
 		return false;
+	}
+
+	public static bool SphereCylinder(Sphere sphere, Cylinder cylinder)
+	{
+		Vector2 sphereXz = new(sphere.Position.X, sphere.Position.Z);
+		Vector2 cylinderXz = new(cylinder.Position.X, cylinder.Position.Z);
+
+		if (Vector2.DistanceSquared(sphereXz, cylinderXz) > cylinder.Radius * cylinder.Radius)
+			return false;
+
+		// TODO: Shouldn't this take the radius of the sphere into account?
+		if (sphere.Position.Y < cylinder.Position.Y || sphere.Position.Y > cylinder.Position.Y + cylinder.Height)
+			return false;
+
+		return true;
 	}
 
 	#endregion Sphere vs primitives
