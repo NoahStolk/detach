@@ -15,6 +15,10 @@ public sealed class CollisionSelectWindow
 		new PointInOrientedRectangle(),
 		new PointInTriangle(),
 		new LineLine(),
+		new LineCircle(),
+		new LineRectangle(),
+		new LineOrientedRectangle(),
+		new LineTriangle(),
 	];
 
 	public void Render(float dt)
