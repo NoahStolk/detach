@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Detach.Demos.Collisions.Services.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes;
 
 public static class CollisionSceneConstants
 {

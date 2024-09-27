@@ -4,15 +4,15 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.Services.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes;
 
-public sealed class PointInRectangle : CollisionScene<Vector2, Rectangle>
+public sealed class PointInCircle : CollisionScene<Vector2, Circle>
 {
 	private const float _pointOffset = 64;
-	private const float _rectangleOffset = 128;
+	private const float _circleOffset = 128;
 
-	public PointInRectangle()
-		: base(Geometry2D.PointInRectangle)
+	public PointInCircle()
+		: base(Geometry2D.PointInCircle)
 	{
 	}
 
@@ -22,9 +22,9 @@ public sealed class PointInRectangle : CollisionScene<Vector2, Rectangle>
 
 		float doubleTime = TotalTime * 2;
 		A = CollisionSceneConstants.Origin + new Vector2(MathF.Cos(doubleTime) * _pointOffset, MathF.Sin(doubleTime) * _pointOffset);
-		B = Rectangle.FromCenter(
-			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _rectangleOffset, MathF.Sin(TotalTime) * _rectangleOffset),
-			new Vector2(160 + MathF.Sin(TotalTime) * 32));
+		B = new Circle(
+			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _circleOffset, MathF.Sin(TotalTime) * _circleOffset),
+			64 + MathF.Sin(TotalTime) * 32);
 	}
 
 	public override void Render()
@@ -32,6 +32,6 @@ public sealed class PointInRectangle : CollisionScene<Vector2, Rectangle>
 		PositionedDrawList drawList = new(ImGui.GetWindowDrawList(), ImGui.GetCursorScreenPos());
 		drawList.AddBackground(CollisionSceneConstants.Size);
 		drawList.AddPoint(A, HasCollision);
-		drawList.AddRectangle(B, HasCollision);
+		drawList.AddCircle(B, HasCollision);
 	}
 }

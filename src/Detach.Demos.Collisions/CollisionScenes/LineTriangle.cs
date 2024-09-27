@@ -4,7 +4,7 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.Services.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes;
 
 public sealed class LineTriangle : CollisionScene<LineSegment2D, Triangle2D>
 {

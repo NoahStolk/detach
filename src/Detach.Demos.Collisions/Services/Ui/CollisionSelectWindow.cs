@@ -1,4 +1,4 @@
-﻿using Detach.Demos.Collisions.Services.CollisionScenes;
+﻿using Detach.Demos.Collisions.CollisionScenes;
 using Detach.Numerics;
 using ImGuiNET;
 using System.Numerics;

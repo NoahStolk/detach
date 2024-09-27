@@ -4,7 +4,7 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.Services.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes;
 
 public sealed class LineCircle : CollisionScene<LineSegment2D, Circle>
 {

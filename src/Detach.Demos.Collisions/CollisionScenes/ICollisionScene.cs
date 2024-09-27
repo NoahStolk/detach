@@ -1,4 +1,4 @@
-﻿namespace Detach.Demos.Collisions.Services.CollisionScenes;
+﻿namespace Detach.Demos.Collisions.CollisionScenes;
 
 public interface ICollisionScene
 {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Detach.Demos.Collisions.Services.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes;
 
 public abstract class CollisionScene<T1, T2> : ICollisionScene
 	where T1 : struct
