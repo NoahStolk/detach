@@ -1,4 +1,5 @@
 ﻿using Detach.Demos.Collisions.Services.CollisionScenes;
+using Detach.Numerics;
 using ImGuiNET;
 using System.Numerics;
 
@@ -13,6 +14,7 @@ public sealed class CollisionSelectWindow
 		new PointInRectangle(),
 		new PointInOrientedRectangle(),
 		new PointInTriangle(),
+		new LineLine(),
 	];
 
 	public void Render(float dt)
@@ -27,7 +29,10 @@ public sealed class CollisionSelectWindow
 					if (ImGui.BeginTabItem(collisionScene.GetType().Name))
 					{
 						ImGui.Text(Inline.Span($"Total time: {collisionScene.ExecutionTime.TotalMicroseconds:N2} microseconds"));
-						ImGui.Text(Inline.Span($"Allocated bytes (should always be 0): {collisionScene.AllocatedBytes:N0}"));
+						if (collisionScene.AllocatedBytes > 0)
+							ImGui.TextColored(Rgba.Red, Inline.Span($"Allocated bytes: {collisionScene.AllocatedBytes:N0}"));
+						else
+							ImGui.TextColored(Rgba.Green, "No memory allocated");
 
 						collisionScene.Update(dt);
 						collisionScene.Collide();
