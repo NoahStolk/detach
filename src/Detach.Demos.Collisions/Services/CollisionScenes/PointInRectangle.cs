@@ -10,6 +10,11 @@ public sealed class PointInRectangle : CollisionScene<Vector2, Rectangle>
 	private const float _pointOffset = 64;
 	private const float _rectangleOffset = 128;
 
+	public PointInRectangle()
+		: base(Geometry2D.PointInRectangle)
+	{
+	}
+
 	public override void Update(float dt)
 	{
 		base.Update(dt);
@@ -21,8 +26,6 @@ public sealed class PointInRectangle : CollisionScene<Vector2, Rectangle>
 		Vector2 center = CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _rectangleOffset, MathF.Sin(TotalTime) * _rectangleOffset);
 		Vector2 size = new(160 + MathF.Sin(TotalTime) * 32);
 		B = Rectangle.FromCenter(center, size);
-
-		HasCollision = Geometry2D.PointInRectangle(A, B);
 	}
 
 	public override void Render()

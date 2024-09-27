@@ -11,6 +11,11 @@ public sealed class PointInOrientedRectangle : CollisionScene<Vector2, OrientedR
 	private const float _pointOffset = 64;
 	private const float _rectangleOffset = 128;
 
+	public PointInOrientedRectangle()
+		: base(Geometry2D.PointInOrientedRectangle)
+	{
+	}
+
 	public override void Update(float dt)
 	{
 		base.Update(dt);
@@ -23,8 +28,6 @@ public sealed class PointInOrientedRectangle : CollisionScene<Vector2, OrientedR
 		Vector2 halfExtents = new(64 + MathF.Sin(TotalTime) * 32, 32 + MathF.Cos(TotalTime) * 16);
 		float rotationInRadians = TotalTime * 1.5f;
 		B = new OrientedRectangle(center, halfExtents, rotationInRadians);
-
-		HasCollision = Geometry2D.PointInOrientedRectangle(A, B);
 	}
 
 	public override void Render()

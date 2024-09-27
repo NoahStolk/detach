@@ -10,6 +10,11 @@ public sealed class PointOnLine : CollisionScene<Vector2, LineSegment2D>
 	private const float _pointOffset = 64;
 	private const float _linePointOffset = 128;
 
+	public PointOnLine()
+		: base(static (a, b) => Geometry2D.PointOnLine(a, b, 1f))
+	{
+	}
+
 	public override void Update(float dt)
 	{
 		base.Update(dt);
@@ -21,8 +26,6 @@ public sealed class PointOnLine : CollisionScene<Vector2, LineSegment2D>
 		B = new LineSegment2D(
 			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(halfTime) * _linePointOffset, MathF.Sin(halfTime) * _linePointOffset),
 			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(quarterTime) * _linePointOffset, MathF.Sin(quarterTime) * _linePointOffset));
-
-		HasCollision = Geometry2D.PointOnLine(A, B, 1f);
 	}
 
 	public override void Render()

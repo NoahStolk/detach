@@ -10,6 +10,11 @@ public sealed class PointInTriangle : CollisionScene<Vector2, Triangle2D>
 	private const float _pointOffset = 96;
 	private const float _triangleSize = 128;
 
+	public PointInTriangle()
+		: base(Geometry2D.PointInTriangle)
+	{
+	}
+
 	public override void Update(float dt)
 	{
 		base.Update(dt);
@@ -23,8 +28,6 @@ public sealed class PointInTriangle : CollisionScene<Vector2, Triangle2D>
 		Vector2 b = CollisionSceneConstants.Origin + triangleOffset + new Vector2(MathF.Cos(TotalTime + MathF.PI * 2 / 3) * _triangleSize, MathF.Sin(TotalTime + MathF.PI * 2 / 3) * _triangleSize);
 		Vector2 c = CollisionSceneConstants.Origin + triangleOffset + new Vector2(MathF.Cos(TotalTime + MathF.PI * 4 / 3) * _triangleSize, MathF.Sin(TotalTime + MathF.PI * 4 / 3) * _triangleSize);
 		B = new Triangle2D(a, b, c);
-
-		HasCollision = Geometry2D.PointInTriangle(A, B);
 	}
 
 	public override void Render()

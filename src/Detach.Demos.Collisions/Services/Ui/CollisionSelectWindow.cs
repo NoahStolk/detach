@@ -26,7 +26,11 @@ public sealed class CollisionSelectWindow
 				{
 					if (ImGui.BeginTabItem(collisionScene.GetType().Name))
 					{
+						ImGui.Text(Inline.Span($"Total time: {collisionScene.ExecutionTime.TotalMicroseconds:N2} microseconds"));
+						ImGui.Text(Inline.Span($"Allocated bytes (should always be 0): {collisionScene.AllocatedBytes:N0}"));
+
 						collisionScene.Update(dt);
+						collisionScene.Collide();
 						collisionScene.Render();
 
 						ImGui.EndTabItem();

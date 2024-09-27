@@ -10,6 +10,11 @@ public sealed class PointInCircle : CollisionScene<Vector2, Circle>
 	private const float _pointOffset = 64;
 	private const float _circleOffset = 128;
 
+	public PointInCircle()
+		: base(Geometry2D.PointInCircle)
+	{
+	}
+
 	public override void Update(float dt)
 	{
 		base.Update(dt);
@@ -20,8 +25,6 @@ public sealed class PointInCircle : CollisionScene<Vector2, Circle>
 		B = new Circle(
 			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _circleOffset, MathF.Sin(TotalTime) * _circleOffset),
 			64 + MathF.Sin(TotalTime) * 32);
-
-		HasCollision = Geometry2D.PointInCircle(A, B);
 	}
 
 	public override void Render()
