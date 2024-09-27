@@ -36,15 +36,5 @@ public sealed class LineCircle : CollisionScene<LineSegment2D, Circle>
 		drawList.AddBackground(CollisionSceneConstants.Size);
 		drawList.AddLine(A, HasCollision);
 		drawList.AddCircle(B, HasCollision);
-
-		Vector2 ab = A.End - A.Start;
-		float t = Vector2.Dot(B.Position - A.Start, ab) / Vector2.Dot(ab, ab);
-
-		drawList.DrawList.AddText(drawList.Origin, 0xFFFFFFFF, $"t: {t}");
-		Vector2 closestPoint = A.Start + ab * t;
-		drawList.DrawList.AddCircleFilled(drawList.Origin + closestPoint, 3, 0xFF0000FF);
-
-		LineSegment2D circleToClosest = new(B.Position, closestPoint);
-		drawList.DrawList.AddLine(drawList.Origin + circleToClosest.Start, drawList.Origin + circleToClosest.End, 0xFF0000FF);
 	}
 }
