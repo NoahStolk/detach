@@ -4,16 +4,16 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class CircleTriangle : CollisionScene<Circle, Triangle2D>
+public sealed class PointInTriangle : CollisionScene<Vector2, Triangle2D>
 {
-	private const float _circleOffset = 64;
+	private const float _pointOffset = 96;
 	private const float _triangleSize = 128;
 	private static readonly Vector2 _triangleOffset = new(48, 24);
 
-	public CircleTriangle()
-		: base(Geometry2D.CircleTriangle)
+	public PointInTriangle()
+		: base(Geometry2D.PointInTriangle)
 	{
 	}
 
@@ -21,11 +21,8 @@ public sealed class CircleTriangle : CollisionScene<Circle, Triangle2D>
 	{
 		base.Update(dt);
 
-		float halfTime = TotalTime / 2;
-		float quarterTime = TotalTime / 4;
-		A = new Circle(
-			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(halfTime) * _circleOffset, MathF.Sin(quarterTime) * _circleOffset),
-			64 + MathF.Sin(TotalTime) * 32);
+		float doubleTime = TotalTime * 2;
+		A = CollisionSceneConstants.Origin + new Vector2(MathF.Cos(doubleTime) * _pointOffset, MathF.Sin(doubleTime) * _pointOffset);
 		B = new Triangle2D(
 			CollisionSceneConstants.Origin + _triangleOffset + new Vector2(MathF.Cos(TotalTime) * _triangleSize, MathF.Sin(TotalTime) * _triangleSize),
 			CollisionSceneConstants.Origin + _triangleOffset + new Vector2(MathF.Cos(TotalTime + MathF.PI * 2 / 3) * _triangleSize, MathF.Sin(TotalTime + MathF.PI * 2 / 3) * _triangleSize),
@@ -36,7 +33,7 @@ public sealed class CircleTriangle : CollisionScene<Circle, Triangle2D>
 	{
 		PositionedDrawList drawList = new(ImGui.GetWindowDrawList(), ImGui.GetCursorScreenPos());
 		drawList.AddBackground(CollisionSceneConstants.Size);
-		drawList.AddCircle(A, HasCollision);
+		drawList.AddPoint(A, HasCollision);
 		drawList.AddTriangle(B, HasCollision);
 	}
 }

@@ -4,7 +4,7 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes.TwoDimensional;
 
 public sealed class PointOnLine : CollisionScene<Vector2, LineSegment2D>
 {

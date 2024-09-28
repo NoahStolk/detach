@@ -176,6 +176,17 @@ public static class Geometry3D
 		return true;
 	}
 
+	public static bool PointInCylinder(Vector3 point, Cylinder cylinder)
+	{
+		Vector2 pointXz = new(point.X, point.Z);
+		Vector2 positionXz = new(cylinder.BasePosition.X, cylinder.BasePosition.Z);
+
+		return
+			Vector2.DistanceSquared(pointXz, positionXz) <= cylinder.Radius * cylinder.Radius &&
+			point.Y >= cylinder.BasePosition.Y &&
+			point.Y <= cylinder.BasePosition.Y + cylinder.Height;
+	}
+
 	#endregion Point vs primitives
 
 	#region Sphere vs primitives
@@ -220,6 +231,27 @@ public static class Geometry3D
 		}
 
 		return false;
+	}
+
+	public static bool SphereCylinder(Sphere sphere, Cylinder cylinder)
+	{
+		// Project the sphere's center onto the XZ plane.
+		Vector2 sphereXz = new(sphere.Position.X, sphere.Position.Z);
+		Vector2 cylinderXz = new(cylinder.BasePosition.X, cylinder.BasePosition.Z);
+
+		// Check if the distance in the XZ plane is less than or equal to the sum of the radii.
+		float distanceSquaredXz = Vector2.DistanceSquared(sphereXz, cylinderXz);
+		float radiusSum = sphere.Radius + cylinder.Radius;
+		if (distanceSquaredXz > radiusSum * radiusSum)
+			return false;
+
+		// Check if the sphere's center is within the height range of the cylinder.
+		float sphereMinY = sphere.Position.Y - sphere.Radius;
+		float sphereMaxY = sphere.Position.Y + sphere.Radius;
+		float cylinderMinY = cylinder.BasePosition.Y;
+		float cylinderMaxY = cylinder.BasePosition.Y + cylinder.Height;
+
+		return sphereMaxY >= cylinderMinY && sphereMinY <= cylinderMaxY;
 	}
 
 	#endregion Sphere vs primitives
@@ -505,6 +537,31 @@ public static class Geometry3D
 
 	#endregion Triangle vs primitives
 
+	#region Cylinder vs primitives
+
+	public static bool CylinderCylinder(Cylinder cylinder1, Cylinder cylinder2)
+	{
+		// Project the cylinder's centers onto the XZ plane.
+		Vector2 cylinder1Xz = new(cylinder1.BasePosition.X, cylinder1.BasePosition.Z);
+		Vector2 cylinder2Xz = new(cylinder2.BasePosition.X, cylinder2.BasePosition.Z);
+
+		// Check if the distance in the XZ plane is less than or equal to the sum of the radii.
+		float distanceSquaredXz = Vector2.DistanceSquared(cylinder1Xz, cylinder2Xz);
+		float radiusSum = cylinder1.Radius + cylinder2.Radius;
+		if (distanceSquaredXz > radiusSum * radiusSum)
+			return false;
+
+		// Check if the cylinders' heights overlap.
+		float cylinder1MinY = cylinder1.BasePosition.Y;
+		float cylinder1MaxY = cylinder1.BasePosition.Y + cylinder1.Height;
+		float cylinder2MinY = cylinder2.BasePosition.Y;
+		float cylinder2MaxY = cylinder2.BasePosition.Y + cylinder2.Height;
+
+		return cylinder1MaxY >= cylinder2MinY && cylinder1MinY <= cylinder2MaxY;
+	}
+
+	#endregion Cylinder vs primitives
+
 	#region Raycasting
 
 	public static bool Raycast(Sphere sphere, Ray ray, out float distance)
@@ -770,6 +827,40 @@ public static class Geometry3D
 
 		Vector3 barycentric = Barycentric(raycastResult.Point, triangle);
 		return barycentric is { X: >= 0 and <= 1, Y: >= 0 and <= 1, Z: >= 0 and <= 1 };
+	}
+
+	// TODO: Test this method.
+	public static bool Raycast(Cylinder cylinder, Ray ray, out float distance)
+	{
+		distance = default;
+
+		Vector2 cylinderXz = new(cylinder.BasePosition.X, cylinder.BasePosition.Z);
+		Vector2 rayOriginXz = new(ray.Origin.X, ray.Origin.Z);
+		Vector2 rayDirectionXz = new(ray.Direction.X, ray.Direction.Z);
+
+		Vector2 d = cylinderXz - rayOriginXz;
+		float a = Vector2.Dot(rayDirectionXz, rayDirectionXz);
+		float b = 2 * Vector2.Dot(rayDirectionXz, d);
+		float c = Vector2.Dot(d, d) - cylinder.Radius * cylinder.Radius;
+
+		float discriminant = b * b - 4 * a * c;
+		if (discriminant < 0)
+			return false;
+
+		float t1 = (-b + MathF.Sqrt(discriminant)) / (2 * a);
+		float t2 = (-b - MathF.Sqrt(discriminant)) / (2 * a);
+
+		float y1 = ray.Origin.Y + ray.Direction.Y * t1;
+		float y2 = ray.Origin.Y + ray.Direction.Y * t2;
+
+		if (y1 < cylinder.BasePosition.Y || y1 > cylinder.BasePosition.Y + cylinder.Height)
+			t1 = float.MaxValue;
+
+		if (y2 < cylinder.BasePosition.Y || y2 > cylinder.BasePosition.Y + cylinder.Height)
+			t2 = float.MaxValue;
+
+		distance = Math.Min(t1, t2);
+		return distance >= 0;
 	}
 
 	#endregion Raycasting
