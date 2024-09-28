@@ -11,6 +11,7 @@ namespace Detach.Demos.Collisions;
 
 [Register<GlfwInput>(Scope.SingleInstance)]
 [Register<App>(Scope.SingleInstance)]
+[Register<Renderer3D>(Scope.SingleInstance)]
 [Register<CollisionSelectWindow>(Scope.SingleInstance)]
 #pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.
 public sealed partial class Container : IContainer<App>
