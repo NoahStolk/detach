@@ -2,6 +2,17 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.13.0
+
+### Added
+
+- Added `Cylinder` struct to `Detach.Collisions.Primitives3D` namespace.
+- Added cylinder collision functions to `Geometry3D`:
+  - `PointInCylinder`
+  - `SphereCylinder`
+  - `CylinderCylinder`
+  - `Raycast(Cylinder cylinder, Ray ray, out float distance)`
+
 ## 0.12.0
 
 ### Added
@@ -14,7 +25,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
-- `OrientedRectangle.GetVertices()` now returns vertices in the correct order. The 2nd and 3rd vertices were swapped.
+- `OrientedRectangle.GetVertices` now returns vertices in the correct order. The 2nd and 3rd vertices were swapped.
 - Fixed `Geometry2D.LineCircle` implementation. It did not detect all intersections correctly.
 
 ## 0.11.2
