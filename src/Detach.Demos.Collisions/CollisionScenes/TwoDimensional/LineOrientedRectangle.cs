@@ -4,15 +4,15 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class PointInOrientedRectangle : CollisionScene<Vector2, OrientedRectangle>
+public sealed class LineOrientedRectangle : CollisionScene<LineSegment2D, OrientedRectangle>
 {
-	private const float _pointOffset = 64;
+	private const float _linePointOffsetA = 64;
 	private const float _rectangleOffset = 128;
 
-	public PointInOrientedRectangle()
-		: base(Geometry2D.PointInOrientedRectangle)
+	public LineOrientedRectangle()
+		: base(Geometry2D.LineOrientedRectangle)
 	{
 	}
 
@@ -20,8 +20,11 @@ public sealed class PointInOrientedRectangle : CollisionScene<Vector2, OrientedR
 	{
 		base.Update(dt);
 
-		float doubleTime = TotalTime * 2;
-		A = CollisionSceneConstants.Origin + new Vector2(MathF.Cos(doubleTime) * _pointOffset, MathF.Sin(doubleTime) * _pointOffset);
+		float halfTime = TotalTime / 2;
+		float quarterTime = TotalTime / 4;
+		A = new LineSegment2D(
+			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(quarterTime) * _linePointOffsetA, MathF.Sin(quarterTime) * _linePointOffsetA),
+			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _linePointOffsetA, MathF.Sin(halfTime) * _linePointOffsetA));
 		B = new OrientedRectangle(
 			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _rectangleOffset, MathF.Sin(TotalTime) * _rectangleOffset),
 			new Vector2(64 + MathF.Sin(TotalTime) * 32, 32 + MathF.Cos(TotalTime) * 16),
@@ -32,7 +35,7 @@ public sealed class PointInOrientedRectangle : CollisionScene<Vector2, OrientedR
 	{
 		PositionedDrawList drawList = new(ImGui.GetWindowDrawList(), ImGui.GetCursorScreenPos());
 		drawList.AddBackground(CollisionSceneConstants.Size);
-		drawList.AddPoint(A, HasCollision);
+		drawList.AddLine(A, HasCollision);
 		drawList.AddOrientedRectangle(B, HasCollision);
 	}
 }

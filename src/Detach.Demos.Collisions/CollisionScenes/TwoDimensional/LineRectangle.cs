@@ -4,15 +4,15 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class LineCircle : CollisionScene<LineSegment2D, Circle>
+public sealed class LineRectangle : CollisionScene<LineSegment2D, Rectangle>
 {
 	private const float _linePointOffsetA = 64;
-	private const float _circleOffset = 128;
+	private const float _rectangleOffset = 128;
 
-	public LineCircle()
-		: base(Geometry2D.LineCircle)
+	public LineRectangle()
+		: base(Geometry2D.LineRectangle)
 	{
 	}
 
@@ -25,9 +25,9 @@ public sealed class LineCircle : CollisionScene<LineSegment2D, Circle>
 		A = new LineSegment2D(
 			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(quarterTime) * _linePointOffsetA, MathF.Sin(quarterTime) * _linePointOffsetA),
 			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _linePointOffsetA, MathF.Sin(halfTime) * _linePointOffsetA));
-		B = new Circle(
-			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _circleOffset, MathF.Sin(TotalTime) * _circleOffset),
-			64 + MathF.Sin(TotalTime) * 32);
+		B = Rectangle.FromCenter(
+			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _rectangleOffset, MathF.Sin(TotalTime) * _rectangleOffset),
+			new Vector2(160 + MathF.Sin(TotalTime) * 32));
 	}
 
 	public override void Render()
@@ -35,6 +35,6 @@ public sealed class LineCircle : CollisionScene<LineSegment2D, Circle>
 		PositionedDrawList drawList = new(ImGui.GetWindowDrawList(), ImGui.GetCursorScreenPos());
 		drawList.AddBackground(CollisionSceneConstants.Size);
 		drawList.AddLine(A, HasCollision);
-		drawList.AddCircle(B, HasCollision);
+		drawList.AddRectangle(B, HasCollision);
 	}
 }

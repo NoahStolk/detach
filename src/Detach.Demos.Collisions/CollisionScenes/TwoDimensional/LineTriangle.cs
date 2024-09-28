@@ -4,16 +4,16 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class RectangleTriangle : CollisionScene<Rectangle, Triangle2D>
+public sealed class LineTriangle : CollisionScene<LineSegment2D, Triangle2D>
 {
-	private const float _rectangleOffset = 64;
-	private const float _triangleSize = 64;
-	private static readonly Vector2 _triangleOffset = new(128, 24);
+	private const float _linePointOffsetA = 64;
+	private const float _triangleSize = 128;
+	private static readonly Vector2 _triangleOffset = new(48, 24);
 
-	public RectangleTriangle()
-		: base(Geometry2D.RectangleTriangle)
+	public LineTriangle()
+		: base(Geometry2D.LineTriangle)
 	{
 	}
 
@@ -23,9 +23,9 @@ public sealed class RectangleTriangle : CollisionScene<Rectangle, Triangle2D>
 
 		float halfTime = TotalTime / 2;
 		float quarterTime = TotalTime / 4;
-		A = Rectangle.FromCenter(
-			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _rectangleOffset, MathF.Sin(halfTime) * _rectangleOffset),
-			new Vector2(160 + MathF.Sin(quarterTime) * 32));
+		A = new LineSegment2D(
+			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(quarterTime) * _linePointOffsetA, MathF.Sin(quarterTime) * _linePointOffsetA),
+			CollisionSceneConstants.Origin + new Vector2(MathF.Cos(TotalTime) * _linePointOffsetA, MathF.Sin(halfTime) * _linePointOffsetA));
 		B = new Triangle2D(
 			CollisionSceneConstants.Origin + _triangleOffset + new Vector2(MathF.Cos(TotalTime) * _triangleSize, MathF.Sin(TotalTime) * _triangleSize),
 			CollisionSceneConstants.Origin + _triangleOffset + new Vector2(MathF.Cos(TotalTime + MathF.PI * 2 / 3) * _triangleSize, MathF.Sin(TotalTime + MathF.PI * 2 / 3) * _triangleSize),
@@ -36,7 +36,7 @@ public sealed class RectangleTriangle : CollisionScene<Rectangle, Triangle2D>
 	{
 		PositionedDrawList drawList = new(ImGui.GetWindowDrawList(), ImGui.GetCursorScreenPos());
 		drawList.AddBackground(CollisionSceneConstants.Size);
-		drawList.AddRectangle(A, HasCollision);
+		drawList.AddLine(A, HasCollision);
 		drawList.AddTriangle(B, HasCollision);
 	}
 }

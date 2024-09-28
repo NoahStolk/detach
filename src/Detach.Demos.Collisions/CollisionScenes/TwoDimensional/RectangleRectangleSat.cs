@@ -4,15 +4,15 @@ using Detach.Demos.Collisions.Utils;
 using ImGuiNET;
 using System.Numerics;
 
-namespace Detach.Demos.Collisions.CollisionScenes;
+namespace Detach.Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class RectangleRectangle : CollisionScene<Rectangle, Rectangle>
+public sealed class RectangleRectangleSat : CollisionScene<Rectangle, Rectangle>
 {
 	private const float _rectangleOffsetA = 64;
 	private const float _rectangleOffsetB = 128;
 
-	public RectangleRectangle()
-		: base(Geometry2D.RectangleRectangle)
+	public RectangleRectangleSat()
+		: base(Geometry2D.RectangleRectangleSat)
 	{
 	}
 
