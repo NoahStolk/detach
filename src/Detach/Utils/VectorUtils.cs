@@ -1,3 +1,4 @@
+using Detach.Numerics;
 using System.Numerics;
 
 namespace Detach.Utils;
@@ -76,5 +77,16 @@ public static class VectorUtils
 		float normalizedY = vector.Y / magnitude;
 		float normalizedZ = vector.Z / magnitude;
 		return new Vector3(normalizedX * maxLength, normalizedY * maxLength, normalizedZ * maxLength);
+	}
+
+	/// <summary>
+	/// Transforms the vector by the specified 3x3 matrix.
+	/// </summary>
+	public static Vector3 Transform(Vector3 vector, Matrix3 matrix)
+	{
+		return new Vector3(
+			vector.X * matrix.M11 + vector.Y * matrix.M21 + vector.Z * matrix.M31,
+			vector.X * matrix.M12 + vector.Y * matrix.M22 + vector.Z * matrix.M32,
+			vector.X * matrix.M13 + vector.Y * matrix.M23 + vector.Z * matrix.M33);
 	}
 }

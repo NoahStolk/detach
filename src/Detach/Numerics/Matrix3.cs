@@ -28,6 +28,19 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 		M33 = m33;
 	}
 
+	public Matrix3(Vector3 row1, Vector3 row2, Vector3 row3)
+	{
+		M11 = row1.X;
+		M12 = row1.Y;
+		M13 = row1.Z;
+		M21 = row2.X;
+		M22 = row2.Y;
+		M23 = row2.Z;
+		M31 = row3.X;
+		M32 = row3.Y;
+		M33 = row3.Z;
+	}
+
 	public Matrix3(Span<float> span)
 	{
 		if (span.Length != 9)
@@ -76,6 +89,24 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 	public Span<float> AsSpan()
 	{
 		return MemoryMarshal.CreateSpan(ref M11, 9);
+	}
+
+	public Matrix4 ToMatrix4()
+	{
+		return new Matrix4(
+			M11, M12, M13, 0,
+			M21, M22, M23, 0,
+			M31, M32, M33, 0,
+			0, 0, 0, 1);
+	}
+
+	public Matrix4x4 ToMatrix4x4()
+	{
+		return new Matrix4x4(
+			M11, M12, M13, 0,
+			M21, M22, M23, 0,
+			M31, M32, M33, 0,
+			0, 0, 0, 1);
 	}
 
 	public static Matrix3 Transpose(Matrix3 matrix)
@@ -174,6 +205,25 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			t * x * x + cos, t * x * y + sin * z, t * x * z - sin * y,
 			t * x * y - sin * z, t * y * y + cos, t * y * z + sin * x,
 			t * x * z + sin * y, t * y * z - sin * x, t * z * z + cos);
+	}
+
+	public static Matrix3 FromQuaternion(Quaternion quaternion)
+	{
+		float xx = quaternion.X * quaternion.X;
+		float yy = quaternion.Y * quaternion.Y;
+		float zz = quaternion.Z * quaternion.Z;
+
+		float xy = quaternion.X * quaternion.Y;
+		float wz = quaternion.Z * quaternion.W;
+		float xz = quaternion.Z * quaternion.X;
+		float wy = quaternion.Y * quaternion.W;
+		float yz = quaternion.Y * quaternion.Z;
+		float wx = quaternion.X * quaternion.W;
+
+		return new Matrix3(
+			new Vector3(1.0f - 2.0f * (yy + zz), 2.0f * (xy + wz), 2.0f * (xz - wy)),
+			new Vector3(2.0f * (xy - wz), 1.0f - 2.0f * (zz + xx), 2.0f * (yz + wx)),
+			new Vector3(2.0f * (xz + wy), 2.0f * (yz - wx), 1.0f - 2.0f * (yy + xx)));
 	}
 
 	public static Matrix3 Default()

@@ -2,6 +2,17 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.14.0
+
+### Added
+
+- Added `SphereCast` 3D primitive to `Detach.Collisions.Primitives3D` namespace.
+- Added `SphereCastAabb` and `SphereCastObb` methods to `Geometry3D` class.
+- Added `VectorUtils.Transform(Vector3 vector, Matrix3 matrix)` method.
+- Added `Matrix3` constructor accepting 3 `Vector3` parameters.
+- Added `ToMatrix4` and `ToMatrix4x4` methods to `Matrix3` struct.
+- Added `FromQuaternion` method to `Matrix3` struct.
+
 ## 0.13.0
 
 ### Added

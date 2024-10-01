@@ -1,5 +1,7 @@
 ﻿using Detach.Buffers;
 using Detach.Collisions.Primitives3D;
+using Detach.Numerics;
+using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -909,6 +911,68 @@ public static class Geometry3D
 	}
 
 	#endregion Linetesting
+
+	#region Sphere casting
+
+	public static bool SphereCastAabb(SphereCast sphereCast, Aabb aabb)
+	{
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+		direction /= length; // Normalize the direction.
+
+		// Expand the AABB by the sphere's radius.
+		Vector3 aabbMin = aabb.GetMin() - new Vector3(sphereCast.Radius);
+		Vector3 aabbMax = aabb.GetMax() + new Vector3(sphereCast.Radius);
+
+		// Perform ray-AABB intersection test.
+		float tMin = 0.0f;
+		float tMax = length;
+
+		for (int i = 0; i < 3; i++)
+		{
+			if (MathF.Abs(direction[i]) < float.Epsilon)
+			{
+				// Ray is parallel to the slab. No hit if origin not within slab.
+				if (sphereCast.Start[i] < aabbMin[i] || sphereCast.Start[i] > aabbMax[i])
+					return false;
+			}
+			else
+			{
+				// Compute intersection t value of ray with near and far plane of slab.
+				float ood = 1.0f / direction[i];
+				float t1 = (aabbMin[i] - sphereCast.Start[i]) * ood;
+				float t2 = (aabbMax[i] - sphereCast.Start[i]) * ood;
+
+				// Make t1 be intersection with near plane, t2 with far plane.
+				if (t1 > t2)
+					(t1, t2) = (t2, t1);
+
+				// Compute the intersection of slab intersection intervals.
+				tMin = MathF.Max(tMin, t1);
+				tMax = MathF.Min(tMax, t2);
+
+				// Exit with no collision as soon as slab intersection becomes empty.
+				if (tMin > tMax)
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static bool SphereCastObb(SphereCast sphereCast, Obb obb)
+	{
+		// Transform sphere start and end points to OBB's local space.
+		Matrix3 invOrientation = Matrix3.Transpose(obb.Orientation);
+		Vector3 localSphereStart = VectorUtils.Transform(sphereCast.Start - obb.Position, invOrientation);
+		Vector3 localSphereEnd = VectorUtils.Transform(sphereCast.End - obb.Position, invOrientation);
+
+		// Perform sphere cast against the AABB in local space.
+		Aabb aabb = new(Vector3.Zero, obb.HalfExtents * 2);
+		return SphereCastAabb(new SphereCast(localSphereStart, localSphereEnd, sphereCast.Radius), aabb);
+	}
+
+	#endregion Sphere casting
 
 	#region Public helpers
 
