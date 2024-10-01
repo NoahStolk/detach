@@ -4,6 +4,7 @@ namespace Detach.Collisions.Primitives3D;
 
 public record struct Cylinder
 {
+	// TODO: Rename to BaseCenter.
 	public Vector3 BasePosition;
 	public float Radius;
 	public float Height;

@@ -4,6 +4,7 @@ namespace Detach.Collisions.Primitives3D;
 
 public record struct Aabb
 {
+	// TODO: Rename to Center.
 	public Vector3 Origin;
 	public Vector3 Size;
 
@@ -42,14 +43,14 @@ public record struct Aabb
 
 		Span<Vector3> vertices =
 		[
-			new Vector3(min.X, min.Y, min.Z),
-			new Vector3(min.X, min.Y, max.Z),
-			new Vector3(min.X, max.Y, min.Z),
-			new Vector3(min.X, max.Y, max.Z),
-			new Vector3(max.X, min.Y, min.Z),
-			new Vector3(max.X, min.Y, max.Z),
-			new Vector3(max.X, max.Y, min.Z),
-			new Vector3(max.X, max.Y, max.Z),
+			new(min.X, min.Y, min.Z),
+			new(min.X, min.Y, max.Z),
+			new(min.X, max.Y, min.Z),
+			new(min.X, max.Y, max.Z),
+			new(max.X, min.Y, min.Z),
+			new(max.X, min.Y, max.Z),
+			new(max.X, max.Y, min.Z),
+			new(max.X, max.Y, max.Z),
 		];
 
 		Interval result = default;

@@ -6,6 +6,7 @@ namespace Detach.Collisions.Primitives3D;
 
 public record struct Obb
 {
+	// TODO: Rename to Center.
 	public Vector3 Position;
 	public Vector3 HalfExtents;
 	public Matrix3 Orientation;
