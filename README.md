@@ -24,8 +24,8 @@ Zero-dependency library for game engines, games, and other real-time application
 | Point            | N/A   | 1             | 1   | -          | 1      | 1    | 1   | 1     | 1        | 1       | 1        | -                | -       | -               |
 | LineSegment3D    | 1     | N/A           | N/A | -          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
 | Ray              | 1     | N/A           | N/A | -          | 2      | 2    | 2   | 2     | 2        | -       | 1        | -                | -       | -               |
-| SphereCast       | -     | -             | -   | -          | -      | 1    | 1   | -     | -        | -       | -        | -                | -       | -               |
-| Sphere           | 1     | 1             | 2   | -          | 1      | 1    | 1   | 1     | 1        | 1       | 1        | -                | -       | -               |
+| SphereCast       | -     | -             | -   | 1          | 1      | 1    | 1   | -     | -        | -       | -        | -                | -       | -               |
+| Sphere           | 1     | 1             | 2   | 1          | 1      | 1    | 1   | 1     | 1        | 1       | 1        | -                | -       | -               |
 | Aabb             | 1     | 1             | 2   | 1          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
 | Obb              | 1     | 1             | 2   | 1          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
 | Plane            | 1     | 1             | 2   | -          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |

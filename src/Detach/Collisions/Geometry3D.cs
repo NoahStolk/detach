@@ -914,6 +914,71 @@ public static class Geometry3D
 
 	#region Sphere casting
 
+	public static bool SphereCastSphere(SphereCast sphereCast, Sphere sphere)
+	{
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+		direction /= length; // Normalize the direction.
+
+		Vector3 m = sphereCast.Start - sphere.Position;
+		float b = Vector3.Dot(m, direction);
+		float c = Vector3.Dot(m, m) - (sphere.Radius + sphereCast.Radius) * (sphere.Radius + sphereCast.Radius);
+
+		// Exit if the start point is outside the sphere, and the sphere from the sphere cast is not moving towards the stationary sphere.
+		if (c > 0.0f && b > 0.0f)
+			return false;
+
+		float discriminant = b * b - c;
+
+		// A negative discriminant means no real roots, so no intersection.
+		if (discriminant < 0.0f)
+			return false;
+
+		// Calculate the smallest t value of intersection.
+		float t = -b - MathF.Sqrt(discriminant);
+
+		// If t is negative, the intersection point is behind the start point.
+		if (t < 0.0f)
+			t = 0.0f;
+
+		// Check if the intersection point is within the segment.
+		return t <= length;
+	}
+
+	public static bool SphereCastSphereCast(SphereCast sphereCast1, SphereCast sphereCast2)
+	{
+		Vector3 direction1 = sphereCast1.End - sphereCast1.Start;
+		Vector3 direction2 = sphereCast2.End - sphereCast2.Start;
+		float radiusSum = sphereCast1.Radius + sphereCast2.Radius;
+
+		// Calculate the relative velocity.
+		Vector3 relativeVelocity = direction2 - direction1;
+
+		// Calculate the vector between the starting points of the sphere casts.
+		Vector3 startDiff = sphereCast2.Start - sphereCast1.Start;
+
+		// Calculate the coefficients of the quadratic equation.
+		float a = Vector3.Dot(relativeVelocity, relativeVelocity);
+		float b = 2 * Vector3.Dot(relativeVelocity, startDiff);
+		float c = Vector3.Dot(startDiff, startDiff) - radiusSum * radiusSum;
+
+		// Solve the quadratic equation for t.
+		float discriminant = b * b - 4 * a * c;
+		if (discriminant < 0)
+		{
+			// No real roots, the sphere casts do not intersect.
+			return false;
+		}
+
+		// Calculate the two possible solutions for t.
+		float sqrtDiscriminant = MathF.Sqrt(discriminant);
+		float t1 = (-b - sqrtDiscriminant) / (2 * a);
+		float t2 = (-b + sqrtDiscriminant) / (2 * a);
+
+		// Check if there is an intersection within the time interval [0, 1].
+		return t1 is >= 0 and <= 1 || t2 is >= 0 and <= 1;
+	}
+
 	public static bool SphereCastAabb(SphereCast sphereCast, Aabb aabb)
 	{
 		Vector3 direction = sphereCast.End - sphereCast.Start;

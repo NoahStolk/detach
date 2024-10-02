@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.15.0
+
+### Added
+
+- Added `SphereCastSphere` and `SphereCastSphereCast` methods to `Geometry3D` class.
+
 ## 0.14.0
 
 ### Added
