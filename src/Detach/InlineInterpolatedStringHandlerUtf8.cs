@@ -5,7 +5,7 @@ namespace Detach;
 
 #pragma warning disable RCS1163
 [InterpolatedStringHandler]
-internal ref struct InlineInterpolatedStringHandlerUtf8
+public ref struct InlineInterpolatedStringHandlerUtf8
 {
 	private int _charsWritten;
 

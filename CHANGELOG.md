@@ -4,10 +4,20 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.16.0
 
+### Added
+
+- Added `Inline.Utf8` methods.
+- Added `Inline.BufferUtf8` property.
+- Added `InlineInterpolatedStringHandlerUtf8` struct.
+
 ### Changed
 
 - Renamed `Inline.Span` methods to `Inline.Utf16`.
 - Renamed `Inline.Buffer` property to `Inline.BufferUtf16`.
+
+### Removed
+
+- Removed redundant `Inline.Span` overload accepting a `string` parameter.
 
 ## 0.15.0
 
