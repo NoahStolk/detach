@@ -8,10 +8,11 @@ using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Unicode;
 
 namespace Detach.Numerics;
 
-public struct IntVector3<T> : IEquatable<IntVector3<T>>, IFormattable
+public struct IntVector3<T> : IEquatable<IntVector3<T>>, ISpanFormattable, IUtf8SpanFormattable
 	where T : IBinaryInteger<T>, IMinMaxValue<T>
 {
 	public T X;
@@ -218,5 +219,15 @@ public struct IntVector3<T> : IEquatable<IntVector3<T>>, IFormattable
 		sb.Append(Z.ToString(format, formatProvider));
 		sb.Append('>');
 		return sb.ToString();
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return Utf8.TryWrite(utf8Destination, provider, $"<{X}, {Y}, {Z}>", out bytesWritten);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return destination.TryWrite(provider, $"<{X}, {Y}, {Z}>", out charsWritten);
 	}
 }
