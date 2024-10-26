@@ -1,9 +1,10 @@
 ﻿using System.Numerics;
 using System.Runtime.InteropServices;
+using System.Text.Unicode;
 
 namespace Detach.Numerics;
 
-public record struct Matrix3 : IMatrixOperations<Matrix3>
+public record struct Matrix3 : IMatrixOperations<Matrix3>, ISpanFormattable, IUtf8SpanFormattable
 {
 	public float M11;
 	public float M12;
@@ -331,5 +332,26 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			default:
 				throw new IndexOutOfRangeException();
 		}
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return Utf8.TryWrite(utf8Destination, provider, $"<{M11}, {M12}, {M13}> <{M21}, {M22}, {M23}> <{M31}, {M32}, {M33}>", out bytesWritten);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return destination.TryWrite(provider, $"<{M11}, {M12}, {M13}> <{M21}, {M22}, {M23}> <{M31}, {M32}, {M33}>", out charsWritten);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = $"<{M11}, {M12}, {M13}> <{M21}, {M22}, {M23}> <{M31}, {M32}, {M33}>";
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"<{M11}, {M12}, {M13}> <{M21}, {M22}, {M23}> <{M31}, {M32}, {M33}>";
 	}
 }

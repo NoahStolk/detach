@@ -1,8 +1,9 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text.Unicode;
 
 namespace Detach.Numerics;
 
-public record struct Matrix2 : IMatrixOperations<Matrix2>
+public record struct Matrix2 : IMatrixOperations<Matrix2>, ISpanFormattable, IUtf8SpanFormattable
 {
 	public float M11;
 	public float M12;
@@ -181,5 +182,26 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>
 			default:
 				throw new IndexOutOfRangeException();
 		}
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return Utf8.TryWrite(utf8Destination, provider, $"<{M11}, {M12}> <{M21}, {M22}>", out bytesWritten);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return destination.TryWrite(provider, $"<{M11}, {M12}> <{M21}, {M22}>", out charsWritten);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = $"<{M11}, {M12}> <{M21}, {M22}>";
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"<{M11}, {M12}> <{M21}, {M22}>";
 	}
 }
