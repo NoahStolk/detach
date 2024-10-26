@@ -21,14 +21,14 @@ public static class ShapeTables
 				ImGui.TableNextRow();
 
 				ImGui.TableNextColumn();
-				ImGui.Text(Inline.Span(i));
+				ImGui.Text(Inline.Utf16(i));
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"Start##{i}"), ref lineSegment.Start, 0, 1024, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"Start##{i}"), ref lineSegment.Start, 0, 1024, "%.0f"))
 					Shapes2DState.LineSegments[i] = lineSegment;
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"End##{i}"), ref lineSegment.End, 0, 1024, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"End##{i}"), ref lineSegment.End, 0, 1024, "%.0f"))
 					Shapes2DState.LineSegments[i] = lineSegment;
 			}
 
@@ -51,14 +51,14 @@ public static class ShapeTables
 				ImGui.TableNextRow();
 
 				ImGui.TableNextColumn();
-				ImGui.Text(Inline.Span(i));
+				ImGui.Text(Inline.Utf16(i));
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"Position##{i}"), ref circle.Position, 0, 1024, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"Position##{i}"), ref circle.Position, 0, 1024, "%.0f"))
 					Shapes2DState.Circles[i] = circle;
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat(Inline.Span($"Radius##{i}"), ref circle.Radius, 0, 256, "%.0f"))
+				if (ImGui.SliderFloat(Inline.Utf16($"Radius##{i}"), ref circle.Radius, 0, 256, "%.0f"))
 					Shapes2DState.Circles[i] = circle;
 			}
 
@@ -81,14 +81,14 @@ public static class ShapeTables
 				ImGui.TableNextRow();
 
 				ImGui.TableNextColumn();
-				ImGui.Text(Inline.Span(i));
+				ImGui.Text(Inline.Utf16(i));
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"Position##{i}"), ref rectangle.Position, 0, 1024, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"Position##{i}"), ref rectangle.Position, 0, 1024, "%.0f"))
 					Shapes2DState.Rectangles[i] = rectangle;
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"Size##{i}"), ref rectangle.Size, 0, 256, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"Size##{i}"), ref rectangle.Size, 0, 256, "%.0f"))
 					Shapes2DState.Rectangles[i] = rectangle;
 			}
 
@@ -112,18 +112,18 @@ public static class ShapeTables
 				ImGui.TableNextRow();
 
 				ImGui.TableNextColumn();
-				ImGui.Text(Inline.Span(i));
+				ImGui.Text(Inline.Utf16(i));
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"Position##{i}"), ref orientedRectangle.Center, 0, 256, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"Position##{i}"), ref orientedRectangle.Center, 0, 256, "%.0f"))
 					Shapes2DState.OrientedRectangles[i] = orientedRectangle;
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat2(Inline.Span($"HalfExtents##{i}"), ref orientedRectangle.HalfExtents, 0, 256, "%.0f"))
+				if (ImGui.SliderFloat2(Inline.Utf16($"HalfExtents##{i}"), ref orientedRectangle.HalfExtents, 0, 256, "%.0f"))
 					Shapes2DState.OrientedRectangles[i] = orientedRectangle;
 
 				ImGui.TableNextColumn();
-				if (ImGui.SliderFloat(Inline.Span($"Rotation##{i}"), ref orientedRectangle.RotationInRadians, -MathF.PI, MathF.PI, "%.2f"))
+				if (ImGui.SliderFloat(Inline.Utf16($"Rotation##{i}"), ref orientedRectangle.RotationInRadians, -MathF.PI, MathF.PI, "%.2f"))
 					Shapes2DState.OrientedRectangles[i] = orientedRectangle;
 			}
 

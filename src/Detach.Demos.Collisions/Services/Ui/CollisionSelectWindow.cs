@@ -62,9 +62,9 @@ public sealed class CollisionSelectWindow
 
 			if (ImGui.BeginChild("Scene", default, ImGuiChildFlags.Border))
 			{
-				ImGui.Text(Inline.Span($"Total time: {_selectedScene.ExecutionTime.TotalMicroseconds:N2} microseconds"));
+				ImGui.Text(Inline.Utf16($"Total time: {_selectedScene.ExecutionTime.TotalMicroseconds:N2} microseconds"));
 				if (_selectedScene.AllocatedBytes > 0)
-					ImGui.TextColored(Rgba.Red, Inline.Span($"Allocated bytes: {_selectedScene.AllocatedBytes:N0}"));
+					ImGui.TextColored(Rgba.Red, Inline.Utf16($"Allocated bytes: {_selectedScene.AllocatedBytes:N0}"));
 				else
 					ImGui.TextColored(Rgba.Green, "No memory allocated");
 

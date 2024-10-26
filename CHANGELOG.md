@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.16.0
+
+### Changed
+
+- Renamed `Inline.Span` methods to `Inline.Utf16`.
+- Renamed `Inline.Buffer` property to `Inline.BufferUtf16`.
+
 ## 0.15.0
 
 ### Added
