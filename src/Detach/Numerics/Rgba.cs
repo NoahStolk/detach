@@ -1,10 +1,11 @@
 using Detach.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Text.Unicode;
 
 namespace Detach.Numerics;
 
-public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue)
+public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue) : ISpanFormattable, IUtf8SpanFormattable
 {
 	public Rgba(Rgb rgb, byte a = byte.MaxValue)
 		: this(rgb.R, rgb.G, rgb.B, a)
@@ -148,5 +149,26 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 	public static Rgba FromArgbInt(int argb)
 	{
 		return new Rgba((byte)(argb >> 16), (byte)(argb >> 8), (byte)argb, (byte)(argb >> 24));
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return Utf8.TryWrite(utf8Destination, provider, $"{R}, {G}, {B}, {A}", out bytesWritten);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return destination.TryWrite(provider, $"{R}, {G}, {B}, {A}", out charsWritten);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = $"{R}, {G}, {B}, {A}";
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"{R}, {G}, {B}, {A}";
 	}
 }
