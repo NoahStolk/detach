@@ -9,6 +9,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `Inline.Utf8` methods.
 - Added `Inline.BufferUtf8` property.
 - Added `InlineInterpolatedStringHandlerUtf8` struct.
+- Added overloads for formatting `System.Numerics.Plane` using interpolated string handlers.
 
 ### Changed
 

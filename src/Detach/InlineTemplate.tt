@@ -1,0 +1,79 @@
+﻿<#@ template language="C#" #>
+<#@ output extension=".g.cs" #>
+<#@ include file="TemplateUtils.ttinclude" #>
+<#@ import namespace="System.Text" #>
+<# (string TypeName, string[] FieldAccessors)[] types =
+[
+	("System.Numerics.Vector2", ["X", "Y"]),
+	("System.Numerics.Vector3", ["X", "Y", "Z"]),
+	("System.Numerics.Vector4", ["X", "Y", "Z", "W"]),
+	("System.Numerics.Quaternion", ["X", "Y", "Z", "W"]),
+	("System.Numerics.Matrix3x2", ["M11", "M12", "M21", "M22", "M31", "M32"]),
+	("System.Numerics.Matrix4x4", ["M11", "M12", "M13", "M14", "M21", "M22", "M23", "M24", "M31", "M32", "M33", "M34", "M41", "M42", "M43", "M44"]),
+	("System.Numerics.Plane", ["Normal.X", "Normal.Y", "Normal.Z", "D"]),
+	
+	// TODO: Maybe just implement ISpanFormattable / IUtf8SpanFormattable.
+	("Detach.Numerics.Rgba", ["R", "G", "B", "A"]),
+];
+
+string GenerateUtf8Method(string typeName, string[] fieldAccessors)
+{
+	StringBuilder writes = new();
+	for (int i = 0; i < fieldAccessors.Length; i++)
+	{
+		writes.AppendLine($"\t\tWriteUtf8(ref charsWritten, value.{fieldAccessors[i]}, format, provider);");
+		if (i < fieldAccessors.Length - 1)
+			writes.AppendLine("\t\tWriteUtf8(ref charsWritten, SeparatorUtf8);");
+	}
+
+	return $$"""
+			public static ReadOnlySpan<byte> Utf8({{typeName}} value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+			{
+			    int charsWritten = 0;
+		{{writes}}
+			    return _bufferUtf8.AsSpan(0, charsWritten);
+			}
+		""";
+}
+
+string GenerateUtf16Method(string typeName, string[] fieldAccessors)
+{
+	StringBuilder writes = new();
+	for (int i = 0; i < fieldAccessors.Length; i++)
+	{
+		writes.AppendLine($"\t\tWriteUtf16(ref charsWritten, value.{fieldAccessors[i]}, format, provider);");
+		if (i < fieldAccessors.Length - 1)
+			writes.AppendLine("\t\tWriteUtf16(ref charsWritten, _separatorUtf16);");
+	}
+
+	return $$"""
+			public static ReadOnlySpan<char> Utf16({{typeName}} value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+			{
+			    int charsWritten = 0;
+		{{writes}}
+			    return _bufferUtf16.AsSpan(0, charsWritten);
+			}
+		""";
+}
+
+#>
+<#= WriteHeader() #>
+
+namespace Detach;
+
+public static partial class Inline
+{
+	private const string _separatorUtf16 = ", ";
+
+	private static ReadOnlySpan<byte> SeparatorUtf8 => ", "u8;
+
+<# foreach ((string TypeName, string[] FieldAccessors) type in types) { #>
+<#= GenerateUtf8Method(type.TypeName, type.FieldAccessors) #>
+
+<#} #>
+
+<# foreach ((string TypeName, string[] FieldAccessors) type in types) { #>
+<#= GenerateUtf16Method(type.TypeName, type.FieldAccessors) #>
+
+<#} #>
+}
