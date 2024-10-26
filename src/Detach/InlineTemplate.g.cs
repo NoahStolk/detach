@@ -16,29 +16,29 @@ public static partial class Inline
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Vector2 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.X, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Y, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Vector3 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.X, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Y, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Z, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Vector4 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.X, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Y, format, provider);
@@ -47,12 +47,12 @@ public static partial class Inline
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.W, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Quaternion value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.X, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Y, format, provider);
@@ -61,12 +61,12 @@ public static partial class Inline
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.W, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Matrix3x2 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.M11, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M12, format, provider);
@@ -79,12 +79,12 @@ public static partial class Inline
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M32, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Matrix4x4 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.M11, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M12, format, provider);
@@ -117,12 +117,12 @@ public static partial class Inline
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M44, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<byte> Utf8(System.Numerics.Plane value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.Normal.X, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Normal.Y, format, provider);
@@ -131,35 +131,35 @@ public static partial class Inline
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.D, format, provider);
 
-	    return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten);
 	}
 
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Vector2 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.X, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.Y, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Vector3 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.X, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.Y, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.Z, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Vector4 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.X, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.Y, format, provider);
@@ -168,12 +168,12 @@ public static partial class Inline
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.W, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Quaternion value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.X, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.Y, format, provider);
@@ -182,12 +182,12 @@ public static partial class Inline
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.W, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Matrix3x2 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.M11, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.M12, format, provider);
@@ -200,12 +200,12 @@ public static partial class Inline
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.M32, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Matrix4x4 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.M11, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.M12, format, provider);
@@ -238,12 +238,12 @@ public static partial class Inline
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.M44, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 	public static ReadOnlySpan<char> Utf16(System.Numerics.Plane value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 	{
-	    int charsWritten = 0;
+		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.Normal.X, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.Normal.Y, format, provider);
@@ -252,7 +252,7 @@ public static partial class Inline
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.D, format, provider);
 
-	    return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten);
 	}
 
 }

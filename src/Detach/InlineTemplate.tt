@@ -26,9 +26,9 @@ string GenerateUtf8Method(string typeName, string[] fieldAccessors)
 	return $$"""
 			public static ReadOnlySpan<byte> Utf8({{typeName}} value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 			{
-			    int charsWritten = 0;
+				int charsWritten = 0;
 		{{writes}}
-			    return _bufferUtf8.AsSpan(0, charsWritten);
+				return _bufferUtf8.AsSpan(0, charsWritten);
 			}
 		""";
 }
@@ -46,9 +46,9 @@ string GenerateUtf16Method(string typeName, string[] fieldAccessors)
 	return $$"""
 			public static ReadOnlySpan<char> Utf16({{typeName}} value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
 			{
-			    int charsWritten = 0;
+				int charsWritten = 0;
 		{{writes}}
-			    return _bufferUtf16.AsSpan(0, charsWritten);
+				return _bufferUtf16.AsSpan(0, charsWritten);
 			}
 		""";
 }
