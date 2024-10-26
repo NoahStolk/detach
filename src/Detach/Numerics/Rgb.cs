@@ -1,10 +1,11 @@
 using Detach.Utils;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Text.Unicode;
 
 namespace Detach.Numerics;
 
-public readonly record struct Rgb(byte R, byte G, byte B)
+public readonly record struct Rgb(byte R, byte G, byte B) : ISpanFormattable, IUtf8SpanFormattable
 {
 	public Rgb(Rgba rgba)
 		: this(rgba.R, rgba.G, rgba.B)
@@ -160,5 +161,26 @@ public readonly record struct Rgb(byte R, byte G, byte B)
 	public static Rgb FromRgbInt(int rgb)
 	{
 		return new Rgb((byte)(rgb >> 24), (byte)(rgb >> 16), (byte)(rgb >> 8));
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return Utf8.TryWrite(utf8Destination, provider, $"{R}, {G}, {B}", out bytesWritten);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		return destination.TryWrite(provider, $"{R}, {G}, {B}", out charsWritten);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = $"{R}, {G}, {B}";
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"{R}, {G}, {B}";
 	}
 }
