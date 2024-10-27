@@ -11,8 +11,12 @@ namespace Detach;
 /// </summary>
 public static partial class Inline
 {
+	private const string _separatorUtf16 = ", ";
+
 	private static readonly byte[] _bufferUtf8 = new byte[2048];
 	private static readonly char[] _bufferUtf16 = new char[2048];
+
+	private static ReadOnlySpan<byte> SeparatorUtf8 => ", "u8;
 
 	public static Span<byte> BufferUtf8 => _bufferUtf8;
 	public static Span<char> BufferUtf16 => _bufferUtf16;
