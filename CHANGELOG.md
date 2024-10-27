@@ -28,6 +28,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - `IntVector2`
   - `IntVector3`
   - `IntVector4`
+- Converting `InlineInterpolatedStringHandlerUtf16` to `ReadOnlySpan<char>` now sets the next character to `'\0'` to prevent reading past the end of the string when the underlying memory is used directly.
 
 ### Removed
 

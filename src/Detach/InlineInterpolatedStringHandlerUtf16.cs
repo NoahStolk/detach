@@ -16,6 +16,7 @@ public ref struct InlineInterpolatedStringHandlerUtf16
 	// ReSharper restore UnusedParameter.Local
 	public static implicit operator ReadOnlySpan<char>(InlineInterpolatedStringHandlerUtf16 handler)
 	{
+		Inline.BufferUtf16[handler._charsWritten] = '\0'; // Null-terminate the string in case the underlying memory is used directly.
 		return Inline.BufferUtf16[..handler._charsWritten];
 	}
 
