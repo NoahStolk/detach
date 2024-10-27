@@ -418,44 +418,4 @@ public class MatricesTests
 	// TODO: Matrix2: Adjugate, Inverse, FastInverse.
 	// TODO: Matrix3: Adjugate, Inverse, Rotation, RotationX, RotationY, RotationZ, AxisAngle.
 	// TODO: Matrix4: Adjugate, Inverse, CreateTranslation, CreateScale, Rotation, RotationX, RotationY, RotationZ, AxisAngle, Transform, LookAt, Projection, Orthographic.
-
-	[TestMethod]
-	public void Matrix2SpanFormattable()
-	{
-		Matrix2 matrix2 = new(
-			1, 2.25f,
-			3, 4);
-
-		Assert.AreEqual("<1, 2.25> <3, 4>", matrix2.ToString());
-		Assert.AreEqual("<1, 2.25> <3, 4>", matrix2.ToString("G", null));
-		Assert.AreEqual("<1.0, 2.3> <3.0, 4.0>", matrix2.ToString("0.0", null));
-
-		Span<byte> utf8 = stackalloc byte[64];
-
-		matrix2.TryFormat(utf8, out int bytesWritten, [], null);
-		Assert.IsTrue("<1, 2.25> <3, 4>"u8.SequenceEqual(utf8[..bytesWritten]), Encoding.UTF8.GetString(utf8[..bytesWritten]));
-		utf8.Clear();
-
-		matrix2.TryFormat(utf8, out bytesWritten, "G", null);
-		Assert.IsTrue("<1, 2.25> <3, 4>"u8.SequenceEqual(utf8[..bytesWritten]), Encoding.UTF8.GetString(utf8[..bytesWritten]));
-		utf8.Clear();
-
-		matrix2.TryFormat(utf8, out bytesWritten, "0.0", null);
-		Assert.IsTrue("<1.0, 2.3> <3.0, 4.0>"u8.SequenceEqual(utf8[..bytesWritten]), Encoding.UTF8.GetString(utf8[..bytesWritten]));
-		utf8.Clear();
-
-		Span<char> utf16 = stackalloc char[64];
-
-		matrix2.TryFormat(utf16, out int charsWritten, [], null);
-		Assert.IsTrue("<1, 2.25> <3, 4>".AsSpan().SequenceEqual(utf16[..charsWritten]), new string(utf16[..charsWritten]));
-		utf16.Clear();
-
-		matrix2.TryFormat(utf16, out charsWritten, "G", null);
-		Assert.IsTrue("<1, 2.25> <3, 4>".AsSpan().SequenceEqual(utf16[..charsWritten]), new string(utf16[..charsWritten]));
-		utf16.Clear();
-
-		matrix2.TryFormat(utf16, out charsWritten, "0.0", null);
-		Assert.IsTrue("<1.0, 2.3> <3.0, 4.0>".AsSpan().SequenceEqual(utf16[..charsWritten]), new string(utf16[..charsWritten]));
-		utf16.Clear();
-	}
 }

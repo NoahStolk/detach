@@ -1,4 +1,5 @@
 ﻿using Detach.Utils;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text.Unicode;
 
@@ -217,7 +218,12 @@ public record struct Matrix2 : IMatrixOperations<Matrix2>, ISpanFormattable, IUt
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"<{M11.ToString(format, formatProvider)}, {M12.ToString(format, formatProvider)}> <{M21.ToString(format, formatProvider)}, {M22.ToString(format, formatProvider)}>";
+		FormattableString formattable = FormattableStringFactory.Create(
+			"<{0}, {1}> <{2}, {3}>",
+			M11.ToString(format, formatProvider),
+			M12.ToString(format, formatProvider),
+			M21.ToString(format, formatProvider),
+			M22.ToString(format, formatProvider));
 		return formattable.ToString(formatProvider);
 	}
 
