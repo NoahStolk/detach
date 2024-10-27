@@ -1,8 +1,9 @@
+using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Numerics;
 
-public readonly struct Spinor : IEquatable<Spinor>
+public readonly struct Spinor : IEquatable<Spinor>, ISpanFormattable, IUtf8SpanFormattable
 {
 	private readonly float _real;
 	private readonly float _complex;
@@ -153,5 +154,34 @@ public readonly struct Spinor : IEquatable<Spinor>
 	public override int GetHashCode()
 	{
 		return HashCode.Combine(_real, _complex);
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(_real, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(_complex, utf8Destination, ref bytesWritten, format, provider);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(_real, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(_complex, destination, ref charsWritten, format, provider);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = $"{_real}, {_complex}";
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"{_real}, {_complex}";
 	}
 }

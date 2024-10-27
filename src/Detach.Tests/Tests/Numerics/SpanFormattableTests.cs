@@ -176,4 +176,23 @@ public class SpanFormattableTests
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, "x", "40, 80, c0, ff");
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, "X", "40, 80, C0, FF");
 	}
+
+	[TestMethod]
+	public void Spinor()
+	{
+		Spinor spinor = new(0.5f, 0.5f);
+
+		Assert.AreEqual("0.5, 0.5", spinor.ToString());
+		Assert.AreEqual("0.5, 0.5", spinor.ToString("G", null));
+
+		Span<byte> utf8 = stackalloc byte[64];
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, spinor, [], "0.5, 0.5"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, spinor, "G", "0.5, 0.5"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, spinor, "0.00", "0.50, 0.50"u8);
+
+		Span<char> utf16 = stackalloc char[64];
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, spinor, [], "0.5, 0.5");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, spinor, "G", "0.5, 0.5");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, spinor, "0.00", "0.50, 0.50");
+	}
 }
