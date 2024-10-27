@@ -200,36 +200,32 @@ public struct IntVector3<T> : IEquatable<IntVector3<T>>, ISpanFormattable, IUtf8
 	{
 		bytesWritten = 0;
 		return
-			SpanFormattableUtils.TryFormatLiteral("<"u8, utf8Destination, ref bytesWritten) &&
 			SpanFormattableUtils.TryFormat(X, utf8Destination, ref bytesWritten, format, provider) &&
 			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
 			SpanFormattableUtils.TryFormat(Y, utf8Destination, ref bytesWritten, format, provider) &&
 			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
-			SpanFormattableUtils.TryFormat(Z, utf8Destination, ref bytesWritten, format, provider) &&
-			SpanFormattableUtils.TryFormatLiteral(">"u8, utf8Destination, ref bytesWritten);
+			SpanFormattableUtils.TryFormat(Z, utf8Destination, ref bytesWritten, format, provider);
 	}
 
 	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
 		charsWritten = 0;
 		return
-			SpanFormattableUtils.TryFormatLiteral("<", destination, ref charsWritten) &&
 			SpanFormattableUtils.TryFormat(X, destination, ref charsWritten, format, provider) &&
 			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
 			SpanFormattableUtils.TryFormat(Y, destination, ref charsWritten, format, provider) &&
 			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
-			SpanFormattableUtils.TryFormat(Z, destination, ref charsWritten, format, provider) &&
-			SpanFormattableUtils.TryFormatLiteral(">", destination, ref charsWritten);
+			SpanFormattableUtils.TryFormat(Z, destination, ref charsWritten, format, provider);
 	}
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"<{X}, {Y}, {Z}>";
+		FormattableString formattable = $"{X}, {Y}, {Z}";
 		return formattable.ToString(formatProvider);
 	}
 
 	public override string ToString()
 	{
-		return $"<{X}, {Y}, {Z}>";
+		return $"{X}, {Y}, {Z}";
 	}
 }
