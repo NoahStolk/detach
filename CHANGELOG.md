@@ -10,13 +10,24 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `Inline.BufferUtf8` property.
 - Added `InlineInterpolatedStringHandlerUtf8` struct.
 - Some types now implement `ISpanFormattable` and `IUtf8SpanFormattable`:
+  - `IntVector2`
+  - `IntVector3`
+  - `IntVector4`
+  - `Matrix2`
+  - `Matrix3`
+  - `Matrix4`
   - `Rgb`
   - `Rgba`
+  - `Spinor`
 
 ### Changed
 
 - Renamed `Inline.Span` methods to `Inline.Utf16`.
 - Renamed `Inline.Buffer` property to `Inline.BufferUtf16`.
+- The `ToString` implementation has been changed for the following types:
+  - `IntVector2`
+  - `IntVector3`
+  - `IntVector4`
 
 ### Removed
 

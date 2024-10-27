@@ -1,7 +1,5 @@
 ﻿using Detach.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Text;
-using System.Text.Unicode;
 
 namespace Detach.Tests.Tests.Numerics;
 
