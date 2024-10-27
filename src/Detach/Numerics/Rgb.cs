@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Detach.Numerics;
 
-public readonly record struct Rgb(byte R, byte G, byte B)
+public readonly record struct Rgb(byte R, byte G, byte B) : ISpanFormattable, IUtf8SpanFormattable
 {
 	public Rgb(Rgba rgba)
 		: this(rgba.R, rgba.G, rgba.B)
@@ -160,5 +160,42 @@ public readonly record struct Rgb(byte R, byte G, byte B)
 	public static Rgb FromRgbInt(int rgb)
 	{
 		return new Rgb((byte)(rgb >> 24), (byte)(rgb >> 16), (byte)(rgb >> 8));
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(R, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(G, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(B, utf8Destination, ref bytesWritten, format, provider);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(R, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(G, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(B, destination, ref charsWritten, format, provider);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}, {2}",
+			R.ToString(format, formatProvider),
+			G.ToString(format, formatProvider),
+			B.ToString(format, formatProvider));
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"{R}, {G}, {B}";
 	}
 }

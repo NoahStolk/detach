@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Detach.Numerics;
 
-public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue)
+public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValue) : ISpanFormattable, IUtf8SpanFormattable
 {
 	public Rgba(Rgb rgb, byte a = byte.MaxValue)
 		: this(rgb.R, rgb.G, rgb.B, a)
@@ -148,5 +148,47 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 	public static Rgba FromArgbInt(int argb)
 	{
 		return new Rgba((byte)(argb >> 16), (byte)(argb >> 8), (byte)argb, (byte)(argb >> 24));
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(R, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(G, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(B, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(A, utf8Destination, ref bytesWritten, format, provider);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(R, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(G, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(B, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(A, destination, ref charsWritten, format, provider);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}, {2}, {3}",
+			R.ToString(format, formatProvider),
+			G.ToString(format, formatProvider),
+			B.ToString(format, formatProvider),
+			A.ToString(format, formatProvider));
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"{R}, {G}, {B}, {A}";
 	}
 }

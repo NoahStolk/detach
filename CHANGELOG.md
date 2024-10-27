@@ -2,6 +2,38 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.16.0
+
+### Added
+
+- Added `Inline.Utf8` methods.
+- Added `Inline.BufferUtf8` property.
+- Added `InlineInterpolatedStringHandlerUtf8` struct.
+- Some types now implement `ISpanFormattable` and `IUtf8SpanFormattable`:
+  - `IntVector2`
+  - `IntVector3`
+  - `IntVector4`
+  - `Matrix2`
+  - `Matrix3`
+  - `Matrix4`
+  - `Rgb`
+  - `Rgba`
+  - `Spinor`
+
+### Changed
+
+- Renamed `Inline.Span` methods to `Inline.Utf16`.
+- Renamed `Inline.Buffer` property to `Inline.BufferUtf16`.
+- The `ToString` implementation has been changed for the following types:
+  - `IntVector2`
+  - `IntVector3`
+  - `IntVector4`
+- Converting `InlineInterpolatedStringHandlerUtf16` to `ReadOnlySpan<char>` now sets the next character to `'\0'` to prevent reading past the end of the string when the underlying memory is used directly.
+
+### Removed
+
+- Removed redundant `Inline.Span` overload accepting a `string` parameter.
+
 ## 0.15.0
 
 ### Added

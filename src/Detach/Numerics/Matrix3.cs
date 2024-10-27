@@ -1,9 +1,11 @@
-﻿using System.Numerics;
+﻿using Detach.Utils;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Detach.Numerics;
 
-public record struct Matrix3 : IMatrixOperations<Matrix3>
+public record struct Matrix3 : IMatrixOperations<Matrix3>, ISpanFormattable, IUtf8SpanFormattable
 {
 	public float M11;
 	public float M12;
@@ -331,5 +333,76 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>
 			default:
 				throw new IndexOutOfRangeException();
 		}
+	}
+
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormatLiteral("<"u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M11, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M12, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M13, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral("> <"u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M21, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M22, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M23, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral("> <"u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M31, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M32, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(M33, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(">"u8, utf8Destination, ref bytesWritten);
+	}
+
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormatLiteral("<", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M11, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M12, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M13, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral("> <", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M21, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M22, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M23, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral("> <", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M31, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M32, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(M33, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(">", destination, ref charsWritten);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = FormattableStringFactory.Create(
+			"<{0}, {1}, {2}> <{3}, {4}, {5}> <{6}, {7}, {8}>",
+			M11.ToString(format, formatProvider),
+			M12.ToString(format, formatProvider),
+			M13.ToString(format, formatProvider),
+			M21.ToString(format, formatProvider),
+			M22.ToString(format, formatProvider),
+			M23.ToString(format, formatProvider),
+			M31.ToString(format, formatProvider),
+			M32.ToString(format, formatProvider),
+			M33.ToString(format, formatProvider));
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"<{M11}, {M12}, {M13}> <{M21}, {M22}, {M23}> <{M31}, {M32}, {M33}>";
 	}
 }

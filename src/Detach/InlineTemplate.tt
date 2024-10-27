@@ -1,0 +1,69 @@
+﻿<#@ template language="C#" #>
+<#@ output extension=".g.cs" #>
+<#@ include file="TemplateUtils.ttinclude" #>
+<#@ import namespace="System.Text" #>
+<# (string TypeName, string[] FieldAccessors)[] types =
+[
+	("System.Numerics.Vector2", ["X", "Y"]),
+	("System.Numerics.Vector3", ["X", "Y", "Z"]),
+	("System.Numerics.Vector4", ["X", "Y", "Z", "W"]),
+	("System.Numerics.Quaternion", ["X", "Y", "Z", "W"]),
+];
+
+string GenerateUtf8Method(string typeName, string[] fieldAccessors)
+{
+	StringBuilder writes = new();
+	for (int i = 0; i < fieldAccessors.Length; i++)
+	{
+		writes.AppendLine($"\t\tWriteUtf8(ref charsWritten, value.{fieldAccessors[i]}, format, provider);");
+		if (i < fieldAccessors.Length - 1)
+			writes.AppendLine("\t\tWriteUtf8(ref charsWritten, SeparatorUtf8);");
+	}
+
+	return $$"""
+			public static ReadOnlySpan<byte> Utf8({{typeName}} value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+			{
+				int charsWritten = 0;
+		{{writes}}
+				return _bufferUtf8.AsSpan(0, charsWritten);
+			}
+		""";
+}
+
+string GenerateUtf16Method(string typeName, string[] fieldAccessors)
+{
+	StringBuilder writes = new();
+	for (int i = 0; i < fieldAccessors.Length; i++)
+	{
+		writes.AppendLine($"\t\tWriteUtf16(ref charsWritten, value.{fieldAccessors[i]}, format, provider);");
+		if (i < fieldAccessors.Length - 1)
+			writes.AppendLine("\t\tWriteUtf16(ref charsWritten, _separatorUtf16);");
+	}
+
+	return $$"""
+			public static ReadOnlySpan<char> Utf16({{typeName}} value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
+			{
+				int charsWritten = 0;
+		{{writes}}
+				return _bufferUtf16.AsSpan(0, charsWritten);
+			}
+		""";
+}
+
+#>
+<#= WriteHeader() #>
+
+namespace Detach;
+
+public static partial class Inline
+{
+<# foreach ((string TypeName, string[] FieldAccessors) type in types) { #>
+<#= GenerateUtf8Method(type.TypeName, type.FieldAccessors) #>
+
+<#} #>
+
+<# foreach ((string TypeName, string[] FieldAccessors) type in types) { #>
+<#= GenerateUtf16Method(type.TypeName, type.FieldAccessors) #>
+
+<#} #>
+}

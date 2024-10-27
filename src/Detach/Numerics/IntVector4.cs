@@ -3,15 +3,14 @@
 #pragma warning disable S1104 // Fields should not have public accessibility
 #pragma warning disable S2328 // "GetHashCode" should not reference mutable fields
 
+using Detach.Utils;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Detach.Numerics;
 
-public struct IntVector4<T> : IEquatable<IntVector4<T>>, IFormattable
+public struct IntVector4<T> : IEquatable<IntVector4<T>>, ISpanFormattable, IUtf8SpanFormattable
 	where T : IBinaryInteger<T>, IMinMaxValue<T>
 {
 	public T X;
@@ -202,32 +201,45 @@ public struct IntVector4<T> : IEquatable<IntVector4<T>>, IFormattable
 		return Min(Max(value1, min), max);
 	}
 
-	public override readonly string ToString()
+	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		return ToString("G", CultureInfo.CurrentCulture);
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(X, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(Y, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(Z, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(W, utf8Destination, ref bytesWritten, format, provider);
 	}
 
-	public readonly string ToString(string? format)
+	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		return ToString(format, CultureInfo.CurrentCulture);
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(X, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(Y, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(Z, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(W, destination, ref charsWritten, format, provider);
 	}
 
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
+	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		StringBuilder sb = new();
-		string separator = NumberFormatInfo.GetInstance(formatProvider).NumberGroupSeparator;
-		sb.Append('<');
-		sb.Append(X.ToString(format, formatProvider));
-		sb.Append(separator);
-		sb.Append(' ');
-		sb.Append(Y.ToString(format, formatProvider));
-		sb.Append(separator);
-		sb.Append(' ');
-		sb.Append(Z.ToString(format, formatProvider));
-		sb.Append(separator);
-		sb.Append(' ');
-		sb.Append(W.ToString(format, formatProvider));
-		sb.Append('>');
-		return sb.ToString();
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}, {2}, {3}",
+			X.ToString(format, formatProvider),
+			Y.ToString(format, formatProvider),
+			Z.ToString(format, formatProvider),
+			W.ToString(format, formatProvider));
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"{X}, {Y}, {Z}, {W}";
 	}
 }
