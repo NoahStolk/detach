@@ -217,7 +217,11 @@ public struct IntVector3<T> : IEquatable<IntVector3<T>>, ISpanFormattable, IUtf8
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"{X}, {Y}, {Z}";
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}, {2}",
+			X.ToString(format, formatProvider),
+			Y.ToString(format, formatProvider),
+			Z.ToString(format, formatProvider));
 		return formattable.ToString(formatProvider);
 	}
 

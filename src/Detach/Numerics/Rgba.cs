@@ -178,7 +178,12 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"{R}, {G}, {B}, {A}";
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}, {2}, {3}",
+			R.ToString(format, formatProvider),
+			G.ToString(format, formatProvider),
+			B.ToString(format, formatProvider),
+			A.ToString(format, formatProvider));
 		return formattable.ToString(formatProvider);
 	}
 

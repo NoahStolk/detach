@@ -13,6 +13,7 @@ public class SpanFormattableTests
 
 		Assert.AreEqual("1, 2", intVector2.ToString());
 		Assert.AreEqual("1, 2", intVector2.ToString("G", null));
+		Assert.AreEqual("01, 02", intVector2.ToString("00", null));
 
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable("1, 2"u8, utf8, intVector2, []);
@@ -32,6 +33,7 @@ public class SpanFormattableTests
 
 		Assert.AreEqual("1, 2, 3", intVector3.ToString());
 		Assert.AreEqual("1, 2, 3", intVector3.ToString("G", null));
+		Assert.AreEqual("01, 02, 03", intVector3.ToString("00", null));
 
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable("1, 2, 3"u8, utf8, intVector3, []);
@@ -51,6 +53,7 @@ public class SpanFormattableTests
 
 		Assert.AreEqual("1, 2, 3, 4", intVector4.ToString());
 		Assert.AreEqual("1, 2, 3, 4", intVector4.ToString("G", null));
+		Assert.AreEqual("01, 02, 03, 04", intVector4.ToString("00", null));
 
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable("1, 2, 3, 4"u8, utf8, intVector4, []);
@@ -139,6 +142,9 @@ public class SpanFormattableTests
 
 		Assert.AreEqual("64, 128, 192", rgb.ToString());
 		Assert.AreEqual("64, 128, 192", rgb.ToString("G", null));
+		Assert.AreEqual("064, 128, 192", rgb.ToString("000", null));
+		Assert.AreEqual("40, 80, c0", rgb.ToString("x", null));
+		Assert.AreEqual("40, 80, C0", rgb.ToString("X", null));
 
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable("64, 128, 192"u8, utf8, rgb, []);
@@ -161,6 +167,9 @@ public class SpanFormattableTests
 
 		Assert.AreEqual("64, 128, 192, 255", rgba.ToString());
 		Assert.AreEqual("64, 128, 192, 255", rgba.ToString("G", null));
+		Assert.AreEqual("064, 128, 192, 255", rgba.ToString("000", null));
+		Assert.AreEqual("40, 80, c0, ff", rgba.ToString("x", null));
+		Assert.AreEqual("40, 80, C0, FF", rgba.ToString("X", null));
 
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable("64, 128, 192, 255"u8, utf8, rgba, []);
@@ -184,6 +193,7 @@ public class SpanFormattableTests
 
 		Assert.AreEqual("0.5, 0.5", spinor.ToString());
 		Assert.AreEqual("0.5, 0.5", spinor.ToString("G", null));
+		Assert.AreEqual("0.50, 0.50", spinor.ToString("0.00", null));
 
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable("0.5, 0.5"u8, utf8, spinor, []);

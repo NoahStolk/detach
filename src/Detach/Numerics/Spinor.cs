@@ -1,5 +1,6 @@
 using Detach.Utils;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace Detach.Numerics;
 
@@ -176,7 +177,10 @@ public readonly struct Spinor : IEquatable<Spinor>, ISpanFormattable, IUtf8SpanF
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"{_real}, {_complex}";
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}",
+			_real.ToString(format, formatProvider),
+			_complex.ToString(format, formatProvider));
 		return formattable.ToString(formatProvider);
 	}
 

@@ -186,7 +186,11 @@ public readonly record struct Rgb(byte R, byte G, byte B) : ISpanFormattable, IU
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"{R}, {G}, {B}";
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}, {2}",
+			R.ToString(format, formatProvider),
+			G.ToString(format, formatProvider),
+			B.ToString(format, formatProvider));
 		return formattable.ToString(formatProvider);
 	}
 

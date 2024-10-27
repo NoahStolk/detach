@@ -205,7 +205,10 @@ public struct IntVector2<T> : IEquatable<IntVector2<T>>, ISpanFormattable, IUtf8
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		FormattableString formattable = $"{X}, {Y}";
+		FormattableString formattable = FormattableStringFactory.Create(
+			"{0}, {1}",
+			X.ToString(format, formatProvider),
+			Y.ToString(format, formatProvider));
 		return formattable.ToString(formatProvider);
 	}
 
