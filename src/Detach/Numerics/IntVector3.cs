@@ -3,6 +3,7 @@
 #pragma warning disable S1104 // Fields should not have public accessibility
 #pragma warning disable S2328 // "GetHashCode" should not reference mutable fields
 
+using Detach.Utils;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Numerics;
@@ -195,39 +196,40 @@ public struct IntVector3<T> : IEquatable<IntVector3<T>>, ISpanFormattable, IUtf8
 		return Min(Max(value1, min), max);
 	}
 
-	public override readonly string ToString()
-	{
-		return ToString("G", CultureInfo.CurrentCulture);
-	}
-
-	public readonly string ToString(string? format)
-	{
-		return ToString(format, CultureInfo.CurrentCulture);
-	}
-
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-	{
-		StringBuilder sb = new();
-		string separator = NumberFormatInfo.GetInstance(formatProvider).NumberGroupSeparator;
-		sb.Append('<');
-		sb.Append(X.ToString(format, formatProvider));
-		sb.Append(separator);
-		sb.Append(' ');
-		sb.Append(Y.ToString(format, formatProvider));
-		sb.Append(separator);
-		sb.Append(' ');
-		sb.Append(Z.ToString(format, formatProvider));
-		sb.Append('>');
-		return sb.ToString();
-	}
-
 	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		return Utf8.TryWrite(utf8Destination, provider, $"<{X}, {Y}, {Z}>", out bytesWritten);
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormatLiteral("<"u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(X, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(Y, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(Z, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(">"u8, utf8Destination, ref bytesWritten);
 	}
 
 	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		return destination.TryWrite(provider, $"<{X}, {Y}, {Z}>", out charsWritten);
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormatLiteral("<", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(X, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(Y, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(Z, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(">", destination, ref charsWritten);
+	}
+
+	public string ToString(string? format, IFormatProvider? formatProvider)
+	{
+		FormattableString formattable = $"<{X}, {Y}, {Z}>";
+		return formattable.ToString(formatProvider);
+	}
+
+	public override string ToString()
+	{
+		return $"<{X}, {Y}, {Z}>";
 	}
 }

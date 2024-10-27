@@ -17,10 +17,12 @@ public class SpanFormattableTests
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector2, [], "<1, 2>"u8);
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector2, "G", "<1, 2>"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector2, "00", "<01, 02>"u8);
 
 		Span<char> utf16 = stackalloc char[64];
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector2, [], "<1, 2>");
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector2, "G", "<1, 2>");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector2, "00", "<01, 02>");
 	}
 
 	[TestMethod]
@@ -34,10 +36,12 @@ public class SpanFormattableTests
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector3, [], "<1, 2, 3>"u8);
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector3, "G", "<1, 2, 3>"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector3, "00", "<01, 02, 03>"u8);
 
 		Span<char> utf16 = stackalloc char[64];
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector3, [], "<1, 2, 3>");
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector3, "G", "<1, 2, 3>");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector3, "00", "<01, 02, 03>");
 	}
 
 	[TestMethod]
@@ -51,10 +55,12 @@ public class SpanFormattableTests
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector4, [], "<1, 2, 3, 4>"u8);
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector4, "G", "<1, 2, 3, 4>"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, intVector4, "00", "<01, 02, 03, 04>"u8);
 
 		Span<char> utf16 = stackalloc char[64];
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector4, [], "<1, 2, 3, 4>");
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector4, "G", "<1, 2, 3, 4>");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, intVector4, "00", "<01, 02, 03, 04>");
 	}
 
 	[TestMethod]
@@ -137,10 +143,15 @@ public class SpanFormattableTests
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgb, [], "64, 128, 192"u8);
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgb, "G", "64, 128, 192"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgb, "000", "064, 128, 192"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgb, "x", "40, 80, c0"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgb, "X", "40, 80, C0"u8);
 
 		Span<char> utf16 = stackalloc char[64];
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgb, [], "64, 128, 192");
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgb, "G", "64, 128, 192");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgb, "x", "40, 80, c0");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgb, "X", "40, 80, C0");
 	}
 
 	[TestMethod]
@@ -154,9 +165,15 @@ public class SpanFormattableTests
 		Span<byte> utf8 = stackalloc byte[64];
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgba, [], "64, 128, 192, 255"u8);
 		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgba, "G", "64, 128, 192, 255"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgba, "000", "064, 128, 192, 255"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgba, "x", "40, 80, c0, ff"u8);
+		AssertionUtils.AssertUtf8SpanFormattable(utf8, rgba, "X", "40, 80, C0, FF"u8);
 
 		Span<char> utf16 = stackalloc char[64];
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, [], "64, 128, 192, 255");
 		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, "G", "64, 128, 192, 255");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, "000", "064, 128, 192, 255");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, "x", "40, 80, c0, ff");
+		AssertionUtils.AssertUtf16SpanFormattable(utf16, rgba, "X", "40, 80, C0, FF");
 	}
 }

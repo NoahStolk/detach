@@ -165,12 +165,24 @@ public readonly record struct Rgb(byte R, byte G, byte B) : ISpanFormattable, IU
 
 	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		return Utf8.TryWrite(utf8Destination, provider, $"{R}, {G}, {B}", out bytesWritten);
+		bytesWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(R, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(G, utf8Destination, ref bytesWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", "u8, utf8Destination, ref bytesWritten) &&
+			SpanFormattableUtils.TryFormat(B, utf8Destination, ref bytesWritten, format, provider);
 	}
 
 	public bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
 	{
-		return destination.TryWrite(provider, $"{R}, {G}, {B}", out charsWritten);
+		charsWritten = 0;
+		return
+			SpanFormattableUtils.TryFormat(R, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(G, destination, ref charsWritten, format, provider) &&
+			SpanFormattableUtils.TryFormatLiteral(", ", destination, ref charsWritten) &&
+			SpanFormattableUtils.TryFormat(B, destination, ref charsWritten, format, provider);
 	}
 
 	public string ToString(string? format, IFormatProvider? formatProvider)
