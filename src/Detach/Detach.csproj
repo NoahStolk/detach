@@ -15,7 +15,7 @@
     <Copyright>Copyright © Noah Stolk</Copyright>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-    <Version>0.16.0</Version>
+    <Version>0.16.1</Version>
   </PropertyGroup>
 
   <ItemGroup Label="Static code analysis">
@@ -45,7 +45,7 @@
     <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="T4 templates">
     <None Update="Buffers\BufferTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BufferTemplate.g.cs</LastGenOutput>
@@ -68,7 +68,7 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="T4 output">
     <Compile Update="Buffers\BufferTemplate.g.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

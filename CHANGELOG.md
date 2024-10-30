@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.16.1
+
+### Added
+
+- Added `Inline.Utf8` and `Inline.Utf16` methods accepting a `bool` parameter.
+
 ## 0.16.0
 
 ### Added
