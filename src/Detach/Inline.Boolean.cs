@@ -1,5 +1,6 @@
 ﻿namespace Detach;
 
+// TODO: Remove when this type implements ISpanFormattable and IUtf8SpanFormattable.
 public static partial class Inline
 {
 	public static ReadOnlySpan<byte> Utf8(bool value)
