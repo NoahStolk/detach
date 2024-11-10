@@ -6,7 +6,7 @@ namespace Demos.ImGuiBackend.GlfwImGuiNET.Extensions;
 
 public static class GlfwExtensions
 {
-	public static unsafe void CheckError(this Silk.NET.GLFW.Glfw glfw)
+	public static unsafe void CheckError(this Glfw glfw)
 	{
 		ErrorCode errorCode = glfw.GetError(out byte* c);
 		if (errorCode == ErrorCode.NoError || c == (byte*)0)
@@ -19,7 +19,7 @@ public static class GlfwExtensions
 		throw new InvalidOperationException($"GLFW {errorCode}: {errorBuilder}");
 	}
 
-	public static unsafe (int X, int Y) GetInitialWindowPos(this Silk.NET.GLFW.Glfw glfw, int windowWidth, int windowHeight)
+	public static unsafe (int X, int Y) GetInitialWindowPos(this Glfw glfw, int windowWidth, int windowHeight)
 	{
 		Monitor* primaryMonitor = glfw.GetPrimaryMonitor();
 		if (primaryMonitor == null)

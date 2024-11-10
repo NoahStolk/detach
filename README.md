@@ -1,6 +1,6 @@
 # Detach
 
-A set of libraries for building lightweight, cross-platform, real-time applications and games in .NET 8.
+A set of libraries for developing lightweight, cross-platform, real-time applications and games in .NET 8.
 
 Built on top of:
 - OpenGL
@@ -27,5 +27,6 @@ Uses bindings from:
 ## Promises
 
 - Semantic versioning
-- Synchronized versioning across all libraries (meaning every library is re-released, even if only one contained changes)
 - Synchronized transitive dependency versions 
+- Minimal dependencies
+- Latest .NET version

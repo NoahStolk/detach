@@ -18,7 +18,7 @@ public sealed class App
 	private const double _updateLength = 1 / _updateRate;
 	private const double _mainLoopLength = 1 / _mainLoopRate;
 
-	private readonly Silk.NET.GLFW.Glfw _glfw;
+	private readonly Glfw _glfw;
 	private readonly GL _gl;
 	private readonly unsafe WindowHandle* _window;
 	private readonly GlfwInput _glfwInput;
@@ -35,7 +35,7 @@ public sealed class App
 	private double _frameTime;
 
 	public unsafe App(
-		Silk.NET.GLFW.Glfw glfw,
+		Glfw glfw,
 		GL gl,
 		WindowHandle* window,
 		GlfwInput glfwInput,
