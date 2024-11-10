@@ -50,7 +50,7 @@ public sealed class ImGuiController
 
 	private readonly GL _gl;
 	private readonly GlfwInput _glfwInput;
-	private readonly ImGuiContextPtr _context;
+
 	private readonly uint _shaderId;
 	private readonly int _projectionMatrixLocation;
 	private readonly int _imageLocation;
@@ -65,8 +65,8 @@ public sealed class ImGuiController
 		_windowWidth = windowWidth;
 		_windowHeight = windowHeight;
 
-		_context = ImGui.CreateContext();
-		ImGui.SetCurrentContext(_context);
+		Context = ImGui.CreateContext();
+		ImGui.SetCurrentContext(Context);
 		ImGui.StyleColorsDark();
 
 		ImGuiIOPtr io = ImGui.GetIO();
@@ -80,6 +80,8 @@ public sealed class ImGuiController
 		_projectionMatrixLocation = _gl.GetUniformLocation(_shaderId, "projectionMatrix");
 		_imageLocation = _gl.GetUniformLocation(_shaderId, "image");
 	}
+
+	public ImGuiContextPtr Context { get; }
 
 	#region Initialization
 
@@ -115,7 +117,7 @@ public sealed class ImGuiController
 		_gl.DeleteBuffer(_ebo);
 		_gl.DeleteVertexArray(_vao);
 
-		ImGui.DestroyContext(_context);
+		ImGui.DestroyContext(Context);
 	}
 
 	public void WindowResized(int width, int height)
