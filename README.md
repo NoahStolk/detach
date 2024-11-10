@@ -1,12 +1,34 @@
 # Detach
 
-[![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.svg)](https://www.nuget.org/packages/NoahStolk.Detach/)
+A set of libraries for building lightweight, cross-platform, real-time applications and games in .NET 8.
 
-Zero-dependency library for game engines, games, and other real-time applications (.NET 8 only)
+Built on top of:
+- OpenGL
+- GLFW
+- ImGui
 
-## Collisions
+Uses bindings from:
+- Silk.NET
+- Hexa.NET.ImGui
+- ImGui.NET
 
-### 2D Intersections (implementation count)
+## Libraries
+
+| Library                           | Features                                                                                   | Dependencies                            | NuGet                                                                                                                     |
+|-----------------------------------|--------------------------------------------------------------------------------------------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| Detach                            | Parsers for various formats, maths, collision algorithms, numerics, extension methods, etc | N/A                                     | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.svg)](https://www.nuget.org/packages/NoahStolk.Detach/) |
+| Detach.Glfw                       | GLFW input                                                                                 | Silk.NET.GLFW                           |                                                                                                                           |
+| Detach.Glfw.ImGuiBackend.ImGuiNET | ImGui backend for GLFW using ImGui.NET bindings                                            | Detach.Glfw, ImGui.NET, Silk.NET.OpenGL |                                                                                                                           |
+|                                   |                                                                                            |                                         |                                                                                                                           |
+|                                   |                                                                                            |                                         |                                                                                                                           |
+|                                   |                                                                                            |                                         |                                                                                                                           |
+|                                   |                                                                                            |                                         |                                                                                                                           |
+
+## Features
+
+### Collisions
+
+#### 2D Intersections (implementation count)
 
 |                   | Point | LineSegment2D | Circle | Rectangle | OrientedRectangle | Triangle |
 |-------------------|-------|---------------|--------|-----------|-------------------|----------|
@@ -17,7 +39,7 @@ Zero-dependency library for game engines, games, and other real-time application
 | OrientedRectangle | 1     | 1             | 1      | 1         | 1                 | 1        |
 | Triangle          | 1     | 1             | 1      | 1         | 1                 | -        |
 
-### 3D Intersections (implementation count)
+#### 3D Intersections (implementation count)
 
 |                  | Point | LineSegment3D | Ray | SphereCast | Sphere | Aabb | Obb | Plane | Triangle | Frustum | Cylinder | OrientedCylinder | Capsule | OrientedCapsule |
 |------------------|-------|---------------|-----|------------|--------|------|-----|-------|----------|---------|----------|------------------|---------|-----------------|

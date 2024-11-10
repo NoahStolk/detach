@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach", "Detach\Detach.csproj", "{4EE53CD0-BDD9-4F12-82C9-D3C7C679B22F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Glfw", "Detach.Glfw\Detach.Glfw.csproj", "{CD52A07D-F79D-4B85-8374-63C89AE0717D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Glfw.ImGuiBackend.ImGuiNET", "Detach.Glfw.ImGuiBackend.ImGuiNET\Detach.Glfw.ImGuiBackend.ImGuiNET.csproj", "{A9841903-C522-4BFB-88F1-0AF04B0B023A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Collisions", "demos\Detach.Demos.Collisions\Detach.Demos.Collisions.csproj", "{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Tests", "tests\Detach.Tests\Detach.Tests.csproj", "{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC}"
@@ -28,6 +32,14 @@ Global
 		{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD52A07D-F79D-4B85-8374-63C89AE0717D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD52A07D-F79D-4B85-8374-63C89AE0717D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD52A07D-F79D-4B85-8374-63C89AE0717D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD52A07D-F79D-4B85-8374-63C89AE0717D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC} = {AF1AD2B7-33A5-4936-AD93-13B191616E86}
