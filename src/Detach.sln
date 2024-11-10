@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AF1AD2B7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demos", "demos", "{70399840-A716-4074-9839-398B367EB184}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Glfw.ImGuiBackend.ImGuiNET", "demos\Detach.Demos.Glfw.ImGuiBackend.ImGuiNET\Detach.Demos.Glfw.ImGuiBackend.ImGuiNET.csproj", "{1F4EA140-743C-4C4F-90CA-5DE5299F2864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,9 +42,14 @@ Global
 		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9841903-C522-4BFB-88F1-0AF04B0B023A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F4EA140-743C-4C4F-90CA-5DE5299F2864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4EA140-743C-4C4F-90CA-5DE5299F2864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4EA140-743C-4C4F-90CA-5DE5299F2864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4EA140-743C-4C4F-90CA-5DE5299F2864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC} = {AF1AD2B7-33A5-4936-AD93-13B191616E86}
 		{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3} = {70399840-A716-4074-9839-398B367EB184}
+		{1F4EA140-743C-4C4F-90CA-5DE5299F2864} = {70399840-A716-4074-9839-398B367EB184}
 	EndGlobalSection
 EndGlobal

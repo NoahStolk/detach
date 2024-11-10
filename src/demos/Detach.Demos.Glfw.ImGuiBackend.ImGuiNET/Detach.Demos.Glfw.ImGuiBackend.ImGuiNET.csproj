@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup Label="Package configuration">
-    <PackageId>NoahStolk.Detach.Glfw.ImGuiBackend.ImGuiNET</PackageId>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
-  <ItemGroup Label="Dependencies">
-    <PackageReference Include="ImGui.NET" Version="1.91.0.1" />
-    <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0" />
-    <ProjectReference Include="..\Detach.Glfw\Detach.Glfw.csproj" />
+  <ItemGroup>
+    <PackageReference Include="StrongInject" Version="1.4.4"/>
+    <ProjectReference Include="..\..\Detach\Detach.csproj" />
+    <ProjectReference Include="..\..\Detach.Glfw.ImGuiBackend.ImGuiNET\Detach.Glfw.ImGuiBackend.ImGuiNET.csproj" />
   </ItemGroup>
 
   <ItemGroup Label="Static code analysis">
