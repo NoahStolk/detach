@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="StrongInject" Version="1.4.4"/>
     <ProjectReference Include="..\..\Detach\Detach.csproj" />
-    <ProjectReference Include="..\..\Detach.Glfw.ImGuiBackend.Hexa\Detach.Glfw.ImGuiBackend.Hexa.csproj" />
+    <ProjectReference Include="..\..\Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj" />
   </ItemGroup>
 
   <ItemGroup Label="Static code analysis">

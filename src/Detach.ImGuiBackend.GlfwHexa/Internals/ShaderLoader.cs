@@ -1,6 +1,6 @@
 ﻿using Silk.NET.OpenGL;
 
-namespace Detach.Glfw.ImGuiBackend.Hexa.Internals;
+namespace Detach.ImGuiBackend.GlfwHexa.Internals;
 
 internal static class ShaderLoader
 {

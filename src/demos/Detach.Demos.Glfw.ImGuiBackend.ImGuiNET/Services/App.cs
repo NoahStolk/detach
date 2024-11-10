@@ -1,7 +1,7 @@
 ﻿using Detach.Demos.Glfw.ImGuiBackend.ImGuiNET.Services.Ui;
 using Detach.Demos.Glfw.ImGuiBackend.ImGuiNET.Utils;
-using Detach.Glfw;
-using Detach.Glfw.ImGuiBackend.ImGuiNET;
+using Detach.GlfwExtensions;
+using Detach.ImGuiBackend.GlfwImGuiNET;
 using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;

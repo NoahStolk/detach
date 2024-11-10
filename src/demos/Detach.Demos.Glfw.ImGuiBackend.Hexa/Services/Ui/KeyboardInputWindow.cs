@@ -1,4 +1,5 @@
 ﻿using Detach.Glfw;
+using Detach.GlfwExtensions;
 using Detach.Numerics;
 using Hexa.NET.ImGui;
 using Silk.NET.GLFW;

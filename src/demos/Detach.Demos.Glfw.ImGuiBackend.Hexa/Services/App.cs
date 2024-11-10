@@ -1,7 +1,7 @@
 ﻿using Detach.Demos.Glfw.ImGuiBackend.Hexa.Services.Ui;
 using Detach.Demos.Glfw.ImGuiBackend.Hexa.Utils;
-using Detach.Glfw;
-using Detach.Glfw.ImGuiBackend.Hexa;
+using Detach.GlfwExtensions;
+using Detach.ImGuiBackend.GlfwHexa;
 using Hexa.NET.ImGui;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;

@@ -1,11 +1,11 @@
-﻿using Detach.Glfw.ImGuiBackend.ImGuiNET.Internals;
-using ImGuiNET;
+﻿using Detach.GlfwExtensions;
+using Detach.ImGuiBackend.GlfwHexa.Internals;
+using Hexa.NET.ImGui;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
-using System.Runtime.InteropServices;
 
-namespace Detach.Glfw.ImGuiBackend.ImGuiNET;
+namespace Detach.ImGuiBackend.GlfwHexa;
 
 public sealed class ImGuiController
 {
@@ -49,7 +49,7 @@ public sealed class ImGuiController
 
 	private readonly GL _gl;
 	private readonly GlfwInput _glfwInput;
-	private readonly IntPtr _context;
+	private readonly ImGuiContextPtr _context;
 	private readonly uint _shaderId;
 	private readonly int _projectionMatrixLocation;
 	private readonly int _imageLocation;
@@ -86,10 +86,12 @@ public sealed class ImGuiController
 	{
 		ImGuiIOPtr io = ImGui.GetIO();
 
-		io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out int width, out int height, out int bytesPerPixel);
+		byte* pixels = null;
+		int width = 0;
+		int height = 0;
+		int bytesPerPixel = 0;
+		io.Fonts.GetTexDataAsRGBA32(ref pixels, ref width, ref height, ref bytesPerPixel);
 
-		byte[] data = new byte[width * height * bytesPerPixel];
-		Marshal.Copy(pixels, data, 0, data.Length);
 		uint textureId = _gl.GenTexture();
 
 		_gl.BindTexture(TextureTarget.Texture2D, textureId);
@@ -99,10 +101,9 @@ public sealed class ImGuiController
 		_gl.TexParameterI(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)GLEnum.Linear);
 		_gl.TexParameterI(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)GLEnum.Linear);
 
-		fixed (byte* b = data)
-			_gl.TexImage2D(TextureTarget.Texture2D, 0, InternalFormat.Rgba, (uint)width, (uint)height, 0, GLEnum.Rgba, PixelType.UnsignedByte, b);
+		_gl.TexImage2D(TextureTarget.Texture2D, 0, InternalFormat.Rgba, (uint)width, (uint)height, 0, GLEnum.Rgba, PixelType.UnsignedByte, pixels);
 
-		io.Fonts.SetTexID((IntPtr)textureId);
+		io.Fonts.SetTexID(new ImTextureID(textureId));
 	}
 
 	#endregion Initialization
@@ -228,13 +229,13 @@ public sealed class ImGuiController
 		{
 			ImDrawListPtr cmdListPtr = drawDataPtr.CmdLists[i];
 
-			_gl.BufferData(GLEnum.ArrayBuffer, (nuint)(cmdListPtr.VtxBuffer.Size * sizeof(ImDrawVert)), (void*)cmdListPtr.VtxBuffer.Data, GLEnum.StreamDraw);
-			_gl.BufferData(GLEnum.ElementArrayBuffer, (nuint)(cmdListPtr.IdxBuffer.Size * sizeof(ushort)), (void*)cmdListPtr.IdxBuffer.Data, GLEnum.StreamDraw);
+			_gl.BufferData(GLEnum.ArrayBuffer, (nuint)(cmdListPtr.VtxBuffer.Size * sizeof(ImDrawVert)), cmdListPtr.VtxBuffer.Data, GLEnum.StreamDraw);
+			_gl.BufferData(GLEnum.ElementArrayBuffer, (nuint)(cmdListPtr.IdxBuffer.Size * sizeof(ushort)), cmdListPtr.IdxBuffer.Data, GLEnum.StreamDraw);
 
 			for (int j = 0; j < cmdListPtr.CmdBuffer.Size; j++)
 			{
-				ImDrawCmdPtr cmdPtr = cmdListPtr.CmdBuffer[j];
-				if (cmdPtr.UserCallback != IntPtr.Zero)
+				ImDrawCmd cmdPtr = cmdListPtr.CmdBuffer[j];
+				if (cmdPtr.UserCallback != null)
 					throw new NotImplementedException();
 
 				Vector4 clipRect;
@@ -247,7 +248,7 @@ public sealed class ImGuiController
 					continue;
 
 				_gl.Scissor((int)clipRect.X, (int)(framebufferHeight - clipRect.W), (uint)(clipRect.Z - clipRect.X), (uint)(clipRect.W - clipRect.Y));
-				_gl.BindTexture(GLEnum.Texture2D, (uint)cmdPtr.TextureId);
+				_gl.BindTexture(GLEnum.Texture2D, (uint)cmdPtr.TextureId.Handle);
 				_gl.DrawElementsBaseVertex(GLEnum.Triangles, cmdPtr.ElemCount, GLEnum.UnsignedShort, (void*)(cmdPtr.IdxOffset * sizeof(ushort)), (int)cmdPtr.VtxOffset);
 			}
 		}

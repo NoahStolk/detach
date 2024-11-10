@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Package configuration">
-    <PackageId>NoahStolk.Detach.Glfw.ImGuiBackend.Hexa</PackageId>
+    <PackageId>NoahStolk.Detach.ImGuiBackend.GlfwHexa</PackageId>
   </PropertyGroup>
 
   <ItemGroup Label="Dependencies">
     <PackageReference Include="Hexa.NET.ImGui" Version="2.2.0" />
     <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0" />
-    <ProjectReference Include="..\Detach.Glfw\Detach.Glfw.csproj" />
+    <ProjectReference Include="..\Detach.GlfwExtensions\Detach.GlfwExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup Label="Static code analysis">

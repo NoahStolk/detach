@@ -1,7 +1,7 @@
-using ImGuiNET;
+using Hexa.NET.ImGui;
 using Silk.NET.GLFW;
 
-namespace Detach.Glfw.ImGuiBackend.ImGuiNET.Internals;
+namespace Detach.ImGuiBackend.GlfwHexa.Internals;
 
 internal static class KeysExtensions
 {
@@ -12,7 +12,7 @@ internal static class KeysExtensions
 			>= Keys.F1 and <= Keys.F24 => ConvertRange(key, Keys.F1, ImGuiKey.F1),
 			>= Keys.Keypad0 and <= Keys.Keypad9 => ConvertRange(key, Keys.Keypad0, ImGuiKey.Keypad0),
 			>= Keys.A and <= Keys.Z => ConvertRange(key, Keys.A, ImGuiKey.A),
-			>= Keys.Number0 and <= Keys.Number9 => ConvertRange(key, Keys.Number0, ImGuiKey._0),
+			>= Keys.Number0 and <= Keys.Number9 => ConvertRange(key, Keys.Number0, ImGuiKey.Key0),
 			Keys.ShiftLeft or Keys.ShiftRight => ImGuiKey.ModShift,
 			Keys.ControlLeft or Keys.ControlRight => ImGuiKey.ModCtrl,
 			Keys.AltLeft or Keys.AltRight => ImGuiKey.ModAlt,

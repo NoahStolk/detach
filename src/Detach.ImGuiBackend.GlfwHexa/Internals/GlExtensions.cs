@@ -1,7 +1,7 @@
 using Silk.NET.OpenGL;
 using System.Numerics;
 
-namespace Detach.Glfw.ImGuiBackend.Hexa.Internals;
+namespace Detach.ImGuiBackend.GlfwHexa.Internals;
 
 internal static class GlExtensions
 {
