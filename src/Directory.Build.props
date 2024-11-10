@@ -1,0 +1,24 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+
+	<PropertyGroup Label="Build configuration">
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<WarningsAsErrors>nullable</WarningsAsErrors>
+		<AnalysisMode>All</AnalysisMode>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Package configuration">
+		<Authors>Noah Stolk</Authors>
+		<Copyright>Copyright © Noah Stolk</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
+		<Version>0.16.1</Version>
+	</PropertyGroup>
+
+	<ItemGroup Label="Test configuration">
+		<InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
+	</ItemGroup>
+
+</Project>

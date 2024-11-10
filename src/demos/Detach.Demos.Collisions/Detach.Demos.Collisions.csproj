@@ -2,11 +2,6 @@
 
   <PropertyGroup Label="Build properties">
     <OutputType>Exe</OutputType>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>nullable</WarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup Label="Dependencies">
@@ -38,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Detach\Detach.csproj" />
+    <ProjectReference Include="..\..\Detach\Detach.csproj" />
   </ItemGroup>
 
 </Project>

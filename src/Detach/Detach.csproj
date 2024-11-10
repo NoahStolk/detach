@@ -1,21 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <WarningsAsErrors>nullable</WarningsAsErrors>
-    <AnalysisMode>All</AnalysisMode>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Label="Package information">
+  <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach</PackageId>
-    <Authors>Noah Stolk</Authors>
-    <Copyright>Copyright © Noah Stolk</Copyright>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-    <Version>0.16.1</Version>
   </PropertyGroup>
 
   <ItemGroup Label="Static code analysis">
@@ -39,10 +25,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Label="Test configuration">
-    <InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
   </ItemGroup>
 
   <ItemGroup Label="T4 templates">

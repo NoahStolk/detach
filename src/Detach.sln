@@ -2,9 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach", "Detach\Detach.csproj", "{4EE53CD0-BDD9-4F12-82C9-D3C7C679B22F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Collisions", "Detach.Demos.Collisions\Detach.Demos.Collisions.csproj", "{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Collisions", "demos\Detach.Demos.Collisions\Detach.Demos.Collisions.csproj", "{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Tests", "Detach.Tests\Detach.Tests.csproj", "{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Tests", "tests\Detach.Tests\Detach.Tests.csproj", "{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
