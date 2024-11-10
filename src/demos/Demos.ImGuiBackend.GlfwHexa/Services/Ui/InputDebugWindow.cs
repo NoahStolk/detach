@@ -27,14 +27,14 @@ public sealed unsafe class InputDebugWindow
 
 	private static bool InputText(ReadOnlySpan<byte> label, byte[] input)
 	{
-		fixed (byte* p0 = input)
-			return ImGui.InputText(label, p0, (ulong)input.Length);
+		fixed (byte* ptr = input)
+			return ImGui.InputText(label, ptr, (ulong)input.Length);
 	}
 
 	private static bool InputTextMultiline(ReadOnlySpan<byte> label, byte[] input, Vector2 size, ImGuiInputTextFlags flags = ImGuiInputTextFlags.None)
 	{
-		fixed (byte* p0 = input)
-			return ImGui.InputTextMultiline(label, p0, (ulong)input.Length, size, flags);
+		fixed (byte* ptr = input)
+			return ImGui.InputTextMultiline(label, ptr, (ulong)input.Length, size, flags);
 	}
 
 	public void Render()

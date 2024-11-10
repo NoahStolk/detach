@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup Label="Dependencies">
-    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.0" />
-    <ProjectReference Include="..\Detach.GlExtensions\Detach.GlExtensions.csproj" />
-    <ProjectReference Include="..\Detach.GlfwExtensions\Detach.GlfwExtensions.csproj" />
+    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.0"/>
+    <ProjectReference Include="..\Detach.GlExtensions\Detach.GlExtensions.csproj"/>
+    <ProjectReference Include="..\Detach.GlfwExtensions\Detach.GlfwExtensions.csproj"/>
   </ItemGroup>
 
   <ItemGroup Label="Static code analysis">

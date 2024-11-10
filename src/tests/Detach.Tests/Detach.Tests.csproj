@@ -10,9 +10,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="3.6.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="3.6.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1"/>
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.2"/>
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.2"/>
   </ItemGroup>
 
   <ItemGroup Label="Static code analysis">
@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Detach\Detach.csproj" />
+    <ProjectReference Include="..\..\Detach\Detach.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
