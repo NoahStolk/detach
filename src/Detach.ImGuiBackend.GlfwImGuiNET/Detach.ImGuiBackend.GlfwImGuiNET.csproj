@@ -6,7 +6,7 @@
 
   <ItemGroup Label="Dependencies">
     <PackageReference Include="ImGui.NET" Version="1.91.0.1" />
-    <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0" />
+    <ProjectReference Include="..\Detach.GlExtensions\Detach.GlExtensions.csproj" />
     <ProjectReference Include="..\Detach.GlfwExtensions\Detach.GlfwExtensions.csproj" />
   </ItemGroup>
 

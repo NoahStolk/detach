@@ -1,4 +1,5 @@
-﻿using Detach.GlfwExtensions;
+﻿using Detach.GlExtensions;
+using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwImGuiNET.Internals;
 using ImGuiNET;
 using Silk.NET.GLFW;

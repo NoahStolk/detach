@@ -1,4 +1,5 @@
-﻿using Detach.GlfwExtensions;
+﻿using Detach.GlExtensions;
+using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa.Internals;
 using Hexa.NET.ImGui;
 using Silk.NET.GLFW;
