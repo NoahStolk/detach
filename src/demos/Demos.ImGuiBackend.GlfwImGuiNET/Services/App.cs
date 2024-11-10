@@ -2,6 +2,7 @@
 using Demos.ImGuiBackend.GlfwImGuiNET.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwImGuiNET;
+using Detach.Metrics;
 using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
@@ -23,7 +24,8 @@ public sealed class App
 	private readonly unsafe WindowHandle* _window;
 	private readonly GlfwInput _glfwInput;
 	private readonly ImGuiController _imGuiController;
-	private readonly PerformanceMeasurement _performanceMeasurement;
+	private readonly FrameCounter _frameCounter;
+	private readonly HeapAllocationCounter _heapAllocationCounter;
 	private readonly InputDebugWindow _inputDebugWindow;
 	private readonly KeyboardInputWindow _keyboardInputWindow;
 	private readonly MouseInputWindow _mouseInputWindow;
@@ -40,7 +42,8 @@ public sealed class App
 		WindowHandle* window,
 		GlfwInput glfwInput,
 		ImGuiController imGuiController,
-		PerformanceMeasurement performanceMeasurement,
+		FrameCounter frameCounter,
+		HeapAllocationCounter heapAllocationCounter,
 		InputDebugWindow inputDebugWindow,
 		KeyboardInputWindow keyboardInputWindow,
 		MouseInputWindow mouseInputWindow,
@@ -52,7 +55,8 @@ public sealed class App
 		_window = window;
 		_glfwInput = glfwInput;
 		_imGuiController = imGuiController;
-		_performanceMeasurement = performanceMeasurement;
+		_frameCounter = frameCounter;
+		_heapAllocationCounter = heapAllocationCounter;
 		_inputDebugWindow = inputDebugWindow;
 		_keyboardInputWindow = keyboardInputWindow;
 		_mouseInputWindow = mouseInputWindow;
@@ -93,7 +97,7 @@ public sealed class App
 		if (_frameTime > _maxMainDelta)
 			_frameTime = _maxMainDelta;
 
-		_performanceMeasurement.Update(mainStartTime, _frameTime);
+		_frameCounter.Update(mainStartTime, _frameTime);
 
 		_currentTime = mainStartTime;
 		_accumulator += _frameTime;
@@ -117,6 +121,9 @@ public sealed class App
 		_gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		ImGui.ShowDemoWindow();
+
+		_heapAllocationCounter.UpdateAllocatedBytesForCurrentThread();
+
 		_inputDebugWindow.Render();
 		_keyboardInputWindow.Render();
 		_mouseInputWindow.Render();

@@ -4,6 +4,7 @@ using Demos.ImGuiBackend.GlfwHexa.Services.Ui;
 using Demos.ImGuiBackend.GlfwHexa.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
+using Detach.Metrics;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using StrongInject;
@@ -12,7 +13,8 @@ namespace Demos.ImGuiBackend.GlfwHexa;
 
 [Register<GlfwInput>(Scope.SingleInstance)]
 [Register<App>(Scope.SingleInstance)]
-[Register<PerformanceMeasurement>(Scope.SingleInstance)]
+[Register<FrameCounter>(Scope.SingleInstance)]
+[Register<HeapAllocationCounter>(Scope.SingleInstance)]
 [Register<InputDebugWindow>(Scope.SingleInstance)]
 [Register<KeyboardInputWindow>(Scope.SingleInstance)]
 [Register<MouseInputWindow>(Scope.SingleInstance)]

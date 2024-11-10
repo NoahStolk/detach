@@ -2,6 +2,15 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Added
+
+- Added some metrics types:
+  - `Detach.Metrics.FrameCounter`
+  - `Detach.Metrics.HeapAllocationCounter`
+  - `Detach.Metrics.SimpleCounter`
+
 ## 0.16.1
 
 ### Added
