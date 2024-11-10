@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach", "Detach\Detach.csproj", "{4EE53CD0-BDD9-4F12-82C9-D3C7C679B22F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.GlExtensions", "Detach.GlExtensions\Detach.GlExtensions.csproj", "{1256F194-AEDD-49EF-845D-D0B77352EC6E}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.GlfwExtensions", "Detach.GlfwExtensions\Detach.GlfwExtensions.csproj", "{CD52A07D-F79D-4B85-8374-63C89AE0717D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.ImGuiBackend.GlfwHexa", "Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj", "{37298EE9-0C01-4186-8017-4ED1EC43538B}"
@@ -58,6 +60,10 @@ Global
 		{413B8BD3-F269-478F-A5F8-9AE5E221017C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{413B8BD3-F269-478F-A5F8-9AE5E221017C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{413B8BD3-F269-478F-A5F8-9AE5E221017C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1256F194-AEDD-49EF-845D-D0B77352EC6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1256F194-AEDD-49EF-845D-D0B77352EC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1256F194-AEDD-49EF-845D-D0B77352EC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1256F194-AEDD-49EF-845D-D0B77352EC6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC} = {AF1AD2B7-33A5-4936-AD93-13B191616E86}
