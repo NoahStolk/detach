@@ -8,11 +8,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.ImGuiBackend.GlfwHex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.ImGuiBackend.GlfwImGuiNET", "Detach.ImGuiBackend.GlfwImGuiNET\Detach.ImGuiBackend.GlfwImGuiNET.csproj", "{A9841903-C522-4BFB-88F1-0AF04B0B023A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Collisions", "demos\Detach.Demos.Collisions\Detach.Demos.Collisions.csproj", "{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.Collisions", "demos\Demos.Collisions\Demos.Collisions.csproj", "{BADB525E-3C64-43D9-A6E4-7145BDD3DDC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Glfw.ImGuiBackend.Hexa", "demos\Detach.Demos.Glfw.ImGuiBackend.Hexa\Detach.Demos.Glfw.ImGuiBackend.Hexa.csproj", "{413B8BD3-F269-478F-A5F8-9AE5E221017C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.ImGuiBackend.GlfwHexa", "demos\Demos.ImGuiBackend.GlfwHexa\Demos.ImGuiBackend.GlfwHexa.csproj", "{413B8BD3-F269-478F-A5F8-9AE5E221017C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Demos.Glfw.ImGuiBackend.ImGuiNET", "demos\Detach.Demos.Glfw.ImGuiBackend.ImGuiNET\Detach.Demos.Glfw.ImGuiBackend.ImGuiNET.csproj", "{1F4EA140-743C-4C4F-90CA-5DE5299F2864}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demos.ImGuiBackend.GlfwImGuiNET", "demos\Demos.ImGuiBackend.GlfwImGuiNET\Demos.ImGuiBackend.GlfwImGuiNET.csproj", "{1F4EA140-743C-4C4F-90CA-5DE5299F2864}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Detach.Tests", "tests\Detach.Tests\Detach.Tests.csproj", "{BDAB1AB3-7103-4BB6-A85A-2C1D9FC112BC}"
 EndProject
