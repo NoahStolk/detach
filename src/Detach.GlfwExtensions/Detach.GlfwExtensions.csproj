@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Package configuration">
-    <PackageId>NoahStolk.Detach.Glfw</PackageId>
+    <PackageId>NoahStolk.Detach.GlfwExtensions</PackageId>
   </PropertyGroup>
 
   <ItemGroup Label="Dependencies">
