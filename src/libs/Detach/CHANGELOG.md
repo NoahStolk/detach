@@ -2,11 +2,17 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.18.2
+
+### Added
+
+- Added `SphereCastTriangle` overload to `Geometry3D` with an `out Vector3 intersectionPoint` parameter.
+
 ## 0.18.1
 
 ### Fixed
 
-- Fixed various overloads for `Inline.Utf8` and `Inline.Utf16` not terminating the data with a `\0` character. This is to prevent reading past the end of the string when the underlying memory is used directly. Previously, this only worked for interpolated string handlers.
+- Fixed various overloads for `Inline.Utf8` and `Inline.Utf16` not terminating the data with a `\0` character. This is to prevent reading past the end of the string when the underlying memory is used directly. Previously, this only worked for interpolated string handlers. The fix is applied to the overloads accepting the following types: 
   - `Boolean`
   - `ISpanFormattable (T)`
   - `IUtf8SpanFormattable (T)`

@@ -1128,6 +1128,58 @@ public static class Geometry3D
 			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.C, triangle.A));
 	}
 
+	public static bool SphereCastTriangle(SphereCast sphereCast, Triangle3D triangle, out Vector3 intersectionPoint)
+	{
+		intersectionPoint = default;
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+		direction /= length; // Normalize the direction.
+
+		Vector3 m = sphereCast.Start - triangle.A;
+		Vector3 n = Vector3.Cross(triangle.B - triangle.A, triangle.C - triangle.A);
+		float d = Vector3.Dot(n, direction);
+		float e = Vector3.Dot(n, m);
+
+		// Check if the sphere's path is parallel to the triangle's plane.
+		if (MathF.Abs(d) < float.Epsilon)
+		{
+			// Sphere is parallel to the triangle's plane.
+			if (MathF.Abs(e) >= sphereCast.Radius)
+				return false;
+		}
+		else
+		{
+			// Compute the intersection point of the sphere's path with the triangle's plane.
+			float t = -e / d;
+			if (t < 0 || t > length)
+				return false;
+
+			Vector3 point = sphereCast.Start + t * direction;
+			if (PointInTriangle(point, triangle))
+			{
+				intersectionPoint = point;
+				return true;
+			}
+		}
+
+		// Check for intersection with the triangle's vertices and edges.
+		if (SphereCastPoint(sphereCast, triangle.A) ||
+		    SphereCastPoint(sphereCast, triangle.B) ||
+		    SphereCastPoint(sphereCast, triangle.C) ||
+		    SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.A, triangle.B)) ||
+		    SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.B, triangle.C)) ||
+		    SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.C, triangle.A)))
+		{
+			Plane plane = CreatePlaneFromTriangle(triangle);
+			Vector3 closestStart = ClosestPointOnPlane(plane, sphereCast.Start);
+			Vector3 closestEnd = ClosestPointOnPlane(plane, sphereCast.End);
+			intersectionPoint = (closestStart + closestEnd) * 0.5f;
+			return true;
+		}
+
+		return false;
+	}
+
 	#endregion Sphere casting
 
 	#region Public helpers

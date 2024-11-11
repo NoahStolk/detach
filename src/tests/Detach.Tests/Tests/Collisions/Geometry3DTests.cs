@@ -233,4 +233,29 @@ public class Geometry3DTests
 		};
 		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, largeTriangle));
 	}
+
+	[TestMethod]
+	public void SphereCastTriangleWithIntersectionPoint()
+	{
+		SphereCast sphereCast = new(Vector3.Zero, new Vector3(1, 0, 1), 0.5f);
+
+		Triangle3D triangle = new()
+		{
+			A = new Vector3(-4, -4, 0.5f),
+			B = new Vector3(+4, -4, 0.5f),
+			C = new Vector3(+0, +4, 0.5f),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangle, out Vector3 intersectionPoint));
+		AssertionUtils.AreEqual(new Vector3(0.5f, 0, 0.5f), intersectionPoint);
+
+		sphereCast = new SphereCast(Vector3.Zero, new Vector3(1, 0, 1), 1);
+		triangle = new Triangle3D
+		{
+			A = new Vector3(-4, -4, 0.25f),
+			B = new Vector3(+4, -4, 0.25f),
+			C = new Vector3(+0, +4, 0.25f),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangle, out intersectionPoint));
+		AssertionUtils.AreEqual(new Vector3(0.25f, 0, 0.25f), intersectionPoint);
+	}
 }
