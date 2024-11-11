@@ -2,6 +2,15 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.18.0
+
+### Added
+
+- Added new collision methods to `Geometry3D`:
+  - `Geometry3D.SphereCastPoint`
+  - `Geometry3D.SphereCastLineSegment`
+  - `Geometry3D.SphereCastTriangle`
+
 ## 0.17.0
 
 ### Added
@@ -53,7 +62,9 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Added `SphereCastSphere` and `SphereCastSphereCast` methods to `Geometry3D` class.
+- Added new collision methods to `Geometry3D`:
+  - `Geometry3D.SphereCastSphere`
+  - `Geometry3D.SphereCastSphereCast`
 
 ## 0.14.0
 

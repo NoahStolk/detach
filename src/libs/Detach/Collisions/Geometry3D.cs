@@ -914,6 +914,57 @@ public static class Geometry3D
 
 	#region Sphere casting
 
+	public static bool SphereCastPoint(SphereCast sphereCast, Vector3 point)
+	{
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+		direction /= length; // Normalize the direction.
+
+		Vector3 m = sphereCast.Start - point;
+		float b = Vector3.Dot(m, direction);
+		float c = Vector3.Dot(m, m) - sphereCast.Radius * sphereCast.Radius;
+
+		if (c > 0.0f && b > 0.0f)
+			return false;
+
+		float discriminant = b * b - c;
+		if (discriminant < 0.0f)
+			return false;
+
+		float t = -b - MathF.Sqrt(discriminant);
+		if (t < 0.0f)
+			t = 0.0f;
+
+		return t <= length;
+	}
+
+	public static bool SphereCastLineSegment(SphereCast sphereCast, LineSegment3D line)
+	{
+		Vector3 edge = line.End - line.Start;
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+		direction /= length; // Normalize the direction.
+
+		Vector3 m = sphereCast.Start - line.Start;
+		Vector3 n = Vector3.Cross(edge, direction);
+		float d = Vector3.Dot(n, n);
+		float e = Vector3.Dot(n, m);
+
+		if (MathF.Abs(d) < float.Epsilon)
+		{
+			// Sphere is parallel to the edge.
+			return false;
+		}
+
+		float t = e / d;
+		if (t < 0 || t > length)
+			return false;
+
+		Vector3 point = sphereCast.Start + t * direction;
+		Vector3 closest = ClosestPointOnLine(point, new LineSegment3D(line.Start, line.End));
+		return Vector3.DistanceSquared(point, closest) <= sphereCast.Radius * sphereCast.Radius;
+	}
+
 	public static bool SphereCastSphere(SphereCast sphereCast, Sphere sphere)
 	{
 		Vector3 direction = sphereCast.End - sphereCast.Start;
@@ -1035,6 +1086,46 @@ public static class Geometry3D
 		// Perform sphere cast against the AABB in local space.
 		Aabb aabb = new(Vector3.Zero, obb.HalfExtents * 2);
 		return SphereCastAabb(new SphereCast(localSphereStart, localSphereEnd, sphereCast.Radius), aabb);
+	}
+
+	public static bool SphereCastTriangle(SphereCast sphereCast, Triangle3D triangle)
+	{
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+		direction /= length; // Normalize the direction.
+
+		Vector3 m = sphereCast.Start - triangle.A;
+		Vector3 n = Vector3.Cross(triangle.B - triangle.A, triangle.C - triangle.A);
+		float d = Vector3.Dot(n, direction);
+		float e = Vector3.Dot(n, m);
+
+		// Check if the sphere's path is parallel to the triangle's plane.
+		if (MathF.Abs(d) < float.Epsilon)
+		{
+			// Sphere is parallel to the triangle's plane.
+			if (MathF.Abs(e) >= sphereCast.Radius)
+				return false;
+		}
+		else
+		{
+			// Compute the intersection point of the sphere's path with the triangle's plane.
+			float t = -e / d;
+			if (t < 0 || t > length)
+				return false;
+
+			Vector3 point = sphereCast.Start + t * direction;
+			if (PointInTriangle(point, triangle))
+				return true;
+		}
+
+		// Check for intersection with the triangle's vertices and edges.
+		return
+			SphereCastPoint(sphereCast, triangle.A) ||
+			SphereCastPoint(sphereCast, triangle.B) ||
+			SphereCastPoint(sphereCast, triangle.C) ||
+			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.A, triangle.B)) ||
+			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.B, triangle.C)) ||
+			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.C, triangle.A));
 	}
 
 	#endregion Sphere casting

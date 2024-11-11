@@ -195,4 +195,42 @@ public class Geometry3DTests
 			AssertionUtils.AreEqual(plane.Normal, result.Normal);
 		}
 	}
+
+	[TestMethod]
+	public void SphereCastTriangle()
+	{
+		SphereCast sphereCast = new(Vector3.Zero, Vector3.UnitZ, 0.5f);
+
+		Triangle3D triangleOnZ0 = new()
+		{
+			A = new Vector3(-1, -1, 0),
+			B = new Vector3(+1, -1, 0),
+			C = new Vector3(+0, +1, 0),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleOnZ0));
+
+		Triangle3D triangleOnZ1 = new()
+		{
+			A = new Vector3(-1, -1, 1),
+			B = new Vector3(+1, -1, 1),
+			C = new Vector3(+0, +1, 1),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleOnZ1));
+
+		Triangle3D triangleOnZ2 = new()
+		{
+			A = new Vector3(-1, -1, 2),
+			B = new Vector3(+1, -1, 2),
+			C = new Vector3(+0, +1, 2),
+		};
+		Assert.IsFalse(Geometry3D.SphereCastTriangle(sphereCast, triangleOnZ2));
+
+		Triangle3D largeTriangle = new()
+		{
+			A = new Vector3(-16, -16, 0.5f),
+			B = new Vector3(+16, -16, 0.5f),
+			C = new Vector3(+00, +16, 0.5f),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, largeTriangle));
+	}
 }
