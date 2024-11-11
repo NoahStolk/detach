@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Package configuration">
+    <PackageId>NoahStolk.Detach.GlExtensions</PackageId>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup Label="External dependencies">
+    <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0"/>
+  </ItemGroup>
+
+</Project>

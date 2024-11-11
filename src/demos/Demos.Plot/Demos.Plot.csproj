@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Build configuration">
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup Label="External dependencies">
+    <PackageReference Include="Hexa.NET.ImPlot" Version="2.2.0"/>
+    <PackageReference Include="StrongInject" Version="1.4.4"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Internal dependencies">
+    <ProjectReference Include="..\..\Detach\Detach.csproj"/>
+    <ProjectReference Include="..\..\Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj"/>
+  </ItemGroup>
+
+</Project>

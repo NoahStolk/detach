@@ -1,37 +1,33 @@
 # Detach
 
-[![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.svg)](https://www.nuget.org/packages/NoahStolk.Detach/)
+A set of libraries for developing lightweight, cross-platform, real-time applications and games in .NET 8.
 
-Zero-dependency library for game engines, games, and other real-time applications (.NET 8 only)
+Built on top of:
+- [OpenGL](https://www.opengl.org/)
+- [GLFW](https://www.glfw.org/)
+- [Dear ImGui](https://github.com/ocornut/imgui)
 
-## Collisions
+Uses bindings from:
+- [Silk.NET](https://github.com/dotnet/Silk.NET)
+- [Hexa.NET.ImGui](https://github.com/HexaEngine/Hexa.NET.ImGui)
+- [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET)
 
-### 2D Intersections (implementation count)
+## Libraries
 
-|                   | Point | LineSegment2D | Circle | Rectangle | OrientedRectangle | Triangle |
-|-------------------|-------|---------------|--------|-----------|-------------------|----------|
-| Point             | N/A   | 1             | 1      | 1         | 1                 | 1        |
-| LineSegment2D     | 1     | 1             | 1      | 1         | 1                 | 1        |
-| Circle            | 1     | 1             | 1      | 1         | 1                 | 1        |
-| Rectangle         | 1     | 1             | 1      | 2         | 1                 | 1        |
-| OrientedRectangle | 1     | 1             | 1      | 1         | 1                 | 1        |
-| Triangle          | 1     | 1             | 1      | 1         | 1                 | -        |
+All libraries are currently targeting .NET 8.0.
 
-### 3D Intersections (implementation count)
+| Library                          | Features                                                                                   | Dependencies                                                       | NuGet                                                                                                                                                                         |
+|----------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Detach                           | Parsers for various formats, maths, collision algorithms, numerics, extension methods, etc | None                                                               | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.svg)](https://www.nuget.org/packages/NoahStolk.Detach/)                                                     |
+| Detach.AlExtensions              | Extensions for OpenAL                                                                      | **Silk.NET.OpenAL**                                                | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.AlExtensions.svg)](https://www.nuget.org/packages/NoahStolk.Detach.AlExtensions/)                           |
+| Detach.GlExtensions              | Extensions for OpenGL                                                                      | **Silk.NET.OpenGL**                                                | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.GlExtensions.svg)](https://www.nuget.org/packages/NoahStolk.Detach.GlExtensions/)                           |
+| Detach.GlfwExtensions            | Extensions for GLFW                                                                        | **Silk.NET.GLFW**                                                  | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.GlfwExtensions.svg)](https://www.nuget.org/packages/NoahStolk.Detach.GlfwExtensions/)                       |
+| Detach.ImGuiBackend.GlfwHexa     | ImGui backend for GLFW using Hexa.NET.ImGui bindings                                       | *Detach.GlExtensions*, *Detach.GlfwExtensions*, **Hexa.NET.ImGui** | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.ImGuiBackend.GlfwHexa.svg)](https://www.nuget.org/packages/NoahStolk.Detach.ImGuiBackend.GlfwHexa/)         |
+| Detach.ImGuiBackend.GlfwImGuiNET | ImGui backend for GLFW using ImGui.NET bindings                                            | *Detach.GlExtensions*, *Detach.GlfwExtensions*, **ImGui.NET**      | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.ImGuiBackend.GlfwImGuiNET.svg)](https://www.nuget.org/packages/NoahStolk.Detach.ImGuiBackend.GlfwImGuiNET/) |
 
-|                  | Point | LineSegment3D | Ray | SphereCast | Sphere | Aabb | Obb | Plane | Triangle | Frustum | Cylinder | OrientedCylinder | Capsule | OrientedCapsule |
-|------------------|-------|---------------|-----|------------|--------|------|-----|-------|----------|---------|----------|------------------|---------|-----------------|
-| Point            | N/A   | 1             | 1   | -          | 1      | 1    | 1   | 1     | 1        | 1       | 1        | -                | -       | -               |
-| LineSegment3D    | 1     | N/A           | N/A | -          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
-| Ray              | 1     | N/A           | N/A | -          | 2      | 2    | 2   | 2     | 2        | -       | 1        | -                | -       | -               |
-| SphereCast       | -     | -             | -   | 1          | 1      | 1    | 1   | -     | -        | -       | -        | -                | -       | -               |
-| Sphere           | 1     | 1             | 2   | 1          | 1      | 1    | 1   | 1     | 1        | 1       | 1        | -                | -       | -               |
-| Aabb             | 1     | 1             | 2   | 1          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
-| Obb              | 1     | 1             | 2   | 1          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
-| Plane            | 1     | 1             | 2   | -          | 1      | 1    | 1   | 1     | 1        | -       | -        | -                | -       | -               |
-| Triangle         | 1     | 1             | 2   | -          | 1      | 1    | 1   | 1     | 2        | -       | -        | -                | -       | -               |
-| Frustum          | 1     | -             | -   | -          | 1      | -    | -   | -     | -        | -       | -        | -                | -       | -               |
-| Cylinder         | 1     | -             | 1   | -          | 1      | -    | -   | -     | -        | -       | 1        | -                | -       | -               |
-| OrientedCylinder | -     | -             | -   | -          | -      | -    | -   | -     | -        | -       | -        | -                | -       | -               |
-| Capsule          | -     | -             | -   | -          | -      | -    | -   | -     | -        | -       | -        | -                | -       | -               |
-| OrientedCapsule  | -     | -             | -   | -          | -      | -    | -   | -     | -        | -       | -        | -                | -       | -               |
+## Promises
+
+- Semantic versioning
+- Synchronized transitive dependency versions 
+- Minimal dependencies, no dependencies for the main library
+- Latest .NET version
