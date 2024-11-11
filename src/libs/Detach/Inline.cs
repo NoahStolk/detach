@@ -37,21 +37,21 @@ public static partial class Inline
 		return BufferUtf8[..(charsWritten - 1)];
 	}
 
-	private static void WriteUtf8(ref int charsWritten, ReadOnlySpan<byte> value)
+	private static void WriteUtf8(ref int bytesWritten, ReadOnlySpan<byte> value)
 	{
-		if (!value.TryCopyTo(BufferUtf8[charsWritten..]))
+		if (!value.TryCopyTo(BufferUtf8[bytesWritten..]))
 			throw new InvalidOperationException("The formatted string is too long.");
 
-		charsWritten += value.Length;
+		bytesWritten += value.Length;
 	}
 
-	private static void WriteUtf8<T>(ref int charsWritten, T value, ReadOnlySpan<char> format = default, IFormatProvider? provider = null)
+	private static void WriteUtf8<T>(ref int bytesWritten, T value, ReadOnlySpan<char> format = default, IFormatProvider? provider = null)
 		where T : IUtf8SpanFormattable
 	{
-		if (!value.TryFormat(BufferUtf8[charsWritten..], out int charsWrittenValue, format, provider))
+		if (!value.TryFormat(BufferUtf8[bytesWritten..], out int charsWrittenValue, format, provider))
 			throw new InvalidOperationException("The formatted string is too long.");
 
-		charsWritten += charsWrittenValue;
+		bytesWritten += charsWrittenValue;
 	}
 
 	public static ReadOnlySpan<char> Utf16(InlineInterpolatedStringHandlerUtf16 handler)

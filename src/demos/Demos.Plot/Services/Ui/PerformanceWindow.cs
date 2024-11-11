@@ -17,14 +17,14 @@ public sealed class PerformanceWindow
 
 	public void Render()
 	{
-		if (ImGui.Begin("Performance"))
+		if (ImGui.Begin("Performance"u8))
 		{
-			ImGui.SeparatorText("Rendering");
+			ImGui.SeparatorText("Rendering"u8);
 
 			ImGui.Text(Inline.Utf8($"{_frameCounter.FrameCountPreviousSecond} FPS"));
 			ImGui.Text(Inline.Utf8($"Frame time: {_frameCounter.CurrentFrameTime:0.0000} s"));
 
-			ImGui.SeparatorText("Allocations");
+			ImGui.SeparatorText("Allocations"u8);
 
 			ImGui.Text(Inline.Utf8($"Allocated: {_heapAllocationCounter.AllocatedBytes:N0} bytes"));
 			ImGui.Text(Inline.Utf8($"Since last update: {_heapAllocationCounter.AllocatedBytesSinceLastUpdate:N0} bytes"));
