@@ -4,8 +4,11 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
-  <ItemGroup Label="Dependencies">
+  <ItemGroup Label="External dependencies">
     <PackageReference Include="StrongInject" Version="1.4.4"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Internal dependencies">
     <ProjectReference Include="..\..\Detach\Detach.csproj"/>
     <ProjectReference Include="..\..\Detach.ImGuiBackend.GlfwImGuiNET\Detach.ImGuiBackend.GlfwImGuiNET.csproj"/>
   </ItemGroup>
