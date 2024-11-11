@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Detach.GlfwExtensions;
 
-public static class GlfwExtensions
+public static class GlfwExtensionMethods
 {
 	public static unsafe void CheckError(this Glfw glfw, [CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
 	{

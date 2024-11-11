@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Detach.AlExtensions;
 
-public static class AlExtensions
+public static class AlExtensionMethods
 {
 	public static void CheckError(this AL al, [CallerMemberName] string caller = "", [CallerLineNumber] int line = 0)
 	{

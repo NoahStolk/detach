@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Detach.GlExtensions;
 
-public static class GlExtensions
+public static class GlExtensionMethods
 {
 	// ReSharper disable once InconsistentNaming
 	public static void UniformMatrix4x4(this GL gl, int uniformLocation, Matrix4x4 value)
