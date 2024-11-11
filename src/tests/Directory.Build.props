@@ -1,0 +1,22 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+
+	<ImportGroup Label="Import parent props">
+		<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+	</ImportGroup>
+
+	<PropertyGroup Label="Build configuration">
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
+
+	<ItemGroup Label="Test dependencies">
+		<PackageReference Include="coverlet.collector" Version="6.0.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1"/>
+		<PackageReference Include="MSTest.TestAdapter" Version="3.6.2"/>
+		<PackageReference Include="MSTest.TestFramework" Version="3.6.2"/>
+	</ItemGroup>
+
+</Project>

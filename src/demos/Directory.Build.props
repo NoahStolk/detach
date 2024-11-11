@@ -1,0 +1,12 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+
+	<ImportGroup Label="Import parent props">
+		<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+	</ImportGroup>
+
+	<PropertyGroup Label="Build configuration">
+		<OutputType>Exe</OutputType>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+</Project>

@@ -9,17 +9,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<PropertyGroup Label="Package configuration">
-		<Authors>Noah Stolk</Authors>
-		<Copyright>Copyright © Noah Stolk</Copyright>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-	</PropertyGroup>
-
-	<ItemGroup Label="Test configuration">
-		<InternalsVisibleTo Include="$(MSBuildProjectName).Tests" />
-	</ItemGroup>
-
 	<ItemGroup Label="Static code analysis">
 		<PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>

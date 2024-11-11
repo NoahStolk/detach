@@ -1,0 +1,19 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+
+	<ImportGroup Label="Import parent props">
+		<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+	</ImportGroup>
+
+	<PropertyGroup Label="Package configuration">
+		<Authors>Noah Stolk</Authors>
+		<Copyright>Copyright © Noah Stolk</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup Label="Test configuration">
+		<InternalsVisibleTo Include="$(MSBuildProjectName).Tests"/>
+	</ItemGroup>
+
+</Project>
