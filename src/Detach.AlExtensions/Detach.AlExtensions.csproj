@@ -2,6 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.AlExtensions</PackageId>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">

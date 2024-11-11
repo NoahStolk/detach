@@ -14,7 +14,6 @@
 		<Copyright>Copyright © Noah Stolk</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/NoahStolk/Detach</RepositoryUrl>
-		<Version>0.16.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup Label="Test configuration">

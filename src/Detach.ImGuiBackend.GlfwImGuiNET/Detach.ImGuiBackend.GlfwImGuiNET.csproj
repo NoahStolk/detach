@@ -2,6 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.ImGuiBackend.GlfwImGuiNET</PackageId>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">
