@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Project under test">
-    <ProjectReference Include="..\..\Detach\Detach.csproj"/>
+    <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
   </ItemGroup>
 
   <ItemGroup Label="Test resources">
