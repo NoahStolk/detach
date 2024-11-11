@@ -4,8 +4,11 @@
     <PackageId>NoahStolk.Detach.ImGuiBackend.GlfwImGuiNET</PackageId>
   </PropertyGroup>
 
-  <ItemGroup Label="Dependencies">
+  <ItemGroup Label="External dependencies">
     <PackageReference Include="ImGui.NET" Version="1.91.0.1"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Internal dependencies">
     <ProjectReference Include="..\Detach.GlExtensions\Detach.GlExtensions.csproj"/>
     <ProjectReference Include="..\Detach.GlfwExtensions\Detach.GlfwExtensions.csproj"/>
   </ItemGroup>

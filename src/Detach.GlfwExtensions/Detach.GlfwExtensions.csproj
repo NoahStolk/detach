@@ -4,7 +4,7 @@
     <PackageId>NoahStolk.Detach.GlfwExtensions</PackageId>
   </PropertyGroup>
 
-  <ItemGroup Label="Dependencies">
+  <ItemGroup Label="External dependencies">
     <PackageReference Include="Silk.NET.GLFW" Version="2.22.0"/>
   </ItemGroup>
 

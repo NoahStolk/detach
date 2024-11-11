@@ -15,11 +15,11 @@
     <PackageReference Include="MSTest.TestFramework" Version="3.6.2"/>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="Project under test">
     <ProjectReference Include="..\..\Detach\Detach.csproj"/>
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Label="Test resources">
     <None Update="Resources\**\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
