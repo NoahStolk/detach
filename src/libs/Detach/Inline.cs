@@ -32,7 +32,9 @@ public static partial class Inline
 		if (!t.TryFormat(BufferUtf8, out int charsWritten, format, provider))
 			throw new InvalidOperationException("The formatted string is too long.");
 
-		return BufferUtf8[..charsWritten];
+		WriteUtf8(ref charsWritten, "\0"u8);
+
+		return BufferUtf8[..(charsWritten - 1)];
 	}
 
 	private static void WriteUtf8(ref int charsWritten, ReadOnlySpan<byte> value)
@@ -63,7 +65,9 @@ public static partial class Inline
 		if (!t.TryFormat(_bufferUtf16, out int charsWritten, format, provider))
 			throw new InvalidOperationException("The formatted string is too long.");
 
-		return BufferUtf16[..charsWritten];
+		WriteUtf16(ref charsWritten, "\0");
+
+		return BufferUtf16[..(charsWritten - 1)];
 	}
 
 	private static void WriteUtf16(ref int charsWritten, string value)

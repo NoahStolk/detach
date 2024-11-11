@@ -2,6 +2,21 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.18.1
+
+### Fixed
+
+- Fixed various overloads for `Inline.Utf8` and `Inline.Utf16` not terminating the data with a `\0` character. This is to prevent reading past the end of the string when the underlying memory is used directly. Previously, this only worked for interpolated string handlers.
+  - `Boolean`
+  - `ISpanFormattable (T)`
+  - `IUtf8SpanFormattable (T)`
+  - `Matrix3x2`
+  - `Matrix4x4`
+  - `Quaternion`
+  - `Vector2`
+  - `Vector3`
+  - `Vector4`
+
 ## 0.18.0
 
 ### Added

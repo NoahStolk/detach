@@ -20,9 +20,9 @@ public static partial class Inline
 		WriteUtf8(ref charsWritten, value.M31, format, provider);
 		WriteUtf8(ref charsWritten, SeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M32, format, provider);
-		WriteUtf8(ref charsWritten, ">"u8);
+		WriteUtf8(ref charsWritten, ">\0"u8);
 
-		return _bufferUtf8.AsSpan(0, charsWritten);
+		return _bufferUtf8.AsSpan(0, charsWritten - 1);
 	}
 
 	public static ReadOnlySpan<char> Utf16(Matrix3x2 value, ReadOnlySpan<char> format = default, IFormatProvider? provider = default)
@@ -40,8 +40,8 @@ public static partial class Inline
 		WriteUtf16(ref charsWritten, value.M31, format, provider);
 		WriteUtf16(ref charsWritten, _separatorUtf16);
 		WriteUtf16(ref charsWritten, value.M32, format, provider);
-		WriteUtf16(ref charsWritten, ">");
+		WriteUtf16(ref charsWritten, ">\0");
 
-		return _bufferUtf16.AsSpan(0, charsWritten);
+		return _bufferUtf16.AsSpan(0, charsWritten - 1);
 	}
 }
