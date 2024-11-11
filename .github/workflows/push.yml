@@ -19,8 +19,12 @@ jobs:
     - name: Test
       run: dotnet test src/Detach.sln -c Release --no-build
     - name: Pack
-      run: dotnet pack -c Release -o .
+      run: |
+        cd src/
+        dotnet pack -c Release -o .
     - name: Push
-      run: dotnet nuget push *.nupkg -s nuget.org -k ${NUGET_SECRET} -n --skip-duplicate
+      run: |
+        cd src/
+        dotnet nuget push *.nupkg -s nuget.org -k ${NUGET_SECRET} -n --skip-duplicate
       env:
         NUGET_SECRET: ${{ secrets.NUGET_SECRET }}
