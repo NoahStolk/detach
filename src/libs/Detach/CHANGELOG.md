@@ -2,6 +2,15 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.19.0
+
+### Added
+
+- Added generic `RingBuffer<T>` class to `Detach.Buffers` namespace.
+- Added ring buffer properties to some metrics types. These can be used for displaying performance graphs.
+  - `FrameCounter.FrameTimesMs`
+  - `HeapAllocationCounter.AllocatedBytesBuffer`
+
 ## 0.18.2
 
 ### Added

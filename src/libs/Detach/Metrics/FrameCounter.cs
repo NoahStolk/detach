@@ -1,4 +1,6 @@
-﻿namespace Detach.Metrics;
+﻿using Detach.Buffers;
+
+namespace Detach.Metrics;
 
 public sealed class FrameCounter
 {
@@ -20,6 +22,11 @@ public sealed class FrameCounter
 	public double CurrentFrameTime { get; private set; }
 
 	/// <summary>
+	/// Buffer containing the most recent frame times in milliseconds.
+	/// </summary>
+	public RingBuffer<double> FrameTimesMs { get; } = new(1024);
+
+	/// <summary>
 	/// Updates the counter.
 	/// </summary>
 	/// <param name="currentTime">The current time according to the window.</param>
@@ -30,6 +37,7 @@ public sealed class FrameCounter
 
 		FrameCountCurrentSecond++;
 		CurrentFrameTime = currentFrameTime;
+		FrameTimesMs.Add(currentFrameTime * 1000);
 
 		if (_currentSecond == currentSecond)
 			return;

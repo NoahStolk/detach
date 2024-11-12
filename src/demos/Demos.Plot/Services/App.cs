@@ -4,6 +4,7 @@ using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
 using Detach.Metrics;
 using Hexa.NET.ImGui;
+using Hexa.NET.ImPlot;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 
@@ -112,6 +113,7 @@ public sealed class App
 		_gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		ImGui.ShowDemoWindow();
+		ImPlot.ShowDemoWindow();
 
 		_heapAllocationCounter.UpdateAllocatedBytesForCurrentThread();
 
