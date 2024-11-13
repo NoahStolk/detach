@@ -2,6 +2,7 @@
 
 	<PropertyGroup Label="Build configuration">
 		<TargetFramework>net8.0</TargetFramework>
+		<LangVersion>13.0</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
