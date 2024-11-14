@@ -1,6 +1,6 @@
 # Detach
 
-A set of libraries for developing lightweight, cross-platform, real-time applications and games in .NET 8.
+A set of libraries for developing lightweight, cross-platform, real-time applications and games in .NET 9.
 
 Built on top of:
 - [OpenGL](https://www.opengl.org/)
@@ -14,7 +14,7 @@ Uses bindings from:
 
 ## Libraries
 
-All libraries are currently targeting .NET 8.0.
+All libraries are currently targeting .NET 9.0.
 
 | Library                          | Features                                                                                   | Dependencies                                                       | NuGet                                                                                                                                                                         |
 |----------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

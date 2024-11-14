@@ -2,7 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach</PackageId>
-    <Version>0.19.1</Version>
+    <Version>0.20.0</Version>
   </PropertyGroup>
 
   <ItemGroup Label="T4 templates">
