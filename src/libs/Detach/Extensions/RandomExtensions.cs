@@ -97,123 +97,6 @@ public static class RandomExtensions
 		return random.NextDouble() * (maxValue - minValue) + minValue;
 	}
 
-#if !PARAMS_SPAN // https://github.com/dotnet/csharplang/issues/1757
-	/// <summary>
-	/// Returns a random item from the given parameters.
-	/// </summary>
-	/// <typeparam name="T">The type of the items in the span.</typeparam>
-	/// <param name="random">The <see cref="Random"/> instance.</param>
-	/// <param name="option1">The 1st option to choose from.</param>
-	/// <param name="option2">The 2nd option to choose from.</param>
-	/// <returns>The randomly chosen item.</returns>
-	public static T Choose<T>(this Random random, T option1, T option2)
-		where T : unmanaged
-	{
-		Span<T> span =
-		[
-			option1,
-			option2,
-		];
-		return random.Choose(span);
-	}
-
-	/// <summary>
-	/// Returns a random item from the given parameters.
-	/// </summary>
-	/// <typeparam name="T">The type of the items in the span.</typeparam>
-	/// <param name="random">The <see cref="Random"/> instance.</param>
-	/// <param name="option1">The 1st option to choose from.</param>
-	/// <param name="option2">The 2nd option to choose from.</param>
-	/// <param name="option3">The 3rd option to choose from.</param>
-	/// <returns>The randomly chosen item.</returns>
-	public static T Choose<T>(this Random random, T option1, T option2, T option3)
-		where T : unmanaged
-	{
-		Span<T> span =
-		[
-			option1,
-			option2,
-			option3,
-		];
-		return random.Choose(span);
-	}
-
-	/// <summary>
-	/// Returns a random item from the given parameters.
-	/// </summary>
-	/// <typeparam name="T">The type of the items in the span.</typeparam>
-	/// <param name="random">The <see cref="Random"/> instance.</param>
-	/// <param name="option1">The 1st option to choose from.</param>
-	/// <param name="option2">The 2nd option to choose from.</param>
-	/// <param name="option3">The 3rd option to choose from.</param>
-	/// <param name="option4">The 4th option to choose from.</param>
-	/// <returns>The randomly chosen item.</returns>
-	public static T Choose<T>(this Random random, T option1, T option2, T option3, T option4)
-		where T : unmanaged
-	{
-		Span<T> span =
-		[
-			option1,
-			option2,
-			option3,
-			option4,
-		];
-		return random.Choose(span);
-	}
-
-	/// <summary>
-	/// Returns a random item from the given parameters.
-	/// </summary>
-	/// <typeparam name="T">The type of the items in the span.</typeparam>
-	/// <param name="random">The <see cref="Random"/> instance.</param>
-	/// <param name="option1">The 1st option to choose from.</param>
-	/// <param name="option2">The 2nd option to choose from.</param>
-	/// <param name="option3">The 3rd option to choose from.</param>
-	/// <param name="option4">The 4th option to choose from.</param>
-	/// <param name="option5">The 5th option to choose from.</param>
-	/// <returns>The randomly chosen item.</returns>
-	public static T Choose<T>(this Random random, T option1, T option2, T option3, T option4, T option5)
-		where T : unmanaged
-	{
-		Span<T> span =
-		[
-			option1,
-			option2,
-			option3,
-			option4,
-			option5,
-		];
-		return random.Choose(span);
-	}
-
-	/// <summary>
-	/// Returns a random item from the given parameters.
-	/// </summary>
-	/// <typeparam name="T">The type of the items in the span.</typeparam>
-	/// <param name="random">The <see cref="Random"/> instance.</param>
-	/// <param name="option1">The 1st option to choose from.</param>
-	/// <param name="option2">The 2nd option to choose from.</param>
-	/// <param name="option3">The 3rd option to choose from.</param>
-	/// <param name="option4">The 4th option to choose from.</param>
-	/// <param name="option5">The 5th option to choose from.</param>
-	/// <param name="option6">The 6th option to choose from.</param>
-	/// <returns>The randomly chosen item.</returns>
-	public static T Choose<T>(this Random random, T option1, T option2, T option3, T option4, T option5, T option6)
-		where T : unmanaged
-	{
-		Span<T> span =
-		[
-			option1,
-			option2,
-			option3,
-			option4,
-			option5,
-			option6,
-		];
-		return random.Choose(span);
-	}
-#endif
-
 	/// <summary>
 	/// Returns a random item from the given <paramref name="options"/> span.
 	/// </summary>
@@ -221,7 +104,7 @@ public static class RandomExtensions
 	/// <param name="random">The <see cref="Random"/> instance.</param>
 	/// <param name="options">The span to choose from.</param>
 	/// <returns>The randomly chosen item.</returns>
-	public static T Choose<T>(this Random random, Span<T> options)
+	public static T Choose<T>(this Random random, params Span<T> options)
 	{
 		return options[random.Next(options.Length)];
 	}

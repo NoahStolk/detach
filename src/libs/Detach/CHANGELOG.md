@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.20.0
+
+### Added
+
+- Added `params` keyword to `options` parameter in `RandomExtensions.Choose<T>` method.
+
+### Changed
+
+- Updated to .NET 9.0.
+
 ## 0.19.0
 
 ### Added
