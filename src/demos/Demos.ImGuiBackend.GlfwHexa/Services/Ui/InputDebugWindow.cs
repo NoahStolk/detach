@@ -18,11 +18,11 @@ public sealed unsafe class InputDebugWindow
 	public InputDebugWindow()
 	{
 		"Type letters and numbers: "u8.CopyTo(_debugText0);
-		"Type letters and numbers while holding (SHIFT): "u8.CopyTo(_debugText1);
+		"Type letters and numbers while holding the shift key: "u8.CopyTo(_debugText1);
 		"Enter some enters, and use the arrow keys to navigate.\nUse backspace and delete to remove text."u8.CopyTo(_debugText2);
 		"Insert some tabs (only works for this input field).\nHold keys to see the repeat rate."u8.CopyTo(_debugText3);
-		"Select all text, copy, paste, and use CTRL + arrows to navigate between words.\nUse CTRL + backspace to delete words."u8.CopyTo(_debugText4);
-		"Use SHIFT + arrows / home / end / page up / page down to select text."u8.CopyTo(_debugText5);
+		"Select all text, copy, cut, paste, and use CTRL + arrows to navigate between words.\nUse CTRL + backspace to delete words."u8.CopyTo(_debugText4);
+		"Use SHIFT + arrows / home / end / page up / page down to select text.\n...\n...\n..."u8.CopyTo(_debugText5);
 	}
 
 	private static bool InputText(ReadOnlySpan<byte> label, byte[] input)
@@ -48,14 +48,14 @@ public sealed unsafe class InputDebugWindow
 
 			InputTextMultiline("Enter, arrow keys, backspace, delete"u8, _debugText2, new Vector2(0, 64));
 			InputTextMultiline("Tab"u8, _debugText3, new Vector2(0, 64), ImGuiInputTextFlags.AllowTabInput);
-			InputTextMultiline("CTRL shortcut\n- CTRL+A\n- CTRL+C\n- CTRL+V\n- CTRL+arrows"u8, _debugText4, new Vector2(0, 64));
+			InputTextMultiline("CTRL shortcuts\n- CTRL+A\n- CTRL+C\n- CTRL+X\n- CTRL+V\n- CTRL+arrows\n- CTRL+backspace"u8, _debugText4, new Vector2(0, 96));
 			InputTextMultiline("SHIFT shortcuts\n- SHIFT+arrows\n- SHIFT+home"u8, _debugText5, new Vector2(0, 64));
 
 			ImGui.SeparatorText("Test mouse input");
 
-			ImGui.Checkbox("Checkbox", ref _checkbox);
+			ImGui.Checkbox("Test checkbox", ref _checkbox);
 
-			if (ImGui.BeginChild("Scroll area", new Vector2(256, 128)))
+			if (ImGui.BeginChild("Test scroll area", new Vector2(256, 128)))
 			{
 				for (int i = 0; i < 50; i++)
 				{
