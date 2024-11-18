@@ -15,7 +15,7 @@ namespace Demos.ImGuiBackend.GlfwImGuiNET;
 [Register<App>(Scope.SingleInstance)]
 [Register<FrameCounter>(Scope.SingleInstance)]
 [Register<HeapAllocationCounter>(Scope.SingleInstance)]
-[Register<InputDebugWindow>(Scope.SingleInstance)]
+[Register<InputTestingWindow>(Scope.SingleInstance)]
 [Register<KeyboardInputWindow>(Scope.SingleInstance)]
 [Register<MouseInputWindow>(Scope.SingleInstance)]
 [Register<PerformanceWindow>(Scope.SingleInstance)]

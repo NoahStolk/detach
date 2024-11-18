@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Demos.ImGuiBackend.GlfwHexa.Services.Ui;
 
-public sealed unsafe class InputDebugWindow
+public sealed unsafe class InputTestingWindow
 {
 	private static readonly byte[] _debugText0 = new byte[1024];
 	private static readonly byte[] _debugText1 = new byte[1024];
@@ -15,7 +15,7 @@ public sealed unsafe class InputDebugWindow
 
 	private bool _checkbox;
 
-	public InputDebugWindow()
+	public InputTestingWindow()
 	{
 		"Type letters and numbers: "u8.CopyTo(_debugText0);
 		"Type letters and numbers while holding the shift key: "u8.CopyTo(_debugText1);

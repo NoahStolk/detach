@@ -26,7 +26,7 @@ public sealed class App
 	private readonly ImGuiController _imGuiController;
 	private readonly FrameCounter _frameCounter;
 	private readonly HeapAllocationCounter _heapAllocationCounter;
-	private readonly InputDebugWindow _inputDebugWindow;
+	private readonly InputTestingWindow _inputTestingWindow;
 	private readonly KeyboardInputWindow _keyboardInputWindow;
 	private readonly MouseInputWindow _mouseInputWindow;
 	private readonly PerformanceWindow _performanceWindow;
@@ -44,7 +44,7 @@ public sealed class App
 		ImGuiController imGuiController,
 		FrameCounter frameCounter,
 		HeapAllocationCounter heapAllocationCounter,
-		InputDebugWindow inputDebugWindow,
+		InputTestingWindow inputTestingWindow,
 		KeyboardInputWindow keyboardInputWindow,
 		MouseInputWindow mouseInputWindow,
 		PerformanceWindow performanceWindow,
@@ -57,7 +57,7 @@ public sealed class App
 		_imGuiController = imGuiController;
 		_frameCounter = frameCounter;
 		_heapAllocationCounter = heapAllocationCounter;
-		_inputDebugWindow = inputDebugWindow;
+		_inputTestingWindow = inputTestingWindow;
 		_keyboardInputWindow = keyboardInputWindow;
 		_mouseInputWindow = mouseInputWindow;
 		_performanceWindow = performanceWindow;
@@ -124,7 +124,7 @@ public sealed class App
 
 		_heapAllocationCounter.UpdateAllocatedBytesForCurrentThread();
 
-		_inputDebugWindow.Render();
+		_inputTestingWindow.Render();
 		_keyboardInputWindow.Render();
 		_mouseInputWindow.Render();
 		_performanceWindow.Render();

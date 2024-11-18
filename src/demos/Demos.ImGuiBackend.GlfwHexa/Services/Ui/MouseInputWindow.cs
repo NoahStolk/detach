@@ -56,7 +56,7 @@ public sealed class MouseInputWindow
 
 			ImGui.SeparatorText("GLFW mouse position");
 
-			ImGui.Text(Inline.Utf8(_glfwInput.CursorPosition));
+			ImGui.Text(Inline.Utf8(_glfwInput.CursorPosition, "0.00", null));
 
 			ImGui.SeparatorText("GLFW [LMB] state");
 
