@@ -4,6 +4,7 @@ using Demos.Plot.Services.Ui;
 using Demos.Plot.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
+using Detach.ImGuiUtilities.Services.Ui;
 using Detach.Metrics;
 using Hexa.NET.ImPlot;
 using Silk.NET.GLFW;
@@ -16,7 +17,10 @@ namespace Demos.Plot;
 [Register<App>(Scope.SingleInstance)]
 [Register<FrameCounter>(Scope.SingleInstance)]
 [Register<HeapAllocationCounter>(Scope.SingleInstance)]
-[Register<PerformanceWindow>(Scope.SingleInstance)]
+[Register<RenderingMetricsWindow>(Scope.SingleInstance)]
+[Register<HeapAllocationMetricsWindow>(Scope.SingleInstance)]
+[Register<FrameTimesPlot>(Scope.SingleInstance)]
+[Register<AllocatesBytesPlot>(Scope.SingleInstance)]
 [Register<PlotWindow>(Scope.SingleInstance)]
 #pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.
 public sealed partial class Container : IContainer<App>

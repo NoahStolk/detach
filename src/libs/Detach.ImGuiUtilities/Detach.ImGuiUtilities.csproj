@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Package configuration">
+    <PackageId>NoahStolk.Detach.ImGuiUtilities</PackageId>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup Label="External dependencies">
+    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.2"/>
+    <PackageReference Include="Hexa.NET.ImPlot" Version="2.2.2"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Internal dependencies">
+    <ProjectReference Include="..\Detach\Detach.csproj"/>
+  </ItemGroup>
+
+</Project>

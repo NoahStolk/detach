@@ -2,6 +2,7 @@
 using Demos.Plot.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
+using Detach.ImGuiUtilities.Services.Ui;
 using Detach.Metrics;
 using Hexa.NET.ImGui;
 using Hexa.NET.ImPlot;
@@ -27,7 +28,8 @@ public sealed class App
 	private readonly ImGuiController _imGuiController;
 	private readonly FrameCounter _frameCounter;
 	private readonly HeapAllocationCounter _heapAllocationCounter;
-	private readonly PerformanceWindow _performanceWindow;
+	private readonly RenderingMetricsWindow _renderingMetricsWindow;
+	private readonly HeapAllocationMetricsWindow _heapAllocationMetricsWindow;
 	private readonly PlotWindow _plotWindow;
 
 	private double _currentTime;
@@ -42,7 +44,8 @@ public sealed class App
 		ImGuiController imGuiController,
 		FrameCounter frameCounter,
 		HeapAllocationCounter heapAllocationCounter,
-		PerformanceWindow performanceWindow,
+		RenderingMetricsWindow renderingMetricsWindow,
+		HeapAllocationMetricsWindow heapAllocationMetricsWindow,
 		PlotWindow plotWindow)
 	{
 		_glfw = glfw;
@@ -52,7 +55,8 @@ public sealed class App
 		_imGuiController = imGuiController;
 		_frameCounter = frameCounter;
 		_heapAllocationCounter = heapAllocationCounter;
-		_performanceWindow = performanceWindow;
+		_renderingMetricsWindow = renderingMetricsWindow;
+		_heapAllocationMetricsWindow = heapAllocationMetricsWindow;
 		_plotWindow = plotWindow;
 
 		_currentTime = glfw.GetTime();
@@ -90,6 +94,7 @@ public sealed class App
 			_frameTime = _maxMainDelta;
 
 		_frameCounter.Update(mainStartTime, _frameTime);
+		_heapAllocationCounter.UpdateAllocatedBytesForCurrentThread();
 
 		_currentTime = mainStartTime;
 		_accumulator += _frameTime;
@@ -115,9 +120,8 @@ public sealed class App
 		ImGui.ShowDemoWindow();
 		ImPlot.ShowDemoWindow();
 
-		_heapAllocationCounter.UpdateAllocatedBytesForCurrentThread();
-
-		_performanceWindow.Render();
+		_renderingMetricsWindow.Render();
+		_heapAllocationMetricsWindow.Render();
 		_plotWindow.Render();
 
 		_imGuiController.Render();
