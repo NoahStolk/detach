@@ -1,6 +1,8 @@
 # Detach
 
-A set of libraries for developing lightweight, cross-platform, real-time applications and games in .NET 9.
+A set of (opinionated) libraries for developing lightweight, cross-platform, real-time applications and games in .NET 9. The libraries are currently in development and experimental, so expect breaking changes.
+
+These projects are also mainly for personal use, so don't expect support for older versions of .NET.
 
 Built on top of:
 - [OpenGL](https://www.opengl.org/)
@@ -14,7 +16,7 @@ Uses bindings from:
 
 ## Libraries
 
-All libraries are currently targeting .NET 9.0.
+All libraries are currently targeting .NET 9.
 
 | Library                          | Features                                                                                   | Dependencies                                                       | NuGet                                                                                                                                                                         |
 |----------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -24,6 +26,7 @@ All libraries are currently targeting .NET 9.0.
 | Detach.GlfwExtensions            | Extensions for GLFW                                                                        | **Silk.NET.GLFW**                                                  | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.GlfwExtensions.svg)](https://www.nuget.org/packages/NoahStolk.Detach.GlfwExtensions/)                       |
 | Detach.ImGuiBackend.GlfwHexa     | ImGui backend for GLFW using Hexa.NET.ImGui bindings                                       | *Detach.GlExtensions*, *Detach.GlfwExtensions*, **Hexa.NET.ImGui** | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.ImGuiBackend.GlfwHexa.svg)](https://www.nuget.org/packages/NoahStolk.Detach.ImGuiBackend.GlfwHexa/)         |
 | Detach.ImGuiBackend.GlfwImGuiNET | ImGui backend for GLFW using ImGui.NET bindings                                            | *Detach.GlExtensions*, *Detach.GlfwExtensions*, **ImGui.NET**      | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.ImGuiBackend.GlfwImGuiNET.svg)](https://www.nuget.org/packages/NoahStolk.Detach.ImGuiBackend.GlfwImGuiNET/) |
+| Detach.ImGuiUtilities            | Utilities for Hexa.NET.ImGui and Hexa.NET.ImPlot                                           | *Detach*, **Hexa.NET.ImGui**, **Hexa.NET.ImPlot**                  | [![NuGet Version](https://img.shields.io/nuget/v/NoahStolk.Detach.ImGuiUtilities.svg)](https://www.nuget.org/packages/NoahStolk.Detach.ImGuiUtilities/)                       |
 
 ## Promises
 

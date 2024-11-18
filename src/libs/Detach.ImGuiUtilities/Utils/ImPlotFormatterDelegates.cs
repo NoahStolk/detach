@@ -1,4 +1,4 @@
-﻿namespace Demos.Plot.Utils;
+﻿namespace Detach.ImGuiUtilities.Utils;
 
 public static unsafe class ImPlotFormatterDelegates
 {
@@ -8,6 +8,7 @@ public static unsafe class ImPlotFormatterDelegates
 		value.TryFormat(span, out int bytesWritten, format, null);
 		for (int i = 0; i < bytesWritten; i++)
 			*buff++ = span[i];
+		*buff = 0x00;
 		return bytesWritten;
 	}
 }
