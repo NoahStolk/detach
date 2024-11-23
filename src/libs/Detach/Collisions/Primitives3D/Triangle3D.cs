@@ -54,4 +54,10 @@ public record struct Triangle3D
 
 		return result;
 	}
+
+	public Vector3 GetNormal()
+	{
+		Vector3 normal = Vector3.Cross(B - A, C - A);
+		return Vector3.Normalize(normal);
+	}
 }

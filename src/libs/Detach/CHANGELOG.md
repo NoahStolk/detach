@@ -2,6 +2,15 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.21.0
+
+### Added
+
+- Added `Triangle3D.GetNormal` method.
+- Added `MatrixUtils.CreateRotationMatrixAroundPoint` method.
+- Added `MatrixUtils.CreateRotationMatrixFromDirection` method.
+- Added `Spinor.Identity` property.
+
 ## 0.20.0
 
 ### Added

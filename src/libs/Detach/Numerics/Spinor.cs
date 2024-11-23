@@ -26,6 +26,8 @@ public readonly struct Spinor : IEquatable<Spinor>, ISpanFormattable, IUtf8SpanF
 	{
 	}
 
+	public static Spinor Identity => new(0);
+
 	public static Spinor operator +(Spinor left, Spinor right)
 	{
 		return new Spinor(left._real + right._real, left._complex + right._complex);
