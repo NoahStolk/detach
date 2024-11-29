@@ -6,8 +6,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<WarningsAsErrors>nullable</WarningsAsErrors>
-		<AnalysisMode>All</AnalysisMode>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<AnalysisMode>All</AnalysisMode>
+		<AnalysisLevel>latest</AnalysisLevel>
+		<Features>strict</Features>
 	</PropertyGroup>
 
 	<ItemGroup Label="Static code analysis">
