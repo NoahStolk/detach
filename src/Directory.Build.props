@@ -10,6 +10,7 @@
 		<AnalysisMode>All</AnalysisMode>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<Features>strict</Features>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
 	</PropertyGroup>
 
 	<ItemGroup Label="Static code analysis">
