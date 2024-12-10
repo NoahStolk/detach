@@ -18,7 +18,7 @@ namespace Detach.Buffers;
 public struct Buffer<#= bufferSize #><T> : IEquatable<Buffer<#= bufferSize #><T>>
 	where T : struct
 {
-	private const int Size = <#= bufferSize #>;
+	public const int Size = <#= bufferSize #>;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;

@@ -19,7 +19,7 @@ namespace Detach.Buffers;
 public struct Buffer4<T> : IEquatable<Buffer4<T>>
 	where T : struct
 {
-	private const int Size = 4;
+	public const int Size = 4;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
@@ -75,7 +75,7 @@ public struct Buffer4<T> : IEquatable<Buffer4<T>>
 public struct Buffer6<T> : IEquatable<Buffer6<T>>
 	where T : struct
 {
-	private const int Size = 6;
+	public const int Size = 6;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
@@ -131,7 +131,7 @@ public struct Buffer6<T> : IEquatable<Buffer6<T>>
 public struct Buffer8<T> : IEquatable<Buffer8<T>>
 	where T : struct
 {
-	private const int Size = 8;
+	public const int Size = 8;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
@@ -187,7 +187,7 @@ public struct Buffer8<T> : IEquatable<Buffer8<T>>
 public struct Buffer12<T> : IEquatable<Buffer12<T>>
 	where T : struct
 {
-	private const int Size = 12;
+	public const int Size = 12;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
@@ -243,7 +243,7 @@ public struct Buffer12<T> : IEquatable<Buffer12<T>>
 public struct Buffer16<T> : IEquatable<Buffer16<T>>
 	where T : struct
 {
-	private const int Size = 16;
+	public const int Size = 16;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
@@ -299,7 +299,7 @@ public struct Buffer16<T> : IEquatable<Buffer16<T>>
 public struct Buffer24<T> : IEquatable<Buffer24<T>>
 	where T : struct
 {
-	private const int Size = 24;
+	public const int Size = 24;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
@@ -355,7 +355,7 @@ public struct Buffer24<T> : IEquatable<Buffer24<T>>
 public struct Buffer32<T> : IEquatable<Buffer32<T>>
 	where T : struct
 {
-	private const int Size = 32;
+	public const int Size = 32;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
