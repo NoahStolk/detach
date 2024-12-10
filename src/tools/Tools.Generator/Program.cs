@@ -9,3 +9,7 @@ File.WriteAllText(Path.Combine(baseDirectory, "Extensions", "BinaryReaderExtensi
 BinaryWriterExtensionsIntVectorGenerator binaryWriterExtensionsIntVectorGenerator = new();
 string binaryWriterExtensionsIntVectorCode = binaryWriterExtensionsIntVectorGenerator.Generate();
 File.WriteAllText(Path.Combine(baseDirectory, "Extensions", "BinaryWriterExtensions.IntVector.g.cs"), binaryWriterExtensionsIntVectorCode);
+
+VectorExtensionsRoundingOperationsGenerator vectorExtensionsRoundingOperationsGenerator = new();
+string vectorExtensionsRoundingOperationsCode = vectorExtensionsRoundingOperationsGenerator.Generate();
+File.WriteAllText(Path.Combine(baseDirectory, "Extensions", "VectorExtensions.RoundingOperations.g.cs"), vectorExtensionsRoundingOperationsCode);

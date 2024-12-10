@@ -10,10 +10,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BufferTemplate.g.cs</LastGenOutput>
     </None>
-    <None Update="Extensions\VectorExtensionsTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VectorExtensionsTemplate.g.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
   <ItemGroup Label="T4 output">
@@ -21,11 +17,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BufferTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Extensions\VectorExtensionsTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VectorExtensionsTemplate.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
