@@ -4,8 +4,6 @@ namespace Tools.Generator.Generators;
 
 internal sealed class BufferGenerator : IGenerator
 {
-	private readonly int[] _bufferSizes = [ 4, 6, 8, 12, 16, 24, 32 ];
-
 	public string Generate()
 	{
 		CodeWriter codeWriter = new();
@@ -19,7 +17,7 @@ internal sealed class BufferGenerator : IGenerator
 		codeWriter.WriteLine("namespace Detach.Buffers;");
 		codeWriter.WriteLine();
 
-		foreach (int bufferSize in _bufferSizes)
+		foreach (int bufferSize in BufferConstants.Sizes)
 		{
 			codeWriter.WriteLine("[InlineArray(Size)]");
 			codeWriter.WriteLine("""[DebuggerDisplay("Items = {Items}")]""");
