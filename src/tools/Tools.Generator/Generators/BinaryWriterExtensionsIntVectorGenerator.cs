@@ -2,7 +2,7 @@
 
 namespace Tools.Generator.Generators;
 
-internal sealed class BinaryWriterExtensionsIntVectorGenerator
+internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 {
 	private readonly string[] _typeNames =
 	[

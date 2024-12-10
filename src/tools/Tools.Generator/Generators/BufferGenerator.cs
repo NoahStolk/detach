@@ -2,7 +2,7 @@
 
 namespace Tools.Generator.Generators;
 
-internal sealed class BufferGenerator
+internal sealed class BufferGenerator : IGenerator
 {
 	private readonly int[] _bufferSizes = [ 4, 6, 8, 12, 16, 24, 32 ];
 

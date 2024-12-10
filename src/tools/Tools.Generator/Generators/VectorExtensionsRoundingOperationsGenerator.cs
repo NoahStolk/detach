@@ -2,7 +2,7 @@
 
 namespace Tools.Generator.Generators;
 
-internal sealed class VectorExtensionsRoundingOperationsGenerator
+internal sealed class VectorExtensionsRoundingOperationsGenerator : IGenerator
 {
 	private readonly (string BuiltInTypeName, string MethodName)[] _typeNames =
 	[
