@@ -10,10 +10,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BufferTemplate.g.cs</LastGenOutput>
     </None>
-    <None Update="Extensions\BinaryWriterExtensionsTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BinaryWriterExtensionsTemplate.g.cs</LastGenOutput>
-    </None>
     <None Update="Extensions\VectorExtensionsTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VectorExtensionsTemplate.g.cs</LastGenOutput>
@@ -25,11 +21,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BufferTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Extensions\BinaryWriterExtensionsTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BinaryWriterExtensionsTemplate.tt</DependentUpon>
     </Compile>
     <Compile Update="Extensions\VectorExtensionsTemplate.g.cs">
       <AutoGen>True</AutoGen>
