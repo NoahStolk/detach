@@ -5,46 +5,8 @@
     <Version>0.22.1</Version>
   </PropertyGroup>
 
-  <ItemGroup Label="T4 templates">
-    <None Update="Buffers\BufferTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BufferTemplate.g.cs</LastGenOutput>
-    </None>
-    <None Update="Extensions\BinaryReaderExtensionsTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BinaryReaderExtensionsTemplate.g.cs</LastGenOutput>
-    </None>
-    <None Update="Extensions\BinaryWriterExtensionsTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BinaryWriterExtensionsTemplate.g.cs</LastGenOutput>
-    </None>
-    <None Update="Extensions\VectorExtensionsTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VectorExtensionsTemplate.g.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup Label="T4 output">
-    <Compile Update="Buffers\BufferTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BufferTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Extensions\BinaryReaderExtensionsTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BinaryReaderExtensionsTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Extensions\BinaryWriterExtensionsTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BinaryWriterExtensionsTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Extensions\VectorExtensionsTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VectorExtensionsTemplate.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet run --project ../../tools/Tools.Generator/Tools.Generator.csproj $(MSBuildProjectDirectory)/.." />
+  </Target>
 
 </Project>
