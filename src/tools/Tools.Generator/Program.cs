@@ -2,6 +2,10 @@
 
 const string baseDirectory = @"C:\Users\NOAH\source\repos\detach\src\libs\Detach";
 
+BufferGenerator bufferGenerator = new();
+string bufferCode = bufferGenerator.Generate();
+File.WriteAllText(Path.Combine(baseDirectory, "Buffers", "Buffer.g.cs"), bufferCode);
+
 BinaryReaderExtensionsIntVectorGenerator binaryReaderExtensionsIntVectorGenerator = new();
 string binaryReaderExtensionsIntVectorCode = binaryReaderExtensionsIntVectorGenerator.Generate();
 File.WriteAllText(Path.Combine(baseDirectory, "Extensions", "BinaryReaderExtensions.IntVector.g.cs"), binaryReaderExtensionsIntVectorCode);

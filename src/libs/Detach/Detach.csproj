@@ -5,19 +5,4 @@
     <Version>0.22.1</Version>
   </PropertyGroup>
 
-  <ItemGroup Label="T4 templates">
-    <None Update="Buffers\BufferTemplate.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>BufferTemplate.g.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup Label="T4 output">
-    <Compile Update="Buffers\BufferTemplate.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BufferTemplate.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
 </Project>
