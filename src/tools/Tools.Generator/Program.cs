@@ -1,17 +1,27 @@
 ﻿using Tools.Generator.Generators;
 using Tools.Generator.Internals;
 
-const string baseDirectory = @"C:\Users\NOAH\source\repos\detach\src\libs\Detach";
+if (args.Length == 0)
+{
+	Console.WriteLine("Please provide the libs directory of the project.");
+	Environment.Exit(1);
+}
 
-ExecuteGenerator<BufferGenerator>("Extensions", "VectorExtensions.RoundingOperations.g.cs");
-ExecuteGenerator<BinaryReaderExtensionsIntVectorGenerator>("Extensions", "BinaryReaderExtensions.IntVector.g.cs");
-ExecuteGenerator<BinaryWriterExtensionsIntVectorGenerator>("Extensions", "BinaryWriterExtensions.IntVector.g.cs");
-ExecuteGenerator<VectorExtensionsRoundingOperationsGenerator>("Extensions", "VectorExtensions.RoundingOperations.g.cs");
+string libsDirectory = args[0];
 
-static void ExecuteGenerator<TGenerator>(params string[] pathParts)
+ExecuteGenerator<BufferGenerator>("Detach", "Extensions", "VectorExtensions.RoundingOperations.g.cs");
+ExecuteGenerator<BinaryReaderExtensionsIntVectorGenerator>("Detach", "Extensions", "BinaryReaderExtensions.IntVector.g.cs");
+ExecuteGenerator<BinaryWriterExtensionsIntVectorGenerator>("Detach", "Extensions", "BinaryWriterExtensions.IntVector.g.cs");
+ExecuteGenerator<VectorExtensionsRoundingOperationsGenerator>("Detach", "Extensions", "VectorExtensions.RoundingOperations.g.cs");
+
+void ExecuteGenerator<TGenerator>(params string[] pathParts)
 	where TGenerator : IGenerator, new()
 {
 	TGenerator generator = new();
 	string generatedCode = generator.Generate();
-	File.WriteAllText(Path.Combine(baseDirectory, Path.Combine(pathParts)), generatedCode);
+
+	string outputPath = Path.Combine(libsDirectory, Path.Combine(pathParts));
+	File.WriteAllText(outputPath, generatedCode);
+
+	Console.WriteLine($"Generated {outputPath} using {generator.GetType().Name}");
 }
