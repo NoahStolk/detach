@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
 
 	<ImportGroup Label="Import parent props">
-		<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props"/>
 	</ImportGroup>
 
 	<PropertyGroup Label="Build configuration">
@@ -14,9 +14,9 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1"/>
-		<PackageReference Include="MSTest.TestAdapter" Version="3.6.3"/>
-		<PackageReference Include="MSTest.TestFramework" Version="3.6.3"/>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
+		<PackageReference Include="MSTest.TestAdapter" Version="3.6.4"/>
+		<PackageReference Include="MSTest.TestFramework" Version="3.6.4"/>
 	</ItemGroup>
 
 </Project>
