@@ -11,20 +11,26 @@ using System.Runtime.CompilerServices;
 namespace Detach.Buffers;
 
 <# foreach (int bufferSize in bufferSizes) { #>
-[InlineArray(_size)]
+[InlineArray(Size)]
 [DebuggerDisplay("Items = {Items}")]
 [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1306:Field names should begin with lower-case letter", Justification = "InlineArray")]
 [SuppressMessage("Roslynator", "RCS1213:Remove unused member declaration", Justification = "InlineArray")]
 public struct Buffer<#= bufferSize #><T> : IEquatable<Buffer<#= bufferSize #><T>>
 	where T : struct
 {
-	private const int _size = <#= bufferSize #>;
+	private const int Size = <#= bufferSize #>;
 
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private T _0;
 
+	public Buffer<#= bufferSize #>(params ReadOnlySpan<T> values)
+	{
+		for (int i = 0; i < Math.Min(values.Length, Size); i++)
+			this[i] = values[i];
+	}
+
 	[DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
-	internal T[] Items => this[.._size].ToArray();
+	internal T[] Items => this[..Size].ToArray();
 
 	public static bool operator ==(Buffer<#= bufferSize #><T> left, Buffer<#= bufferSize #><T> right)
 	{
@@ -38,7 +44,7 @@ public struct Buffer<#= bufferSize #><T> : IEquatable<Buffer<#= bufferSize #><T>
 
 	public bool Equals(Buffer<#= bufferSize #><T> other)
 	{
-		for (int i = 0; i < _size; i++)
+		for (int i = 0; i < Size; i++)
 		{
 			if (!this[i].Equals(other[i]))
 				return false;
@@ -55,17 +61,9 @@ public struct Buffer<#= bufferSize #><T> : IEquatable<Buffer<#= bufferSize #><T>
 	public override int GetHashCode()
 	{
 		HashCode hash = default;
-		for (int i = 0; i < _size; i++)
+		for (int i = 0; i < Size; i++)
 			hash.Add(this[i]);
 		return hash.ToHashCode();
-	}
-
-	public static Buffer<#= bufferSize #><T> FromSpan(ReadOnlySpan<T> values)
-	{
-		Buffer<#= bufferSize #><T> buffer = default;
-		for (int i = 0; i < Math.Min(values.Length, _size); i++)
-			buffer[i] = values[i];
-		return buffer;
 	}
 }
 

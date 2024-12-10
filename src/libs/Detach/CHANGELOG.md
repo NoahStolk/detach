@@ -2,6 +2,17 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.22.0
+
+### Added
+
+- Added constructors to inline `Buffer` struct types.
+- Added `Size` const fields to inline `Buffer` struct types.
+
+### Removed
+
+- Removed `FromSpan` static methods from inline `Buffer` struct types. Use the constructors instead.
+
 ## 0.21.0
 
 ### Added
