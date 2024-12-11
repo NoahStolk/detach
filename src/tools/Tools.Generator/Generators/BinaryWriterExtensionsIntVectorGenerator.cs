@@ -4,7 +4,7 @@ namespace Tools.Generator.Generators;
 
 internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 {
-	private readonly string[] _typeNames =
+	private readonly string[] _primitiveTypeNames =
 	[
 		"sbyte",
 		"byte",
@@ -15,7 +15,7 @@ internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 		"long",
 		"ulong",
 	];
-	private readonly string[] _components = ["X", "Y", "Z", "W"];
+	private readonly string[] _vectorComponentNames = ["X", "Y", "Z", "W"];
 
 	public string Generate()
 	{
@@ -34,12 +34,12 @@ internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 		{
 			string intVectorTypeName = $"IntVector{i}";
 
-			foreach (string builtInTypeName in _typeNames)
+			foreach (string primitiveTypeName in _primitiveTypeNames)
 			{
-				codeWriter.WriteLine($"public static void Write(this BinaryWriter binaryWriter, {intVectorTypeName}<{builtInTypeName}> value)");
+				codeWriter.WriteLine($"public static void Write(this BinaryWriter binaryWriter, {intVectorTypeName}<{primitiveTypeName}> value)");
 				codeWriter.StartBlock();
 				for (int j = 0; j < i; j++)
-					codeWriter.WriteLine($"binaryWriter.Write(value.{_components[j]});");
+					codeWriter.WriteLine($"binaryWriter.Write(value.{_vectorComponentNames[j]});");
 				codeWriter.EndBlock();
 
 				codeWriter.WriteLine();

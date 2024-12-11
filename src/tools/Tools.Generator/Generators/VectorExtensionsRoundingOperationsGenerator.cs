@@ -4,7 +4,7 @@ namespace Tools.Generator.Generators;
 
 internal sealed class VectorExtensionsRoundingOperationsGenerator : IGenerator
 {
-	private readonly (string BuiltInTypeName, string MethodName)[] _typeNames =
+	private readonly (string PrimitiveTypeName, string MethodNamePart)[] _types =
 	[
 		("sbyte", "Int8"),
 		("byte", "UInt8"),
@@ -15,14 +15,14 @@ internal sealed class VectorExtensionsRoundingOperationsGenerator : IGenerator
 		("long", "Int64"),
 		("ulong", "UInt64"),
 	];
-	private readonly string[] _operations = ["Round", "Floor", "Ceiling"];
-	private readonly string[] _components = ["X", "Y", "Z", "W"];
+	private readonly string[] _roundingOperationNames = ["Round", "Floor", "Ceiling"];
+	private readonly string[] _vectorComponentNames = ["X", "Y", "Z", "W"];
 
 	private string GenerateArgumentList(int count, string prepend, string append)
 	{
 		string[] arguments = new string[count];
 		for (int i = 0; i < count; i++)
-			arguments[i] = $"{prepend}{_components[i]}{append}";
+			arguments[i] = $"{prepend}{_vectorComponentNames[i]}{append}";
 
 		return string.Join(", ", arguments);
 	}
@@ -45,13 +45,13 @@ internal sealed class VectorExtensionsRoundingOperationsGenerator : IGenerator
 		{
 			string intVectorTypeName = $"IntVector{i}";
 
-			foreach (string operation in _operations)
+			foreach (string roundingOperationName in _roundingOperationNames)
 			{
-				foreach ((string builtInTypeName, string methodName) in _typeNames)
+				foreach ((string primitiveTypeName, string methodNamePart) in _types)
 				{
-					codeWriter.WriteLine($"public static {intVectorTypeName}<{builtInTypeName}> {operation}To{intVectorTypeName}Of{methodName}(this Vector{i} vector)");
+					codeWriter.WriteLine($"public static {intVectorTypeName}<{primitiveTypeName}> {roundingOperationName}To{intVectorTypeName}Of{methodNamePart}(this Vector{i} vector)");
 					codeWriter.StartBlock();
-					codeWriter.WriteLine($"return new {intVectorTypeName}<{builtInTypeName}>({GenerateArgumentList(i, $"({builtInTypeName})MathF.{operation}(vector.", ")")});");
+					codeWriter.WriteLine($"return new {intVectorTypeName}<{primitiveTypeName}>({GenerateArgumentList(i, $"({primitiveTypeName})MathF.{roundingOperationName}(vector.", ")")});");
 					codeWriter.EndBlock();
 
 					codeWriter.WriteLine();
@@ -61,9 +61,9 @@ internal sealed class VectorExtensionsRoundingOperationsGenerator : IGenerator
 
 		for (int i = 2; i <= 4; i++)
 		{
-			foreach ((string builtInTypeName, _) in _typeNames)
+			foreach ((string primitiveTypeName, _) in _types)
 			{
-				codeWriter.WriteLine($"public static Vector{i} ToVector{i}(this IntVector{i}<{builtInTypeName}> vector)");
+				codeWriter.WriteLine($"public static Vector{i} ToVector{i}(this IntVector{i}<{primitiveTypeName}> vector)");
 				codeWriter.StartBlock();
 				codeWriter.WriteLine($"return new Vector{i}({GenerateArgumentList(i, "vector.", string.Empty)});");
 				codeWriter.EndBlock();

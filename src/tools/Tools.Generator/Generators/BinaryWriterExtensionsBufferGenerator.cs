@@ -4,7 +4,7 @@ namespace Tools.Generator.Generators;
 
 internal sealed class BinaryWriterExtensionsBufferGenerator : IGenerator
 {
-	private readonly string[] _typeNames =
+	private readonly string[] _primitiveTypeNames =
 	[
 		"sbyte",
 		"byte",
@@ -35,7 +35,7 @@ internal sealed class BinaryWriterExtensionsBufferGenerator : IGenerator
 
 		foreach (int bufferSize in BufferConstants.Sizes)
 		{
-			foreach (string builtInTypeName in _typeNames)
+			foreach (string builtInTypeName in _primitiveTypeNames)
 			{
 				string bufferTypeName = $"Buffer{bufferSize}<{builtInTypeName}>";
 

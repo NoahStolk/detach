@@ -10,6 +10,7 @@ if (args.Length == 0)
 string libsDirectory = args[0];
 
 ExecuteGenerator<BufferGenerator>("Detach", "Extensions", "VectorExtensions.RoundingOperations.g.cs");
+ExecuteGenerator<BinaryReaderExtensionsBufferGenerator>("Detach", "Extensions", "BinaryReaderExtensions.Buffer.g.cs");
 ExecuteGenerator<BinaryReaderExtensionsIntVectorGenerator>("Detach", "Extensions", "BinaryReaderExtensions.IntVector.g.cs");
 ExecuteGenerator<BinaryWriterExtensionsBufferGenerator>("Detach", "Extensions", "BinaryWriterExtensions.Buffer.g.cs");
 ExecuteGenerator<BinaryWriterExtensionsIntVectorGenerator>("Detach", "Extensions", "BinaryWriterExtensions.IntVector.g.cs");
