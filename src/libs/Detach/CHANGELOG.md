@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.23.0
+
+### Added
+
+- Added extension methods for `BinaryReader` and `BinaryWriter` accepting inline `Buffer` structs.
+
 ## 0.22.1
 
 ### Added
