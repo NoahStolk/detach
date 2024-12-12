@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Demos.ImGuiBackend.GlfwHexa.Services.Ui;
 
-public sealed unsafe class InputTestingWindow
+internal sealed unsafe class InputTestingWindow
 {
 	private static readonly byte[] _debugText0 = new byte[1024];
 	private static readonly byte[] _debugText1 = new byte[1024];

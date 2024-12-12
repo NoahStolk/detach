@@ -1,6 +1,6 @@
 ﻿namespace Demos.Collisions.CollisionScenes;
 
-public interface ICollisionScene
+internal interface ICollisionScene
 {
 	long AllocatedBytes { get; }
 

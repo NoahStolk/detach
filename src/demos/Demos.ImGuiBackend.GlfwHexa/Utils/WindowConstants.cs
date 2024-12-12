@@ -1,6 +1,6 @@
 ﻿namespace Demos.ImGuiBackend.GlfwHexa.Utils;
 
-public static class WindowConstants
+internal static class WindowConstants
 {
 	public const string WindowTitle = "Demos.ImGuiBackend.GlfwHexa";
 	public const int WindowWidth = 1920;

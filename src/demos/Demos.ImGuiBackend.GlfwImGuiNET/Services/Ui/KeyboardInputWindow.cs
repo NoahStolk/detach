@@ -7,16 +7,9 @@ using System.Numerics;
 
 namespace Demos.ImGuiBackend.GlfwImGuiNET.Services.Ui;
 
-public sealed class KeyboardInputWindow
+internal sealed class KeyboardInputWindow(GlfwInput glfwInput)
 {
 	private readonly Dictionary<Keys, string> _keyDisplayStringCache = [];
-
-	private readonly GlfwInput _glfwInput;
-
-	public KeyboardInputWindow(GlfwInput glfwInput)
-	{
-		_glfwInput = glfwInput;
-	}
 
 	public void Render()
 	{
@@ -45,7 +38,7 @@ public sealed class KeyboardInputWindow
 					if (!Enum.IsDefined(key))
 						continue;
 
-					bool isDown = _glfwInput.IsKeyDown(key);
+					bool isDown = glfwInput.IsKeyDown(key);
 
 					ImGui.TableNextColumn();
 
@@ -63,12 +56,12 @@ public sealed class KeyboardInputWindow
 
 			ImGui.SeparatorText("GLFW pressed chars");
 
-			ImGui.Text(Inline.Utf16($"{_glfwInput.CharsPressed.Count} key(s):"));
+			ImGui.Text(Inline.Utf16($"{glfwInput.CharsPressed.Count} key(s):"));
 			if (ImGui.BeginChild("CharsPressedChildWindow", new Vector2(0, 48), ImGuiChildFlags.Border, ImGuiWindowFlags.AlwaysVerticalScrollbar))
 			{
-				for (int i = 0; i < _glfwInput.CharsPressed.Count; i++)
+				for (int i = 0; i < glfwInput.CharsPressed.Count; i++)
 				{
-					ImGui.Text(Inline.Utf16((char)_glfwInput.CharsPressed[i]));
+					ImGui.Text(Inline.Utf16((char)glfwInput.CharsPressed[i]));
 				}
 			}
 
@@ -76,10 +69,10 @@ public sealed class KeyboardInputWindow
 
 			ImGui.SeparatorText("GLFW [SPACE] key state");
 
-			ImGui.Text(Inline.Utf16($"Down: {(_glfwInput.IsKeyDown(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf16($"Repeating: {(_glfwInput.IsKeyRepeating(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf16($"Pressed: {(_glfwInput.IsKeyPressed(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf16($"Released: {(_glfwInput.IsKeyReleased(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Down: {(glfwInput.IsKeyDown(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Repeating: {(glfwInput.IsKeyRepeating(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Pressed: {(glfwInput.IsKeyPressed(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Released: {(glfwInput.IsKeyReleased(Keys.Space) ? "true" : "false")}"));
 		}
 
 		ImGui.End();

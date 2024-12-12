@@ -7,6 +7,7 @@
 	<PropertyGroup Label="Build configuration">
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
+		<NoWarn>CA1515</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup Label="Test dependencies">

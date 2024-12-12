@@ -6,7 +6,7 @@ using System.Numerics;
 
 namespace Demos.Collisions.Utils;
 
-public readonly record struct PositionedDrawList(ImDrawListPtr DrawList, Vector2 Origin)
+internal readonly record struct PositionedDrawList(ImDrawListPtr DrawList, Vector2 Origin)
 {
 	private const uint _textColor = 0xFFFFFFFF;
 	private const uint _foregroundColor = 0xFFFFFFFF;

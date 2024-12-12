@@ -6,15 +6,10 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class LineCircle : CollisionScene<LineSegment2D, Circle>
+internal sealed class LineCircle() : CollisionScene<LineSegment2D, Circle>(Geometry2D.LineCircle)
 {
 	private const float _linePointOffsetA = 64;
 	private const float _circleOffset = 128;
-
-	public LineCircle()
-		: base(Geometry2D.LineCircle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

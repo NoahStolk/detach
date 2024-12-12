@@ -2,7 +2,6 @@
 using Demos.Plot.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
-using Detach.ImGuiUtilities.Services.Ui;
 using Detach.Metrics;
 using Hexa.NET.ImGui;
 using Hexa.NET.ImPlot;
@@ -11,7 +10,7 @@ using Silk.NET.OpenGL;
 
 namespace Demos.Plot.Services;
 
-public sealed class App
+internal sealed class App
 {
 	private const float _maxMainDelta = 0.25f;
 

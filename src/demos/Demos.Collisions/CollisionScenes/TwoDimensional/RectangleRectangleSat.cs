@@ -6,15 +6,10 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class RectangleRectangleSat : CollisionScene<Rectangle, Rectangle>
+internal sealed class RectangleRectangleSat() : CollisionScene<Rectangle, Rectangle>(Geometry2D.RectangleRectangleSat)
 {
 	private const float _rectangleOffsetA = 64;
 	private const float _rectangleOffsetB = 128;
-
-	public RectangleRectangleSat()
-		: base(Geometry2D.RectangleRectangleSat)
-	{
-	}
 
 	public override void Update(float dt)
 	{

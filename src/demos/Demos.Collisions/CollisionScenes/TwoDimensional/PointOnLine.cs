@@ -6,15 +6,10 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class PointOnLine : CollisionScene<Vector2, LineSegment2D>
+internal sealed class PointOnLine() : CollisionScene<Vector2, LineSegment2D>(static (a, b) => Geometry2D.PointOnLine(a, b, 1f))
 {
 	private const float _pointOffset = 64;
 	private const float _linePointOffset = 128;
-
-	public PointOnLine()
-		: base(static (a, b) => Geometry2D.PointOnLine(a, b, 1f))
-	{
-	}
 
 	public override void Update(float dt)
 	{

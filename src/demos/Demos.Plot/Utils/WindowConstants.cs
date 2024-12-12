@@ -1,6 +1,6 @@
 ﻿namespace Demos.Plot.Utils;
 
-public static class WindowConstants
+internal static class WindowConstants
 {
 	public const string WindowTitle = "Demos.Plot";
 	public const int WindowWidth = 1920;

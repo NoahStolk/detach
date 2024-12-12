@@ -6,16 +6,9 @@ using Silk.NET.GLFW;
 
 namespace Demos.ImGuiBackend.GlfwHexa.Services.Ui;
 
-public sealed class MouseInputWindow
+internal sealed class MouseInputWindow(GlfwInput glfwInput)
 {
 	private readonly Dictionary<MouseButton, string> _mouseButtonDisplayStringCache = [];
-
-	private readonly GlfwInput _glfwInput;
-
-	public MouseInputWindow(GlfwInput glfwInput)
-	{
-		_glfwInput = glfwInput;
-	}
 
 	public void Render()
 	{
@@ -34,7 +27,7 @@ public sealed class MouseInputWindow
 					if (!Enum.IsDefined(button))
 						continue;
 
-					bool isDown = _glfwInput.IsMouseButtonDown(button);
+					bool isDown = glfwInput.IsMouseButtonDown(button);
 
 					ImGui.TableNextColumn();
 
@@ -52,17 +45,17 @@ public sealed class MouseInputWindow
 
 			ImGui.SeparatorText("GLFW mouse wheel");
 
-			ImGui.Text(Inline.Utf8($"Y: {_glfwInput.MouseWheelY:0.00}"));
+			ImGui.Text(Inline.Utf8($"Y: {glfwInput.MouseWheelY:0.00}"));
 
 			ImGui.SeparatorText("GLFW mouse position");
 
-			ImGui.Text(Inline.Utf8(_glfwInput.CursorPosition, "0.00", null));
+			ImGui.Text(Inline.Utf8(glfwInput.CursorPosition, "0.00", null));
 
 			ImGui.SeparatorText("GLFW [LMB] state");
 
-			ImGui.Text(Inline.Utf8($"Down: {(_glfwInput.IsMouseButtonDown(MouseButton.Left) ? "true"u8 : "false"u8)}"));
-			ImGui.Text(Inline.Utf8($"Pressed: {(_glfwInput.IsMouseButtonPressed(MouseButton.Left) ? "true"u8 : "false"u8)}"));
-			ImGui.Text(Inline.Utf8($"Released: {(_glfwInput.IsMouseButtonReleased(MouseButton.Left) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Down: {(glfwInput.IsMouseButtonDown(MouseButton.Left) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Pressed: {(glfwInput.IsMouseButtonPressed(MouseButton.Left) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Released: {(glfwInput.IsMouseButtonReleased(MouseButton.Left) ? "true"u8 : "false"u8)}"));
 		}
 
 		ImGui.End();

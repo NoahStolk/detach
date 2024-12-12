@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace Demos.Collisions.Services.Ui;
 
-public sealed class CollisionSelectWindow
+internal sealed class CollisionSelectWindow
 {
 	private readonly List<ICollisionScene> _collisionScenes =
 	[

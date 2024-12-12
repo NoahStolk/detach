@@ -9,7 +9,7 @@ using Silk.NET.OpenGL;
 
 namespace Demos.ImGuiBackend.GlfwImGuiNET.Services;
 
-public sealed class App
+internal sealed class App
 {
 	private const float _maxMainDelta = 0.25f;
 

@@ -1,6 +1,6 @@
 ﻿namespace Demos.Collisions.Utils;
 
-public static class WindowConstants
+internal static class WindowConstants
 {
 	public const string WindowTitle = "Demos.Collisions";
 	public const int WindowWidth = 1920;

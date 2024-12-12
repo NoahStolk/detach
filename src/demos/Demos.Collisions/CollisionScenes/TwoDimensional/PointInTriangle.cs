@@ -6,16 +6,11 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class PointInTriangle : CollisionScene<Vector2, Triangle2D>
+internal sealed class PointInTriangle() : CollisionScene<Vector2, Triangle2D>(Geometry2D.PointInTriangle)
 {
 	private const float _pointOffset = 96;
 	private const float _triangleSize = 128;
 	private static readonly Vector2 _triangleOffset = new(48, 24);
-
-	public PointInTriangle()
-		: base(Geometry2D.PointInTriangle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

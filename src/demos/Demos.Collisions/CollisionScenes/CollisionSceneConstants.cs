@@ -2,7 +2,7 @@
 
 namespace Demos.Collisions.CollisionScenes;
 
-public static class CollisionSceneConstants
+internal static class CollisionSceneConstants
 {
 	public static readonly Vector2 Size = new(512, 512);
 

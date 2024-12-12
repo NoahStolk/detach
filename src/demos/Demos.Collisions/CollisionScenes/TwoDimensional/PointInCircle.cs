@@ -6,15 +6,10 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class PointInCircle : CollisionScene<Vector2, Circle>
+internal sealed class PointInCircle() : CollisionScene<Vector2, Circle>(Geometry2D.PointInCircle)
 {
 	private const float _pointOffset = 64;
 	private const float _circleOffset = 128;
-
-	public PointInCircle()
-		: base(Geometry2D.PointInCircle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

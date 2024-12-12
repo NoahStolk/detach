@@ -3,7 +3,7 @@ using Monitor = Silk.NET.GLFW.Monitor;
 
 namespace Demos.ImGuiBackend.GlfwHexa.Extensions;
 
-public static class GlfwExtensions
+internal static class GlfwExtensions
 {
 	public static unsafe (int X, int Y) GetInitialWindowPos(this Glfw glfw, int windowWidth, int windowHeight)
 	{

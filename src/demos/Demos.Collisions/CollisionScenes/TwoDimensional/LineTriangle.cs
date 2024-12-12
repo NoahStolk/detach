@@ -6,16 +6,11 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class LineTriangle : CollisionScene<LineSegment2D, Triangle2D>
+internal sealed class LineTriangle() : CollisionScene<LineSegment2D, Triangle2D>(Geometry2D.LineTriangle)
 {
 	private const float _linePointOffsetA = 64;
 	private const float _triangleSize = 128;
 	private static readonly Vector2 _triangleOffset = new(48, 24);
-
-	public LineTriangle()
-		: base(Geometry2D.LineTriangle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

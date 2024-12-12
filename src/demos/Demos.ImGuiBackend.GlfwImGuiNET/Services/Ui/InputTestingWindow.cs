@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Demos.ImGuiBackend.GlfwImGuiNET.Services.Ui;
 
-public sealed class InputTestingWindow
+internal sealed class InputTestingWindow
 {
 	private static readonly string[] _debugTextInput =
 	[

@@ -6,16 +6,11 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class CircleTriangle : CollisionScene<Circle, Triangle2D>
+internal sealed class CircleTriangle() : CollisionScene<Circle, Triangle2D>(Geometry2D.CircleTriangle)
 {
 	private const float _circleOffset = 64;
 	private const float _triangleSize = 128;
 	private static readonly Vector2 _triangleOffset = new(48, 24);
-
-	public CircleTriangle()
-		: base(Geometry2D.CircleTriangle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

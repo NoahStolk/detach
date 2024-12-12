@@ -6,16 +6,11 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class OrientedRectangleTriangle : CollisionScene<OrientedRectangle, Triangle2D>
+internal sealed class OrientedRectangleTriangle() : CollisionScene<OrientedRectangle, Triangle2D>(Geometry2D.OrientedRectangleTriangle)
 {
 	private const float _rectangleOffset = 64;
 	private const float _triangleSize = 64;
 	private static readonly Vector2 _triangleOffset = new(128, 24);
-
-	public OrientedRectangleTriangle()
-		: base(Geometry2D.OrientedRectangleTriangle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

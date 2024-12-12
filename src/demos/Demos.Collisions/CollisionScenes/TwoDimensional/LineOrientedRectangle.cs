@@ -6,15 +6,10 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class LineOrientedRectangle : CollisionScene<LineSegment2D, OrientedRectangle>
+internal sealed class LineOrientedRectangle() : CollisionScene<LineSegment2D, OrientedRectangle>(Geometry2D.LineOrientedRectangle)
 {
 	private const float _linePointOffsetA = 64;
 	private const float _rectangleOffset = 128;
-
-	public LineOrientedRectangle()
-		: base(Geometry2D.LineOrientedRectangle)
-	{
-	}
 
 	public override void Update(float dt)
 	{

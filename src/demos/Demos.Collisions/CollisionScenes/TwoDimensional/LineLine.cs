@@ -6,15 +6,10 @@ using System.Numerics;
 
 namespace Demos.Collisions.CollisionScenes.TwoDimensional;
 
-public sealed class LineLine : CollisionScene<LineSegment2D, LineSegment2D>
+internal sealed class LineLine() : CollisionScene<LineSegment2D, LineSegment2D>(Geometry2D.LineLine)
 {
 	private const float _linePointOffsetA = 64;
 	private const float _linePointOffsetB = 128;
-
-	public LineLine()
-		: base(Geometry2D.LineLine)
-	{
-	}
 
 	public override void Update(float dt)
 	{

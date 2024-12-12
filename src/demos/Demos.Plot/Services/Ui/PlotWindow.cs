@@ -3,7 +3,7 @@ using Hexa.NET.ImPlot;
 
 namespace Demos.Plot.Services.Ui;
 
-public sealed class PlotWindow
+internal sealed class PlotWindow
 {
 	private readonly int[] _barData = Enumerable.Range(0, 10).ToArray();
 	private readonly float[] _xData = Enumerable.Range(0, 10).Select(i => (float)i).ToArray();

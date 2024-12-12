@@ -2,17 +2,10 @@
 
 namespace Demos.Collisions.CollisionScenes;
 
-public abstract class CollisionScene<T1, T2> : ICollisionScene
+internal abstract class CollisionScene<T1, T2>(Func<T1, T2, bool> collisionFunction) : ICollisionScene
 	where T1 : struct
 	where T2 : struct
 {
-	private readonly Func<T1, T2, bool> _collisionFunction;
-
-	protected CollisionScene(Func<T1, T2, bool> collisionFunction)
-	{
-		_collisionFunction = collisionFunction;
-	}
-
 	protected bool HasCollision { get; private set; }
 
 	protected float TotalTime { get; private set; }
@@ -34,7 +27,7 @@ public abstract class CollisionScene<T1, T2> : ICollisionScene
 	{
 		long allocatedBytesStart = GC.GetAllocatedBytesForCurrentThread();
 		long startTimestamp = Stopwatch.GetTimestamp();
-		HasCollision = _collisionFunction(A, B);
+		HasCollision = collisionFunction(A, B);
 		ExecutionTime = Stopwatch.GetElapsedTime(startTimestamp);
 		AllocatedBytes = GC.GetAllocatedBytesForCurrentThread() - allocatedBytesStart;
 	}

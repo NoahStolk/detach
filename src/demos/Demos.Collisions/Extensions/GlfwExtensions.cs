@@ -4,7 +4,7 @@ using Monitor = Silk.NET.GLFW.Monitor;
 
 namespace Demos.Collisions.Extensions;
 
-public static class GlfwExtensions
+internal static class GlfwExtensions
 {
 	public static unsafe void CheckError(this Glfw glfw)
 	{
