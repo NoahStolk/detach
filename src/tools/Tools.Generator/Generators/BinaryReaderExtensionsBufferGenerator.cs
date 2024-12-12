@@ -4,25 +4,20 @@ namespace Tools.Generator.Generators;
 
 internal sealed class BinaryReaderExtensionsBufferGenerator : IGenerator
 {
-	private readonly (string PrimitiveTypeName, string MethodNamePart)[] _types =
+	private readonly (string PrimitiveTypeName, string MethodNamePart, string ReaderMethodName)[] _types =
 	[
-		("sbyte", "Int8"),
-		("byte", "UInt8"),
-		("short", "Int16"),
-		("ushort", "UInt16"),
-		("int", "Int32"),
-		("uint", "UInt32"),
-		("long", "Int64"),
-		("ulong", "UInt64"),
-		("Half", "Float16"),
-		("float", "Float32"),
-		("double", "Float64"),
+		("sbyte", "Int8", "ReadSByte"),
+		("byte", "UInt8", "ReadByte"),
+		("short", "Int16", "ReadInt16"),
+		("ushort", "UInt16", "ReadUInt16"),
+		("int", "Int32", "ReadInt32"),
+		("uint", "UInt32", "ReadUInt32"),
+		("long", "Int64", "ReadInt64"),
+		("ulong", "UInt64", "ReadUInt64"),
+		("Half", "Float16", "ReadHalf"),
+		("float", "Float32", "ReadSingle"),
+		("double", "Float64", "ReadDouble"),
 	];
-
-	private static string GetSizeOfPrimitive(string primitiveTypeName)
-	{
-		return primitiveTypeName == "Half" ? "ushort" : primitiveTypeName;
-	}
 
 	public string Generate()
 	{
@@ -42,7 +37,7 @@ internal sealed class BinaryReaderExtensionsBufferGenerator : IGenerator
 
 		foreach (int bufferSize in BufferConstants.Sizes)
 		{
-			foreach ((string builtInTypeName, string methodNamePart) in _types)
+			foreach ((string builtInTypeName, string methodNamePart, string readerMethodName) in _types)
 			{
 				string bufferTypeName = $"Buffer{bufferSize}<{builtInTypeName}>";
 				string readBufferMethodName = $"ReadBuffer{bufferSize}Of{methodNamePart}";
@@ -50,9 +45,12 @@ internal sealed class BinaryReaderExtensionsBufferGenerator : IGenerator
 				codeWriter.WriteLine($"public static {bufferTypeName} {readBufferMethodName}(this BinaryReader binaryReader)");
 				codeWriter.StartBlock();
 
-				codeWriter.WriteLine($"Span<byte> buffer = stackalloc byte[{bufferTypeName}.Size * sizeof({GetSizeOfPrimitive(builtInTypeName)})];");
-				codeWriter.WriteLine("Debug.Assert(binaryReader.Read(buffer) == buffer.Length);");
-				codeWriter.WriteLine($"return new {bufferTypeName}(MemoryMarshal.Cast<byte, {builtInTypeName}>(buffer));");
+				codeWriter.WriteLine($"Span<{builtInTypeName}> buffer = stackalloc {builtInTypeName}[{bufferTypeName}.Size];");
+				codeWriter.WriteLine($"for (int i = 0; i < {bufferTypeName}.Size; i++)");
+				codeWriter.StartIndent();
+				codeWriter.WriteLine($"buffer[i] = binaryReader.{readerMethodName}();");
+				codeWriter.EndIndent();
+				codeWriter.WriteLine($"return new {bufferTypeName}(buffer);");
 
 				codeWriter.EndBlock();
 
