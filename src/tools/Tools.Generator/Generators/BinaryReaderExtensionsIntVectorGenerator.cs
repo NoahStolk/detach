@@ -4,7 +4,7 @@ namespace Tools.Generator.Generators;
 
 internal sealed class BinaryReaderExtensionsIntVectorGenerator : IGenerator
 {
-	private readonly (string BuiltInTypeName, string MethodName, string ReaderMethodName)[] _typeNames =
+	private readonly (string PrimitiveTypeName, string MethodNamePart, string ReaderMethodName)[] _types =
 	[
 		("sbyte", "Int8", "ReadSByte"),
 		("byte", "UInt8", "ReadByte"),
@@ -33,13 +33,13 @@ internal sealed class BinaryReaderExtensionsIntVectorGenerator : IGenerator
 		{
 			string intVectorTypeName = $"IntVector{i}";
 
-			foreach ((string builtInTypeName, string methodName, string readerMethodName) in _typeNames)
+			foreach ((string primitiveTypeName, string methodNamePart, string readerMethodName) in _types)
 			{
-				string readIntMethodName = $"Read{intVectorTypeName}Of{methodName}";
+				string readIntVectorMethodName = $"Read{intVectorTypeName}Of{methodNamePart}";
 
-				codeWriter.WriteLine($"public static {intVectorTypeName}<{builtInTypeName}> {readIntMethodName}(this BinaryReader binaryReader)");
+				codeWriter.WriteLine($"public static {intVectorTypeName}<{primitiveTypeName}> {readIntVectorMethodName}(this BinaryReader binaryReader)");
 				codeWriter.StartBlock();
-				codeWriter.WriteLine($"return new {intVectorTypeName}<{builtInTypeName}>({string.Join(", ", Enumerable.Range(0, i).Select(_ => $"binaryReader.{readerMethodName}()"))});");
+				codeWriter.WriteLine($"return new {intVectorTypeName}<{primitiveTypeName}>({string.Join(", ", Enumerable.Range(0, i).Select(_ => $"binaryReader.{readerMethodName}()"))});");
 				codeWriter.EndBlock();
 
 				codeWriter.WriteLine();

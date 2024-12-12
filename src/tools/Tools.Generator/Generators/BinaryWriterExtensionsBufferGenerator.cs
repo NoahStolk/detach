@@ -2,7 +2,7 @@
 
 namespace Tools.Generator.Generators;
 
-internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
+internal sealed class BinaryWriterExtensionsBufferGenerator : IGenerator
 {
 	private readonly string[] _primitiveTypeNames =
 	[
@@ -14,8 +14,10 @@ internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 		"uint",
 		"long",
 		"ulong",
+		"Half",
+		"float",
+		"double",
 	];
-	private readonly string[] _vectorComponentNames = ["X", "Y", "Z", "W"];
 
 	public string Generate()
 	{
@@ -23,6 +25,7 @@ internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 
 		codeWriter.WriteLine(GeneratorConstants.Header);
 		codeWriter.WriteLine();
+		codeWriter.WriteLine("using Detach.Buffers;");
 		codeWriter.WriteLine("using Detach.Numerics;");
 		codeWriter.WriteLine();
 		codeWriter.WriteLine("namespace Detach.Extensions;");
@@ -30,16 +33,18 @@ internal sealed class BinaryWriterExtensionsIntVectorGenerator : IGenerator
 		codeWriter.WriteLine("public static partial class BinaryWriterExtensions");
 		codeWriter.StartBlock();
 
-		for (int i = 2; i <= 4; i++)
+		foreach (int bufferSize in BufferConstants.Sizes)
 		{
-			string intVectorTypeName = $"IntVector{i}";
-
-			foreach (string primitiveTypeName in _primitiveTypeNames)
+			foreach (string builtInTypeName in _primitiveTypeNames)
 			{
-				codeWriter.WriteLine($"public static void Write(this BinaryWriter binaryWriter, {intVectorTypeName}<{primitiveTypeName}> value)");
+				string bufferTypeName = $"Buffer{bufferSize}<{builtInTypeName}>";
+
+				codeWriter.WriteLine($"public static void Write(this BinaryWriter binaryWriter, {bufferTypeName} buffer)");
 				codeWriter.StartBlock();
-				for (int j = 0; j < i; j++)
-					codeWriter.WriteLine($"binaryWriter.Write(value.{_vectorComponentNames[j]});");
+				codeWriter.WriteLine($"for (int i = 0; i < {bufferTypeName}.Size; i++)");
+				codeWriter.StartIndent();
+				codeWriter.WriteLine("binaryWriter.Write(buffer[i]);");
+				codeWriter.EndIndent();
 				codeWriter.EndBlock();
 
 				codeWriter.WriteLine();
