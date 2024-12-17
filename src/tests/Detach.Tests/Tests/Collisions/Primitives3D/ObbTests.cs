@@ -7,7 +7,7 @@ using System.Numerics;
 namespace Detach.Tests.Tests.Collisions.Primitives3D;
 
 [TestClass]
-public class ObbTests
+public sealed class ObbTests
 {
 	private const float _tolerance = 0.0001f;
 

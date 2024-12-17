@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.23.1
+
+### Fixed
+
+- Fixed `Aabb.FromMinMax` not calculating the correct size.
+
 ## 0.23.0
 
 ### Added

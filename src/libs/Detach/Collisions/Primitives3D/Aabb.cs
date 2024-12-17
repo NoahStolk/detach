@@ -72,6 +72,6 @@ public record struct Aabb
 
 	public static Aabb FromMinMax(Vector3 min, Vector3 max)
 	{
-		return new Aabb((min + max) * 0.5f, (max - min) * 0.5f);
+		return new Aabb((min + max) * 0.5f, max - min);
 	}
 }
