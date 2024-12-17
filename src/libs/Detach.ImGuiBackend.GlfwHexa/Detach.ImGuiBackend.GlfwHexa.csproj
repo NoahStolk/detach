@@ -2,11 +2,11 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.ImGuiBackend.GlfwHexa</PackageId>
-    <Version>0.2.2</Version>
+    <Version>0.2.3</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">
-    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.3"/>
+    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.4"/>
   </ItemGroup>
 
   <ItemGroup Label="Internal dependencies">

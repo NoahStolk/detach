@@ -2,6 +2,14 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.1
+
+### Changed
+
+- Updated Detach from 0.23.0 to 0.23.1.
+- Updated Hexa.NET.ImGui from 2.2.3 to 2.2.4.
+- Updated Hexa.NET.ImPlot from 2.2.3 to 2.2.4.
+
 ## 0.3.0
 
 ### Changed
