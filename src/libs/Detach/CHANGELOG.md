@@ -4,6 +4,10 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
 
+### Added
+
+- Added `Geometry3D.SphereCastCylinder` method.
+
 ### Changed
 
 - Renamed `Circle.Position` to `Circle.Center`.
