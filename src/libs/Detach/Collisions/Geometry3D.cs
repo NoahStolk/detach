@@ -1219,28 +1219,25 @@ public static class Geometry3D
 
 	public static bool SphereCastCylinder(SphereCast sphereCast, Cylinder cylinder)
 	{
-		Vector2 cylinderXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
-		Vector2 rayOriginXz = new(sphereCast.Start.X, sphereCast.Start.Z);
-		Vector2 rayDirectionXz = new(sphereCast.End.X - sphereCast.Start.X, sphereCast.End.Z - sphereCast.Start.Z);
+		// Check intersection at the start of the SphereCast.
+		if (SphereCylinder(new Sphere(sphereCast.Start, sphereCast.Radius), cylinder))
+			return true;
 
-		Vector2 d = cylinderXz - rayOriginXz;
-		float a = Vector2.Dot(rayDirectionXz, rayDirectionXz);
-		float b = 2 * Vector2.Dot(rayDirectionXz, d);
-		float c = Vector2.Dot(d, d) - (cylinder.Radius + sphereCast.Radius) * (cylinder.Radius + sphereCast.Radius);
+		// Check intersection at the end of the SphereCast.
+		if (SphereCylinder(new Sphere(sphereCast.End, sphereCast.Radius), cylinder))
+			return true;
 
-		float discriminant = b * b - 4 * a * c;
-		if (discriminant < 0)
-			return false;
+		// Check intersection along the path of the SphereCast.
+		Vector3 direction = Vector3.Normalize(sphereCast.End - sphereCast.Start);
+		float length = Vector3.Distance(sphereCast.Start, sphereCast.End);
+		for (float t = 0; t <= length; t += sphereCast.Radius)
+		{
+			Vector3 point = sphereCast.Start + direction * t;
+			if (SphereCylinder(new Sphere(point, sphereCast.Radius), cylinder))
+				return true;
+		}
 
-		float t1 = (-b + MathF.Sqrt(discriminant)) / (2 * a);
-		float t2 = (-b - MathF.Sqrt(discriminant)) / (2 * a);
-
-		float y1 = sphereCast.Start.Y + (sphereCast.End.Y - sphereCast.Start.Y) * t1;
-		float y2 = sphereCast.Start.Y + (sphereCast.End.Y - sphereCast.Start.Y) * t2;
-
-		return
-			y1 >= cylinder.BottomCenter.Y && y1 <= cylinder.BottomCenter.Y + cylinder.Height ||
-			y2 >= cylinder.BottomCenter.Y && y2 <= cylinder.BottomCenter.Y + cylinder.Height;
+		return false;
 	}
 
 	public static bool SphereCastConeFrustum(SphereCast sphereCast, ConeFrustum coneFrustum)

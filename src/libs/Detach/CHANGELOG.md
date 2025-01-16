@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.24.1
+
+### Fixed
+
+- Fixed implementation of `Geometry3D.SphereCastCylinder` method.
+
 ## 0.24.0
 
 ### Added

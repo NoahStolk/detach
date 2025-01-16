@@ -2,6 +2,7 @@
 
 namespace Detach.Collisions.Primitives3D;
 
+// TODO: This might need to be renamed to SquareFrustum or ViewFrustum.
 public readonly record struct Frustum
 {
 	private const int _planeCount = 6;
