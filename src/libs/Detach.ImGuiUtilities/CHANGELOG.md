@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.0
+
+### Changed
+
+- Updated Detach from 0.23.1 to 0.24.1.
+
 ## 0.3.1
 
 ### Changed
