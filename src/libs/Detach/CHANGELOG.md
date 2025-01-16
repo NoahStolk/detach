@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Changed
+
+- Renamed `Circle.Position` to `Circle.Center`.
+- Renamed `Aabb.Origin` to `Aabb.Center`.
+- Renamed `Cylinder.BasePosition` to `Cylinder.BottomCenter`.
+- Renamed `Obb.Position` to `Obb.Center`.
+- Renamed `Sphere.Position` to `Sphere.Center`.
+
 ## 0.23.1
 
 ### Fixed

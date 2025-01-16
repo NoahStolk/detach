@@ -33,10 +33,10 @@ internal readonly record struct PositionedDrawList(ImDrawListPtr DrawList, Vecto
 
 	public void AddCircle(Circle circle, bool hasCollision)
 	{
-		DrawList.AddCircle(Origin + circle.Position, circle.Radius, GetForegroundColor(hasCollision));
+		DrawList.AddCircle(Origin + circle.Center, circle.Radius, GetForegroundColor(hasCollision));
 
-		DrawList.AddText(Origin + circle.Position, _textColor, Inline.Utf16($"Circle position: {circle.Position.X:0.00} {circle.Position.Y:0.00}"));
-		DrawList.AddText(Origin + circle.Position + new Vector2(0, circle.Radius), _textColor, Inline.Utf16($"Circle radius: {circle.Radius:0.00}"));
+		DrawList.AddText(Origin + circle.Center, _textColor, Inline.Utf16($"Circle position: {circle.Center.X:0.00} {circle.Center.Y:0.00}"));
+		DrawList.AddText(Origin + circle.Center + new Vector2(0, circle.Radius), _textColor, Inline.Utf16($"Circle radius: {circle.Radius:0.00}"));
 	}
 
 	public void AddPoint(Vector2 point, bool hasCollision)

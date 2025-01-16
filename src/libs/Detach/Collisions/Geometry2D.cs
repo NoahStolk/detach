@@ -26,7 +26,7 @@ public static class Geometry2D
 
 	public static bool PointInCircle(Vector2 point, Circle circle)
 	{
-		LineSegment2D line = new(point, circle.Position);
+		LineSegment2D line = new(point, circle.Center);
 		return line.LengthSquared <= circle.Radius * circle.Radius;
 	}
 
@@ -97,11 +97,11 @@ public static class Geometry2D
 	public static bool LineCircle(LineSegment2D line, Circle circle)
 	{
 		Vector2 ab = line.End - line.Start;
-		float t = Vector2.Dot(circle.Position - line.Start, ab) / Vector2.Dot(ab, ab);
+		float t = Vector2.Dot(circle.Center - line.Start, ab) / Vector2.Dot(ab, ab);
 		t = Math.Clamp(t, 0, 1); // Clamp t to the range [0, 1] to ensure the closest point is on the segment.
 
 		Vector2 closestPoint = line.Start + t * ab;
-		float distanceSquared = Vector2.DistanceSquared(closestPoint, circle.Position);
+		float distanceSquared = Vector2.DistanceSquared(closestPoint, circle.Center);
 
 		return distanceSquared <= circle.Radius * circle.Radius;
 	}
@@ -157,24 +157,24 @@ public static class Geometry2D
 
 	public static bool CircleCircle(Circle circle1, Circle circle2)
 	{
-		LineSegment2D line = new(circle1.Position, circle2.Position);
+		LineSegment2D line = new(circle1.Center, circle2.Center);
 		float radii = circle1.Radius + circle2.Radius;
 		return line.LengthSquared <= radii * radii;
 	}
 
 	public static bool CircleRectangle(Circle circle, Rectangle rectangle)
 	{
-		if (PointInRectangle(circle.Position, rectangle))
+		if (PointInRectangle(circle.Center, rectangle))
 			return true;
 
 		Vector2 min = rectangle.GetMin();
 		Vector2 max = rectangle.GetMax();
 
 		Vector2 closestPoint = new(
-			Math.Clamp(circle.Position.X, min.X, max.X),
-			Math.Clamp(circle.Position.Y, min.Y, max.Y));
+			Math.Clamp(circle.Center.X, min.X, max.X),
+			Math.Clamp(circle.Center.Y, min.Y, max.Y));
 
-		LineSegment2D circleToClosest = new(circle.Position, closestPoint);
+		LineSegment2D circleToClosest = new(circle.Center, closestPoint);
 		return circleToClosest.LengthSquared <= circle.Radius * circle.Radius;
 	}
 
@@ -186,7 +186,7 @@ public static class Geometry2D
 			-MathF.Sin(theta), MathF.Cos(theta));
 
 		Circle localCircle = new(
-			Matrices.Multiply(circle.Position - orientedRectangle.Center, zRotation) + orientedRectangle.HalfExtents,
+			Matrices.Multiply(circle.Center - orientedRectangle.Center, zRotation) + orientedRectangle.HalfExtents,
 			circle.Radius);
 		Rectangle localRectangle = Rectangle.FromTopLeft(Vector2.Zero, orientedRectangle.HalfExtents * 2);
 		return CircleRectangle(localCircle, localRectangle);
@@ -194,7 +194,7 @@ public static class Geometry2D
 
 	public static bool CircleTriangle(Circle circle, Triangle2D triangle)
 	{
-		if (PointInTriangle(circle.Position, triangle))
+		if (PointInTriangle(circle.Center, triangle))
 			return true;
 
 		LineSegment2D ab = new(triangle.A, triangle.B);

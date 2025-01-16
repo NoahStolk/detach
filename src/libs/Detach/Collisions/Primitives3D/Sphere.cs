@@ -4,13 +4,12 @@ namespace Detach.Collisions.Primitives3D;
 
 public record struct Sphere
 {
-	// TODO: Rename to Center.
-	public Vector3 Position;
+	public Vector3 Center;
 	public float Radius;
 
-	public Sphere(Vector3 position, float radius)
+	public Sphere(Vector3 center, float radius)
 	{
-		Position = position;
+		Center = center;
 		Radius = radius;
 	}
 }

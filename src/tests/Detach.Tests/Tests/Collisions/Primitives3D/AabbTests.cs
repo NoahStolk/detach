@@ -28,7 +28,7 @@ public sealed class AabbTests
 		Vector3 max = new(0.5f, 0.5f, 0.5f);
 		Aabb aabb = Aabb.FromMinMax(min, max);
 
-		Assert.AreEqual(new Vector3(0, 0, 0), aabb.Origin);
+		Assert.AreEqual(new Vector3(0, 0, 0), aabb.Center);
 		Assert.AreEqual(new Vector3(1, 1, 1), aabb.Size);
 		Assert.AreEqual(min, aabb.GetMin());
 		Assert.AreEqual(max, aabb.GetMax());

@@ -6,21 +6,20 @@ namespace Detach.Collisions.Primitives3D;
 
 public record struct Obb
 {
-	// TODO: Rename to Center.
-	public Vector3 Position;
+	public Vector3 Center;
 	public Vector3 HalfExtents;
 	public Matrix3 Orientation;
 
-	public Obb(Vector3 position, Vector3 halfExtents, Matrix3 orientation)
+	public Obb(Vector3 center, Vector3 halfExtents, Matrix3 orientation)
 	{
-		Position = position;
+		Center = center;
 		HalfExtents = halfExtents;
 		Orientation = orientation;
 	}
 
 	public Interval GetInterval(Vector3 axis)
 	{
-		Vector3 c = Position;
+		Vector3 c = Center;
 		Vector3 e = HalfExtents;
 		Span<Vector3> axes =
 		[
@@ -60,7 +59,7 @@ public record struct Obb
 
 	public Buffer8<Vector3> GetVertices()
 	{
-		Vector3 c = Position;
+		Vector3 c = Center;
 		Vector3 e = HalfExtents;
 		Span<Vector3> axes =
 		[
@@ -112,7 +111,7 @@ public record struct Obb
 
 	public Buffer6<Plane> GetPlanes()
 	{
-		Vector3 c = Position;
+		Vector3 c = Center;
 		Vector3 e = HalfExtents;
 		Span<Vector3> axes =
 		[

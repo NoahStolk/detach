@@ -12,12 +12,12 @@ public static class Geometry3D
 
 	public static bool PointInSphere(Vector3 point, Sphere sphere)
 	{
-		return Vector3.DistanceSquared(point, sphere.Position) <= sphere.Radius * sphere.Radius;
+		return Vector3.DistanceSquared(point, sphere.Center) <= sphere.Radius * sphere.Radius;
 	}
 
 	public static Vector3 ClosestPointInSphere(Sphere sphere, Vector3 point)
 	{
-		return sphere.Position + Vector3.Normalize(point - sphere.Position) * sphere.Radius;
+		return sphere.Center + Vector3.Normalize(point - sphere.Center) * sphere.Radius;
 	}
 
 	public static bool PointInAabb(Vector3 point, Aabb aabb)
@@ -43,7 +43,7 @@ public static class Geometry3D
 
 	public static bool PointInObb(Vector3 point, Obb obb)
 	{
-		Vector3 direction = point - obb.Position;
+		Vector3 direction = point - obb.Center;
 		for (int i = 0; i < 3; i++)
 		{
 			Vector3 axis = new(
@@ -60,8 +60,8 @@ public static class Geometry3D
 
 	public static Vector3 ClosestPointInObb(Obb obb, Vector3 point)
 	{
-		Vector3 direction = point - obb.Position;
-		Vector3 result = obb.Position;
+		Vector3 direction = point - obb.Center;
+		Vector3 result = obb.Center;
 		for (int i = 0; i < 3; i++)
 		{
 			Vector3 axis = new(
@@ -181,12 +181,12 @@ public static class Geometry3D
 	public static bool PointInCylinder(Vector3 point, Cylinder cylinder)
 	{
 		Vector2 pointXz = new(point.X, point.Z);
-		Vector2 positionXz = new(cylinder.BasePosition.X, cylinder.BasePosition.Z);
+		Vector2 positionXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
 
 		return
 			Vector2.DistanceSquared(pointXz, positionXz) <= cylinder.Radius * cylinder.Radius &&
-			point.Y >= cylinder.BasePosition.Y &&
-			point.Y <= cylinder.BasePosition.Y + cylinder.Height;
+			point.Y >= cylinder.BottomCenter.Y &&
+			point.Y <= cylinder.BottomCenter.Y + cylinder.Height;
 	}
 
 	#endregion Point vs primitives
@@ -195,35 +195,35 @@ public static class Geometry3D
 
 	public static bool SphereSphere(Sphere sphere1, Sphere sphere2)
 	{
-		float distanceSquared = Vector3.DistanceSquared(sphere1.Position, sphere2.Position);
+		float distanceSquared = Vector3.DistanceSquared(sphere1.Center, sphere2.Center);
 		float radiusSum = sphere1.Radius + sphere2.Radius;
 		return distanceSquared <= radiusSum * radiusSum;
 	}
 
 	public static bool SphereAabb(Sphere sphere, Aabb aabb)
 	{
-		Vector3 closest = ClosestPointInAabb(aabb, sphere.Position);
-		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		Vector3 closest = ClosestPointInAabb(aabb, sphere.Center);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
 	public static bool SphereObb(Sphere sphere, Obb obb)
 	{
-		Vector3 closest = ClosestPointInObb(obb, sphere.Position);
-		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		Vector3 closest = ClosestPointInObb(obb, sphere.Center);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
 	public static bool SpherePlane(Sphere sphere, Plane plane)
 	{
-		Vector3 closest = ClosestPointOnPlane(plane, sphere.Position);
-		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		Vector3 closest = ClosestPointOnPlane(plane, sphere.Center);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
 	public static bool SphereFrustum(Sphere sphere, Frustum frustum)
 	{
-		if (PointInFrustum(sphere.Position, frustum))
+		if (PointInFrustum(sphere.Center, frustum))
 			return true;
 
 		for (int i = 0; i < 6; ++i)
@@ -238,8 +238,8 @@ public static class Geometry3D
 	public static bool SphereCylinder(Sphere sphere, Cylinder cylinder)
 	{
 		// Project the sphere's center onto the XZ plane.
-		Vector2 sphereXz = new(sphere.Position.X, sphere.Position.Z);
-		Vector2 cylinderXz = new(cylinder.BasePosition.X, cylinder.BasePosition.Z);
+		Vector2 sphereXz = new(sphere.Center.X, sphere.Center.Z);
+		Vector2 cylinderXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
 
 		// Check if the distance in the XZ plane is less than or equal to the sum of the radii.
 		float distanceSquaredXz = Vector2.DistanceSquared(sphereXz, cylinderXz);
@@ -248,10 +248,10 @@ public static class Geometry3D
 			return false;
 
 		// Check if the sphere's center is within the height range of the cylinder.
-		float sphereMinY = sphere.Position.Y - sphere.Radius;
-		float sphereMaxY = sphere.Position.Y + sphere.Radius;
-		float cylinderMinY = cylinder.BasePosition.Y;
-		float cylinderMaxY = cylinder.BasePosition.Y + cylinder.Height;
+		float sphereMinY = sphere.Center.Y - sphere.Radius;
+		float sphereMaxY = sphere.Center.Y + sphere.Radius;
+		float cylinderMinY = cylinder.BottomCenter.Y;
+		float cylinderMaxY = cylinder.BottomCenter.Y + cylinder.Height;
 
 		return sphereMaxY >= cylinderMinY && sphereMinY <= cylinderMaxY;
 	}
@@ -305,7 +305,7 @@ public static class Geometry3D
 			aabb.Size.Y * Math.Abs(plane.Normal.Y) +
 			aabb.Size.Z * Math.Abs(plane.Normal.Z);
 
-		float dot = Vector3.Dot(plane.Normal, aabb.Origin);
+		float dot = Vector3.Dot(plane.Normal, aabb.Center);
 		float distance = dot - plane.D;
 		return Math.Abs(distance) <= pLen;
 	}
@@ -354,7 +354,7 @@ public static class Geometry3D
 			obb.HalfExtents.Y * Math.Abs(Vector3.Dot(plane.Normal, axes[1])) +
 			obb.HalfExtents.Z * Math.Abs(Vector3.Dot(plane.Normal, axes[2]));
 
-		float dot = Vector3.Dot(plane.Normal, obb.Position);
+		float dot = Vector3.Dot(plane.Normal, obb.Center);
 		float distance = dot - plane.D;
 		return Math.Abs(distance) <= pLen;
 	}
@@ -375,8 +375,8 @@ public static class Geometry3D
 
 	public static bool TriangleSphere(Triangle3D triangle, Sphere sphere)
 	{
-		Vector3 closest = ClosestPointOnTriangle(sphere.Position, triangle);
-		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		Vector3 closest = ClosestPointOnTriangle(sphere.Center, triangle);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
@@ -544,8 +544,8 @@ public static class Geometry3D
 	public static bool CylinderCylinder(Cylinder cylinder1, Cylinder cylinder2)
 	{
 		// Project the cylinder's centers onto the XZ plane.
-		Vector2 cylinder1Xz = new(cylinder1.BasePosition.X, cylinder1.BasePosition.Z);
-		Vector2 cylinder2Xz = new(cylinder2.BasePosition.X, cylinder2.BasePosition.Z);
+		Vector2 cylinder1Xz = new(cylinder1.BottomCenter.X, cylinder1.BottomCenter.Z);
+		Vector2 cylinder2Xz = new(cylinder2.BottomCenter.X, cylinder2.BottomCenter.Z);
 
 		// Check if the distance in the XZ plane is less than or equal to the sum of the radii.
 		float distanceSquaredXz = Vector2.DistanceSquared(cylinder1Xz, cylinder2Xz);
@@ -554,10 +554,10 @@ public static class Geometry3D
 			return false;
 
 		// Check if the cylinders' heights overlap.
-		float cylinder1MinY = cylinder1.BasePosition.Y;
-		float cylinder1MaxY = cylinder1.BasePosition.Y + cylinder1.Height;
-		float cylinder2MinY = cylinder2.BasePosition.Y;
-		float cylinder2MaxY = cylinder2.BasePosition.Y + cylinder2.Height;
+		float cylinder1MinY = cylinder1.BottomCenter.Y;
+		float cylinder1MaxY = cylinder1.BottomCenter.Y + cylinder1.Height;
+		float cylinder2MinY = cylinder2.BottomCenter.Y;
+		float cylinder2MaxY = cylinder2.BottomCenter.Y + cylinder2.Height;
 
 		return cylinder1MaxY >= cylinder2MinY && cylinder1MinY <= cylinder2MaxY;
 	}
@@ -570,7 +570,7 @@ public static class Geometry3D
 	{
 		distance = default;
 
-		Vector3 e = sphere.Position - ray.Origin;
+		Vector3 e = sphere.Center - ray.Origin;
 		float radiusSquared = sphere.Radius * sphere.Radius;
 		float eSquared = e.LengthSquared();
 		float a = Vector3.Dot(e, ray.Direction);
@@ -588,7 +588,7 @@ public static class Geometry3D
 	{
 		result = default;
 
-		Vector3 e = sphere.Position - ray.Origin;
+		Vector3 e = sphere.Center - ray.Origin;
 		float radiusSquared = sphere.Radius * sphere.Radius;
 		float eSquared = e.LengthSquared();
 		float a = Vector3.Dot(e, ray.Direction);
@@ -600,7 +600,7 @@ public static class Geometry3D
 
 		result.Distance = eSquared < radiusSquared ? a + f : a - f;
 		result.Point = ray.Origin + ray.Direction * result.Distance;
-		result.Normal = Vector3.Normalize(result.Point - sphere.Position);
+		result.Normal = Vector3.Normalize(result.Point - sphere.Center);
 		return true;
 	}
 
@@ -684,7 +684,7 @@ public static class Geometry3D
 		Vector3 x = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
 		Vector3 y = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
 		Vector3 z = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
-		Vector3 p = obb.Position - ray.Origin;
+		Vector3 p = obb.Center - ray.Origin;
 		Vector3 f = new(
 			Vector3.Dot(x, ray.Direction),
 			Vector3.Dot(y, ray.Direction),
@@ -724,7 +724,7 @@ public static class Geometry3D
 		Vector3 x = new(obb.Orientation.M11, obb.Orientation.M12, obb.Orientation.M13);
 		Vector3 y = new(obb.Orientation.M21, obb.Orientation.M22, obb.Orientation.M23);
 		Vector3 z = new(obb.Orientation.M31, obb.Orientation.M32, obb.Orientation.M33);
-		Vector3 p = obb.Position - ray.Origin;
+		Vector3 p = obb.Center - ray.Origin;
 		Vector3 f = new(
 			Vector3.Dot(x, ray.Direction),
 			Vector3.Dot(y, ray.Direction),
@@ -836,7 +836,7 @@ public static class Geometry3D
 	{
 		distance = default;
 
-		Vector2 cylinderXz = new(cylinder.BasePosition.X, cylinder.BasePosition.Z);
+		Vector2 cylinderXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
 		Vector2 rayOriginXz = new(ray.Origin.X, ray.Origin.Z);
 		Vector2 rayDirectionXz = new(ray.Direction.X, ray.Direction.Z);
 
@@ -855,10 +855,10 @@ public static class Geometry3D
 		float y1 = ray.Origin.Y + ray.Direction.Y * t1;
 		float y2 = ray.Origin.Y + ray.Direction.Y * t2;
 
-		if (y1 < cylinder.BasePosition.Y || y1 > cylinder.BasePosition.Y + cylinder.Height)
+		if (y1 < cylinder.BottomCenter.Y || y1 > cylinder.BottomCenter.Y + cylinder.Height)
 			t1 = float.MaxValue;
 
-		if (y2 < cylinder.BasePosition.Y || y2 > cylinder.BasePosition.Y + cylinder.Height)
+		if (y2 < cylinder.BottomCenter.Y || y2 > cylinder.BottomCenter.Y + cylinder.Height)
 			t2 = float.MaxValue;
 
 		distance = Math.Min(t1, t2);
@@ -871,8 +871,8 @@ public static class Geometry3D
 
 	public static bool Linetest(Sphere sphere, LineSegment3D line)
 	{
-		Vector3 closest = ClosestPointOnLine(sphere.Position, line);
-		float distanceSquared = Vector3.DistanceSquared(sphere.Position, closest);
+		Vector3 closest = ClosestPointOnLine(sphere.Center, line);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closest);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
@@ -971,7 +971,7 @@ public static class Geometry3D
 		float length = direction.Length();
 		direction /= length; // Normalize the direction.
 
-		Vector3 m = sphereCast.Start - sphere.Position;
+		Vector3 m = sphereCast.Start - sphere.Center;
 		float b = Vector3.Dot(m, direction);
 		float c = Vector3.Dot(m, m) - (sphere.Radius + sphereCast.Radius) * (sphere.Radius + sphereCast.Radius);
 
@@ -1080,8 +1080,8 @@ public static class Geometry3D
 	{
 		// Transform sphere start and end points to OBB's local space.
 		Matrix3 invOrientation = Matrix3.Transpose(obb.Orientation);
-		Vector3 localSphereStart = VectorUtils.Transform(sphereCast.Start - obb.Position, invOrientation);
-		Vector3 localSphereEnd = VectorUtils.Transform(sphereCast.End - obb.Position, invOrientation);
+		Vector3 localSphereStart = VectorUtils.Transform(sphereCast.Start - obb.Center, invOrientation);
+		Vector3 localSphereEnd = VectorUtils.Transform(sphereCast.End - obb.Center, invOrientation);
 
 		// Perform sphere cast against the AABB in local space.
 		Aabb aabb = new(Vector3.Zero, obb.HalfExtents * 2);
@@ -1258,7 +1258,7 @@ public static class Geometry3D
 		collisionManifold = CollisionManifold.Empty;
 
 		float r = sphere1.Radius + sphere2.Radius;
-		Vector3 d = sphere2.Position - sphere1.Position;
+		Vector3 d = sphere2.Center - sphere1.Center;
 		if (d.LengthSquared() > r * r)
 			return false;
 
@@ -1266,7 +1266,7 @@ public static class Geometry3D
 		collisionManifold.Normal = direction;
 		collisionManifold.Depth = MathF.Abs(d.Length() - r) * 0.5f;
 		float dtp = sphere1.Radius - collisionManifold.Depth;
-		Vector3 contact = sphere1.Position + direction * dtp;
+		Vector3 contact = sphere1.Center + direction * dtp;
 		collisionManifold.ContactCount = 1;
 		collisionManifold.Contacts[0] = contact;
 		return true;
@@ -1276,26 +1276,26 @@ public static class Geometry3D
 	{
 		collisionManifold = CollisionManifold.Empty;
 
-		Vector3 closestPoint = ClosestPointInObb(obb, sphere.Position);
-		float distanceSquared = (closestPoint - sphere.Position).LengthSquared();
+		Vector3 closestPoint = ClosestPointInObb(obb, sphere.Center);
+		float distanceSquared = (closestPoint - sphere.Center).LengthSquared();
 		if (distanceSquared > sphere.Radius * sphere.Radius)
 			return false;
 
 		Vector3 normal;
 		if (distanceSquared is > -float.Epsilon and < float.Epsilon)
 		{
-			float mSq = (closestPoint - obb.Position).LengthSquared();
+			float mSq = (closestPoint - obb.Center).LengthSquared();
 			if (mSq is > -float.Epsilon and < float.Epsilon)
 				return false;
 
-			normal = Vector3.Normalize(closestPoint - obb.Position);
+			normal = Vector3.Normalize(closestPoint - obb.Center);
 		}
 		else
 		{
-			normal = Vector3.Normalize(sphere.Position - closestPoint);
+			normal = Vector3.Normalize(sphere.Center - closestPoint);
 		}
 
-		Vector3 outsidePoint = sphere.Position - normal * sphere.Radius;
+		Vector3 outsidePoint = sphere.Center - normal * sphere.Radius;
 		float distance = (closestPoint - outsidePoint).Length();
 		collisionManifold.Normal = normal;
 		collisionManifold.Depth = distance * 0.5f;
@@ -1356,7 +1356,7 @@ public static class Geometry3D
 
 		Interval interval = obb1.GetInterval(axis);
 		float distance = (interval.Max - interval.Min) * 0.5f - collisionManifold.Depth * 0.5f;
-		Vector3 pointOnPlane = obb1.Position + axis * distance;
+		Vector3 pointOnPlane = obb1.Center + axis * distance;
 		for (int i = collisionManifold.ContactCount - 1; i >= 0; i--)
 		{
 			Vector3 contact = collisionManifold.Contacts[i];
