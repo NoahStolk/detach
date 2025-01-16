@@ -2,11 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## 0.24.0
 
 ### Added
 
 - Added `Geometry3D.SphereCastCylinder` method.
+- Added `ConeFrustum` struct to `Detach.Collisions.Primitives3D` namespace.
+- Added `Geometry3D.SphereConeFrustum` and `Geometry3D.SphereCastConeFrustum` methods.
 
 ### Changed
 

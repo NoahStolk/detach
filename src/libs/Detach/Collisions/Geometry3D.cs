@@ -256,6 +256,33 @@ public static class Geometry3D
 		return sphereMaxY >= cylinderMinY && sphereMinY <= cylinderMaxY;
 	}
 
+	public static bool SphereConeFrustum(Sphere sphere, ConeFrustum coneFrustum)
+	{
+		// Check intersection with bottom circle.
+		Vector3 bottomCenter = coneFrustum.BottomCenter;
+		float bottomRadius = coneFrustum.BottomRadius;
+		if (Vector3.DistanceSquared(sphere.Center, bottomCenter) <= (sphere.Radius + bottomRadius) * (sphere.Radius + bottomRadius))
+			return true;
+
+		// Check intersection with top circle.
+		Vector3 topCenter = bottomCenter + new Vector3(0, coneFrustum.Height, 0);
+		float topRadius = coneFrustum.TopRadius;
+		if (Vector3.DistanceSquared(sphere.Center, topCenter) <= (sphere.Radius + topRadius) * (sphere.Radius + topRadius))
+			return true;
+
+		// Check intersection with side surface.
+		Vector3 axis = Vector3.Normalize(topCenter - bottomCenter);
+		Vector3 sphereToBottom = sphere.Center - bottomCenter;
+		float projectionLength = Vector3.Dot(sphereToBottom, axis);
+		if (projectionLength < 0 || projectionLength > coneFrustum.Height)
+			return false;
+
+		float radiusAtProjection = MathUtils.Lerp(bottomRadius, topRadius, projectionLength / coneFrustum.Height);
+		Vector3 closestPointOnAxis = bottomCenter + axis * projectionLength;
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closestPointOnAxis);
+		return distanceSquared <= (sphere.Radius + radiusAtProjection) * (sphere.Radius + radiusAtProjection);
+	}
+
 	#endregion Sphere vs primitives
 
 	#region Aabb vs primitives
@@ -563,6 +590,16 @@ public static class Geometry3D
 	}
 
 	#endregion Cylinder vs primitives
+
+	#region Cone frustum vs primitives
+
+	// TODO: Implement.
+	// public static bool ConeFrustumConeFrustum(ConeFrustum coneFrustum1, ConeFrustum coneFrustum2)
+	// {
+	// 	throw new NotImplementedException();
+	// }
+
+	#endregion Cone frustum vs primitives
 
 	#region Raycasting
 
@@ -1204,6 +1241,29 @@ public static class Geometry3D
 		return
 			y1 >= cylinder.BottomCenter.Y && y1 <= cylinder.BottomCenter.Y + cylinder.Height ||
 			y2 >= cylinder.BottomCenter.Y && y2 <= cylinder.BottomCenter.Y + cylinder.Height;
+	}
+
+	public static bool SphereCastConeFrustum(SphereCast sphereCast, ConeFrustum coneFrustum)
+	{
+		// Check intersection at the start of the SphereCast.
+		if (SphereConeFrustum(new Sphere(sphereCast.Start, sphereCast.Radius), coneFrustum))
+			return true;
+
+		// Check intersection at the end of the SphereCast.
+		if (SphereConeFrustum(new Sphere(sphereCast.End, sphereCast.Radius), coneFrustum))
+			return true;
+
+		// Check intersection along the path of the SphereCast.
+		Vector3 direction = Vector3.Normalize(sphereCast.End - sphereCast.Start);
+		float length = Vector3.Distance(sphereCast.Start, sphereCast.End);
+		for (float t = 0; t <= length; t += sphereCast.Radius)
+		{
+			Vector3 point = sphereCast.Start + direction * t;
+			if (SphereConeFrustum(new Sphere(point, sphereCast.Radius), coneFrustum))
+				return true;
+		}
+
+		return false;
 	}
 
 	#endregion Sphere casting
