@@ -2,7 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.ImGuiUtilities</PackageId>
-    <Version>0.4.0</Version>
+    <Version>0.4.1</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">

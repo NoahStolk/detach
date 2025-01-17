@@ -337,6 +337,27 @@ public static class Geometry3D
 		return Math.Abs(distance) <= pLen;
 	}
 
+	public static bool AabbCylinder(Aabb aabb, Cylinder cylinder)
+	{
+		// Project the cylinder's center onto the XZ plane.
+		Vector2 cylinderXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
+		Vector2 aabbXz = new(aabb.Center.X, aabb.Center.Z);
+
+		// Check if the distance in the XZ plane is less than or equal to the sum of the radii.
+		float distanceSquaredXz = Vector2.DistanceSquared(cylinderXz, aabbXz);
+		float radiusSum = cylinder.Radius + Math.Max(aabb.Size.X, aabb.Size.Z) / 2;
+		if (distanceSquaredXz > radiusSum * radiusSum)
+			return false;
+
+		// Check if the cylinder's height overlaps with the AABB.
+		float cylinderMinY = cylinder.BottomCenter.Y;
+		float cylinderMaxY = cylinder.BottomCenter.Y + cylinder.Height;
+		float aabbMinY = aabb.Center.Y - aabb.Size.Y / 2;
+		float aabbMaxY = aabb.Center.Y + aabb.Size.Y / 2;
+
+		return cylinderMaxY >= aabbMinY && cylinderMinY <= aabbMaxY;
+	}
+
 	#endregion Aabb vs primitives
 
 	#region Obb vs primitives

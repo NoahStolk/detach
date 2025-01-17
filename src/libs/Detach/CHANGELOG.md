@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.24.2
+
+### Added
+
+- Added `Geometry3D.AabbCylinder` method.
+
 ## 0.24.1
 
 ### Fixed
