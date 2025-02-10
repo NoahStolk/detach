@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.3
+
+### Changed
+
+- Updated Hexa.NET.ImGui from 2.2.4 to 2.2.6.
+- Updated Hexa.NET.ImPlot from 2.2.4 to 2.2.6.
+
 ## 0.4.2
 
 ### Changed

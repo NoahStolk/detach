@@ -2,12 +2,12 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.ImGuiUtilities</PackageId>
-    <Version>0.4.2</Version>
+    <Version>0.4.3</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">
-    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.4"/>
-    <PackageReference Include="Hexa.NET.ImPlot" Version="2.2.4"/>
+    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.6"/>
+    <PackageReference Include="Hexa.NET.ImPlot" Version="2.2.6"/>
   </ItemGroup>
 
   <ItemGroup Label="Internal dependencies">
