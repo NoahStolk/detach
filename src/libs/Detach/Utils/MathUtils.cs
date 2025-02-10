@@ -49,4 +49,13 @@ public static class MathUtils
 	{
 		return !float.IsNaN(value) && !float.IsInfinity(value);
 	}
+
+	/// <summary>
+	/// Returns the fractional part of the value. This is calculated as <c>value - MathF.Truncate(value)</c>.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static float Fraction(float value)
+	{
+		return value - MathF.Truncate(value);
+	}
 }

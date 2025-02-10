@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.24.3
+
+### Added
+
+- Added `MathUtils.Fraction` method.
+
 ## 0.24.2
 
 ### Added
