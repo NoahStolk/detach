@@ -1,0 +1,23 @@
+﻿<Solution>
+  <Folder Name="/demos/">
+    <Project Path="demos\Demos.Collisions\Demos.Collisions.csproj" Type="Classic C#" />
+    <Project Path="demos\Demos.ImGuiBackend.GlfwHexa\Demos.ImGuiBackend.GlfwHexa.csproj" Type="Classic C#" />
+    <Project Path="demos\Demos.ImGuiBackend.GlfwImGuiNET\Demos.ImGuiBackend.GlfwImGuiNET.csproj" Type="Classic C#" />
+    <Project Path="demos\Demos.Plot\Demos.Plot.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/libs/">
+    <Project Path="libs\Detach.AlExtensions\Detach.AlExtensions.csproj" Type="Classic C#" />
+    <Project Path="libs\Detach.GlExtensions\Detach.GlExtensions.csproj" Type="Classic C#" />
+    <Project Path="libs\Detach.GlfwExtensions\Detach.GlfwExtensions.csproj" Type="Classic C#" />
+    <Project Path="libs\Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj" Type="Classic C#" />
+    <Project Path="libs\Detach.ImGuiBackend.GlfwImGuiNET\Detach.ImGuiBackend.GlfwImGuiNET.csproj" Type="Classic C#" />
+    <Project Path="libs\Detach.ImGuiUtilities\Detach.ImGuiUtilities.csproj" Type="Classic C#" />
+    <Project Path="libs\Detach\Detach.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests\Detach.Tests\Detach.Tests.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools\Tools.Generator\Tools.Generator.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>
