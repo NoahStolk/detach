@@ -7,6 +7,9 @@
 	<PropertyGroup Label="Build configuration">
 		<OutputType>Exe</OutputType>
 		<IsPackable>false</IsPackable>
+
+		<!-- Enabling this causes the Git hash to be appended to the value in AssemblyInformationalVersionAttribute. This constantly breaks hot reload and disrupts workflow. We don't need this feature at all so we can just turn it off. -->
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 	</PropertyGroup>
 
 </Project>
