@@ -9,9 +9,9 @@ public static partial class Inline
 	{
 		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, value.X, format, provider);
-		WriteUtf8(ref charsWritten, SeparatorUtf8);
+		WriteUtf8(ref charsWritten, NumericSeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Y, format, provider);
-		WriteUtf8(ref charsWritten, SeparatorUtf8);
+		WriteUtf8(ref charsWritten, NumericSeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.Z, format, provider);
 		WriteUtf8(ref charsWritten, "\0"u8);
 
@@ -22,9 +22,9 @@ public static partial class Inline
 	{
 		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, value.X, format, provider);
-		WriteUtf16(ref charsWritten, _separatorUtf16);
+		WriteUtf16(ref charsWritten, NumericSeparatorUtf16);
 		WriteUtf16(ref charsWritten, value.Y, format, provider);
-		WriteUtf16(ref charsWritten, _separatorUtf16);
+		WriteUtf16(ref charsWritten, NumericSeparatorUtf16);
 		WriteUtf16(ref charsWritten, value.Z, format, provider);
 		WriteUtf16(ref charsWritten, "\0");
 

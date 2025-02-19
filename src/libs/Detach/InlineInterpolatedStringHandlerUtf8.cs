@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Detach;
@@ -53,4 +54,59 @@ public ref struct InlineInterpolatedStringHandlerUtf8
 
 		_charsWritten += charsWritten;
 	}
+
+	// TODO: Remove when this type implements IUtf8SpanFormattable.
+	public void AppendFormatted(bool value)
+	{
+		AppendFormatted(value ? "True"u8 : "False"u8);
+		Inline.BufferUtf8[_charsWritten] = 0x00;
+	}
+
+	// TODO: Remove when this type implements IUtf8SpanFormattable.
+	public void AppendFormatted(Vector2 vector2, ReadOnlySpan<char> format = default)
+	{
+		AppendFormatted(vector2.X, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(vector2.Y, format);
+		Inline.BufferUtf8[_charsWritten] = 0x00;
+	}
+
+	// TODO: Remove when this type implements IUtf8SpanFormattable.
+	public void AppendFormatted(Vector3 vector3, ReadOnlySpan<char> format = default)
+	{
+		AppendFormatted(vector3.X, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(vector3.Y, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(vector3.Z, format);
+		Inline.BufferUtf8[_charsWritten] = 0x00;
+	}
+
+	// TODO: Remove when this type implements IUtf8SpanFormattable.
+	public void AppendFormatted(Vector4 vector4, ReadOnlySpan<char> format = default)
+	{
+		AppendFormatted(vector4.X, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(vector4.Y, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(vector4.Z, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(vector4.W, format);
+		Inline.BufferUtf8[_charsWritten] = 0x00;
+	}
+
+	// TODO: Remove when this type implements IUtf8SpanFormattable.
+	public void AppendFormatted(Quaternion quaternion, ReadOnlySpan<char> format = default)
+	{
+		AppendFormatted(quaternion.X, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(quaternion.Y, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(quaternion.Z, format);
+		AppendFormatted(Inline.NumericSeparatorUtf8);
+		AppendFormatted(quaternion.W, format);
+		Inline.BufferUtf8[_charsWritten] = 0x00;
+	}
+
+	// TODO: Add Matrix3x2 and Matrix4x4 support if needed.
 }

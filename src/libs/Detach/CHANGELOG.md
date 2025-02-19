@@ -7,6 +7,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Added `GetCorners` method to `PyramidFrustum` (previously `Frustum`) struct.
+- Added support for `bool`, `Vector2`, `Vector3`, `Vector4`, and `Quaternion` to `InlineInterpolatedStringHandlerUtf8`.
 
 ### Changed
 

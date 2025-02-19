@@ -10,15 +10,15 @@ public static partial class Inline
 		int charsWritten = 0;
 		WriteUtf8(ref charsWritten, "<"u8);
 		WriteUtf8(ref charsWritten, value.M11, format, provider);
-		WriteUtf8(ref charsWritten, SeparatorUtf8);
+		WriteUtf8(ref charsWritten, NumericSeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M12, format, provider);
 		WriteUtf8(ref charsWritten, "> <"u8);
 		WriteUtf8(ref charsWritten, value.M21, format, provider);
-		WriteUtf8(ref charsWritten, SeparatorUtf8);
+		WriteUtf8(ref charsWritten, NumericSeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M22, format, provider);
 		WriteUtf8(ref charsWritten, "> <"u8);
 		WriteUtf8(ref charsWritten, value.M31, format, provider);
-		WriteUtf8(ref charsWritten, SeparatorUtf8);
+		WriteUtf8(ref charsWritten, NumericSeparatorUtf8);
 		WriteUtf8(ref charsWritten, value.M32, format, provider);
 		WriteUtf8(ref charsWritten, ">\0"u8);
 
@@ -30,15 +30,15 @@ public static partial class Inline
 		int charsWritten = 0;
 		WriteUtf16(ref charsWritten, "<");
 		WriteUtf16(ref charsWritten, value.M11, format, provider);
-		WriteUtf16(ref charsWritten, _separatorUtf16);
+		WriteUtf16(ref charsWritten, NumericSeparatorUtf16);
 		WriteUtf16(ref charsWritten, value.M12, format, provider);
 		WriteUtf16(ref charsWritten, "> <");
 		WriteUtf16(ref charsWritten, value.M21, format, provider);
-		WriteUtf16(ref charsWritten, _separatorUtf16);
+		WriteUtf16(ref charsWritten, NumericSeparatorUtf16);
 		WriteUtf16(ref charsWritten, value.M22, format, provider);
 		WriteUtf16(ref charsWritten, "> <");
 		WriteUtf16(ref charsWritten, value.M31, format, provider);
-		WriteUtf16(ref charsWritten, _separatorUtf16);
+		WriteUtf16(ref charsWritten, NumericSeparatorUtf16);
 		WriteUtf16(ref charsWritten, value.M32, format, provider);
 		WriteUtf16(ref charsWritten, ">\0");
 

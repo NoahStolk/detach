@@ -44,4 +44,6 @@ public ref struct InlineInterpolatedStringHandlerUtf16
 
 		_charsWritten += charsWritten;
 	}
+
+	// TODO: Add bool, Vector, Matrix3x2 and Matrix4x4 support if needed.
 }
