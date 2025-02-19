@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Changed
+
+- Changed the order of parameters in some `Geometry3D.ClosestPointIn...` methods. The `point` parameter is now always the first parameter.
+
 ## 0.24.3
 
 ### Added
