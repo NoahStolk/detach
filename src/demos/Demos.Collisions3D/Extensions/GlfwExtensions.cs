@@ -1,8 +1,7 @@
 ﻿using Silk.NET.GLFW;
-using System.Text;
 using Monitor = Silk.NET.GLFW.Monitor;
 
-namespace Demos.Collisions2D.Extensions;
+namespace Demos.Collisions3D.Extensions;
 
 internal static class GlfwExtensions
 {
