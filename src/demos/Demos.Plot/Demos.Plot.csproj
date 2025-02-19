@@ -6,7 +6,8 @@
 
   <ItemGroup Label="Internal dependencies">
     <ProjectReference Include="..\..\libs\Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj"/>
-    <ProjectReference Include="..\..\libs\Detach.ImGuiUtilities\Detach.ImGuiUtilities.csproj" />
+    <ProjectReference Include="..\..\libs\Detach.ImGuiUtilities\Detach.ImGuiUtilities.csproj"/>
+    <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
   </ItemGroup>
 
 </Project>

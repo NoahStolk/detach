@@ -1,17 +1,17 @@
 ﻿using Detach;
-using Detach.ImGuiUtilities.Services.Ui;
+using Detach.ImGuiUtilities;
 using Detach.Metrics;
 using Hexa.NET.ImGui;
 
 namespace Demos.Plot.Services.Ui;
 
-internal sealed class HeapAllocationMetricsWindow(HeapAllocationCounter heapAllocationCounter, AllocatesBytesPlot allocatesBytesPlot)
+internal sealed class HeapAllocationMetricsWindow(HeapAllocationCounter heapAllocationCounter)
 {
 	public void Render()
 	{
 		if (ImGui.Begin("Allocations"))
 		{
-			allocatesBytesPlot.Render();
+			AllocatesBytesPlot.Render(ref heapAllocationCounter.AllocatedBytesBuffer.First, heapAllocationCounter.AllocatedBytesBuffer.Length, heapAllocationCounter.AllocatedBytesBuffer.Head);
 
 			ImGui.Text(Inline.Utf8($"Allocated: {heapAllocationCounter.AllocatedBytes:N0} bytes"));
 			ImGui.Text(Inline.Utf8($"Since last update: {heapAllocationCounter.AllocatedBytesSinceLastUpdate:N0} bytes"));

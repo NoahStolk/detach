@@ -2,6 +2,14 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.0
+
+### Changed
+
+- Removed dependency on Detach.
+- Moved all types to the `Detach.ImGuiUtilities` namespace.
+- `AllocatedBytesPlot` and `FrameTimesPlot` are now static, and you must pass `first`, `size`, and `head` parameters to the `Render` methods.
+
 ## 0.4.3
 
 ### Changed

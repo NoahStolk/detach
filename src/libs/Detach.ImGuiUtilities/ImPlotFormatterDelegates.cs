@@ -1,4 +1,4 @@
-﻿namespace Detach.ImGuiUtilities.Utils;
+﻿namespace Detach.ImGuiUtilities;
 
 public static unsafe class ImPlotFormatterDelegates
 {
