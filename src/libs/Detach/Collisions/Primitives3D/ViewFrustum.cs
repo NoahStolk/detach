@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Detach.Collisions.Primitives3D;
 
-public readonly record struct PyramidFrustum
+public readonly record struct ViewFrustum
 {
 	private const int _planeCount = 6;
 
@@ -14,7 +14,7 @@ public readonly record struct PyramidFrustum
 	private readonly Plane _p4;
 	private readonly Plane _p5;
 
-	public PyramidFrustum(Matrix4x4 viewProjection)
+	public ViewFrustum(Matrix4x4 viewProjection)
 	{
 		for (int i = 0; i < _planeCount; i++)
 			this[i] = CreatePlane(viewProjection, i);

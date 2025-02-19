@@ -34,14 +34,14 @@ public static partial class Geometry3D
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
-	public static bool SpherePyramidFrustum(Sphere sphere, PyramidFrustum pyramidFrustum)
+	public static bool SphereViewFrustum(Sphere sphere, ViewFrustum viewFrustum)
 	{
-		if (PointInPyramidFrustum(sphere.Center, pyramidFrustum))
+		if (PointInViewFrustum(sphere.Center, viewFrustum))
 			return true;
 
 		for (int i = 0; i < 6; ++i)
 		{
-			if (SpherePlane(sphere, pyramidFrustum[i]))
+			if (SpherePlane(sphere, viewFrustum[i]))
 				return true;
 		}
 

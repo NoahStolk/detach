@@ -78,11 +78,11 @@ public static partial class Geometry3D
 		return Vector3.Dot(normPbc, normPab) >= 0;
 	}
 
-	public static bool PointInPyramidFrustum(Vector3 point, PyramidFrustum pyramidFrustum)
+	public static bool PointInViewFrustum(Vector3 point, ViewFrustum viewFrustum)
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			Plane plane = pyramidFrustum[i];
+			Plane plane = viewFrustum[i];
 			if (point.X * plane.Normal.X + point.Y * plane.Normal.Y + point.Z * plane.Normal.Z + plane.D > 0)
 				return false;
 		}
