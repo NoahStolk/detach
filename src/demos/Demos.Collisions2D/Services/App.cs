@@ -1,8 +1,8 @@
 ﻿using Demos.Collisions2D.Services.Ui;
 using Demos.Collisions2D.Utils;
 using Detach.GlfwExtensions;
-using Detach.ImGuiBackend.GlfwImGuiNET;
-using ImGuiNET;
+using Detach.ImGuiBackend.GlfwHexa;
+using Hexa.NET.ImGui;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 

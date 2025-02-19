@@ -3,7 +3,7 @@ using Demos.Collisions2D.Services;
 using Demos.Collisions2D.Services.Ui;
 using Demos.Collisions2D.Utils;
 using Detach.GlfwExtensions;
-using Detach.ImGuiBackend.GlfwImGuiNET;
+using Detach.ImGuiBackend.GlfwHexa;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using StrongInject;

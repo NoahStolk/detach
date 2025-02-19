@@ -1,7 +1,7 @@
 ﻿using Demos.Collisions2D.Utils;
 using Detach.Collisions;
 using Detach.Collisions.Primitives2D;
-using ImGuiNET;
+using Hexa.NET.ImGui;
 using System.Numerics;
 
 namespace Demos.Collisions2D.CollisionScenes.TwoDimensional;

@@ -2,7 +2,7 @@
 using Demos.Collisions2D.CollisionScenes.TwoDimensional;
 using Detach;
 using Detach.Numerics;
-using ImGuiNET;
+using Hexa.NET.ImGui;
 using System.Numerics;
 
 namespace Demos.Collisions2D.Services.Ui;
@@ -45,7 +45,7 @@ internal sealed class CollisionSelectWindow
 		ImGui.SetNextWindowSizeConstraints(new Vector2(1024, 768), new Vector2(4096, 4096));
 		if (ImGui.Begin("Collisions"))
 		{
-			if (ImGui.BeginChild("Selection", new Vector2(384, 0), ImGuiChildFlags.Border))
+			if (ImGui.BeginChild("Selection", new Vector2(384, 0), ImGuiChildFlags.Borders))
 			{
 				ImGui.Text("Select a collision scene:");
 				ImGui.Separator();
@@ -61,11 +61,11 @@ internal sealed class CollisionSelectWindow
 
 			ImGui.SameLine();
 
-			if (ImGui.BeginChild("Scene", default, ImGuiChildFlags.Border))
+			if (ImGui.BeginChild("Scene", default, ImGuiChildFlags.Borders))
 			{
-				ImGui.Text(Inline.Utf16($"Total time: {_selectedScene.ExecutionTime.TotalMicroseconds:N2} microseconds"));
+				ImGui.Text(Inline.Utf8($"Total time: {_selectedScene.ExecutionTime.TotalMicroseconds:N2} microseconds"));
 				if (_selectedScene.AllocatedBytes > 0)
-					ImGui.TextColored(Rgba.Red, Inline.Utf16($"Allocated bytes: {_selectedScene.AllocatedBytes:N0}"));
+					ImGui.TextColored(Rgba.Red, Inline.Utf8($"Allocated bytes: {_selectedScene.AllocatedBytes:N0}"));
 				else
 					ImGui.TextColored(Rgba.Green, "No memory allocated");
 
