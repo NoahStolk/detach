@@ -6,17 +6,14 @@ using System.Numerics;
 
 namespace Demos.Collisions3D.Services.Ui;
 
-internal sealed class ShapeSelectWindow
+internal sealed class ShapeSelectWindow(ShapesState shapesState)
 {
-	public Shape SelectedShapeA;
-	public Shape SelectedShapeB;
-
 	public void Render()
 	{
 		if (ImGui.Begin("Shapes"))
 		{
-			RenderShapeSelector(0, ref SelectedShapeA);
-			RenderShapeSelector(1, ref SelectedShapeB);
+			RenderShapeSelector(0, ref shapesState.SelectedShapeA);
+			RenderShapeSelector(1, ref shapesState.SelectedShapeB);
 		}
 
 		ImGui.End();
