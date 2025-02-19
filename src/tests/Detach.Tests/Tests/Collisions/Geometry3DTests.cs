@@ -38,6 +38,7 @@ public class Geometry3DTests
 	[TestMethod]
 	public void CreatePlaneFromTriangle()
 	{
+		// Test with 1000 random triangles.
 		for (int i = 0; i < 1000; i++)
 		{
 			Triangle3D triangle = new()
@@ -121,16 +122,6 @@ public class Geometry3DTests
 			C = new Vector3(+1, -1, -1),
 		};
 
-		// Z translations.
-		// ShootZRayOld(true, new Vector3(0, 0, -10));
-		// ShootZRayOld(true, new Vector3(0, 0, -1.01f));
-		// ShootZRayOld(false, new Vector3(0, 0, -1));
-		// ShootZRayOld(false, Vector3.Zero);
-		// ShootZRayOld(false, new Vector3(0, 0, 0.9f));
-		// ShootZRayOld(false, new Vector3(0, 0, 1));
-		// ShootZRayOld(false, new Vector3(0, 0, 10f));
-		// ShootZRayOld(false, new Vector3(0, 0, 1.1f));
-
 		ShootZRay(true, new Vector3(0, 0, -10));
 		ShootZRay(true, new Vector3(0, 0, -1.01f));
 		ShootZRay(true, new Vector3(0, 0, -1));
@@ -144,15 +135,6 @@ public class Geometry3DTests
 		{
 			Assert.AreEqual(expected, Geometry3D.Raycast(triangleFacingBackward, new Ray(rayPosition, Vector3.UnitZ), out RaycastResult _));
 		}
-
-		// void ShootZRayOld(bool expected, Vector3 rayPosition)
-		// {
-		// 	Vector3? oldResult = Geometry3D.IntersectsTriangle(rayPosition, Vector3.UnitZ, triangleFacingBackward.A, triangleFacingBackward.B, triangleFacingBackward.C);
-		// 	if (expected)
-		// 		Assert.IsNotNull(oldResult);
-		// 	else
-		// 		Assert.IsNull(oldResult);
-		// }
 	}
 
 	[TestMethod]

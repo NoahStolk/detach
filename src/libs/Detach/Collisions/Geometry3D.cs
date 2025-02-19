@@ -626,7 +626,7 @@ public static class Geometry3D
 
 	public static bool Raycast(Sphere sphere, Ray ray, out float distance)
 	{
-		distance = default;
+		distance = 0;
 
 		Vector3 e = sphere.Center - ray.Origin;
 		float radiusSquared = sphere.Radius * sphere.Radius;
@@ -1599,6 +1599,7 @@ public static class Geometry3D
 		return interval2.Min <= interval1.Max && interval1.Min <= interval2.Max;
 	}
 
+	// Method is internal for testing purposes.
 	internal static Plane CreatePlaneFromTriangle(Triangle3D triangle)
 	{
 		Vector3 normal = Vector3.Normalize(Vector3.Cross(triangle.B - triangle.A, triangle.C - triangle.A));
