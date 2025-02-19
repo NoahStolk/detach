@@ -26,6 +26,9 @@ internal partial struct Shape
 	public static partial Shape Obb(Obb obb);
 
 	[UnionCase]
+	public static partial Shape Pyramid(Pyramid pyramid);
+
+	[UnionCase]
 	public static partial Shape Ray(Ray ray);
 
 	[UnionCase]

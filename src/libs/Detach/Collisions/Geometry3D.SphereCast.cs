@@ -318,4 +318,25 @@ public static partial class Geometry3D
 
 		return false;
 	}
+
+	public static bool SphereCastPyramid(SphereCast sphereCast, Pyramid pyramid)
+	{
+		// Check if the sphere intersects the pyramid at the initial position.
+		if (SpherePyramid(new Sphere(sphereCast.Start, sphereCast.Radius), pyramid))
+			return true;
+
+		// Check if the sphere intersects the pyramid at the final position.
+		if (SpherePyramid(new Sphere(sphereCast.End, sphereCast.Radius), pyramid))
+			return true;
+
+		// Check for intersection along the path of the sphere.
+		// This involves solving for the exact time of intersection with each face of the pyramid.
+		foreach (Triangle3D face in pyramid.Faces)
+		{
+			if (SphereCastTriangle(sphereCast, face, out _))
+				return true;
+		}
+
+		return false;
+	}
 }

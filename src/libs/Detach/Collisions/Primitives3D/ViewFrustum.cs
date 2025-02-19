@@ -71,16 +71,15 @@ public readonly record struct ViewFrustum
 
 	public Buffer8<Vector3> GetCorners()
 	{
-		Buffer8<Vector3> corners = default;
-		corners[0] = IntersectionPoint(_p0, _p1, _p2);
-		corners[1] = IntersectionPoint(_p0, _p1, _p3);
-		corners[2] = IntersectionPoint(_p0, _p2, _p4);
-		corners[3] = IntersectionPoint(_p0, _p3, _p4);
-		corners[4] = IntersectionPoint(_p5, _p1, _p2);
-		corners[5] = IntersectionPoint(_p5, _p1, _p3);
-		corners[6] = IntersectionPoint(_p5, _p2, _p4);
-		corners[7] = IntersectionPoint(_p5, _p3, _p4);
-		return corners;
+		return new Buffer8<Vector3>(
+			IntersectionPoint(_p0, _p1, _p2),
+			IntersectionPoint(_p0, _p1, _p3),
+			IntersectionPoint(_p0, _p2, _p4),
+			IntersectionPoint(_p0, _p3, _p4),
+			IntersectionPoint(_p5, _p1, _p2),
+			IntersectionPoint(_p5, _p1, _p3),
+			IntersectionPoint(_p5, _p2, _p4),
+			IntersectionPoint(_p5, _p3, _p4));
 	}
 
 	private static Vector3 IntersectionPoint(Plane p0, Plane p1, Plane p2)
@@ -92,7 +91,7 @@ public readonly record struct ViewFrustum
 		Vector3 cross = Vector3.Cross(normal1, normal2);
 		float denominator = Vector3.Dot(normal0, cross);
 
-		if (denominator is 0)
+		if (denominator is >= -float.Epsilon and <= float.Epsilon)
 			return Vector3.Zero;
 
 		Vector3 result = -p0.D * cross + Vector3.Cross(normal0, p1.D * normal2 - p2.D * normal1);

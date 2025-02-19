@@ -1,5 +1,8 @@
-﻿using Detach.Collisions.Primitives3D;
+﻿using Detach.Buffers;
+using Detach.Collisions.Primitives2D;
+using Detach.Collisions.Primitives3D;
 using Detach.Utils;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -94,5 +97,32 @@ public static partial class Geometry3D
 		Vector3 closestPointOnAxis = bottomCenter + axis * projectionLength;
 		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closestPointOnAxis);
 		return distanceSquared <= (sphere.Radius + radiusAtProjection) * (sphere.Radius + radiusAtProjection);
+	}
+
+	public static bool SpherePyramid(Sphere sphere, Pyramid pyramid)
+	{
+		Buffer4<Vector3> bottomRectangleVertices = pyramid.BaseVertices;
+
+		Circle sphereOnXz = new(new Vector2(sphere.Center.X, sphere.Center.Z), sphere.Radius);
+		Rectangle pyramidBaseOnXz = Rectangle.FromCenter(new Vector2(pyramid.Center.X, pyramid.Center.Z), new Vector2(pyramid.Size.X, pyramid.Size.Z));
+		if (!Geometry2D.CircleRectangle(sphereOnXz, pyramidBaseOnXz))
+			return false;
+
+		Circle sphereOnXy = new(new Vector2(sphere.Center.X, sphere.Center.Y), sphere.Radius);
+		Triangle2D pyramidOnXy = new(
+			new Vector2(pyramid.ApexVertex.X, pyramid.ApexVertex.Y),
+			new Vector2(bottomRectangleVertices[0].X, bottomRectangleVertices[0].Y),
+			new Vector2(bottomRectangleVertices[1].X, bottomRectangleVertices[1].Y));
+		Debug.Assert(pyramidOnXy.A != pyramidOnXy.B && pyramidOnXy.B != pyramidOnXy.C && pyramidOnXy.C != pyramidOnXy.A);
+		if (!Geometry2D.CircleTriangle(sphereOnXy, pyramidOnXy))
+			return false;
+
+		Circle sphereOnYz = new(new Vector2(sphere.Center.Y, sphere.Center.Z), sphere.Radius);
+		Triangle2D pyramidOnYz = new(
+			new Vector2(pyramid.ApexVertex.Y, pyramid.ApexVertex.Z),
+			new Vector2(bottomRectangleVertices[0].Y, bottomRectangleVertices[0].Z),
+			new Vector2(bottomRectangleVertices[2].Y, bottomRectangleVertices[2].Z));
+		Debug.Assert(pyramidOnYz.A != pyramidOnYz.B && pyramidOnYz.B != pyramidOnYz.C && pyramidOnYz.C != pyramidOnYz.A);
+		return Geometry2D.CircleTriangle(sphereOnYz, pyramidOnYz);
 	}
 }

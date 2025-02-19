@@ -24,7 +24,7 @@ internal sealed class ShapeSelectWindow(ShapesState shapesState)
 		ImGui.SeparatorText(Inline.Utf8($"Shape {index}"));
 
 		int shapeIndex = shape.CaseIndex;
-		if (ImGui.Combo(Inline.Utf8($"Shape##{index}"), ref shapeIndex, "Point\0Aabb\0ConeFrustum\0Cylinder\0LineSegment3D\0Obb\0Ray\0Sphere\0SphereCast\0Triangle3D\0"u8, 20))
+		if (ImGui.Combo(Inline.Utf8($"Shape##{index}"), ref shapeIndex, "Point\0Aabb\0ConeFrustum\0Cylinder\0LineSegment3D\0Obb\0Pyramid\0Ray\0Sphere\0SphereCast\0Triangle3D\0"u8, 20))
 		{
 			shape = shapeIndex switch
 			{
@@ -34,10 +34,11 @@ internal sealed class ShapeSelectWindow(ShapesState shapesState)
 				3 => Shape.Cylinder(new Cylinder(Vector3.Zero, 3, 3)),
 				4 => Shape.LineSegment3D(new LineSegment3D(Vector3.Zero, Vector3.One)),
 				5 => Shape.Obb(new Obb(Vector3.Zero, Vector3.One, Matrix3.Identity)),
-				6 => Shape.Ray(new Ray(Vector3.Zero, Vector3.One)),
-				7 => Shape.Sphere(new Sphere(Vector3.Zero, 1)),
-				8 => Shape.SphereCast(new SphereCast(Vector3.Zero, Vector3.One, 1)),
-				9 => Shape.Triangle3D(new Triangle3D(Vector3.Zero, Vector3.UnitX, Vector3.UnitY)),
+				6 => Shape.Pyramid(new Pyramid(Vector3.Zero, Vector3.One)),
+				7 => Shape.Ray(new Ray(Vector3.Zero, Vector3.One)),
+				8 => Shape.Sphere(new Sphere(Vector3.Zero, 1)),
+				9 => Shape.SphereCast(new SphereCast(Vector3.Zero, Vector3.One, 1)),
+				10 => Shape.Triangle3D(new Triangle3D(Vector3.Zero, Vector3.UnitX, Vector3.UnitY)),
 				_ => throw new InvalidOperationException($"Invalid shape index: {shapeIndex}"),
 			};
 		}
@@ -72,6 +73,10 @@ internal sealed class ShapeSelectWindow(ShapesState shapesState)
 				ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_1"), ref shape.ObbData.Orientation.M11, -1, 1);
 				ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_2"), ref shape.ObbData.Orientation.M21, -1, 1);
 				ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_3"), ref shape.ObbData.Orientation.M31, -1, 1);
+				break;
+			case Shape.PyramidIndex:
+				ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref shape.PyramidData.Center.X, -10, 10);
+				ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref shape.PyramidData.Size.X, -1, 1);
 				break;
 			case Shape.RayIndex:
 				ImGui.SliderFloat3(Inline.Utf8($"Origin##{index}"), ref shape.RayData.Origin.X, -10, 10);

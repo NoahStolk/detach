@@ -6,6 +6,8 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Added `Pyramid` struct to `Detach.Collisions.Primitives3D` namespace.
+- Added `Geometry3D.SpherePyramid` and `Geometry3D.SphereCastPyramid` methods.
 - Added `GetCorners` method to `ViewFrustum` (previously `Frustum`) struct.
 - Added support for `bool`, `Vector2`, `Vector3`, `Vector4`, and `Quaternion` to `InlineInterpolatedStringHandlerUtf8`.
 

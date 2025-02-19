@@ -1,6 +1,7 @@
 ﻿using Demos.Collisions3D.Extensions;
 using Demos.Collisions3D.Shaders;
 using Demos.Collisions3D.Utils;
+using Detach.Buffers;
 using Detach.Collisions;
 using Detach.Collisions.Primitives3D;
 using Detach.GlExtensions;
@@ -104,6 +105,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.PointIndex, Shape.CylinderIndex) => Geometry3D.PointInCylinder(_shapesState.SelectedShapeA.PointData, _shapesState.SelectedShapeB.CylinderData),
 			(Shape.PointIndex, Shape.LineSegment3DIndex) => Geometry3D.PointOnLine(_shapesState.SelectedShapeA.PointData, _shapesState.SelectedShapeB.LineSegment3DData),
 			(Shape.PointIndex, Shape.ObbIndex) => Geometry3D.PointInObb(_shapesState.SelectedShapeA.PointData, _shapesState.SelectedShapeB.ObbData),
+			(Shape.PointIndex, Shape.PyramidIndex) => false,
 			(Shape.PointIndex, Shape.RayIndex) => Geometry3D.PointOnRay(_shapesState.SelectedShapeA.PointData, _shapesState.SelectedShapeB.RayData),
 			(Shape.PointIndex, Shape.SphereIndex) => Geometry3D.PointInSphere(_shapesState.SelectedShapeA.PointData, _shapesState.SelectedShapeB.SphereData),
 			(Shape.PointIndex, Shape.SphereCastIndex) => false,
@@ -126,6 +128,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.ConeFrustumIndex, Shape.CylinderIndex) => false,
 			(Shape.ConeFrustumIndex, Shape.LineSegment3DIndex) => false,
 			(Shape.ConeFrustumIndex, Shape.ObbIndex) => false,
+			(Shape.ConeFrustumIndex, Shape.PyramidIndex) => false,
 			(Shape.ConeFrustumIndex, Shape.RayIndex) => false,
 			(Shape.ConeFrustumIndex, Shape.SphereIndex) => Geometry3D.SphereConeFrustum(_shapesState.SelectedShapeB.SphereData, _shapesState.SelectedShapeA.ConeFrustumData),
 			(Shape.ConeFrustumIndex, Shape.SphereCastIndex) => Geometry3D.SphereCastConeFrustum(_shapesState.SelectedShapeB.SphereCastData, _shapesState.SelectedShapeA.ConeFrustumData),
@@ -137,6 +140,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.CylinderIndex, Shape.CylinderIndex) => Geometry3D.CylinderCylinder(_shapesState.SelectedShapeA.CylinderData, _shapesState.SelectedShapeB.CylinderData),
 			(Shape.CylinderIndex, Shape.LineSegment3DIndex) => false,
 			(Shape.CylinderIndex, Shape.ObbIndex) => false,
+			(Shape.CylinderIndex, Shape.PyramidIndex) => false,
 			(Shape.CylinderIndex, Shape.RayIndex) => false,
 			(Shape.CylinderIndex, Shape.SphereIndex) => Geometry3D.SphereCylinder(_shapesState.SelectedShapeB.SphereData, _shapesState.SelectedShapeA.CylinderData),
 			(Shape.CylinderIndex, Shape.SphereCastIndex) => Geometry3D.SphereCastCylinder(_shapesState.SelectedShapeB.SphereCastData, _shapesState.SelectedShapeA.CylinderData),
@@ -148,6 +152,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.LineSegment3DIndex, Shape.CylinderIndex) => false,
 			(Shape.LineSegment3DIndex, Shape.LineSegment3DIndex) => false,
 			(Shape.LineSegment3DIndex, Shape.ObbIndex) => Geometry3D.Linetest(_shapesState.SelectedShapeB.ObbData, _shapesState.SelectedShapeA.LineSegment3DData),
+			(Shape.LineSegment3DIndex, Shape.PyramidIndex) => false,
 			(Shape.LineSegment3DIndex, Shape.RayIndex) => false,
 			(Shape.LineSegment3DIndex, Shape.SphereIndex) => Geometry3D.Linetest(_shapesState.SelectedShapeB.SphereData, _shapesState.SelectedShapeA.LineSegment3DData),
 			(Shape.LineSegment3DIndex, Shape.SphereCastIndex) => false,
@@ -159,6 +164,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.ObbIndex, Shape.CylinderIndex) => false,
 			(Shape.ObbIndex, Shape.LineSegment3DIndex) => Geometry3D.Linetest(_shapesState.SelectedShapeA.ObbData, _shapesState.SelectedShapeB.LineSegment3DData),
 			(Shape.ObbIndex, Shape.ObbIndex) => Geometry3D.ObbObbSat(_shapesState.SelectedShapeA.ObbData, _shapesState.SelectedShapeB.ObbData),
+			(Shape.ObbIndex, Shape.PyramidIndex) => false,
 			(Shape.ObbIndex, Shape.RayIndex) => false,
 			(Shape.ObbIndex, Shape.SphereIndex) => Geometry3D.SphereObb(_shapesState.SelectedShapeB.SphereData, _shapesState.SelectedShapeA.ObbData),
 			(Shape.ObbIndex, Shape.SphereCastIndex) => Geometry3D.SphereCastObb(_shapesState.SelectedShapeB.SphereCastData, _shapesState.SelectedShapeA.ObbData),
@@ -170,6 +176,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.RayIndex, Shape.CylinderIndex) => Geometry3D.Raycast(_shapesState.SelectedShapeB.CylinderData, _shapesState.SelectedShapeA.RayData, out float _),
 			(Shape.RayIndex, Shape.LineSegment3DIndex) => false,
 			(Shape.RayIndex, Shape.ObbIndex) => Geometry3D.Raycast(_shapesState.SelectedShapeB.ObbData, _shapesState.SelectedShapeA.RayData, out float _),
+			(Shape.RayIndex, Shape.PyramidIndex) => false,
 			(Shape.RayIndex, Shape.RayIndex) => false,
 			(Shape.RayIndex, Shape.SphereIndex) => Geometry3D.Raycast(_shapesState.SelectedShapeB.SphereData, _shapesState.SelectedShapeA.RayData, out float _),
 			(Shape.RayIndex, Shape.SphereCastIndex) => false,
@@ -181,6 +188,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.SphereIndex, Shape.CylinderIndex) => Geometry3D.SphereCylinder(_shapesState.SelectedShapeA.SphereData, _shapesState.SelectedShapeB.CylinderData),
 			(Shape.SphereIndex, Shape.LineSegment3DIndex) => Geometry3D.Linetest(_shapesState.SelectedShapeA.SphereData, _shapesState.SelectedShapeB.LineSegment3DData),
 			(Shape.SphereIndex, Shape.ObbIndex) => Geometry3D.SphereObb(_shapesState.SelectedShapeA.SphereData, _shapesState.SelectedShapeB.ObbData),
+			(Shape.SphereIndex, Shape.PyramidIndex) => Geometry3D.SpherePyramid(_shapesState.SelectedShapeA.SphereData, _shapesState.SelectedShapeB.PyramidData),
 			(Shape.SphereIndex, Shape.RayIndex) => Geometry3D.Raycast(_shapesState.SelectedShapeA.SphereData, _shapesState.SelectedShapeB.RayData, out float _),
 			(Shape.SphereIndex, Shape.SphereIndex) => Geometry3D.SphereSphere(_shapesState.SelectedShapeA.SphereData, _shapesState.SelectedShapeB.SphereData),
 			(Shape.SphereIndex, Shape.SphereCastIndex) => Geometry3D.SphereCastSphere(_shapesState.SelectedShapeB.SphereCastData, _shapesState.SelectedShapeA.SphereData),
@@ -192,6 +200,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.SphereCastIndex, Shape.CylinderIndex) => Geometry3D.SphereCastCylinder(_shapesState.SelectedShapeA.SphereCastData, _shapesState.SelectedShapeB.CylinderData),
 			(Shape.SphereCastIndex, Shape.LineSegment3DIndex) => false,
 			(Shape.SphereCastIndex, Shape.ObbIndex) => Geometry3D.SphereCastObb(_shapesState.SelectedShapeA.SphereCastData, _shapesState.SelectedShapeB.ObbData),
+			(Shape.SphereCastIndex, Shape.PyramidIndex) => Geometry3D.SphereCastPyramid(_shapesState.SelectedShapeA.SphereCastData, _shapesState.SelectedShapeB.PyramidData),
 			(Shape.SphereCastIndex, Shape.RayIndex) => false,
 			(Shape.SphereCastIndex, Shape.SphereIndex) => Geometry3D.SphereCastSphere(_shapesState.SelectedShapeA.SphereCastData, _shapesState.SelectedShapeB.SphereData),
 			(Shape.SphereCastIndex, Shape.SphereCastIndex) => Geometry3D.SphereCastSphereCast(_shapesState.SelectedShapeA.SphereCastData, _shapesState.SelectedShapeB.SphereCastData),
@@ -203,6 +212,7 @@ internal sealed unsafe class SceneRenderer
 			(Shape.Triangle3DIndex, Shape.CylinderIndex) => false,
 			(Shape.Triangle3DIndex, Shape.LineSegment3DIndex) => Geometry3D.Linetest(_shapesState.SelectedShapeA.Triangle3DData, _shapesState.SelectedShapeB.LineSegment3DData),
 			(Shape.Triangle3DIndex, Shape.ObbIndex) => Geometry3D.TriangleObb(_shapesState.SelectedShapeA.Triangle3DData, _shapesState.SelectedShapeB.ObbData),
+			(Shape.Triangle3DIndex, Shape.PyramidIndex) => false,
 			(Shape.Triangle3DIndex, Shape.RayIndex) => Geometry3D.Raycast(_shapesState.SelectedShapeA.Triangle3DData, _shapesState.SelectedShapeB.RayData, out float _),
 			(Shape.Triangle3DIndex, Shape.SphereIndex) => Geometry3D.TriangleSphere(_shapesState.SelectedShapeA.Triangle3DData, _shapesState.SelectedShapeB.SphereData),
 			(Shape.Triangle3DIndex, Shape.SphereCastIndex) => Geometry3D.SphereCastTriangle(_shapesState.SelectedShapeB.SphereCastData, _shapesState.SelectedShapeA.Triangle3DData),
@@ -273,6 +283,21 @@ internal sealed unsafe class SceneRenderer
 			{
 				_gl.BindVertexArray(_cubeVao);
 				RenderObb(lineProgram, obb);
+			},
+			pyramid =>
+			{
+				_gl.BindVertexArray(_centeredLineVao);
+
+				Buffer4<Vector3> vertices = pyramid.BaseVertices;
+				RenderLine(lineProgram, new LineSegment3D(vertices[0], vertices[1]));
+				RenderLine(lineProgram, new LineSegment3D(vertices[1], vertices[2]));
+				RenderLine(lineProgram, new LineSegment3D(vertices[2], vertices[3]));
+				RenderLine(lineProgram, new LineSegment3D(vertices[3], vertices[0]));
+
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[0]));
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[1]));
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[2]));
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[3]));
 			},
 			ray =>
 			{
