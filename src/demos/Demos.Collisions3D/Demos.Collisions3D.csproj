@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup Label="External dependencies">
+    <PackageReference Include="NoahStolk.UnionStruct" Version="0.0.0-alpha.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive; compile</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StrongInject" Version="1.4.4"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Internal dependencies">
+    <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
+    <ProjectReference Include="..\..\libs\Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Content\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
