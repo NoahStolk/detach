@@ -4,9 +4,14 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [unreleased]
 
+### Added
+
+- Added `GetCorners` method to `PyramidFrustum` (previously `Frustum`) struct.
+
 ### Changed
 
 - Changed the order of parameters in some `Geometry3D.ClosestPointIn...` methods. The `point` parameter is now always the first parameter.
+- Renamed `Frustum` to `PyramidFrustum`.
 
 ## 0.24.3
 

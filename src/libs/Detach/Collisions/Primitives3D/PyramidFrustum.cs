@@ -1,9 +1,9 @@
-﻿using System.Numerics;
+﻿using Detach.Buffers;
+using System.Numerics;
 
 namespace Detach.Collisions.Primitives3D;
 
-// TODO: This should be renamed to ViewFrustum.
-public readonly record struct Frustum
+public readonly record struct PyramidFrustum
 {
 	private const int _planeCount = 6;
 
@@ -14,7 +14,7 @@ public readonly record struct Frustum
 	private readonly Plane _p4;
 	private readonly Plane _p5;
 
-	public Frustum(Matrix4x4 viewProjection)
+	public PyramidFrustum(Matrix4x4 viewProjection)
 	{
 		for (int i = 0; i < _planeCount; i++)
 			this[i] = CreatePlane(viewProjection, i);
@@ -67,5 +67,35 @@ public readonly record struct Frustum
 				default: throw new IndexOutOfRangeException();
 			}
 		}
+	}
+
+	public Buffer8<Vector3> GetCorners()
+	{
+		Buffer8<Vector3> corners = default;
+		corners[0] = IntersectionPoint(_p0, _p1, _p2);
+		corners[1] = IntersectionPoint(_p0, _p1, _p3);
+		corners[2] = IntersectionPoint(_p0, _p2, _p4);
+		corners[3] = IntersectionPoint(_p0, _p3, _p4);
+		corners[4] = IntersectionPoint(_p5, _p1, _p2);
+		corners[5] = IntersectionPoint(_p5, _p1, _p3);
+		corners[6] = IntersectionPoint(_p5, _p2, _p4);
+		corners[7] = IntersectionPoint(_p5, _p3, _p4);
+		return corners;
+	}
+
+	private static Vector3 IntersectionPoint(Plane p0, Plane p1, Plane p2)
+	{
+		Vector3 normal0 = p0.Normal;
+		Vector3 normal1 = p1.Normal;
+		Vector3 normal2 = p2.Normal;
+
+		Vector3 cross = Vector3.Cross(normal1, normal2);
+		float denominator = Vector3.Dot(normal0, cross);
+
+		if (denominator is 0)
+			return Vector3.Zero;
+
+		Vector3 result = -p0.D * cross + Vector3.Cross(normal0, p1.D * normal2 - p2.D * normal1);
+		return result / denominator;
 	}
 }
