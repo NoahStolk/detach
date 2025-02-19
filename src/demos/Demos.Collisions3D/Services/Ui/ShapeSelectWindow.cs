@@ -24,25 +24,29 @@ internal sealed class ShapeSelectWindow(ShapesState shapesState)
 		ImGui.SeparatorText(Inline.Utf8($"Shape {index}"));
 
 		int shapeIndex = shape.CaseIndex;
-		if (ImGui.Combo(Inline.Utf8($"Shape{index}"), ref shapeIndex, "Aabb\0ConeFrustum\0Cylinder\0LineSegment3D\0Obb\0Ray\0Sphere\0SphereCast\0Triangle3D\0"u8))
+		if (ImGui.Combo(Inline.Utf8($"Shape##{index}"), ref shapeIndex, "Point\0Aabb\0ConeFrustum\0Cylinder\0LineSegment3D\0Obb\0Ray\0Sphere\0SphereCast\0Triangle3D\0"u8, 20))
 		{
 			shape = shapeIndex switch
 			{
-				0 => Shape.Aabb(new Aabb(Vector3.Zero, Vector3.One)),
-				1 => Shape.ConeFrustum(new ConeFrustum(Vector3.Zero, 4, 2, 4)),
-				2 => Shape.Cylinder(new Cylinder(Vector3.Zero, 3, 3)),
-				3 => Shape.LineSegment3D(new LineSegment3D(Vector3.Zero, Vector3.One)),
-				4 => Shape.Obb(new Obb(Vector3.Zero, Vector3.One, Matrix3.Identity)),
-				5 => Shape.Ray(new Ray(Vector3.Zero, Vector3.One)),
-				6 => Shape.Sphere(new Sphere(Vector3.Zero, 1)),
-				7 => Shape.SphereCast(new SphereCast(Vector3.Zero, Vector3.One, 1)),
-				8 => Shape.Triangle3D(new Triangle3D(Vector3.Zero, Vector3.UnitX, Vector3.UnitY)),
+				0 => Shape.Point(Vector3.Zero),
+				1 => Shape.Aabb(new Aabb(Vector3.Zero, Vector3.One)),
+				2 => Shape.ConeFrustum(new ConeFrustum(Vector3.Zero, 4, 2, 4)),
+				3 => Shape.Cylinder(new Cylinder(Vector3.Zero, 3, 3)),
+				4 => Shape.LineSegment3D(new LineSegment3D(Vector3.Zero, Vector3.One)),
+				5 => Shape.Obb(new Obb(Vector3.Zero, Vector3.One, Matrix3.Identity)),
+				6 => Shape.Ray(new Ray(Vector3.Zero, Vector3.One)),
+				7 => Shape.Sphere(new Sphere(Vector3.Zero, 1)),
+				8 => Shape.SphereCast(new SphereCast(Vector3.Zero, Vector3.One, 1)),
+				9 => Shape.Triangle3D(new Triangle3D(Vector3.Zero, Vector3.UnitX, Vector3.UnitY)),
 				_ => throw new InvalidOperationException($"Invalid shape index: {shapeIndex}"),
 			};
 		}
 
 		switch (shape.CaseIndex)
 		{
+			case Shape.PointIndex:
+				ImGui.SliderFloat3(Inline.Utf8($"Position##{index}"), ref shape.PointData.X, -10, 10);
+				break;
 			case Shape.AabbIndex:
 				ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref shape.AabbData.Center.X, -10, 10);
 				ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref shape.AabbData.Size.X, 0, 10);

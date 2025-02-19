@@ -1,4 +1,5 @@
 ﻿using Detach.Collisions.Primitives3D;
+using System.Numerics;
 using UnionStruct;
 
 namespace Demos.Collisions3D;
@@ -6,6 +7,9 @@ namespace Demos.Collisions3D;
 [Union]
 internal partial struct Shape
 {
+	[UnionCase]
+	public static partial Shape Point(Vector3 point);
+
 	[UnionCase]
 	public static partial Shape Aabb(Aabb aabb);
 
