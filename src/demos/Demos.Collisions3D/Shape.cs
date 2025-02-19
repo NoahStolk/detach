@@ -16,9 +16,6 @@ internal partial struct Shape
 	public static partial Shape Cylinder(Cylinder cylinder);
 
 	[UnionCase]
-	public static partial Shape Frustum(Frustum frustum);
-
-	[UnionCase]
 	public static partial Shape LineSegment3D(LineSegment3D lineSegment3D);
 
 	[UnionCase]

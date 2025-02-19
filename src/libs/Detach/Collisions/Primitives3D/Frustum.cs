@@ -2,7 +2,7 @@
 
 namespace Detach.Collisions.Primitives3D;
 
-// TODO: This might need to be renamed to SquareFrustum or ViewFrustum.
+// TODO: This should be renamed to ViewFrustum. Maybe also move it elsewhere since it works differently from the other primitives (or rewrite it).
 public readonly record struct Frustum
 {
 	private const int _planeCount = 6;

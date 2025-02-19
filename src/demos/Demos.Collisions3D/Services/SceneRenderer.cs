@@ -137,7 +137,6 @@ internal sealed unsafe class SceneRenderer
 			},
 			coneFrustum => RenderConeFrustum(lineProgram, coneFrustum),
 			cylinder => RenderCylinder(lineProgram, cylinder),
-			static _ => { },
 			lineSegment =>
 			{
 				_gl.BindVertexArray(_centeredLineVao);
@@ -148,14 +147,43 @@ internal sealed unsafe class SceneRenderer
 				_gl.BindVertexArray(_cubeVao);
 				RenderObb(lineProgram, obb);
 			},
-			static _ => { },
+			ray =>
+			{
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(ray.Origin, ray.Origin + ray.Direction * 1000));
+			},
 			sphere =>
 			{
 				_gl.BindVertexArray(_sphereVao);
 				RenderSphere(lineProgram, sphere);
 			},
-			static _ => { },
-			static _ => { });
+			sphereCast =>
+			{
+				_gl.BindVertexArray(_centeredLineVao);
+
+				Vector3 offsetX = new(sphereCast.Radius, 0, 0);
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetX, sphereCast.End + offsetX));
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetX, sphereCast.End - offsetX));
+
+				Vector3 offsetY = new(0, sphereCast.Radius, 0);
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetY, sphereCast.End + offsetY));
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetY, sphereCast.End - offsetY));
+
+				Vector3 offsetZ = new(0, 0, sphereCast.Radius);
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetZ, sphereCast.End + offsetZ));
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetZ, sphereCast.End - offsetZ));
+
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, new Sphere(sphereCast.Start, sphereCast.Radius));
+				RenderSphere(lineProgram, new Sphere(sphereCast.End, sphereCast.Radius));
+			},
+			triangle3D =>
+			{
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(triangle3D.A, triangle3D.B));
+				RenderLine(lineProgram, new LineSegment3D(triangle3D.B, triangle3D.C));
+				RenderLine(lineProgram, new LineSegment3D(triangle3D.C, triangle3D.A));
+			});
 	}
 
 	private void RenderLine(CachedProgram lineProgram, LineSegment3D line)
