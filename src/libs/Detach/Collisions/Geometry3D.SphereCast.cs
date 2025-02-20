@@ -325,7 +325,7 @@ public static partial class Geometry3D
 		// This involves solving for the exact time of intersection with each face of the pyramid.
 		foreach (Triangle3D face in pyramid.Faces)
 		{
-			if (SphereCastTriangle(sphereCast, face, out _))
+			if (SphereCastTriangle(sphereCast, face))
 				return true;
 		}
 

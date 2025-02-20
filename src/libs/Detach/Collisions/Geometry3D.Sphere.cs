@@ -2,7 +2,6 @@
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.Utils;
-using System.Diagnostics;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -113,7 +112,6 @@ public static partial class Geometry3D
 			new Vector2(pyramid.ApexVertex.X, pyramid.ApexVertex.Y),
 			new Vector2(bottomRectangleVertices[0].X, bottomRectangleVertices[0].Y),
 			new Vector2(bottomRectangleVertices[1].X, bottomRectangleVertices[1].Y));
-		Debug.Assert(pyramidOnXy.A != pyramidOnXy.B && pyramidOnXy.B != pyramidOnXy.C && pyramidOnXy.C != pyramidOnXy.A);
 		if (!Geometry2D.CircleTriangle(sphereOnXy, pyramidOnXy))
 			return false;
 
@@ -122,7 +120,6 @@ public static partial class Geometry3D
 			new Vector2(pyramid.ApexVertex.Y, pyramid.ApexVertex.Z),
 			new Vector2(bottomRectangleVertices[0].Y, bottomRectangleVertices[0].Z),
 			new Vector2(bottomRectangleVertices[2].Y, bottomRectangleVertices[2].Z));
-		Debug.Assert(pyramidOnYz.A != pyramidOnYz.B && pyramidOnYz.B != pyramidOnYz.C && pyramidOnYz.C != pyramidOnYz.A);
 		return Geometry2D.CircleTriangle(sphereOnYz, pyramidOnYz);
 	}
 }
