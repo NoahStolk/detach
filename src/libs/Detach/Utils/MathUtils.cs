@@ -58,4 +58,10 @@ public static class MathUtils
 	{
 		return value - MathF.Truncate(value);
 	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsAlmostZero(float value, float tolerance = 0.0001f)
+	{
+		return value > -tolerance && value < tolerance;
+	}
 }

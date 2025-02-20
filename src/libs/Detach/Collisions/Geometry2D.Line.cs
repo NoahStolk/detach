@@ -1,5 +1,6 @@
 ﻿using Detach.Collisions.Primitives2D;
 using Detach.Numerics;
+using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -14,15 +15,15 @@ public static partial class Geometry2D
 		Vector2 s = line2.End - line2.Start;
 
 		float rCrossS = Cross(r, s);
-		if (rCrossS == 0)
-			return Cross(q - p, r) == 0;
+		if (MathUtils.IsAlmostZero(rCrossS))
+			return MathUtils.IsAlmostZero(Cross(q - p, r));
 
 		float t = Cross(q - p, s) / rCrossS;
 		float u = Cross(q - p, r) / rCrossS;
 
 		return t is >= 0 and <= 1 && u is >= 0 and <= 1;
 
-		float Cross(Vector2 v1, Vector2 v2)
+		static float Cross(Vector2 v1, Vector2 v2)
 		{
 			return v1.X * v2.Y - v1.Y * v2.X;
 		}
@@ -46,8 +47,8 @@ public static partial class Geometry2D
 			return true;
 
 		Vector2 norm = Vector2.Normalize(line.End - line.Start);
-		norm.X = norm.X != 0 ? 1 / norm.X : 0;
-		norm.Y = norm.Y != 0 ? 1 / norm.Y : 0;
+		norm.X = MathUtils.IsAlmostZero(norm.X) ? 0 : 1 / norm.X;
+		norm.Y = MathUtils.IsAlmostZero(norm.Y) ? 0 : 1 / norm.Y;
 		Vector2 min = (rectangle.GetMin() - line.Start) * norm;
 		Vector2 max = (rectangle.GetMax() - line.Start) * norm;
 
