@@ -278,4 +278,13 @@ public class Geometry3DTests
 		};
 		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleBugScenario, out intersectionPoint));
 	}
+
+	[TestMethod]
+	public void SphereCastLineSegmentWithZeroRadius()
+	{
+		SphereCast sphereCast = new(Vector3.Zero, new Vector3(0, 0, 3), 0);
+
+		LineSegment3D lineSegment = new(new Vector3(-10, -10, 0), new Vector3(-9, -9, 0));
+		Assert.IsFalse(Geometry3D.SphereCastLine(sphereCast, lineSegment));
+	}
 }

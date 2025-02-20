@@ -31,11 +31,15 @@ public static partial class Geometry3D
 		return t <= length;
 	}
 
-	public static bool SphereCastLineSegment(SphereCast sphereCast, LineSegment3D line)
+	public static bool SphereCastLine(SphereCast sphereCast, LineSegment3D line)
 	{
 		// Check if the start or end points of the sphere cast are within the radius of the line segment.
 		if (SphereCastPoint(sphereCast, line.Start) || SphereCastPoint(sphereCast, line.End))
 			return true;
+
+		// Prevent endless for loop.
+		if (sphereCast.Radius < 0.0001f)
+			return false;
 
 		// Check if the line segment intersects with the swept area of the sphere cast.
 		Vector3 direction = Vector3.Normalize(sphereCast.End - sphereCast.Start);
@@ -208,9 +212,9 @@ public static partial class Geometry3D
 			SphereCastPoint(sphereCast, triangle.A) ||
 			SphereCastPoint(sphereCast, triangle.B) ||
 			SphereCastPoint(sphereCast, triangle.C) ||
-			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.A, triangle.B)) ||
-			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.B, triangle.C)) ||
-			SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.C, triangle.A));
+			SphereCastLine(sphereCast, new LineSegment3D(triangle.A, triangle.B)) ||
+			SphereCastLine(sphereCast, new LineSegment3D(triangle.B, triangle.C)) ||
+			SphereCastLine(sphereCast, new LineSegment3D(triangle.C, triangle.A));
 	}
 
 	public static bool SphereCastTriangle(SphereCast sphereCast, Triangle3D triangle, out Vector3 intersectionPoint)
@@ -251,9 +255,9 @@ public static partial class Geometry3D
 		if (SphereCastPoint(sphereCast, triangle.A) ||
 		    SphereCastPoint(sphereCast, triangle.B) ||
 		    SphereCastPoint(sphereCast, triangle.C) ||
-		    SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.A, triangle.B)) ||
-		    SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.B, triangle.C)) ||
-		    SphereCastLineSegment(sphereCast, new LineSegment3D(triangle.C, triangle.A)))
+		    SphereCastLine(sphereCast, new LineSegment3D(triangle.A, triangle.B)) ||
+		    SphereCastLine(sphereCast, new LineSegment3D(triangle.B, triangle.C)) ||
+		    SphereCastLine(sphereCast, new LineSegment3D(triangle.C, triangle.A)))
 		{
 			Plane plane = CreatePlaneFromTriangle(triangle);
 			Vector3 closestStart = ClosestPointOnPlane(sphereCast.Start, plane);

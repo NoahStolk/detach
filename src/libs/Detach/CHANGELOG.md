@@ -20,10 +20,11 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Changed the order of parameters in some `Geometry3D.ClosestPointIn...` methods. The `point` parameter is now always the first parameter.
 - Renamed `Frustum` to `ViewFrustum`.
+- Renamed `Geometry3D.SphereCastLineSegment` to `Geometry3D.SphereCastLine`.
 
 ### Fixed
 
-- Fixed `Geometry3D.SphereCastLineSegment` not working correctly.
+- Fixed `Geometry3D.SphereCastLine` (previously `Geometry3D.SphereCastLineSegment`) not working correctly.
 - Fixed minor precision issues in `Geometry2D.LineLine` and `Geometry2D.LineRectangle` methods.
 
 ## 0.24.3

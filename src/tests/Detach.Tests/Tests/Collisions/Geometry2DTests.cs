@@ -214,4 +214,13 @@ public class Geometry2DTests
 	}
 
 	#endregion Various
+
+	[TestMethod]
+	public void CircleCastLineSegmentWithZeroRadius()
+	{
+		CircleCast circleCast = new(Vector2.Zero, new Vector2(0, 3), 0);
+
+		LineSegment2D lineSegment = new(new Vector2(-10, -10), new Vector2(-9, -9));
+		Assert.IsFalse(Geometry2D.CircleCastLine(circleCast, lineSegment));
+	}
 }

@@ -26,6 +26,10 @@ public static partial class Geometry2D
 			return true;
 		}
 
+		// Prevent endless for loop.
+		if (circleCast.Radius < 0.0001f)
+			return false;
+
 		// TODO: This seems to be a bit inefficient.
 		// Check if the line segment intersects with the swept area of the circle cast.
 		Vector2 direction = Vector2.Normalize(circleCast.End - circleCast.Start);
