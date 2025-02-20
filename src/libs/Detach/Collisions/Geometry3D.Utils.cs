@@ -1,7 +1,5 @@
 ﻿using Detach.Buffers;
 using Detach.Collisions.Primitives3D;
-using Detach.Numerics;
-using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Collisions;

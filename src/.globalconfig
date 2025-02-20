@@ -258,6 +258,9 @@ dotnet_diagnostic.CA1062.severity                                             = 
 # Do not raise exceptions in unexpected locations.
 dotnet_diagnostic.CA1065.severity                                             = none
 
+# Do not pass literals as localized parameters.
+dotnet_diagnostic.CA1303.severity                                             = none
+
 # Normalize strings to uppercase.
 dotnet_diagnostic.CA1308.severity                                             = none
 
