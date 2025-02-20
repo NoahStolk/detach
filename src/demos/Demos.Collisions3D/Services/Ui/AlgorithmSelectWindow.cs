@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 namespace Demos.Collisions3D.Services.Ui;
 
-internal sealed class ShapeSelectWindow
+internal sealed class AlgorithmSelectWindow
 {
 	private readonly Delegate[] _algorithms;
 	private readonly string _algorithmsComboString;
@@ -19,7 +19,7 @@ internal sealed class ShapeSelectWindow
 
 	private int _selectedAlgorithmIndex;
 
-	public ShapeSelectWindow(CollisionAlgorithmState collisionAlgorithmState)
+	public AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState)
 	{
 		_collisionAlgorithmState = collisionAlgorithmState;
 

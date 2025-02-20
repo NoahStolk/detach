@@ -13,8 +13,9 @@ namespace Demos.Collisions3D;
 
 [Register<GlfwInput>(Scope.SingleInstance)]
 [Register<App>(Scope.SingleInstance)]
-[Register<ShapeSelectWindow>(Scope.SingleInstance)]
+[Register<AlgorithmSelectWindow>(Scope.SingleInstance)]
 [Register<SceneRenderer>(Scope.SingleInstance)]
+[Register<GeometryRenderer>(Scope.SingleInstance)]
 [Register<Camera>(Scope.SingleInstance)]
 [Register<CollisionAlgorithmState>(Scope.SingleInstance)]
 [Register<LazyProgramContainer>(Scope.SingleInstance)]

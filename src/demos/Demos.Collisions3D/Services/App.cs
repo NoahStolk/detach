@@ -22,7 +22,7 @@ internal sealed class App
 	private readonly unsafe WindowHandle* _window;
 	private readonly GlfwInput _glfwInput;
 	private readonly ImGuiController _imGuiController;
-	private readonly ShapeSelectWindow _shapeSelectWindow;
+	private readonly AlgorithmSelectWindow _algorithmSelectWindow;
 	private readonly SceneRenderer _sceneRenderer;
 
 	private double _currentTime;
@@ -35,14 +35,14 @@ internal sealed class App
 		WindowHandle* window,
 		GlfwInput glfwInput,
 		ImGuiController imGuiController,
-		ShapeSelectWindow shapeSelectWindow,
+		AlgorithmSelectWindow algorithmSelectWindow,
 		SceneRenderer sceneRenderer)
 	{
 		_glfw = glfw;
 		_window = window;
 		_glfwInput = glfwInput;
 		_imGuiController = imGuiController;
-		_shapeSelectWindow = shapeSelectWindow;
+		_algorithmSelectWindow = algorithmSelectWindow;
 		_sceneRenderer = sceneRenderer;
 
 		_currentTime = glfw.GetTime();
@@ -101,7 +101,7 @@ internal sealed class App
 
 		_sceneRenderer.Render(frameTime);
 
-		_shapeSelectWindow.Render();
+		_algorithmSelectWindow.Render();
 		_imGuiController.Render();
 
 		_glfwInput.EndFrame();
