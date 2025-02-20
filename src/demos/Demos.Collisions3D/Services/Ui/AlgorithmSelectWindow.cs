@@ -23,6 +23,7 @@ internal sealed class AlgorithmSelectWindow
 	{
 		_collisionAlgorithmState = collisionAlgorithmState;
 
+		// TODO: Remove methods containing ref structs or ref/out parameters.
 		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
 		MethodInfo[] methods = typeof(Geometry2D).GetMethods(bindingFlags).Concat(typeof(Geometry3D).GetMethods(bindingFlags)).ToArray();
 		_algorithms = new Delegate[methods.Length];
@@ -54,7 +55,7 @@ internal sealed class AlgorithmSelectWindow
 
 	private void RenderAlgorithmSelector()
 	{
-		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, _algorithmsComboString, 100))
+		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, _algorithmsComboString, 50))
 			_collisionAlgorithmState.SelectAlgorithm(_algorithms[_selectedAlgorithmIndex]);
 
 		if (_collisionAlgorithmState.SelectedAlgorithm == null)
@@ -84,6 +85,7 @@ internal sealed class AlgorithmSelectWindow
 			return;
 		}
 
+		// TODO: Add 2D geometry types.
 		if (type == typeof(float))
 		{
 			float cast = (float)value;
