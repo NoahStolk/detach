@@ -33,6 +33,8 @@ internal sealed class CollisionAlgorithmState
 			ReturnValue = ExecuteAlgorithm<bool>();
 		else if (method.ReturnType == typeof(Vector3))
 			ReturnValue = ExecuteAlgorithm<Vector3>();
+		else
+			ReturnValue = null;
 	}
 
 	private TResult ExecuteAlgorithm<TResult>()

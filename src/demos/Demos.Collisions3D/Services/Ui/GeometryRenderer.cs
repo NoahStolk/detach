@@ -33,10 +33,12 @@ internal sealed class GeometryRenderer
 
 	public void RenderGeometry(CachedProgram lineProgram)
 	{
+		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(0.1f, 1, 0, 1));
+		RenderShape(lineProgram, _collisionAlgorithmState.ReturnValue);
+
 		Vector4 collideColor = _collisionAlgorithmState.ReturnValue is true ? Vector4.One : Vector4.Zero;
 		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(0.5f, 0.0f, 1, 1) + collideColor);
 
-		RenderShape(lineProgram, _collisionAlgorithmState.ReturnValue);
 		foreach (object? arg in _collisionAlgorithmState.Arguments)
 			RenderShape(lineProgram, arg);
 	}

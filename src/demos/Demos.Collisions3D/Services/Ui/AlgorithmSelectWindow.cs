@@ -61,14 +61,17 @@ internal sealed class AlgorithmSelectWindow
 			return;
 
 		ParameterInfo[] parameters = _collisionAlgorithmState.SelectedAlgorithm.Method.GetParameters();
-		if (parameters.Length == 0)
-			return;
-
 		for (int i = 0; i < parameters.Length; i++)
 		{
 			ParameterInfo parameter = parameters[i];
 			RenderParameter(parameter.Name, i, parameter.ParameterType, ref CollectionsMarshal.AsSpan(_collisionAlgorithmState.Arguments)[i]);
 		}
+
+		ImGui.SeparatorText("Return value");
+		if (_collisionAlgorithmState.ReturnValue is bool or Vector3)
+			ImGui.Text(_collisionAlgorithmState.ReturnValue?.ToString());
+		else
+			ImGui.TextColored(Rgba.Red, "Unsupported type");
 	}
 
 	private static void RenderParameter(string? parameterName, int index, Type type, ref object? value)
