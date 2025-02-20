@@ -1,103 +1,183 @@
 ﻿using Detach;
+using Detach.Collisions;
 using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
 using Hexa.NET.ImGui;
+using System.Linq.Expressions;
 using System.Numerics;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Demos.Collisions3D.Services.Ui;
 
-internal sealed class ShapeSelectWindow(ShapesState shapesState)
+internal sealed class ShapeSelectWindow
 {
+	private readonly Delegate[] _algorithms;
+	private readonly string _algorithmsComboString;
+
+	private readonly CollisionAlgorithmState _collisionAlgorithmState;
+
+	private int _selectedAlgorithmIndex;
+
+	public ShapeSelectWindow(CollisionAlgorithmState collisionAlgorithmState)
+	{
+		_collisionAlgorithmState = collisionAlgorithmState;
+
+		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
+		MethodInfo[] methods = typeof(Geometry2D).GetMethods(bindingFlags).Concat(typeof(Geometry3D).GetMethods(bindingFlags)).ToArray();
+		_algorithms = new Delegate[methods.Length];
+		for (int i = 0; i < methods.Length; i++)
+			_algorithms[i] = CreateDelegate(methods[i]);
+
+		_algorithmsComboString = string.Join("\0", methods.Select(m => m.Name));
+
+		static Delegate CreateDelegate(MethodInfo method)
+		{
+			return Delegate.CreateDelegate(
+				type: Expression.GetDelegateType(
+					method.GetParameters()
+						.Select(p => p.ParameterType)
+						.Concat([method.ReturnType])
+						.ToArray()),
+				firstArgument: null,
+				method: method);
+		}
+	}
+
 	public void Render()
 	{
-		if (ImGui.Begin("Shapes"))
+		if (ImGui.Begin("Algorithm Selector"))
 		{
-			RenderShapeSelector(0, ref shapesState.SelectedShapeA);
-			RenderShapeSelector(1, ref shapesState.SelectedShapeB);
+			RenderAlgorithmSelector();
 		}
 
 		ImGui.End();
 	}
 
-	private static void RenderShapeSelector(int index, ref Shape shape)
+	private void RenderAlgorithmSelector()
 	{
-		ImGui.SeparatorText(Inline.Utf8($"Shape {index}"));
+		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, _algorithmsComboString, 100))
+			_collisionAlgorithmState.SelectAlgorithm(_algorithms[_selectedAlgorithmIndex]);
 
-		int shapeIndex = shape.CaseIndex;
-		if (ImGui.Combo(Inline.Utf8($"Shape##{index}"), ref shapeIndex, "Point\0Aabb\0ConeFrustum\0Cylinder\0LineSegment3D\0Obb\0Pyramid\0Ray\0Sphere\0SphereCast\0Triangle3D\0"u8, 20))
+		if (_collisionAlgorithmState.SelectedAlgorithm == null)
+			return;
+
+		ParameterInfo[] parameters = _collisionAlgorithmState.SelectedAlgorithm.Method.GetParameters();
+		if (parameters.Length == 0)
+			return;
+
+		for (int i = 0; i < parameters.Length; i++)
 		{
-			shape = shapeIndex switch
-			{
-				0 => Shape.Point(Vector3.Zero),
-				1 => Shape.Aabb(new Aabb(Vector3.Zero, Vector3.One)),
-				2 => Shape.ConeFrustum(new ConeFrustum(Vector3.Zero, 4, 2, 4)),
-				3 => Shape.Cylinder(new Cylinder(Vector3.Zero, 3, 3)),
-				4 => Shape.LineSegment3D(new LineSegment3D(Vector3.Zero, Vector3.One)),
-				5 => Shape.Obb(new Obb(Vector3.Zero, Vector3.One, Matrix3.Identity)),
-				6 => Shape.Pyramid(new Pyramid(Vector3.Zero, Vector3.One)),
-				7 => Shape.Ray(new Ray(Vector3.Zero, Vector3.One)),
-				8 => Shape.Sphere(new Sphere(Vector3.Zero, 1)),
-				9 => Shape.SphereCast(new SphereCast(Vector3.Zero, Vector3.One, 1)),
-				10 => Shape.Triangle3D(new Triangle3D(Vector3.Zero, Vector3.UnitX, Vector3.UnitY)),
-				_ => throw new InvalidOperationException($"Invalid shape index: {shapeIndex}"),
-			};
+			ParameterInfo parameter = parameters[i];
+			RenderParameter(parameter.Name, i, parameter.ParameterType, ref CollectionsMarshal.AsSpan(_collisionAlgorithmState.Arguments)[i]);
+		}
+	}
+
+	private static void RenderParameter(string? parameterName, int index, Type type, ref object? value)
+	{
+		ImGui.SeparatorText(parameterName);
+
+		if (value == null || value == DBNull.Value)
+		{
+			ImGui.TextColored(Rgba.Red, "Parameter value is null.");
+			return;
 		}
 
-		switch (shape.CaseIndex)
+		if (type == typeof(float))
 		{
-			case Shape.PointIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Position##{index}"), ref shape.PointData.X, -10, 10);
-				break;
-			case Shape.AabbIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref shape.AabbData.Center.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref shape.AabbData.Size.X, 0, 10);
-				break;
-			case Shape.ConeFrustumIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"BottomCenter##{index}"), ref shape.ConeFrustumData.BottomCenter.X, -10, 10);
-				ImGui.SliderFloat(Inline.Utf8($"BottomRadius##{index}"), ref shape.ConeFrustumData.BottomRadius, 0, 10);
-				ImGui.SliderFloat(Inline.Utf8($"TopRadius##{index}"), ref shape.ConeFrustumData.TopRadius, 0, 10);
-				ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref shape.ConeFrustumData.Height, 0, 10);
-				break;
-			case Shape.CylinderIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"BottomCenter##{index}"), ref shape.CylinderData.BottomCenter.X, -10, 10);
-				ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref shape.CylinderData.Radius, 0, 10);
-				ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref shape.CylinderData.Height, 0, 10);
-				break;
-			case Shape.LineSegment3DIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref shape.LineSegment3DData.Start.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref shape.LineSegment3DData.End.X, -10, 10);
-				break;
-			case Shape.ObbIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref shape.ObbData.Center.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"HalfExtents##{index}"), ref shape.ObbData.HalfExtents.X, 0, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_1"), ref shape.ObbData.Orientation.M11, -1, 1);
-				ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_2"), ref shape.ObbData.Orientation.M21, -1, 1);
-				ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_3"), ref shape.ObbData.Orientation.M31, -1, 1);
-				break;
-			case Shape.PyramidIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref shape.PyramidData.Center.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref shape.PyramidData.Size.X, -1, 1);
-				break;
-			case Shape.RayIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Origin##{index}"), ref shape.RayData.Origin.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"Direction##{index}"), ref shape.RayData.Direction.X, -1, 1);
-				if (ImGui.Button(Inline.Utf8($"Normalize direction##{index}")))
-					shape.RayData.Direction = Vector3.Normalize(shape.RayData.Direction);
-				break;
-			case Shape.SphereIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref shape.SphereData.Center.X, -10, 10);
-				ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref shape.SphereData.Radius, 0, 10);
-				break;
-			case Shape.SphereCastIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref shape.SphereCastData.Start.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref shape.SphereCastData.End.X, -10, 10);
-				ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref shape.SphereCastData.Radius, 0, 10);
-				break;
-			case Shape.Triangle3DIndex:
-				ImGui.SliderFloat3(Inline.Utf8($"Position A##{index}"), ref shape.Triangle3DData.A.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"Position B##{index}"), ref shape.Triangle3DData.B.X, -10, 10);
-				ImGui.SliderFloat3(Inline.Utf8($"Position C##{index}"), ref shape.Triangle3DData.C.X, -10, 10);
-				break;
+			float cast = (float)value;
+			ImGui.SliderFloat($"{parameterName}##{index}", ref cast, -10, 10);
+			value = cast;
+		}
+		else if (type == typeof(Vector3))
+		{
+			Vector3 cast = (Vector3)value;
+			ImGui.SliderFloat3($"{parameterName}##{index}", ref cast, -10, 10);
+			value = cast;
+		}
+		else if (type == typeof(Aabb))
+		{
+			Aabb cast = (Aabb)value;
+			ImGui.SliderFloat3($"{parameterName}.Center##{index}", ref cast.Center.X, -10, 10);
+			ImGui.SliderFloat3($"{parameterName}.Size##{index}", ref cast.Size.X, 0, 10);
+			value = cast;
+		}
+		else if (type == typeof(ConeFrustum))
+		{
+			ConeFrustum cast = (ConeFrustum)value;
+			ImGui.SliderFloat3($"{parameterName}BottomCenter##{index}", ref cast.BottomCenter.X, -10, 10);
+			ImGui.SliderFloat($"{parameterName}BottomRadius##{index}", ref cast.BottomRadius, 0, 10);
+			ImGui.SliderFloat($"{parameterName}TopRadius##{index}", ref cast.TopRadius, 0, 10);
+			ImGui.SliderFloat($"{parameterName}Height##{index}", ref cast.Height, 0, 10);
+			value = cast;
+		}
+		else if (type == typeof(Cylinder))
+		{
+			Cylinder cast = (Cylinder)value;
+			ImGui.SliderFloat3(Inline.Utf8($"BottomCenter##{index}"), ref cast.BottomCenter.X, -10, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref cast.Height, 0, 10);
+			value = cast;
+		}
+		else if (type == typeof(LineSegment3D))
+		{
+			LineSegment3D cast = (LineSegment3D)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref cast.Start.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref cast.End.X, -10, 10);
+			value = cast;
+		}
+		else if (type == typeof(Obb))
+		{
+			Obb cast = (Obb)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"HalfExtents##{index}"), ref cast.HalfExtents.X, 0, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_1"), ref cast.Orientation.M11, -1, 1);
+			ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_2"), ref cast.Orientation.M21, -1, 1);
+			ImGui.SliderFloat3(Inline.Utf8($"Orientation##{index}_3"), ref cast.Orientation.M31, -1, 1);
+			value = cast;
+		}
+		else if (type == typeof(Pyramid))
+		{
+			Pyramid cast = (Pyramid)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref cast.Size.X, -1, 1);
+			value = cast;
+		}
+		else if (type == typeof(Ray))
+		{
+			Ray cast = (Ray)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Origin##{index}"), ref cast.Origin.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"Direction##{index}"), ref cast.Direction.X, -1, 1);
+			if (ImGui.Button(Inline.Utf8($"Normalize direction##{index}")))
+				cast.Direction = Vector3.Normalize(cast.Direction);
+			value = cast;
+		}
+		else if (type == typeof(Sphere))
+		{
+			Sphere cast = (Sphere)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -10, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, 10);
+			value = cast;
+		}
+		else if (type == typeof(SphereCast))
+		{
+			SphereCast cast = (SphereCast)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref cast.Start.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref cast.End.X, -10, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, 10);
+			value = cast;
+		}
+		else if (type == typeof(Triangle3D))
+		{
+			Triangle3D cast = (Triangle3D)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Position A##{index}"), ref cast.A.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"Position B##{index}"), ref cast.B.X, -10, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"Position C##{index}"), ref cast.C.X, -10, 10);
+			value = cast;
+		}
+		else
+		{
+			ImGui.TextColored(Rgba.Red, $"Unsupported parameter type: {type.Name}");
 		}
 	}
 }

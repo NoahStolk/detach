@@ -16,7 +16,7 @@ namespace Demos.Collisions3D;
 [Register<ShapeSelectWindow>(Scope.SingleInstance)]
 [Register<SceneRenderer>(Scope.SingleInstance)]
 [Register<Camera>(Scope.SingleInstance)]
-[Register<ShapesState>(Scope.SingleInstance)]
+[Register<CollisionAlgorithmState>(Scope.SingleInstance)]
 [Register<LazyProgramContainer>(Scope.SingleInstance)]
 #pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.
 internal sealed partial class Container : IContainer<App>
