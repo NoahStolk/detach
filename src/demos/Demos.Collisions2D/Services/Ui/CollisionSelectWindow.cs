@@ -29,6 +29,7 @@ internal sealed class CollisionSelectWindow
 		new CircleTriangle(),
 
 		new CircleCastPoint(),
+		new CircleCastLine(),
 
 		new RectangleRectangle(),
 		new RectangleRectangleSat(),

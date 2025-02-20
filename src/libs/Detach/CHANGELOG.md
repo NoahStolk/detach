@@ -13,7 +13,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `MathUtils.IsAlmostZero` method.
 - Added `Geometry2D.ClosestPointOnLine` method.
 - Added `CircleCast` 2D primitive to `Detach.Collisions.Primitives2D` namespace.
-- Added `Geometry2D.CircleCastPoint` method.
+- Added `Geometry2D.CircleCastPoint` and `Geometry2D.CircleCastLine` methods.
 - Added `VectorUtils.RotateVector` method to rotate a directional `Vector2` by an angle.
 
 ### Changed
