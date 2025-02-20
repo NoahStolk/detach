@@ -24,6 +24,8 @@ internal sealed class App
 	private readonly ImGuiController _imGuiController;
 	private readonly AlgorithmSelectWindow _algorithmSelectWindow;
 	private readonly SceneRenderer _sceneRenderer;
+	private readonly Camera _camera;
+	private readonly CollisionAlgorithmState _collisionAlgorithmState;
 
 	private double _currentTime;
 	private double _accumulator;
@@ -36,7 +38,9 @@ internal sealed class App
 		GlfwInput glfwInput,
 		ImGuiController imGuiController,
 		AlgorithmSelectWindow algorithmSelectWindow,
-		SceneRenderer sceneRenderer)
+		SceneRenderer sceneRenderer,
+		Camera camera,
+		CollisionAlgorithmState collisionAlgorithmState)
 	{
 		_glfw = glfw;
 		_window = window;
@@ -44,6 +48,8 @@ internal sealed class App
 		_imGuiController = imGuiController;
 		_algorithmSelectWindow = algorithmSelectWindow;
 		_sceneRenderer = sceneRenderer;
+		_camera = camera;
+		_collisionAlgorithmState = collisionAlgorithmState;
 
 		_currentTime = glfw.GetTime();
 
@@ -99,7 +105,10 @@ internal sealed class App
 
 		ImGui.DockSpaceOverViewport(0, null, ImGuiDockNodeFlags.PassthruCentralNode);
 
-		_sceneRenderer.Render(frameTime);
+		_camera.Update(frameTime, true);
+		_collisionAlgorithmState.ExecuteAlgorithm();
+
+		_sceneRenderer.Render();
 
 		_algorithmSelectWindow.Render();
 		_imGuiController.Render();

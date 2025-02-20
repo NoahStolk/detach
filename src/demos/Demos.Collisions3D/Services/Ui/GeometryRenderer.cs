@@ -31,86 +31,91 @@ internal sealed class GeometryRenderer
 		_sphereVao = VaoUtils.CreateLineVao(gl, _sphereVertices);
 	}
 
-	public void RenderGeometry(CachedProgram lineProgram, bool collide)
+	public void RenderGeometry(CachedProgram lineProgram)
 	{
-		// Render shapes here.
-		Vector4 collideColor = collide ? Vector4.One : Vector4.Zero;
+		Vector4 collideColor = _collisionAlgorithmState.ReturnValue is true ? Vector4.One : Vector4.Zero;
 		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(0.5f, 0.0f, 1, 1) + collideColor);
 
+		RenderShape(lineProgram, _collisionAlgorithmState.ReturnValue);
 		foreach (object? arg in _collisionAlgorithmState.Arguments)
+			RenderShape(lineProgram, arg);
+	}
+
+	private void RenderShape(CachedProgram lineProgram, object? arg)
+	{
+		switch (arg)
 		{
-			switch (arg)
-			{
-				case Vector3 point:
-					_gl.BindVertexArray(_sphereVao);
-					RenderSphere(lineProgram, new Sphere(point, 0.1f));
-					break;
-				case Aabb aabb:
-					_gl.BindVertexArray(_cubeVao);
-					RenderAabb(lineProgram, aabb);
-					break;
-				case ConeFrustum coneFrustum:
-					RenderConeFrustum(lineProgram, coneFrustum);
-					break;
-				case Cylinder cylinder:
-					RenderCylinder(lineProgram, cylinder);
-					break;
-				case LineSegment3D lineSegment:
-					_gl.BindVertexArray(_centeredLineVao);
-					RenderLine(lineProgram, lineSegment);
-					break;
-				case Obb obb:
-					_gl.BindVertexArray(_cubeVao);
-					RenderObb(lineProgram, obb);
-					break;
-				case Pyramid pyramid:
-					_gl.BindVertexArray(_centeredLineVao);
+			case Vector3 point:
+				_gl.BindVertexArray(_sphereVao);
+				_gl.LineWidth(8);
+				RenderSphere(lineProgram, new Sphere(point, 0.05f));
+				_gl.LineWidth(1);
+				break;
+			case Aabb aabb:
+				_gl.BindVertexArray(_cubeVao);
+				RenderAabb(lineProgram, aabb);
+				break;
+			case ConeFrustum coneFrustum:
+				RenderConeFrustum(lineProgram, coneFrustum);
+				break;
+			case Cylinder cylinder:
+				RenderCylinder(lineProgram, cylinder);
+				break;
+			case LineSegment3D lineSegment:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, lineSegment);
+				break;
+			case Obb obb:
+				_gl.BindVertexArray(_cubeVao);
+				RenderObb(lineProgram, obb);
+				break;
+			case Pyramid pyramid:
+				_gl.BindVertexArray(_centeredLineVao);
 
-					Buffer4<Vector3> vertices = pyramid.BaseVertices;
-					RenderLine(lineProgram, new LineSegment3D(vertices[0], vertices[1]));
-					RenderLine(lineProgram, new LineSegment3D(vertices[1], vertices[2]));
-					RenderLine(lineProgram, new LineSegment3D(vertices[2], vertices[3]));
-					RenderLine(lineProgram, new LineSegment3D(vertices[3], vertices[0]));
+				Buffer4<Vector3> vertices = pyramid.BaseVertices;
+				RenderLine(lineProgram, new LineSegment3D(vertices[0], vertices[1]));
+				RenderLine(lineProgram, new LineSegment3D(vertices[1], vertices[2]));
+				RenderLine(lineProgram, new LineSegment3D(vertices[2], vertices[3]));
+				RenderLine(lineProgram, new LineSegment3D(vertices[3], vertices[0]));
 
-					RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[0]));
-					RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[1]));
-					RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[2]));
-					RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[3]));
-					break;
-				case Ray ray:
-					_gl.BindVertexArray(_centeredLineVao);
-					RenderLine(lineProgram, new LineSegment3D(ray.Origin, ray.Origin + ray.Direction * 1000));
-					break;
-				case Sphere sphere:
-					_gl.BindVertexArray(_sphereVao);
-					RenderSphere(lineProgram, sphere);
-					break;
-				case SphereCast sphereCast:
-					_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[0]));
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[1]));
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[2]));
+				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[3]));
+				break;
+			case Ray ray:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(ray.Origin, ray.Origin + ray.Direction * 1000));
+				break;
+			case Sphere sphere:
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, sphere);
+				break;
+			case SphereCast sphereCast:
+				_gl.BindVertexArray(_centeredLineVao);
 
-					Vector3 offsetX = new(sphereCast.Radius, 0, 0);
-					RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetX, sphereCast.End + offsetX));
-					RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetX, sphereCast.End - offsetX));
+				Vector3 offsetX = new(sphereCast.Radius, 0, 0);
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetX, sphereCast.End + offsetX));
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetX, sphereCast.End - offsetX));
 
-					Vector3 offsetY = new(0, sphereCast.Radius, 0);
-					RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetY, sphereCast.End + offsetY));
-					RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetY, sphereCast.End - offsetY));
+				Vector3 offsetY = new(0, sphereCast.Radius, 0);
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetY, sphereCast.End + offsetY));
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetY, sphereCast.End - offsetY));
 
-					Vector3 offsetZ = new(0, 0, sphereCast.Radius);
-					RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetZ, sphereCast.End + offsetZ));
-					RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetZ, sphereCast.End - offsetZ));
+				Vector3 offsetZ = new(0, 0, sphereCast.Radius);
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetZ, sphereCast.End + offsetZ));
+				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetZ, sphereCast.End - offsetZ));
 
-					_gl.BindVertexArray(_sphereVao);
-					RenderSphere(lineProgram, new Sphere(sphereCast.Start, sphereCast.Radius));
-					RenderSphere(lineProgram, new Sphere(sphereCast.End, sphereCast.Radius));
-					break;
-				case Triangle3D triangle3D:
-					_gl.BindVertexArray(_centeredLineVao);
-					RenderLine(lineProgram, new LineSegment3D(triangle3D.A, triangle3D.B));
-					RenderLine(lineProgram, new LineSegment3D(triangle3D.B, triangle3D.C));
-					RenderLine(lineProgram, new LineSegment3D(triangle3D.C, triangle3D.A));
-					break;
-			}
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, new Sphere(sphereCast.Start, sphereCast.Radius));
+				RenderSphere(lineProgram, new Sphere(sphereCast.End, sphereCast.Radius));
+				break;
+			case Triangle3D triangle3D:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(triangle3D.A, triangle3D.B));
+				RenderLine(lineProgram, new LineSegment3D(triangle3D.B, triangle3D.C));
+				RenderLine(lineProgram, new LineSegment3D(triangle3D.C, triangle3D.A));
+				break;
 		}
 	}
 

@@ -8,7 +8,6 @@ using Detach.Utils;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
-using System.Reflection;
 
 namespace Demos.Collisions3D.Services;
 
@@ -18,7 +17,6 @@ internal sealed unsafe class SceneRenderer(
 	GL gl,
 	Camera camera,
 	LazyProgramContainer lazyProgramContainer,
-	CollisionAlgorithmState collisionAlgorithmState,
 	GeometryRenderer geometryRenderer)
 {
 	private const float _nearPlaneDistance = 0.05f;
@@ -28,10 +26,8 @@ internal sealed unsafe class SceneRenderer(
 
 	private readonly Vector3 _clearColor = new(0, 0, 0);
 
-	public void Render(float dt)
+	public void Render()
 	{
-		camera.Update(dt, true);
-
 		gl.ClearColor(_clearColor.X, _clearColor.Y, _clearColor.Z, 0);
 		gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
@@ -67,21 +63,7 @@ internal sealed unsafe class SceneRenderer(
 		Vector3 lineColor = Rgb.Invert(Rgb.FromVector3(_clearColor));
 		RenderGrid(lineProgram, Vector3.Zero, new Vector4(lineColor, 0.25f), fadeOutMaxDistance, 1);
 
-		bool collide = CheckCollisions();
-		geometryRenderer.RenderGeometry(lineProgram, collide);
-	}
-
-	private bool CheckCollisions()
-	{
-		if (!collisionAlgorithmState.StateIsValid)
-			return false;
-
-		MethodInfo method = collisionAlgorithmState.SelectedAlgorithm.Method;
-
-		if (method.ReturnType != typeof(bool))
-			return false;
-
-		return collisionAlgorithmState.ExecuteAlgorithm<bool>();
+		geometryRenderer.RenderGeometry(lineProgram);
 	}
 
 	private void RenderTarget(CachedProgram lineProgram, Vector3 position, float size, Vector4 color)

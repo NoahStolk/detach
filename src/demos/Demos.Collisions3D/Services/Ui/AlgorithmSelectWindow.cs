@@ -47,9 +47,7 @@ internal sealed class AlgorithmSelectWindow
 	public void Render()
 	{
 		if (ImGui.Begin("Algorithm Selector"))
-		{
 			RenderAlgorithmSelector();
-		}
 
 		ImGui.End();
 	}
