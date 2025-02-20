@@ -16,19 +16,25 @@ internal sealed class CollisionSelectWindow
 		new PointInRectangle(),
 		new PointInOrientedRectangle(),
 		new PointInTriangle(),
+
 		new LineLine(),
 		new LineCircle(),
 		new LineRectangle(),
 		new LineOrientedRectangle(),
 		new LineTriangle(),
+
 		new CircleCircle(),
 		new CircleRectangle(),
 		new CircleOrientedRectangle(),
 		new CircleTriangle(),
+
+		new CircleCastPoint(),
+
 		new RectangleRectangle(),
 		new RectangleRectangleSat(),
 		new RectangleOrientedRectangleSat(),
 		new RectangleTriangle(),
+
 		new OrientedRectangleOrientedRectangleSat(),
 		new OrientedRectangleTriangle(),
 	];

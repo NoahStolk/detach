@@ -6,11 +6,15 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Added `Pyramid` struct to `Detach.Collisions.Primitives3D` namespace.
+- Added `Pyramid` 3D primitive to `Detach.Collisions.Primitives3D` namespace.
 - Added `Geometry3D.SpherePyramid` and `Geometry3D.SphereCastPyramid` methods.
 - Added `GetCorners` method to `ViewFrustum` (previously `Frustum`) struct.
 - Added support for `bool`, `Vector2`, `Vector3`, `Vector4`, and `Quaternion` to `InlineInterpolatedStringHandlerUtf8`.
 - Added `MathUtils.IsAlmostZero` method.
+- Added `Geometry2D.ClosestPointOnLine` method.
+- Added `CircleCast` 2D primitive to `Detach.Collisions.Primitives2D` namespace.
+- Added `Geometry2D.CircleCastPoint` method.
+- Added `VectorUtils.RotateVector` method to rotate a directional `Vector2` by an angle.
 
 ### Changed
 

@@ -1,6 +1,7 @@
 ﻿using Detach;
 using Detach.Buffers;
 using Detach.Collisions.Primitives2D;
+using Detach.Utils;
 using Hexa.NET.ImGui;
 using System.Numerics;
 
@@ -37,6 +38,22 @@ internal readonly record struct PositionedDrawList(ImDrawListPtr DrawList, Vecto
 
 		DrawList.AddText(Origin + circle.Center, _textColor, Inline.Utf8($"Circle position: {circle.Center.X:0.00} {circle.Center.Y:0.00}"));
 		DrawList.AddText(Origin + circle.Center + new Vector2(0, circle.Radius), _textColor, Inline.Utf8($"Circle radius: {circle.Radius:0.00}"));
+	}
+
+	public void AddCircleCast(CircleCast circleCast, bool hasCollision)
+	{
+		DrawList.AddCircle(Origin + circleCast.Start, circleCast.Radius, GetForegroundColor(hasCollision));
+		DrawList.AddCircle(Origin + circleCast.End, circleCast.Radius, GetForegroundColor(hasCollision));
+		DrawList.AddLine(Origin + circleCast.Start, Origin + circleCast.End, GetForegroundColor(hasCollision));
+
+		Vector2 direction = Vector2.Normalize(circleCast.End - circleCast.Start);
+		Vector2 rotated = VectorUtils.RotateVector(direction, MathF.PI * 0.5f) * circleCast.Radius;
+		DrawList.AddLine(Origin + circleCast.Start + rotated, Origin + circleCast.End + rotated, GetForegroundColor(hasCollision));
+		DrawList.AddLine(Origin + circleCast.Start - rotated, Origin + circleCast.End - rotated, GetForegroundColor(hasCollision));
+
+		DrawList.AddText(Origin + circleCast.Start, _textColor, Inline.Utf8($"Circle cast start: {circleCast.Start.X:0.00} {circleCast.Start.Y:0.00}"));
+		DrawList.AddText(Origin + circleCast.End, _textColor, Inline.Utf8($"Circle cast end: {circleCast.End.X:0.00} {circleCast.End.Y:0.00}"));
+		DrawList.AddText(Origin + circleCast.Start + circleCast.Radius * new Vector2(0, 1), _textColor, Inline.Utf8($"Circle cast radius: {circleCast.Radius:0.00}"));
 	}
 
 	public void AddPoint(Vector2 point, bool hasCollision)

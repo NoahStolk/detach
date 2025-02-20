@@ -33,6 +33,13 @@ public static class VectorUtils
 		return MathF.Atan2(determinant, dotProduct);
 	}
 
+	public static Vector2 RotateVector(Vector2 vector2, float radians)
+	{
+		return new Vector2(
+			vector2.X * MathF.Cos(radians) - vector2.Y * MathF.Sin(radians),
+			vector2.X * MathF.Sin(radians) + vector2.Y * MathF.Cos(radians));
+	}
+
 	public static Vector2 Clamp(Vector2 vector, float min, float max)
 	{
 		return new Vector2(Math.Clamp(vector.X, min, max), Math.Clamp(vector.Y, min, max));
