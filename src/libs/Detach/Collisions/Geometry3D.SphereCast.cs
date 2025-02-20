@@ -33,29 +33,21 @@ public static partial class Geometry3D
 
 	public static bool SphereCastLineSegment(SphereCast sphereCast, LineSegment3D line)
 	{
-		Vector3 edge = line.End - line.Start;
-		Vector3 direction = sphereCast.End - sphereCast.Start;
-		float length = direction.Length();
-		direction /= length; // Normalize the direction.
+		// Check if the start or end points of the sphere cast are within the radius of the line segment.
+		if (SphereCastPoint(sphereCast, line.Start) || SphereCastPoint(sphereCast, line.End))
+			return true;
 
-		Vector3 m = sphereCast.Start - line.Start;
-		Vector3 n = Vector3.Cross(edge, direction);
-		float d = Vector3.Dot(n, n);
-		float e = Vector3.Dot(n, m);
-
-		if (MathF.Abs(d) < float.Epsilon)
+		// Check if the line segment intersects with the swept area of the sphere cast.
+		Vector3 direction = Vector3.Normalize(sphereCast.End - sphereCast.Start);
+		float length = Vector3.Distance(sphereCast.Start, sphereCast.End);
+		for (float t = 0; t <= length; t += sphereCast.Radius / 2)
 		{
-			// Sphere is parallel to the edge.
-			return false;
+			Vector3 point = sphereCast.Start + direction * t;
+			if (Linetest(new Sphere(point, sphereCast.Radius), line))
+				return true;
 		}
 
-		float t = e / d;
-		if (t < 0 || t > length)
-			return false;
-
-		Vector3 point = sphereCast.Start + t * direction;
-		Vector3 closest = ClosestPointOnLine(point, new LineSegment3D(line.Start, line.End));
-		return Vector3.DistanceSquared(point, closest) <= sphereCast.Radius * sphereCast.Radius;
+		return false;
 	}
 
 	public static bool SphereCastSphere(SphereCast sphereCast, Sphere sphere)

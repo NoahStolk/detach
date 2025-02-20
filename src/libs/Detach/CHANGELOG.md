@@ -23,6 +23,7 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Fixed `Geometry3D.SphereCastLineSegment` not working correctly.
 - Fixed minor precision issues in `Geometry2D.LineLine` and `Geometry2D.LineRectangle` methods.
 
 ## 0.24.3

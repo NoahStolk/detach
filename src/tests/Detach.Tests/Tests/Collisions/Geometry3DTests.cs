@@ -214,6 +214,25 @@ public class Geometry3DTests
 			C = new Vector3(+00, +16, 0.5f),
 		};
 		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, largeTriangle));
+
+		// Bug fix test.
+		sphereCast = new SphereCast(-Vector3.One, Vector3.One, 0.8f);
+		Triangle3D triangleBugScenario = new()
+		{
+			A = new Vector3(-1.00f, +0, +0),
+			B = new Vector3(+1.00f, +0, +0),
+			C = new Vector3(+0.00f, +1, +0),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleBugScenario));
+
+		sphereCast = new SphereCast(-Vector3.One, Vector3.One, 0.8f);
+		triangleBugScenario = new Triangle3D
+		{
+			A = new Vector3(-1.01f, +0, +0),
+			B = new Vector3(+1.00f, +0, +0),
+			C = new Vector3(+0.00f, +1, +0),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleBugScenario));
 	}
 
 	[TestMethod]
@@ -239,5 +258,24 @@ public class Geometry3DTests
 		};
 		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangle, out intersectionPoint));
 		AssertionUtils.AreEqual(new Vector3(0.25f, 0, 0.25f), intersectionPoint);
+
+		// Bug fix test.
+		sphereCast = new SphereCast(-Vector3.One, Vector3.One, 0.8f);
+		Triangle3D triangleBugScenario = new()
+		{
+			A = new Vector3(-1.00f, +0, +0),
+			B = new Vector3(+1.00f, +0, +0),
+			C = new Vector3(+0.00f, +1, +0),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleBugScenario, out intersectionPoint));
+
+		sphereCast = new SphereCast(-Vector3.One, Vector3.One, 0.8f);
+		triangleBugScenario = new Triangle3D
+		{
+			A = new Vector3(-1.01f, +0, +0),
+			B = new Vector3(+1.00f, +0, +0),
+			C = new Vector3(+0.00f, +1, +0),
+		};
+		Assert.IsTrue(Geometry3D.SphereCastTriangle(sphereCast, triangleBugScenario, out intersectionPoint));
 	}
 }
