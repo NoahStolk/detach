@@ -21,7 +21,7 @@ public static class CollisionScenarioSerializer
 		bw.Write(Identifier);
 		bw.Write(collisionScenarios.AlgorithmName);
 		bw.Write((byte)2);
-		bw.Write(collisionScenarios.Params1.Length);
+		bw.Write(collisionScenarios.Params1.Count);
 		foreach (TParam1 param1 in collisionScenarios.Params1)
 			Write(bw, param1);
 		foreach (TParam2 param2 in collisionScenarios.Params2)
@@ -47,10 +47,10 @@ public static class CollisionScenarioSerializer
 			throw new FormatException("Invalid parameter count.");
 
 		int dataCount = br.ReadInt32();
-		TParam1[] params1 = new TParam1[dataCount];
+		List<TParam1> params1 = new(dataCount);
 		for (int i = 0; i < dataCount; i++)
 			params1[i] = Read<TParam1>(br);
-		TParam2[] params2 = new TParam2[dataCount];
+		List<TParam2> params2 = new(dataCount);
 		for (int i = 0; i < dataCount; i++)
 			params2[i] = Read<TParam2>(br);
 
