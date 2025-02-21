@@ -1,6 +1,6 @@
 ﻿using Silk.NET.OpenGL;
 
-namespace Demos.Collisions3D.Shaders;
+namespace Demos.Collisions.Interactable.Shaders;
 
 internal sealed class CachedProgram(GL gl, string programName, uint programId)
 {

@@ -9,7 +9,7 @@ using System.Numerics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace Demos.Collisions3D.Services.Ui;
+namespace Demos.Collisions.Interactable.Services.Ui;
 
 internal sealed class AlgorithmSelectWindow
 {

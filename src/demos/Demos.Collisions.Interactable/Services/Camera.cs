@@ -1,9 +1,9 @@
-﻿using Demos.Collisions3D.Extensions;
+﻿using Demos.Collisions.Interactable.Extensions;
 using Detach.GlfwExtensions;
 using Silk.NET.GLFW;
 using System.Numerics;
 
-namespace Demos.Collisions3D.Services;
+namespace Demos.Collisions.Interactable.Services;
 
 internal sealed unsafe class Camera
 {

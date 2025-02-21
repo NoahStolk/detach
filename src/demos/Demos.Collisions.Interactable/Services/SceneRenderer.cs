@@ -1,7 +1,7 @@
-﻿using Demos.Collisions3D.Extensions;
-using Demos.Collisions3D.Services.Ui;
-using Demos.Collisions3D.Shaders;
-using Demos.Collisions3D.Utils;
+﻿using Demos.Collisions.Interactable.Services.Ui;
+using Demos.Collisions.Interactable.Shaders;
+using Demos.Collisions.Interactable.Utils;
+using Demos.Collisions.Interactable.Extensions;
 using Detach.GlExtensions;
 using Detach.Numerics;
 using Detach.Utils;
@@ -9,7 +9,7 @@ using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
 
-namespace Demos.Collisions3D.Services;
+namespace Demos.Collisions.Interactable.Services;
 
 internal sealed unsafe class SceneRenderer(
 	WindowHandle* window,

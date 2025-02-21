@@ -1,15 +1,15 @@
-﻿using Demos.Collisions3D.Extensions;
-using Demos.Collisions3D.Services;
-using Demos.Collisions3D.Services.Ui;
-using Demos.Collisions3D.Shaders;
-using Demos.Collisions3D.Utils;
+﻿using Demos.Collisions.Interactable.Services;
+using Demos.Collisions.Interactable.Services.Ui;
+using Demos.Collisions.Interactable.Shaders;
+using Demos.Collisions.Interactable.Utils;
+using Demos.Collisions.Interactable.Extensions;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using StrongInject;
 
-namespace Demos.Collisions3D;
+namespace Demos.Collisions.Interactable;
 
 [Register<GlfwInput>(Scope.SingleInstance)]
 [Register<App>(Scope.SingleInstance)]

@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Reflection;
 
-namespace Demos.Collisions3D.Services;
+namespace Demos.Collisions.Interactable.Services;
 
 internal sealed class CollisionAlgorithmState
 {

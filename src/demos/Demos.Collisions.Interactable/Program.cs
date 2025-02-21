@@ -1,5 +1,5 @@
-﻿using Demos.Collisions3D;
-using Demos.Collisions3D.Services;
+﻿using Demos.Collisions.Interactable;
+using Demos.Collisions.Interactable.Services;
 using StrongInject;
 
 using Container container = new();

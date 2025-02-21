@@ -1,4 +1,4 @@
-﻿namespace Demos.Collisions3D.Extensions;
+﻿namespace Demos.Collisions.Interactable.Extensions;
 
 internal static class FloatExtensions
 {

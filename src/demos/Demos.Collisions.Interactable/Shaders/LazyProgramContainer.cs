@@ -1,7 +1,7 @@
-﻿using Demos.Collisions3D.Utils;
+﻿using Demos.Collisions.Interactable.Utils;
 using Silk.NET.OpenGL;
 
-namespace Demos.Collisions3D.Shaders;
+namespace Demos.Collisions.Interactable.Shaders;
 
 internal sealed class LazyProgramContainer(GL gl)
 {

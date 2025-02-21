@@ -1,7 +1,7 @@
 ﻿using Silk.NET.OpenGL;
 using System.Numerics;
 
-namespace Demos.Collisions3D.Utils;
+namespace Demos.Collisions.Interactable.Utils;
 
 internal static class VaoUtils
 {

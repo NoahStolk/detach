@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Demos.Collisions3D.Utils;
+namespace Demos.Collisions.Interactable.Utils;
 
 internal static class AssemblyUtils
 {

@@ -1,7 +1,7 @@
 ﻿<Solution>
   <Folder Name="/demos/">
     <Project Path="demos\Demos.Collisions.Auto\Demos.Collisions.Auto.csproj" Type="Classic C#" />
-    <Project Path="demos\Demos.Collisions3D\Demos.Collisions3D.csproj" Type="Classic C#" />
+    <Project Path="demos\Demos.Collisions.Interactable\Demos.Collisions.Interactable.csproj" Type="Classic C#" />
     <Project Path="demos\Demos.ImGuiBackend.GlfwHexa\Demos.ImGuiBackend.GlfwHexa.csproj" Type="Classic C#" />
     <Project Path="demos\Demos.ImGuiBackend.GlfwImGuiNET\Demos.ImGuiBackend.GlfwImGuiNET.csproj" Type="Classic C#" />
     <Project Path="demos\Demos.Plot\Demos.Plot.csproj" Type="Classic C#" />

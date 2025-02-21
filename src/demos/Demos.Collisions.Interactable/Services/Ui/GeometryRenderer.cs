@@ -1,5 +1,5 @@
-﻿using Demos.Collisions3D.Shaders;
-using Demos.Collisions3D.Utils;
+﻿using Demos.Collisions.Interactable.Shaders;
+using Demos.Collisions.Interactable.Utils;
 using Detach.Buffers;
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
@@ -8,7 +8,7 @@ using Detach.Utils;
 using Silk.NET.OpenGL;
 using System.Numerics;
 
-namespace Demos.Collisions3D.Services.Ui;
+namespace Demos.Collisions.Interactable.Services.Ui;
 
 internal sealed class GeometryRenderer
 {
