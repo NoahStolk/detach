@@ -1,4 +1,5 @@
-﻿using Detach.Collisions.Primitives3D;
+﻿using Detach.Buffers;
+using Detach.Collisions.Primitives3D;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -87,5 +88,39 @@ public static partial class Geometry3D
 			return c2;
 
 		return c3;
+	}
+
+	public static Vector3 ClosestPointInPyramid(Vector3 point, Pyramid pyramid)
+	{
+		return ClosestPointInPyramidFaces(point, pyramid.Faces);
+	}
+
+	public static Vector3 ClosestPointInOrientedPyramid(Vector3 point, OrientedPyramid pyramid)
+	{
+		return ClosestPointInPyramidFaces(point, pyramid.Faces);
+	}
+
+	private static Vector3 ClosestPointInPyramidFaces(Vector3 point, Buffer6<Triangle3D> pyramidFaces)
+	{
+		Buffer6<Vector3> closestPoints = default;
+		for (int i = 0; i < 6; i++)
+		{
+			Triangle3D face = pyramidFaces[i];
+			closestPoints[i] = ClosestPointOnTriangle(point, face);
+		}
+
+		Vector3 closest = closestPoints[0];
+		float closestDistanceSquared = Vector3.DistanceSquared(point, closest);
+		for (int i = 1; i < 6; i++)
+		{
+			float distanceSquared = Vector3.DistanceSquared(point, closestPoints[i]);
+			if (distanceSquared < closestDistanceSquared)
+			{
+				closest = closestPoints[i];
+				closestDistanceSquared = distanceSquared;
+			}
+		}
+
+		return closest;
 	}
 }
