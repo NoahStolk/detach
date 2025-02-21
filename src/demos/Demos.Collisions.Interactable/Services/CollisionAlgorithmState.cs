@@ -77,6 +77,7 @@ internal sealed class CollisionAlgorithmState
 			_ when type == typeof(SphereCast) => new SphereCast(Vector3.Zero, Vector3.One, 1),
 			_ when type == typeof(Triangle3D) => new Triangle3D(Vector3.Zero, Vector3.One, Vector3.UnitX),
 			_ when type == typeof(ViewFrustum) => new ViewFrustum(Matrix4x4.Identity),
+
 			_ => Activator.CreateInstance(type),
 		};
 	}
