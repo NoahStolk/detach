@@ -1,8 +1,8 @@
-﻿using Demos.Collisions.Interactable.Services;
+﻿using Demos.Collisions.Interactable.Extensions;
+using Demos.Collisions.Interactable.Services;
 using Demos.Collisions.Interactable.Services.Ui;
 using Demos.Collisions.Interactable.Shaders;
 using Demos.Collisions.Interactable.Utils;
-using Demos.Collisions.Interactable.Extensions;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
 using Silk.NET.GLFW;

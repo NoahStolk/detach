@@ -1,7 +1,7 @@
-﻿using Demos.Collisions.Auto.Services;
+﻿using Demos.Collisions.Auto.Extensions;
+using Demos.Collisions.Auto.Services;
 using Demos.Collisions.Auto.Services.Ui;
 using Demos.Collisions.Auto.Utils;
-using Demos.Collisions.Auto.Extensions;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
 using Silk.NET.GLFW;

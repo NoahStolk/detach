@@ -1,7 +1,7 @@
-﻿using Demos.Collisions.Interactable.Services.Ui;
+﻿using Demos.Collisions.Interactable.Extensions;
+using Demos.Collisions.Interactable.Services.Ui;
 using Demos.Collisions.Interactable.Shaders;
 using Demos.Collisions.Interactable.Utils;
-using Demos.Collisions.Interactable.Extensions;
 using Detach.GlExtensions;
 using Detach.Numerics;
 using Detach.Utils;
