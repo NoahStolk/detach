@@ -6,6 +6,9 @@
     <Project Path="demos\Demos.ImGuiBackend.GlfwImGuiNET\Demos.ImGuiBackend.GlfwImGuiNET.csproj" Type="Classic C#" />
     <Project Path="demos\Demos.Plot\Demos.Plot.csproj" Type="Classic C#" />
   </Folder>
+  <Folder Name="/internals/">
+    <Project Path="internals\CollisionFormats\CollisionFormats.csproj" Type="Classic C#" />
+  </Folder>
   <Folder Name="/libs/">
     <Project Path="libs\Detach.AlExtensions\Detach.AlExtensions.csproj" Type="Classic C#" />
     <Project Path="libs\Detach.GlExtensions\Detach.GlExtensions.csproj" Type="Classic C#" />
