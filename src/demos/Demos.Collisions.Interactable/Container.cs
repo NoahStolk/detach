@@ -1,5 +1,6 @@
 ﻿using Demos.Collisions.Interactable.Extensions;
 using Demos.Collisions.Interactable.Services;
+using Demos.Collisions.Interactable.Services.States;
 using Demos.Collisions.Interactable.Services.Ui;
 using Demos.Collisions.Interactable.Shaders;
 using Demos.Collisions.Interactable.Utils;
