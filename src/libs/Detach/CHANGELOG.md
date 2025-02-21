@@ -2,7 +2,7 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## 0.25.0
 
 ### Added
 
