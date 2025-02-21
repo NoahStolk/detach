@@ -6,15 +6,21 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Added `Pyramid` 3D primitive to `Detach.Collisions.Primitives3D` namespace.
-- Added `Geometry3D.SpherePyramid` and `Geometry3D.SphereCastPyramid` methods.
-- Added `GetCorners` method to `ViewFrustum` (previously `Frustum`) struct.
+- Added new collision algorithms:
+  - Added `Pyramid` 3D primitive along with the following methods:
+    - `Geometry3D.SpherePyramid`
+    - `Geometry3D.SphereCastPyramid`
+  - Added `OrientedPyramid` 3D primitive along with the following methods:
+    - `Geoemtry3D.SphereOrientedPyramid`
+  - Added `CircleCast` 2D primitive along with the following methods:
+    - `Geometry2D.CircleCastPoint`
+    - `Geometry2D.CircleCastLine`
+  - Added `Geometry2D.ClosestPointOnLine` method.
+- Added `ViewFrustum.GetCorners` method (previously `Frustum`).
 - Added support for `bool`, `Vector2`, `Vector3`, `Vector4`, and `Quaternion` to `InlineInterpolatedStringHandlerUtf8`.
 - Added `MathUtils.IsAlmostZero` method.
-- Added `Geometry2D.ClosestPointOnLine` method.
-- Added `CircleCast` 2D primitive to `Detach.Collisions.Primitives2D` namespace.
-- Added `Geometry2D.CircleCastPoint` and `Geometry2D.CircleCastLine` methods.
 - Added `VectorUtils.RotateVector` method to rotate a directional `Vector2` by an angle.
+- Added `Matrix3.GetYawPitchRoll` method.
 
 ### Changed
 

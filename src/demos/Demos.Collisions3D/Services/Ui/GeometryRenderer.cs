@@ -71,19 +71,11 @@ internal sealed class GeometryRenderer
 				_gl.BindVertexArray(_cubeVao);
 				RenderObb(lineProgram, obb);
 				break;
+			case OrientedPyramid orientedPyramid:
+				RenderPyramid(lineProgram, orientedPyramid.BaseVertices, orientedPyramid.ApexVertex);
+				break;
 			case Pyramid pyramid:
-				_gl.BindVertexArray(_centeredLineVao);
-
-				Buffer4<Vector3> vertices = pyramid.BaseVertices;
-				RenderLine(lineProgram, new LineSegment3D(vertices[0], vertices[1]));
-				RenderLine(lineProgram, new LineSegment3D(vertices[1], vertices[2]));
-				RenderLine(lineProgram, new LineSegment3D(vertices[2], vertices[3]));
-				RenderLine(lineProgram, new LineSegment3D(vertices[3], vertices[0]));
-
-				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[0]));
-				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[1]));
-				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[2]));
-				RenderLine(lineProgram, new LineSegment3D(pyramid.ApexVertex, vertices[3]));
+				RenderPyramid(lineProgram, pyramid.BaseVertices, pyramid.ApexVertex);
 				break;
 			case Ray ray:
 				_gl.BindVertexArray(_centeredLineVao);
@@ -189,5 +181,20 @@ internal sealed class GeometryRenderer
 		float singleSegmentAngle = MathF.PI * 2 / segments;
 		float angle = singleSegmentAngle * index;
 		return center + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * radius;
+	}
+
+	private void RenderPyramid(CachedProgram lineProgram, Buffer4<Vector3> baseVertices, Vector3 apexVertex)
+	{
+		_gl.BindVertexArray(_centeredLineVao);
+
+		RenderLine(lineProgram, new LineSegment3D(baseVertices[0], baseVertices[1]));
+		RenderLine(lineProgram, new LineSegment3D(baseVertices[1], baseVertices[2]));
+		RenderLine(lineProgram, new LineSegment3D(baseVertices[2], baseVertices[3]));
+		RenderLine(lineProgram, new LineSegment3D(baseVertices[3], baseVertices[0]));
+
+		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[0]));
+		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[1]));
+		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[2]));
+		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[3]));
 	}
 }

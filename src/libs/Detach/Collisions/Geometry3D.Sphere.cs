@@ -122,4 +122,12 @@ public static partial class Geometry3D
 			new Vector2(bottomRectangleVertices[2].Y, bottomRectangleVertices[2].Z));
 		return Geometry2D.CircleTriangle(sphereOnYz, pyramidOnYz);
 	}
+
+	public static bool SphereOrientedPyramid(Sphere sphere, OrientedPyramid orientedPyramid)
+	{
+		Vector3 distance = sphere.Center - orientedPyramid.Center;
+		Sphere transformed = new(Vector3.Transform(distance, orientedPyramid.Orientation.ToMatrix4x4()), sphere.Radius);
+		Pyramid pyramid = new(orientedPyramid.Center, orientedPyramid.Size);
+		return SpherePyramid(transformed, pyramid);
+	}
 }

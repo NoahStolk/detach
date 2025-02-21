@@ -156,6 +156,26 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>, ISpanFormattable, IUt
 		return Matrices.Inverse(matrix);
 	}
 
+	public static void GetYawPitchRoll(Matrix3 matrix, out float yaw, out float pitch, out float roll)
+	{
+		// Extract the pitch (rotation around X-axis)
+		pitch = MathF.Asin(-matrix.M32);
+
+		// Check for gimbal lock
+		if (MathF.Cos(pitch) > 0.0001f)
+		{
+			// No gimbal lock
+			yaw = MathF.Atan2(matrix.M31, matrix.M33);
+			roll = MathF.Atan2(matrix.M12, matrix.M22);
+		}
+		else
+		{
+			// Gimbal lock has occurred
+			yaw = MathF.Atan2(-matrix.M13, matrix.M11);
+			roll = 0;
+		}
+	}
+
 	public static Matrix3 Rotation(float yaw, float pitch, float roll)
 	{
 		return RotationZ(roll) * RotationX(pitch) * RotationY(yaw);
