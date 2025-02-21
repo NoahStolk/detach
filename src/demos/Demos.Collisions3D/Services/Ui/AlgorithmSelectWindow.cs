@@ -148,6 +148,15 @@ internal sealed class AlgorithmSelectWindow
 			SlidersOrientation(index, ref cast.Orientation);
 			value = cast;
 		}
+		else if (type == typeof(Plane))
+		{
+			Plane cast = (Plane)value;
+			ImGui.SliderFloat3(Inline.Utf8($"Normal##{index}"), ref cast.Normal.X, -1, 1);
+			if (ImGui.Button(Inline.Utf8($"Normalize normal##{index}")))
+				cast.Normal = Vector3.Normalize(cast.Normal);
+			ImGui.SliderFloat(Inline.Utf8($"D##{index}"), ref cast.D, 0, maxDistance);
+			value = cast;
+		}
 		else if (type == typeof(Pyramid))
 		{
 			Pyramid cast = (Pyramid)value;

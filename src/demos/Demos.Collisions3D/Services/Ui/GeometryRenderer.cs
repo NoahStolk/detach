@@ -50,7 +50,7 @@ internal sealed class GeometryRenderer
 			case Vector3 point:
 				_gl.BindVertexArray(_sphereVao);
 				_gl.LineWidth(8);
-				RenderSphere(lineProgram, new Sphere(point, 0.05f));
+				RenderSphere(lineProgram, new Sphere(point, 0.02f));
 				_gl.LineWidth(1);
 				break;
 			case Aabb aabb:
@@ -73,6 +73,24 @@ internal sealed class GeometryRenderer
 				break;
 			case OrientedPyramid orientedPyramid:
 				RenderPyramid(lineProgram, orientedPyramid.BaseVertices, orientedPyramid.ApexVertex);
+				break;
+			case Plane plane:
+				Vector3 pointOnPlane = plane.Normal * plane.D;
+
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(pointOnPlane, pointOnPlane + plane.Normal));
+
+				Vector3 cross = Vector3.Cross(plane.Normal, Vector3.UnitX);
+				if (cross.LengthSquared() < 0.01f)
+					cross = Vector3.Cross(plane.Normal, Vector3.UnitY);
+
+				Vector3 right = Vector3.Normalize(Vector3.Cross(plane.Normal, cross));
+				RenderLine(lineProgram, new LineSegment3D(pointOnPlane - cross, pointOnPlane + cross));
+				RenderLine(lineProgram, new LineSegment3D(pointOnPlane - right, pointOnPlane + right));
+
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, new Sphere(pointOnPlane, 0.02f));
+				RenderSphere(lineProgram, new Sphere(pointOnPlane + plane.Normal, 0.02f));
 				break;
 			case Pyramid pyramid:
 				RenderPyramid(lineProgram, pyramid.BaseVertices, pyramid.ApexVertex);

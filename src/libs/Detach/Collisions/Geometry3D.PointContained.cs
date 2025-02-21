@@ -41,6 +41,7 @@ public static partial class Geometry3D
 
 	public static Vector3 ClosestPointOnPlane(Vector3 point, Plane plane)
 	{
+		// This assumes plane.Normal is normalized.
 		float dot = Vector3.Dot(point, plane.Normal);
 		float distance = dot - plane.D;
 		return point - plane.Normal * distance;

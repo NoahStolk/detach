@@ -62,7 +62,7 @@ internal sealed class CollisionAlgorithmState
 			_ when type == typeof(LineSegment3D) => new LineSegment3D(Vector3.Zero, Vector3.One),
 			_ when type == typeof(Obb) => new Obb(Vector3.Zero, Vector3.One, Matrix3.Identity),
 			_ when type == typeof(OrientedPyramid) => new OrientedPyramid(Vector3.Zero, Vector3.One, Matrix3.Identity),
-			_ when type == typeof(Plane) => new Plane(Vector3.Zero, 1),
+			_ when type == typeof(Plane) => new Plane(Vector3.UnitY, 1),
 			_ when type == typeof(Pyramid) => new Pyramid(Vector3.Zero, Vector3.One),
 			_ when type == typeof(Ray) => new Ray(Vector3.Zero, Vector3.UnitX),
 			_ when type == typeof(Sphere) => new Sphere(Vector3.Zero, 1),
