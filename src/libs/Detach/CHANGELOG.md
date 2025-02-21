@@ -26,6 +26,16 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added `MathUtils.IsAlmostZero` method.
 - Added `VectorUtils.RotateVector` method to rotate a directional `Vector2` by an angle.
 - Added `Matrix3.GetYawPitchRoll` method.
+- Added new extension methods for `BinaryReader`:
+  - `ReadMatrix3x2`
+  - `ReadMatrix2`
+  - `ReadMatrix3`
+  - `ReadMatrix4`
+- Added new extension methods for `BinaryWriter`:
+  - `Write(Matrix3x2)`
+  - `Write(Matrix2)`
+  - `Write(Matrix3)`
+  - `Write(Matrix4)`
 
 ### Changed
 

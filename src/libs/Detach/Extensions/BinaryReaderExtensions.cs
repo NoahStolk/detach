@@ -46,9 +46,42 @@ public static partial class BinaryReaderExtensions
 	}
 
 	// ReSharper disable once InconsistentNaming
+	public static Matrix3x2 ReadMatrix3x2(this BinaryReader br)
+	{
+		return new Matrix3x2(
+			br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle());
+	}
+
+	// ReSharper disable once InconsistentNaming
 	public static Matrix4x4 ReadMatrix4x4(this BinaryReader br)
 	{
 		return new Matrix4x4(
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+	}
+
+	public static Matrix2 ReadMatrix2(this BinaryReader br)
+	{
+		return new Matrix2(
+			br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle());
+	}
+
+	public static Matrix3 ReadMatrix3(this BinaryReader br)
+	{
+		return new Matrix3(
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
+			br.ReadSingle(), br.ReadSingle(), br.ReadSingle());
+	}
+
+	public static Matrix4 ReadMatrix4(this BinaryReader br)
+	{
+		return new Matrix4(
 			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
 			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),
 			br.ReadSingle(), br.ReadSingle(), br.ReadSingle(), br.ReadSingle(),

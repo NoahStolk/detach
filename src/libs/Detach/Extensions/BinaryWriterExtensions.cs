@@ -53,7 +53,58 @@ public static partial class BinaryWriterExtensions
 		bw.Write(quaternion.W);
 	}
 
+	public static void Write(this BinaryWriter bw, Matrix3x2 matrix)
+	{
+		bw.Write(matrix.M11);
+		bw.Write(matrix.M12);
+		bw.Write(matrix.M21);
+		bw.Write(matrix.M22);
+		bw.Write(matrix.M31);
+		bw.Write(matrix.M32);
+	}
+
 	public static void Write(this BinaryWriter bw, Matrix4x4 matrix)
+	{
+		bw.Write(matrix.M11);
+		bw.Write(matrix.M12);
+		bw.Write(matrix.M13);
+		bw.Write(matrix.M14);
+		bw.Write(matrix.M21);
+		bw.Write(matrix.M22);
+		bw.Write(matrix.M23);
+		bw.Write(matrix.M24);
+		bw.Write(matrix.M31);
+		bw.Write(matrix.M32);
+		bw.Write(matrix.M33);
+		bw.Write(matrix.M34);
+		bw.Write(matrix.M41);
+		bw.Write(matrix.M42);
+		bw.Write(matrix.M43);
+		bw.Write(matrix.M44);
+	}
+
+	public static void Write(this BinaryWriter bw, Matrix2 matrix)
+	{
+		bw.Write(matrix.M11);
+		bw.Write(matrix.M12);
+		bw.Write(matrix.M21);
+		bw.Write(matrix.M22);
+	}
+
+	public static void Write(this BinaryWriter bw, Matrix3 matrix)
+	{
+		bw.Write(matrix.M11);
+		bw.Write(matrix.M12);
+		bw.Write(matrix.M13);
+		bw.Write(matrix.M21);
+		bw.Write(matrix.M22);
+		bw.Write(matrix.M23);
+		bw.Write(matrix.M31);
+		bw.Write(matrix.M32);
+		bw.Write(matrix.M33);
+	}
+
+	public static void Write(this BinaryWriter bw, Matrix4 matrix)
 	{
 		bw.Write(matrix.M11);
 		bw.Write(matrix.M12);
