@@ -1,6 +1,7 @@
 ﻿using Demos.Collisions3D.Shaders;
 using Demos.Collisions3D.Utils;
 using Detach.Buffers;
+using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.GlExtensions;
 using Detach.Utils;
@@ -45,8 +46,60 @@ internal sealed class GeometryRenderer
 
 	private void RenderShape(CachedProgram lineProgram, object? arg)
 	{
+		const float y2dOffset = 0.01f; // Prevent Z-fighting in 2D.
+
 		switch (arg)
 		{
+			// 2D
+			case Vector2 point2D:
+				_gl.BindVertexArray(_sphereVao);
+				_gl.LineWidth(8);
+				RenderSphere(lineProgram, new Sphere(new Vector3(point2D.X, y2dOffset, point2D.Y), 0.02f));
+				_gl.LineWidth(1);
+				break;
+			case Circle circle:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderCircle(lineProgram, new Vector3(circle.Center.X, y2dOffset, circle.Center.Y), circle.Radius, 16);
+				break;
+			case CircleCast circleCast:
+				RenderCircleCast(lineProgram, circleCast);
+				break;
+			case LineSegment2D lineSegment2D:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(lineSegment2D.Start.X, y2dOffset, lineSegment2D.Start.Y), new Vector3(lineSegment2D.End.X, y2dOffset, lineSegment2D.End.Y)));
+				break;
+			case OrientedRectangle orientedRectangle:
+				_gl.BindVertexArray(_centeredLineVao);
+				Buffer4<Vector2> vertices = orientedRectangle.GetVertices();
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(vertices[0].X, y2dOffset, vertices[0].Y), new Vector3(vertices[1].X, y2dOffset, vertices[1].Y)));
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(vertices[1].X, y2dOffset, vertices[1].Y), new Vector3(vertices[2].X, y2dOffset, vertices[2].Y)));
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(vertices[2].X, y2dOffset, vertices[2].Y), new Vector3(vertices[3].X, y2dOffset, vertices[3].Y)));
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(vertices[3].X, y2dOffset, vertices[3].Y), new Vector3(vertices[0].X, y2dOffset, vertices[0].Y)));
+				break;
+			case Rectangle rectangle:
+				_gl.BindVertexArray(_centeredLineVao);
+
+				Vector2 min = rectangle.GetMin();
+				Vector2 max = rectangle.GetMax();
+
+				Vector3 topLeft = new(min.X, y2dOffset, min.Y);
+				Vector3 bottomRight = new(max.X, y2dOffset, max.Y);
+				Vector3 topRight = new(max.X, y2dOffset, min.Y);
+				Vector3 bottomLeft = new(min.X, y2dOffset, max.Y);
+
+				RenderLine(lineProgram, new LineSegment3D(topLeft, topRight));
+				RenderLine(lineProgram, new LineSegment3D(topRight, bottomRight));
+				RenderLine(lineProgram, new LineSegment3D(bottomRight, bottomLeft));
+				RenderLine(lineProgram, new LineSegment3D(bottomLeft, topLeft));
+				break;
+			case Triangle2D triangle2D:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(triangle2D.A.X, y2dOffset, triangle2D.A.Y), new Vector3(triangle2D.B.X, y2dOffset, triangle2D.B.Y)));
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(triangle2D.B.X, y2dOffset, triangle2D.B.Y), new Vector3(triangle2D.C.X, y2dOffset, triangle2D.C.Y)));
+				RenderLine(lineProgram, new LineSegment3D(new Vector3(triangle2D.C.X, y2dOffset, triangle2D.C.Y), new Vector3(triangle2D.A.X, y2dOffset, triangle2D.A.Y)));
+				break;
+
+			// 3D
 			case Vector3 point:
 				_gl.BindVertexArray(_sphereVao);
 				_gl.LineWidth(8);
@@ -189,23 +242,6 @@ internal sealed class GeometryRenderer
 		}
 	}
 
-	private void RenderCircle(in CachedProgram lineProgram, Vector3 center, float radius, int segments)
-	{
-		for (int i = 0; i < segments; i++)
-		{
-			Vector3 startOffset = GetCirclePoint(center, radius, segments, i);
-			Vector3 endOffset = GetCirclePoint(center, radius, segments, (i + 1) % segments);
-			RenderLine(lineProgram, new LineSegment3D(startOffset, endOffset));
-		}
-	}
-
-	private static Vector3 GetCirclePoint(Vector3 center, float radius, int segments, int index)
-	{
-		float singleSegmentAngle = MathF.PI * 2 / segments;
-		float angle = singleSegmentAngle * index;
-		return center + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * radius;
-	}
-
 	private void RenderPyramid(CachedProgram lineProgram, Buffer4<Vector3> baseVertices, Vector3 apexVertex)
 	{
 		_gl.BindVertexArray(_centeredLineVao);
@@ -219,5 +255,38 @@ internal sealed class GeometryRenderer
 		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[1]));
 		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[2]));
 		RenderLine(lineProgram, new LineSegment3D(apexVertex, baseVertices[3]));
+	}
+
+	private void RenderCircle(in CachedProgram lineProgram, Vector3 center, float radius, int segments)
+	{
+		for (int i = 0; i < segments; i++)
+		{
+			Vector3 startOffset = GetCirclePoint(center, radius, segments, i);
+			Vector3 endOffset = GetCirclePoint(center, radius, segments, (i + 1) % segments);
+			RenderLine(lineProgram, new LineSegment3D(startOffset, endOffset));
+		}
+	}
+
+	private void RenderCircleCast(CachedProgram lineProgram, CircleCast circleCast)
+	{
+		Vector3 start = new(circleCast.Start.X, 0, circleCast.Start.Y);
+		Vector3 end = new(circleCast.End.X, 0, circleCast.End.Y);
+
+		_gl.BindVertexArray(_centeredLineVao);
+		RenderCircle(lineProgram, start, circleCast.Radius, 16);
+		RenderCircle(lineProgram, end, circleCast.Radius, 16);
+
+		Vector2 direction = Vector2.Normalize(circleCast.End - circleCast.Start);
+		Vector2 rotated = VectorUtils.RotateVector(direction, MathF.PI * 0.5f) * circleCast.Radius;
+		Vector3 rotated3D = new(rotated.X, 0, rotated.Y);
+		RenderLine(lineProgram, new LineSegment3D(start + rotated3D, end + rotated3D));
+		RenderLine(lineProgram, new LineSegment3D(start - rotated3D, end - rotated3D));
+	}
+
+	private static Vector3 GetCirclePoint(Vector3 center, float radius, int segments, int index)
+	{
+		float singleSegmentAngle = MathF.PI * 2 / segments;
+		float angle = singleSegmentAngle * index;
+		return center + new Vector3(MathF.Cos(angle), 0, MathF.Sin(angle)) * radius;
 	}
 }

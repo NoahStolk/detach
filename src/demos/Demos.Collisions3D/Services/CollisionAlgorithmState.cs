@@ -1,4 +1,5 @@
-﻿using Detach.Collisions.Primitives3D;
+﻿using Detach.Collisions.Primitives2D;
+using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
@@ -56,6 +57,13 @@ internal sealed class CollisionAlgorithmState
 	{
 		return type switch
 		{
+			_ when type == typeof(Circle) => new Circle(Vector2.Zero, 1),
+			_ when type == typeof(CircleCast) => new CircleCast(Vector2.Zero, Vector2.One, 1),
+			_ when type == typeof(LineSegment2D) => new LineSegment2D(Vector2.Zero, Vector2.One),
+			_ when type == typeof(OrientedRectangle) => new OrientedRectangle(Vector2.Zero, Vector2.One, 0),
+			_ when type == typeof(Rectangle) => Rectangle.FromCenter(Vector2.Zero, Vector2.One),
+			_ when type == typeof(Triangle2D) => new Triangle2D(Vector2.Zero, Vector2.One, Vector2.UnitX),
+
 			_ when type == typeof(Aabb) => new Aabb(Vector3.Zero, Vector3.One),
 			_ when type == typeof(ConeFrustum) => new ConeFrustum(Vector3.Zero, 1, 0.5f, 1),
 			_ when type == typeof(Cylinder) => new Cylinder(Vector3.Zero, 1, 1),

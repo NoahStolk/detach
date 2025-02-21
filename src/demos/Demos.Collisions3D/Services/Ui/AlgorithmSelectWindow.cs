@@ -1,5 +1,6 @@
 ﻿using Detach;
 using Detach.Collisions;
+using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
 using Hexa.NET.ImGui;
@@ -88,11 +89,61 @@ internal sealed class AlgorithmSelectWindow
 		const float maxDistance = 5;
 		const float maxSize = 3;
 
-		// TODO: Add 2D geometry types.
 		if (type == typeof(float))
 		{
 			float cast = (float)value;
 			ImGui.SliderFloat($"{parameterName}##{index}", ref cast, -maxDistance, maxDistance);
+			value = cast;
+		}
+		else if (type == typeof(Vector2))
+		{
+			Vector2 cast = (Vector2)value;
+			ImGui.SliderFloat2($"{parameterName}##{index}", ref cast, -maxDistance, maxDistance);
+			value = cast;
+		}
+		else if (type == typeof(Circle))
+		{
+			Circle cast = (Circle)value;
+			ImGui.SliderFloat2($"{parameterName}.Center##{index}", ref cast.Center.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat($"{parameterName}.Radius##{index}", ref cast.Radius, 0, maxSize);
+			value = cast;
+		}
+		else if (type == typeof(CircleCast))
+		{
+			CircleCast cast = (CircleCast)value;
+			ImGui.SliderFloat2($"{parameterName}.Start##{index}", ref cast.Start.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat2($"{parameterName}.End##{index}", ref cast.End.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat($"{parameterName}.Radius##{index}", ref cast.Radius, 0, maxSize);
+			value = cast;
+		}
+		else if (type == typeof(LineSegment2D))
+		{
+			LineSegment2D cast = (LineSegment2D)value;
+			ImGui.SliderFloat2($"{parameterName}.Start##{index}", ref cast.Start.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat2($"{parameterName}.End##{index}", ref cast.End.X, -maxDistance, maxDistance);
+			value = cast;
+		}
+		else if (type == typeof(OrientedRectangle))
+		{
+			OrientedRectangle cast = (OrientedRectangle)value;
+			ImGui.SliderFloat2($"{parameterName}.Center##{index}", ref cast.Center.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat2($"{parameterName}.HalfExtents##{index}", ref cast.HalfExtents.X, 0, maxSize);
+			ImGui.SliderAngle($"{parameterName}.RotationInRadians##{index}", ref cast.RotationInRadians, -180, 180);
+			value = cast;
+		}
+		else if (type == typeof(Rectangle))
+		{
+			Rectangle cast = (Rectangle)value;
+			ImGui.SliderFloat2($"{parameterName}.Position##{index}", ref cast.Position.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat2($"{parameterName}.Size##{index}", ref cast.Size.X, 0, maxSize);
+			value = cast;
+		}
+		else if (type == typeof(Triangle2D))
+		{
+			Triangle2D cast = (Triangle2D)value;
+			ImGui.SliderFloat2($"{parameterName}.A##{index}", ref cast.A.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat2($"{parameterName}.B##{index}", ref cast.B.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat2($"{parameterName}.C##{index}", ref cast.C.X, -maxDistance, maxDistance);
 			value = cast;
 		}
 		else if (type == typeof(Vector3))
