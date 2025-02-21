@@ -125,9 +125,8 @@ public static partial class Geometry3D
 
 	public static bool SphereOrientedPyramid(Sphere sphere, OrientedPyramid orientedPyramid)
 	{
-		Vector3 distance = sphere.Center - orientedPyramid.Center;
-		Sphere transformed = new(Vector3.Transform(distance, orientedPyramid.Orientation.ToMatrix4x4()), sphere.Radius);
-		Pyramid pyramid = new(orientedPyramid.Center, orientedPyramid.Size);
-		return SpherePyramid(transformed, pyramid);
+		Vector3 closestPoint = ClosestPointInOrientedPyramid(sphere.Center, orientedPyramid);
+		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closestPoint);
+		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 }
