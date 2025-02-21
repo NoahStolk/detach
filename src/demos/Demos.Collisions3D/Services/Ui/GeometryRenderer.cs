@@ -88,21 +88,26 @@ internal sealed class GeometryRenderer
 			case SphereCast sphereCast:
 				_gl.BindVertexArray(_centeredLineVao);
 
-				Vector3 offsetX = new(sphereCast.Radius, 0, 0);
-				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetX, sphereCast.End + offsetX));
-				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetX, sphereCast.End - offsetX));
+				Quaternion rotation = QuaternionUtils.CreateFromRotationBetween(Vector3.UnitZ, Vector3.Normalize(sphereCast.End - sphereCast.Start));
+				Matrix4x4 orientationMatrix = Matrix4x4.CreateFromAxisAngle(Vector3.UnitX, MathF.PI * 0.5f) * Matrix4x4.CreateFromQuaternion(rotation);
 
-				Vector3 offsetY = new(0, sphereCast.Radius, 0);
-				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetY, sphereCast.End + offsetY));
-				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetY, sphereCast.End - offsetY));
-
-				Vector3 offsetZ = new(0, 0, sphereCast.Radius);
-				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start + offsetZ, sphereCast.End + offsetZ));
-				RenderLine(lineProgram, new LineSegment3D(sphereCast.Start - offsetZ, sphereCast.End - offsetZ));
+				const int lineSegments = 8;
+				for (int i = 0; i < lineSegments; i++)
+				{
+					float angle = MathUtils.ToRadians(i / (float)lineSegments * 360);
+					Vector3 offset = Vector3.Transform(new Vector3(MathF.Sin(angle), 0, MathF.Cos(angle)) * sphereCast.Radius, orientationMatrix);
+					Vector3 start = sphereCast.Start + offset;
+					Vector3 end = sphereCast.End + offset;
+					RenderLine(lineProgram, new LineSegment3D(start, end));
+				}
 
 				_gl.BindVertexArray(_sphereVao);
-				RenderSphere(lineProgram, new Sphere(sphereCast.Start, sphereCast.Radius));
-				RenderSphere(lineProgram, new Sphere(sphereCast.End, sphereCast.Radius));
+
+				_gl.UniformMatrix4x4(lineProgram.GetUniformLocation("model"), Matrix4x4.CreateScale(sphereCast.Radius) * orientationMatrix * Matrix4x4.CreateTranslation(sphereCast.Start));
+				_gl.DrawArrays(PrimitiveType.Lines, 0, (uint)_sphereVertices.Length);
+
+				_gl.UniformMatrix4x4(lineProgram.GetUniformLocation("model"), Matrix4x4.CreateScale(sphereCast.Radius) * orientationMatrix * Matrix4x4.CreateTranslation(sphereCast.End));
+				_gl.DrawArrays(PrimitiveType.Lines, 0, (uint)_sphereVertices.Length);
 				break;
 			case Triangle3D triangle3D:
 				_gl.BindVertexArray(_centeredLineVao);
