@@ -31,7 +31,8 @@ internal sealed class AlgorithmSelectWindow
 		for (int i = 0; i < methods.Length; i++)
 			_algorithms[i] = CreateDelegate(methods[i]);
 
-		_algorithmsComboString = string.Join("\0", methods.Select(m => m.Name));
+		_algorithmsComboString = string.Join("\0", methods.Select(m => $"{m.Name} ({string.Join(", ", m.GetParameters().Select(p => $"{p.ParameterType.Name}"))})"));
+		_algorithmsComboString += "\0";
 
 		static Delegate CreateDelegate(MethodInfo method)
 		{
@@ -48,6 +49,7 @@ internal sealed class AlgorithmSelectWindow
 
 	public void Render()
 	{
+		ImGui.SetNextWindowSizeConstraints(new Vector2(960, 320), new Vector2(4096));
 		if (ImGui.Begin("Algorithm Selector"))
 			RenderAlgorithmSelector();
 
