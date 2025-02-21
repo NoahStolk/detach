@@ -1,4 +1,5 @@
 ﻿using Detach.Collisions.Primitives3D;
+using Detach.Numerics;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -99,5 +100,44 @@ public static partial class Geometry3D
 			Vector2.DistanceSquared(pointXz, positionXz) <= cylinder.Radius * cylinder.Radius &&
 			point.Y >= cylinder.BottomCenter.Y &&
 			point.Y <= cylinder.BottomCenter.Y + cylinder.Height;
+	}
+
+	public static bool PointInPyramid(Vector3 point, Pyramid pyramid)
+	{
+		Vector3 halfSize = pyramid.Size / 2;
+		Vector3 baseCenter = pyramid.Center - new Vector3(0, halfSize.Y, 0);
+
+		// Check if the point is within the bounds of the pyramid's base.
+		if (point.X < baseCenter.X - halfSize.X || point.X > baseCenter.X + halfSize.X ||
+		    point.Z < baseCenter.Z - halfSize.Z || point.Z > baseCenter.Z + halfSize.Z)
+		{
+			return false;
+		}
+
+		// Check if the point is below the pyramid's apex and above the base.
+		float height = pyramid.Size.Y;
+		float apexY = baseCenter.Y + height;
+		if (point.Y < baseCenter.Y || point.Y > apexY)
+		{
+			return false;
+		}
+
+		// Check if the point is within the pyramid's sloping sides.
+		float dx = Math.Abs(point.X - baseCenter.X) / halfSize.X;
+		float dz = Math.Abs(point.Z - baseCenter.Z) / halfSize.Z;
+		float maxY = apexY - height * Math.Max(dx, dz);
+
+		return point.Y <= maxY;
+	}
+
+	public static bool PointInOrientedPyramid(Vector3 point, OrientedPyramid orientedPyramid)
+	{
+		// Transform the point to the local space of the oriented pyramid
+		Matrix3 inverseTransform = Matrix3.Inverse(orientedPyramid.Orientation);
+		Vector3 localPoint = Vector3.Transform(point, inverseTransform.ToMatrix4x4());
+
+		// Check if the local point is inside the standard pyramid
+		Pyramid pyramid = new(orientedPyramid.Center, orientedPyramid.Size);
+		return PointInPyramid(localPoint, pyramid);
 	}
 }

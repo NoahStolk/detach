@@ -8,13 +8,15 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Added new collision algorithms:
   - Added `Pyramid` 3D primitive along with the following methods:
+    - `Geometry3D.PointInPyramid`
+    - `Geometry3D.ClosestPointInPyramid`
     - `Geometry3D.SpherePyramid`
     - `Geometry3D.SphereCastPyramid`
-    - `Geometry3D.ClosestPointInPyramid`
   - Added `OrientedPyramid` 3D primitive along with the following methods:
+    - `Geometry3D.PointInOrientedPyramid`
+    - `Geometry3D.ClosestPointInOrientedPyramid`
     - `Geoemtry3D.SphereOrientedPyramid`
     - `Geometry3D.SphereCastOrientedPyramid`
-    - `Geometry3D.ClosestPointInOrientedPyramid`
   - Added `CircleCast` 2D primitive along with the following methods:
     - `Geometry2D.CircleCastPoint`
     - `Geometry2D.CircleCastLine`

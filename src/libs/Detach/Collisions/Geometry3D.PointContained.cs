@@ -92,15 +92,21 @@ public static partial class Geometry3D
 
 	public static Vector3 ClosestPointInPyramid(Vector3 point, Pyramid pyramid)
 	{
-		return ClosestPointInPyramidFaces(point, pyramid.Faces);
+		if (PointInPyramid(point, pyramid))
+			return point;
+
+		return ClosestPointOnPyramidFaces(point, pyramid.Faces);
 	}
 
 	public static Vector3 ClosestPointInOrientedPyramid(Vector3 point, OrientedPyramid pyramid)
 	{
-		return ClosestPointInPyramidFaces(point, pyramid.Faces);
+		if (PointInOrientedPyramid(point, pyramid))
+			return point;
+
+		return ClosestPointOnPyramidFaces(point, pyramid.Faces);
 	}
 
-	private static Vector3 ClosestPointInPyramidFaces(Vector3 point, Buffer6<Triangle3D> pyramidFaces)
+	private static Vector3 ClosestPointOnPyramidFaces(Vector3 point, Buffer6<Triangle3D> pyramidFaces)
 	{
 		Buffer6<Vector3> closestPoints = default;
 		for (int i = 0; i < 6; i++)

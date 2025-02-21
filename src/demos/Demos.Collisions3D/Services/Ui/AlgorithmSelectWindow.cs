@@ -86,6 +86,7 @@ internal sealed class AlgorithmSelectWindow
 		}
 
 		const float maxDistance = 5;
+		const float maxSize = 3;
 
 		// TODO: Add 2D geometry types.
 		if (type == typeof(float))
@@ -104,24 +105,24 @@ internal sealed class AlgorithmSelectWindow
 		{
 			Aabb cast = (Aabb)value;
 			ImGui.SliderFloat3($"{parameterName}.Center##{index}", ref cast.Center.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat3($"{parameterName}.Size##{index}", ref cast.Size.X, 0, 10);
+			ImGui.SliderFloat3($"{parameterName}.Size##{index}", ref cast.Size.X, 0, maxSize);
 			value = cast;
 		}
 		else if (type == typeof(ConeFrustum))
 		{
 			ConeFrustum cast = (ConeFrustum)value;
 			ImGui.SliderFloat3($"{parameterName}BottomCenter##{index}", ref cast.BottomCenter.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat($"{parameterName}BottomRadius##{index}", ref cast.BottomRadius, 0, 10);
-			ImGui.SliderFloat($"{parameterName}TopRadius##{index}", ref cast.TopRadius, 0, 10);
-			ImGui.SliderFloat($"{parameterName}Height##{index}", ref cast.Height, 0, 10);
+			ImGui.SliderFloat($"{parameterName}BottomRadius##{index}", ref cast.BottomRadius, 0, maxSize);
+			ImGui.SliderFloat($"{parameterName}TopRadius##{index}", ref cast.TopRadius, 0, maxSize);
+			ImGui.SliderFloat($"{parameterName}Height##{index}", ref cast.Height, 0, maxSize);
 			value = cast;
 		}
 		else if (type == typeof(Cylinder))
 		{
 			Cylinder cast = (Cylinder)value;
 			ImGui.SliderFloat3(Inline.Utf8($"BottomCenter##{index}"), ref cast.BottomCenter.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, 10);
-			ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref cast.Height, 0, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, maxSize);
+			ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref cast.Height, 0, maxSize);
 			value = cast;
 		}
 		else if (type == typeof(LineSegment3D))
@@ -135,7 +136,7 @@ internal sealed class AlgorithmSelectWindow
 		{
 			Obb cast = (Obb)value;
 			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat3(Inline.Utf8($"HalfExtents##{index}"), ref cast.HalfExtents.X, 0, 10);
+			ImGui.SliderFloat3(Inline.Utf8($"HalfExtents##{index}"), ref cast.HalfExtents.X, 0, maxSize);
 			SlidersOrientation(index, ref cast.Orientation);
 			value = cast;
 		}
@@ -143,7 +144,7 @@ internal sealed class AlgorithmSelectWindow
 		{
 			OrientedPyramid cast = (OrientedPyramid)value;
 			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref cast.Size.X, -1, 1);
+			ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref cast.Size.X, 0, maxSize);
 			SlidersOrientation(index, ref cast.Orientation);
 			value = cast;
 		}
@@ -151,7 +152,7 @@ internal sealed class AlgorithmSelectWindow
 		{
 			Pyramid cast = (Pyramid)value;
 			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref cast.Size.X, -1, 1);
+			ImGui.SliderFloat3(Inline.Utf8($"Size##{index}"), ref cast.Size.X, 0, maxSize);
 			value = cast;
 		}
 		else if (type == typeof(Ray))
@@ -167,7 +168,7 @@ internal sealed class AlgorithmSelectWindow
 		{
 			Sphere cast = (Sphere)value;
 			ImGui.SliderFloat3(Inline.Utf8($"Center##{index}"), ref cast.Center.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, maxSize);
 			value = cast;
 		}
 		else if (type == typeof(SphereCast))
@@ -175,7 +176,7 @@ internal sealed class AlgorithmSelectWindow
 			SphereCast cast = (SphereCast)value;
 			ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref cast.Start.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref cast.End.X, -maxDistance, maxDistance);
-			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, 10);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, maxSize);
 			value = cast;
 		}
 		else if (type == typeof(Triangle3D))
