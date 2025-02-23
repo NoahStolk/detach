@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.25.1
+
+### Added
+
+- Added `VectorUtils.ClampMagnitudeMin` methods for `Vector2` and `Vector3`.
+- Added `MathUtils.LerpClamped` method.
+
 ## 0.25.0
 
 ### Added

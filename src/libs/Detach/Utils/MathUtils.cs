@@ -45,6 +45,12 @@ public static class MathUtils
 	}
 
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static float LerpClamped(float value1, float value2, float amount)
+	{
+		return Lerp(value1, value2, Math.Clamp(amount, 0, 1));
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsFloatReal(float value)
 	{
 		return !float.IsNaN(value) && !float.IsInfinity(value);

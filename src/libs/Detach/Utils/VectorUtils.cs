@@ -86,6 +86,31 @@ public static class VectorUtils
 		return new Vector3(normalizedX * maxLength, normalizedY * maxLength, normalizedZ * maxLength);
 	}
 
+	public static Vector2 ClampMagnitudeMin(Vector2 vector, float minLength)
+	{
+		float sqrMagnitude = vector.X * vector.X + vector.Y * vector.Y;
+		if (sqrMagnitude >= minLength * minLength)
+			return vector;
+
+		float magnitude = MathF.Sqrt(sqrMagnitude);
+		float normalizedX = vector.X / magnitude;
+		float normalizedY = vector.Y / magnitude;
+		return new Vector2(normalizedX * minLength, normalizedY * minLength);
+	}
+
+	public static Vector3 ClampMagnitudeMin(Vector3 vector, float minLength)
+	{
+		float sqrMagnitude = vector.X * vector.X + vector.Y * vector.Y + vector.Z * vector.Z;
+		if (sqrMagnitude >= minLength * minLength)
+			return vector;
+
+		float magnitude = MathF.Sqrt(sqrMagnitude);
+		float normalizedX = vector.X / magnitude;
+		float normalizedY = vector.Y / magnitude;
+		float normalizedZ = vector.Z / magnitude;
+		return new Vector3(normalizedX * minLength, normalizedY * minLength, normalizedZ * minLength);
+	}
+
 	/// <summary>
 	/// Transforms the vector by the specified 3x3 matrix.
 	/// </summary>
