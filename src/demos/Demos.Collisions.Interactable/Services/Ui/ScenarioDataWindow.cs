@@ -20,10 +20,7 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 
 	private void RenderAlgorithmSelector()
 	{
-		string comboString = string.Join("\0", collisionScenarioState.CollisionAlgorithms.Select(ca => ca.FullMethodName));
-		comboString += "\0";
-
-		ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, comboString, 50);
+		ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50);
 
 		RenderAlgorithm();
 	}

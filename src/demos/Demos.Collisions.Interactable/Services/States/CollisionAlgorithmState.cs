@@ -10,11 +10,11 @@ namespace Demos.Collisions.Interactable.Services.States;
 internal sealed class CollisionAlgorithmState
 {
 	public Delegate? SelectedAlgorithm { get; private set; }
-	public List<object?> Arguments { get; } = [];
+	public List<object> Arguments { get; } = [];
 	public object? ReturnValue { get; private set; }
 
 	[MemberNotNullWhen(true, nameof(SelectedAlgorithm))]
-	public bool StateIsValid => SelectedAlgorithm != null && !Arguments.Contains(null) && !Arguments.Contains(DBNull.Value);
+	public bool StateIsValid => SelectedAlgorithm != null && !Arguments.Contains(DBNull.Value);
 
 	public void SelectAlgorithm(Delegate algorithm)
 	{
@@ -53,7 +53,7 @@ internal sealed class CollisionAlgorithmState
 		return result;
 	}
 
-	private static object? GetDefault(Type type)
+	private static object GetDefault(Type type)
 	{
 		return type switch
 		{
@@ -78,7 +78,7 @@ internal sealed class CollisionAlgorithmState
 			_ when type == typeof(Triangle3D) => new Triangle3D(Vector3.Zero, Vector3.One, Vector3.UnitX),
 			_ when type == typeof(ViewFrustum) => new ViewFrustum(Matrix4x4.Identity),
 
-			_ => Activator.CreateInstance(type),
+			_ => Activator.CreateInstance(type) ?? throw new InvalidOperationException($"Could not create default instance of type {type}."),
 		};
 	}
 }

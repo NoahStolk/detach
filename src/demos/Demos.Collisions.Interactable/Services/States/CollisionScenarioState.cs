@@ -10,11 +10,18 @@ internal sealed class CollisionScenarioState
 	{
 		CollectAlgorithms(typeof(Geometry2D));
 		CollectAlgorithms(typeof(Geometry3D));
+
+		ComboString = string.Join("\0", CollisionAlgorithms.Select(ca => ca.FullMethodName));
+		ComboString += "\0";
 	}
+
+	public List<CollisionAlgorithm> CollisionAlgorithms { get; } = [];
+	public string ComboString { get; }
 
 	private void CollectAlgorithms(Type type)
 	{
-		foreach (MethodInfo method in type.GetMethods())
+		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
+		foreach (MethodInfo method in type.GetMethods(bindingFlags))
 		{
 			List<CollisionAlgorithmParameter> parameters = [];
 			List<CollisionAlgorithmParameter> outParameters = [];
@@ -42,5 +49,9 @@ internal sealed class CollisionScenarioState
 		}
 	}
 
-	public List<CollisionAlgorithm> CollisionAlgorithms { get; } = [];
+	public void AddScenario(string algorithmName, CollisionAlgorithmScenario scenario)
+	{
+		CollisionAlgorithm? algorithm = CollisionAlgorithms.Find(ca => ca.FullMethodName == algorithmName);
+		algorithm?.Scenarios.Add(scenario);
+	}
 }
