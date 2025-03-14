@@ -1,4 +1,4 @@
-﻿using CollisionFormats.Serialization;
+﻿using CollisionFormats.Model;
 using Detach.Collisions;
 using System.Reflection;
 

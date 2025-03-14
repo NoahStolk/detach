@@ -1,4 +1,4 @@
-﻿namespace CollisionFormats.Serialization;
+﻿namespace CollisionFormats.Model;
 
 public sealed record CollisionAlgorithm(
 	string FullMethodName,

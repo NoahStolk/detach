@@ -1,4 +1,4 @@
-﻿namespace CollisionFormats.Serialization;
+﻿namespace CollisionFormats.Model;
 
 public sealed record CollisionAlgorithmScenario(
 	List<object> Arguments,

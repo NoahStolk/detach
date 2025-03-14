@@ -1,4 +1,4 @@
-﻿using CollisionFormats.Serialization;
+﻿using CollisionFormats.Model;
 using Demos.Collisions.Interactable.Services.States;
 using Detach;
 using Detach.Collisions;
