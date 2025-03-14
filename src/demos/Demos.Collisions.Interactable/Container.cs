@@ -14,11 +14,16 @@ namespace Demos.Collisions.Interactable;
 
 [Register<GlfwInput>(Scope.SingleInstance)]
 [Register<App>(Scope.SingleInstance)]
-[Register<AlgorithmSelectWindow>(Scope.SingleInstance)]
 [Register<SceneRenderer>(Scope.SingleInstance)]
 [Register<GeometryRenderer>(Scope.SingleInstance)]
 [Register<Camera>(Scope.SingleInstance)]
+
+[Register<AlgorithmSelectWindow>(Scope.SingleInstance)]
+[Register<ScenarioDataWindow>(Scope.SingleInstance)]
+
 [Register<CollisionAlgorithmState>(Scope.SingleInstance)]
+[Register<CollisionScenarioState>(Scope.SingleInstance)]
+
 [Register<LazyProgramContainer>(Scope.SingleInstance)]
 #pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.
 internal sealed partial class Container : IContainer<App>

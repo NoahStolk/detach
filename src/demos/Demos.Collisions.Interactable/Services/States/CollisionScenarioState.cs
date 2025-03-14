@@ -1,15 +1,46 @@
 ﻿using CollisionFormats.Serialization;
-using Detach.Collisions.Primitives2D;
+using Detach.Collisions;
+using System.Reflection;
 
 namespace Demos.Collisions.Interactable.Services.States;
 
 internal sealed class CollisionScenarioState
 {
-	public CollisionScenario<Circle, Circle> CircleCircle { get; } = new("CircleCircle", [], []);
-	public CollisionScenario<Circle, Rectangle> CircleRectangle { get; } = new("CircleRectangle", [], []);
-	public CollisionScenario<Circle, OrientedRectangle> CircleOrientedRectangle { get; } = new("CircleOrientedRectangle", [], []);
-	public CollisionScenario<Circle, Triangle2D> CircleTriangle { get; } = new("CircleTriangle", [], []);
+	public CollisionScenarioState()
+	{
+		CollectAlgorithms(typeof(Geometry2D));
+		CollectAlgorithms(typeof(Geometry3D));
+	}
 
-	public CollisionScenario<Rectangle, Rectangle> RectangleRectangle { get; } = new("RectangleRectangle", [], []);
-	public CollisionScenario<Rectangle, OrientedRectangle> RectangleOrientedRectangle { get; } = new("RectangleOrientedRectangle", [], []);
+	private void CollectAlgorithms(Type type)
+	{
+		foreach (MethodInfo method in type.GetMethods())
+		{
+			List<CollisionAlgorithmParameter> parameters = [];
+			List<CollisionAlgorithmParameter> outParameters = [];
+
+			ParameterInfo[] parameterInfos = method.GetParameters();
+			foreach (ParameterInfo parameterInfo in parameterInfos)
+			{
+				if (parameterInfo.Name == null)
+					continue;
+
+				CollisionAlgorithmParameter parameter = new(parameterInfo.ParameterType.FullName ?? parameterInfo.ParameterType.Name, parameterInfo.Name);
+				if (parameterInfo.IsOut)
+					outParameters.Add(parameter);
+				else
+					parameters.Add(parameter);
+			}
+
+			CollisionAlgorithm collisionAlgorithm = new(
+				$"{type.FullName}.{method.Name}",
+				parameters,
+				outParameters,
+				method.ReturnType.FullName ?? method.ReturnType.Name,
+				[]);
+			CollisionAlgorithms.Add(collisionAlgorithm);
+		}
+	}
+
+	public List<CollisionAlgorithm> CollisionAlgorithms { get; } = [];
 }
