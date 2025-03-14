@@ -1,4 +1,5 @@
-﻿using CollisionFormats.Serialization;
+﻿using CollisionFormats;
+using CollisionFormats.Model;
 using Demos.Collisions.Interactable.Services.States;
 using Hexa.NET.ImGui;
 using System.Numerics;
