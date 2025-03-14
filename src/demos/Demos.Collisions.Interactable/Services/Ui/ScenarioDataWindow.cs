@@ -13,16 +13,22 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 	{
 		ImGui.SetNextWindowSizeConstraints(new Vector2(960, 320), new Vector2(4096));
 		if (ImGui.Begin("Scenarios"))
-			RenderAlgorithmSelector();
+		{
+			ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50);
+
+			RenderAlgorithm();
+
+			if (ImGui.Button("Save"))
+			{
+				CollisionAlgorithm algorithm = collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex];
+				string json = CollisionAlgorithmSerializer.SerializeJson(algorithm);
+
+				string path = $@"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests\Resources\{algorithm.FullMethodName}.json";
+				File.WriteAllText(path, json);
+			}
+		}
 
 		ImGui.End();
-	}
-
-	private void RenderAlgorithmSelector()
-	{
-		ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50);
-
-		RenderAlgorithm();
 	}
 
 	private void RenderAlgorithm()

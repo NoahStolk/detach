@@ -3,12 +3,30 @@ using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.Extensions;
 using System.Numerics;
+using System.Text.Json;
 
 namespace CollisionFormats.Serialization;
 
 public static class CollisionAlgorithmSerializer
 {
+	private static readonly JsonSerializerOptions _jsonOptions = new()
+	{
+		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+		WriteIndented = true,
+		IncludeFields = true,
+	};
+
 	private static ReadOnlySpan<byte> Identifier => "CAID"u8; // Collision Algorithm Input Data
+
+	public static string SerializeJson(CollisionAlgorithm collisionAlgorithm)
+	{
+		return JsonSerializer.Serialize(collisionAlgorithm, _jsonOptions);
+	}
+
+	public static CollisionAlgorithm DeserializeJson(string json)
+	{
+		return JsonSerializer.Deserialize<CollisionAlgorithm>(json, _jsonOptions) ?? throw new FormatException("Invalid JSON format.");
+	}
 
 	public static byte[] Serialize(CollisionAlgorithm collisionAlgorithm)
 	{
