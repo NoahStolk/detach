@@ -1,0 +1,117 @@
+{
+  "fullMethodName": "Detach.Collisions.Geometry2D.CircleCircle",
+  "parameters": [
+    {
+      "typeName": "Detach.Collisions.Primitives2D.Circle",
+      "name": "circle1"
+    },
+    {
+      "typeName": "Detach.Collisions.Primitives2D.Circle",
+      "name": "circle2"
+    }
+  ],
+  "outParameters": [],
+  "returnTypeName": "System.Boolean",
+  "scenarios": [
+    {
+      "arguments": [
+        {
+          "center": {
+            "x": -1.02,
+            "y": -1.224
+          },
+          "radius": 1
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": -1.667
+          },
+          "radius": 0.487
+        }
+      ],
+      "outArguments": [],
+      "returnValue": true
+    },
+    {
+      "arguments": [
+        {
+          "center": {
+            "x": -1.02,
+            "y": -1.224
+          },
+          "radius": 1
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": -1.667
+          },
+          "radius": 0.487
+        }
+      ],
+      "outArguments": [],
+      "returnValue": true
+    },
+    {
+      "arguments": [
+        {
+          "center": {
+            "x": -1.02,
+            "y": -1.224
+          },
+          "radius": 1
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": -1.667
+          },
+          "radius": 0.487
+        }
+      ],
+      "outArguments": [],
+      "returnValue": true
+    },
+    {
+      "arguments": [
+        {
+          "center": {
+            "x": -1.02,
+            "y": -1.224
+          },
+          "radius": 1
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": -1.667
+          },
+          "radius": 0.487
+        }
+      ],
+      "outArguments": [],
+      "returnValue": false
+    },
+    {
+      "arguments": [
+        {
+          "center": {
+            "x": -1.02,
+            "y": -1.224
+          },
+          "radius": 1
+        },
+        {
+          "center": {
+            "x": 0,
+            "y": -1.667
+          },
+          "radius": 0.487
+        }
+      ],
+      "outArguments": [],
+      "returnValue": true
+    }
+  ]
+}
