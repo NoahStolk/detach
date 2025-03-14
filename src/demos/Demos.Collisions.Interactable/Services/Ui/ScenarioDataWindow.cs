@@ -1,5 +1,4 @@
-﻿using CollisionFormats;
-using CollisionFormats.Model;
+﻿using CollisionFormats.Model;
 using Demos.Collisions.Interactable.Services.States;
 using Hexa.NET.ImGui;
 using System.Numerics;
@@ -18,15 +17,6 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 			ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50);
 
 			RenderAlgorithm();
-
-			if (ImGui.Button("Save"))
-			{
-				CollisionAlgorithm algorithm = collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex];
-				string json = CollisionAlgorithmSerializer.SerializeJson(algorithm);
-
-				string path = $@"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests\Resources\{algorithm.FullMethodName}.json";
-				File.WriteAllText(path, json);
-			}
 		}
 
 		ImGui.End();

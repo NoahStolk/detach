@@ -4,8 +4,10 @@ using Detach;
 using Detach.Collisions;
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
+using Detach.GlfwExtensions;
 using Detach.Numerics;
 using Hexa.NET.ImGui;
+using Silk.NET.GLFW;
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Reflection;
@@ -19,13 +21,15 @@ internal sealed class AlgorithmSelectWindow
 
 	private readonly CollisionAlgorithmState _collisionAlgorithmState;
 	private readonly CollisionScenarioState _collisionScenarioState;
+	private readonly GlfwInput _glfwInput;
 
 	private int _selectedAlgorithmIndex;
 
-	public AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState)
+	public AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState, GlfwInput glfwInput)
 	{
 		_collisionAlgorithmState = collisionAlgorithmState;
 		_collisionScenarioState = collisionScenarioState;
+		_glfwInput = glfwInput;
 
 		// TODO: Rewrite to use something else that supports out parameters.
 		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
@@ -77,7 +81,7 @@ internal sealed class AlgorithmSelectWindow
 		else
 			ImGui.TextColored(Rgba.Red, "Unsupported type");
 
-		if (ImGui.Button("Add scenario"))
+		if (ImGui.Button("Add scenario") || _glfwInput.IsKeyPressed(Keys.Q))
 		{
 			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
 				_collisionAlgorithmState.Arguments,
