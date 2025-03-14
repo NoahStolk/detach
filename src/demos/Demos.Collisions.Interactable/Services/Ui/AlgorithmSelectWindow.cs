@@ -32,7 +32,7 @@ internal sealed class AlgorithmSelectWindow
 		for (int i = 0; i < methods.Length; i++)
 			_algorithms[i] = CreateDelegate(methods[i]);
 
-		_algorithmsComboString = string.Join("\0", methods.Select(m => $"{m.Name} ({string.Join(", ", m.GetParameters().Select(p => $"{p.ParameterType.Name}"))})"));
+		_algorithmsComboString = string.Join("\0", methods.Select(m => $"{m.Name} ({string.Join(", ", m.GetParameters().Select(p => p.ParameterType.Name))})"));
 		_algorithmsComboString += "\0";
 
 		static Delegate CreateDelegate(MethodInfo method)
