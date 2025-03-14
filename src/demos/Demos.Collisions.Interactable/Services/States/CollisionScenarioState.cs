@@ -1,4 +1,5 @@
-﻿using CollisionFormats.Model;
+﻿using CollisionFormats;
+using CollisionFormats.Model;
 using Detach.Collisions;
 using System.Reflection;
 
@@ -52,6 +53,13 @@ internal sealed class CollisionScenarioState
 	public void AddScenario(string algorithmName, CollisionAlgorithmScenario scenario)
 	{
 		CollisionAlgorithm? algorithm = CollisionAlgorithms.Find(ca => ca.FullMethodName == algorithmName);
-		algorithm?.Scenarios.Add(scenario);
+		if (algorithm == null)
+			return;
+
+		algorithm.Scenarios.Add(scenario);
+
+		string json = CollisionAlgorithmSerializer.SerializeJson(algorithm);
+		string path = $@"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests\Resources\{algorithm.FullMethodName}.json";
+		File.WriteAllText(path, json);
 	}
 }
