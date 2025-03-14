@@ -7,6 +7,8 @@ namespace Demos.Collisions.Interactable.Services.States;
 
 internal sealed class CollisionScenarioState
 {
+	private const string _baseDirectory = @"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests\Resources";
+
 	public CollisionScenarioState()
 	{
 		CollectAlgorithms(typeof(Geometry2D));
@@ -40,12 +42,22 @@ internal sealed class CollisionScenarioState
 					parameters.Add(parameter);
 			}
 
+			string fullMethodName = $"{type.FullName}.{method.Name}";
+			List<CollisionAlgorithmScenario> scenarios = [];
+			string scenariosFilePath = Path.Combine(_baseDirectory, $"{fullMethodName}.json");
+			if (File.Exists(scenariosFilePath))
+			{
+				string json = File.ReadAllText(scenariosFilePath);
+				CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeJson(json);
+				scenarios = algorithm.Scenarios;
+			}
+
 			CollisionAlgorithm collisionAlgorithm = new(
-				$"{type.FullName}.{method.Name}",
+				fullMethodName,
 				parameters,
 				outParameters,
 				method.ReturnType.FullName ?? method.ReturnType.Name,
-				[]);
+				scenarios);
 			CollisionAlgorithms.Add(collisionAlgorithm);
 		}
 	}
@@ -59,7 +71,7 @@ internal sealed class CollisionScenarioState
 		algorithm.Scenarios.Add(scenario);
 
 		string json = CollisionAlgorithmSerializer.SerializeJson(algorithm);
-		string path = $@"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests\Resources\{algorithm.FullMethodName}.json";
+		string path = Path.Combine(_baseDirectory, $"{algorithm.FullMethodName}.json");
 		File.WriteAllText(path, json);
 	}
 }
