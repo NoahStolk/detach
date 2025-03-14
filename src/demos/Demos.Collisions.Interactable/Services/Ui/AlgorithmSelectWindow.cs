@@ -1,4 +1,5 @@
-﻿using Demos.Collisions.Interactable.Services.States;
+﻿using CollisionFormats.Serialization;
+using Demos.Collisions.Interactable.Services.States;
 using Detach;
 using Detach.Collisions;
 using Detach.Collisions.Primitives2D;
@@ -15,25 +16,23 @@ namespace Demos.Collisions.Interactable.Services.Ui;
 internal sealed class AlgorithmSelectWindow
 {
 	private readonly Delegate[] _algorithms;
-	private readonly string _algorithmsComboString;
 
 	private readonly CollisionAlgorithmState _collisionAlgorithmState;
+	private readonly CollisionScenarioState _collisionScenarioState;
 
 	private int _selectedAlgorithmIndex;
 
-	public AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState)
+	public AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState)
 	{
 		_collisionAlgorithmState = collisionAlgorithmState;
+		_collisionScenarioState = collisionScenarioState;
 
-		// TODO: Remove methods containing ref structs or ref/out parameters.
+		// TODO: Rewrite to use something else that supports out parameters.
 		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
 		MethodInfo[] methods = typeof(Geometry2D).GetMethods(bindingFlags).Concat(typeof(Geometry3D).GetMethods(bindingFlags)).ToArray();
 		_algorithms = new Delegate[methods.Length];
 		for (int i = 0; i < methods.Length; i++)
 			_algorithms[i] = CreateDelegate(methods[i]);
-
-		_algorithmsComboString = string.Join("\0", methods.Select(m => $"{m.Name} ({string.Join(", ", m.GetParameters().Select(p => p.ParameterType.Name))})"));
-		_algorithmsComboString += "\0";
 
 		static Delegate CreateDelegate(MethodInfo method)
 		{
@@ -59,7 +58,7 @@ internal sealed class AlgorithmSelectWindow
 
 	private void RenderAlgorithmSelector()
 	{
-		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, _algorithmsComboString, 50))
+		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, _collisionScenarioState.ComboString, 50))
 			_collisionAlgorithmState.SelectAlgorithm(_algorithms[_selectedAlgorithmIndex]);
 
 		if (_collisionAlgorithmState.SelectedAlgorithm == null)
@@ -77,13 +76,22 @@ internal sealed class AlgorithmSelectWindow
 			ImGui.Text(_collisionAlgorithmState.ReturnValue?.ToString());
 		else
 			ImGui.TextColored(Rgba.Red, "Unsupported type");
+
+		if (ImGui.Button("Add scenario"))
+		{
+			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
+				_collisionAlgorithmState.Arguments,
+				[], // TODO
+				_collisionAlgorithmState.ReturnValue);
+			_collisionScenarioState.AddScenario(_collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].FullMethodName, collisionAlgorithmScenario);
+		}
 	}
 
-	private static void RenderParameter(string? parameterName, int index, Type type, ref object? value)
+	private static void RenderParameter(string? parameterName, int index, Type type, ref object value)
 	{
 		ImGui.SeparatorText(parameterName);
 
-		if (value == null || value == DBNull.Value)
+		if (value == DBNull.Value)
 		{
 			ImGui.TextColored(Rgba.Red, "Parameter value is null.");
 			return;
