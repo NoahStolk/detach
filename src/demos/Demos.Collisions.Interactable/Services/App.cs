@@ -1,4 +1,5 @@
-﻿using Demos.Collisions.Interactable.Services.Ui;
+﻿using Demos.Collisions.Interactable.Services.States;
+using Demos.Collisions.Interactable.Services.Ui;
 using Demos.Collisions.Interactable.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
@@ -23,6 +24,7 @@ internal sealed class App
 	private readonly GlfwInput _glfwInput;
 	private readonly ImGuiController _imGuiController;
 	private readonly AlgorithmSelectWindow _algorithmSelectWindow;
+	private readonly ScenarioDataWindow _scenarioDataWindow;
 	private readonly SceneRenderer _sceneRenderer;
 	private readonly Camera _camera;
 	private readonly CollisionAlgorithmState _collisionAlgorithmState;
@@ -38,6 +40,7 @@ internal sealed class App
 		GlfwInput glfwInput,
 		ImGuiController imGuiController,
 		AlgorithmSelectWindow algorithmSelectWindow,
+		ScenarioDataWindow scenarioDataWindow,
 		SceneRenderer sceneRenderer,
 		Camera camera,
 		CollisionAlgorithmState collisionAlgorithmState)
@@ -47,6 +50,7 @@ internal sealed class App
 		_glfwInput = glfwInput;
 		_imGuiController = imGuiController;
 		_algorithmSelectWindow = algorithmSelectWindow;
+		_scenarioDataWindow = scenarioDataWindow;
 		_sceneRenderer = sceneRenderer;
 		_camera = camera;
 		_collisionAlgorithmState = collisionAlgorithmState;
@@ -111,6 +115,8 @@ internal sealed class App
 		_sceneRenderer.Render();
 
 		_algorithmSelectWindow.Render();
+		_scenarioDataWindow.Render();
+
 		_imGuiController.Render();
 
 		_glfwInput.EndFrame();
