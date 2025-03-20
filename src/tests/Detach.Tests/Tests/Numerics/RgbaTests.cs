@@ -26,5 +26,8 @@ public class RgbaTests
 
 		Assert.AreEqual(expectedRgba, Rgba.FromArgbInt(expectedRgba.ToArgbInt()));
 		Assert.AreEqual(expectedRgb, Rgba.FromArgbInt(expectedRgb.ToArgbInt()));
+
+		Assert.AreEqual(expectedRgba, Rgba.FromAbgrInt(expectedRgba.ToAbgrInt()));
+		Assert.AreEqual(expectedRgb, Rgba.FromAbgrInt(expectedRgb.ToAbgrInt()));
 	}
 }

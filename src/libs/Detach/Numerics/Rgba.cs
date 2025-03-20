@@ -140,6 +140,11 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 		return (A << 24) + (R << 16) + (G << 8) + B;
 	}
 
+	public int ToAbgrInt()
+	{
+		return (A << 24) + (B << 16) + (G << 8) + R;
+	}
+
 	public static Rgba FromRgbaInt(int rgba)
 	{
 		return new Rgba((byte)(rgba >> 24), (byte)(rgba >> 16), (byte)(rgba >> 8), (byte)rgba);
@@ -148,6 +153,11 @@ public readonly record struct Rgba(byte R, byte G, byte B, byte A = byte.MaxValu
 	public static Rgba FromArgbInt(int argb)
 	{
 		return new Rgba((byte)(argb >> 16), (byte)(argb >> 8), (byte)argb, (byte)(argb >> 24));
+	}
+
+	public static Rgba FromAbgrInt(int abgr)
+	{
+		return new Rgba((byte)abgr, (byte)(abgr >> 8), (byte)(abgr >> 16), (byte)(abgr >> 24));
 	}
 
 	public bool TryFormat(Span<byte> utf8Destination, out int bytesWritten, ReadOnlySpan<char> format, IFormatProvider? provider)

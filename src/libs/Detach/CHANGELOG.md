@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.25.2
+
+### Added
+
+- Added `MathUtils.Bezier` method.
+- Added `Rgba.ToAbgrInt` and `Rgba.FromAbgrInt` methods.
+
 ## 0.25.1
 
 ### Added

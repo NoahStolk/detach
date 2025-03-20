@@ -70,4 +70,9 @@ public static class MathUtils
 	{
 		return value > -tolerance && value < tolerance;
 	}
+
+	public static float Bezier(float t)
+	{
+		return t * t * (3.0f - 2.0f * t);
+	}
 }
