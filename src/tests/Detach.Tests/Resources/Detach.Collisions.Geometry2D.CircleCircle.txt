@@ -1,0 +1,13 @@
+Detach.Collisions.Geometry2D.CircleCircle;Detach.Collisions.Primitives2D.Circle circle1,Detach.Collisions.Primitives2D.Circle circle2;;System.Boolean;12
+0 0 1,0 0 1;;True
+0 0 0.62,0 0 1;;True
+0 0 0.62,-1.327 0 1;;True
+0 0 0.62,-1.327 -0.714 1;;True
+0 0 0.62,-1.327 -0.714 0.808;;False
+0 0 0.798,-1.327 -0.714 0.808;;True
+-1.293 0 0.798,-1.327 -0.714 0.808;;True
+-1.293 -2.313 0.798,-1.327 -0.714 0.808;;True
+-1.293 -2.483 0.798,-1.327 -0.714 0.808;;False
+-1.293 -2.483 0.798,-1.327 0.068 2.077;;True
+-1.293 -2.483 0.798,-1.327 0.748 2.077;;False
+-1.293 -2.483 0.798,1.36 0.748 2.077;;False
