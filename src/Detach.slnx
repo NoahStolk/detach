@@ -19,6 +19,7 @@
     <Project Path="libs\Detach\Detach.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests\Detach.Tests.Snapshot\Detach.Tests.Snapshot.csproj" Type="Classic C#" />
     <Project Path="tests\Detach.Tests.Unit\Detach.Tests.Unit.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tools/">

@@ -7,7 +7,7 @@ namespace Demos.Collisions.Interactable.Services.States;
 
 internal sealed class CollisionScenarioState
 {
-	private const string _baseDirectory = @"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests\Resources";
+	private const string _baseDirectory = @"C:\Users\NOAH\source\repos\detach\src\tests\Detach.Tests.Snapshot\Resources";
 
 	public CollisionScenarioState()
 	{
