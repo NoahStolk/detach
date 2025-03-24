@@ -44,11 +44,11 @@ internal sealed class CollisionScenarioState
 
 			string fullMethodName = $"{type.FullName}.{method.Name}";
 			List<CollisionAlgorithmScenario> scenarios = [];
-			string scenariosFilePath = Path.Combine(_baseDirectory, $"{fullMethodName}.json");
+			string scenariosFilePath = Path.Combine(_baseDirectory, $"{fullMethodName}.txt");
 			if (File.Exists(scenariosFilePath))
 			{
 				string json = File.ReadAllText(scenariosFilePath);
-				CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeJson(json);
+				CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(json);
 				scenarios = algorithm.Scenarios;
 			}
 
@@ -68,10 +68,10 @@ internal sealed class CollisionScenarioState
 		if (algorithm == null)
 			return;
 
-		algorithm.Scenarios.Add(scenario);
+		algorithm.Scenarios.Add(scenario.DeepCopy());
 
-		string json = CollisionAlgorithmSerializer.SerializeJson(algorithm);
-		string path = Path.Combine(_baseDirectory, $"{algorithm.FullMethodName}.json");
+		string json = CollisionAlgorithmSerializer.SerializeText(algorithm);
+		string path = Path.Combine(_baseDirectory, $"{algorithm.FullMethodName}.txt");
 		File.WriteAllText(path, json);
 	}
 }
