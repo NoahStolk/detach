@@ -42,7 +42,7 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 		ImGui.SeparatorText("Scenarios");
 
 		int columnCount = algorithm.Parameters.Count + algorithm.OutParameters.Count + 1;
-		if (ImGui.BeginTable("ScenarioTable", columnCount))
+		if (ImGui.BeginTable("ScenarioTable", columnCount, ImGuiTableFlags.Resizable))
 		{
 			foreach (CollisionAlgorithmParameter parameter in algorithm.Parameters)
 				ImGui.TableSetupColumn($"{parameter.TypeName} {parameter.Name}");

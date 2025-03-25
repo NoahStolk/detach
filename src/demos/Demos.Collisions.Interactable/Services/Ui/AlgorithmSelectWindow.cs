@@ -42,7 +42,7 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 		}
 
 		ImGui.SeparatorText("Return value");
-		ImGui.Text(collisionAlgorithmState.ReturnValue?.ToString());
+		ImGui.Text(collisionAlgorithmState.ReturnValue?.ToString() ?? "<NULL>");
 
 		if (ImGui.Button("Add scenario") || glfwInput.IsKeyPressed(Keys.Q))
 		{

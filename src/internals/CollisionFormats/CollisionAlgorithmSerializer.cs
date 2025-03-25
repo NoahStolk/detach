@@ -21,8 +21,6 @@ public static class CollisionAlgorithmSerializer
 		sb.AppendJoin(',', collisionAlgorithm.OutParameters.Select(p => $"{p.TypeName} {p.Name}"));
 		sb.Append(';');
 		sb.Append(collisionAlgorithm.ReturnTypeName);
-		sb.Append(';');
-		sb.Append(collisionAlgorithm.Scenarios.Count);
 		sb.AppendLine();
 		foreach (CollisionAlgorithmScenario scenario in collisionAlgorithm.Scenarios)
 		{
@@ -47,12 +45,15 @@ public static class CollisionAlgorithmSerializer
 		string[] parameters = header[1].Length == 0 ? [] : header[1].Split(',');
 		string[] outParameters = header[2].Length == 0 ? [] : header[2].Split(',');
 		string returnTypeName = header[3];
-		int scenarioCount = int.Parse(header[4], CultureInfo.InvariantCulture);
 
-		List<CollisionAlgorithmScenario> scenarios = new(scenarioCount);
-		for (int i = 0; i < scenarioCount; i++)
+		List<CollisionAlgorithmScenario> scenarios = [];
+		int i = 1;
+		while (true)
 		{
-			string[] scenario = lines[i + 1].Split(';');
+			string[] scenario = lines[i].Split(';');
+			if (scenario.Length <= 1)
+				break;
+
 			string[] arguments = scenario[0].Length == 0 ? [] : scenario[0].Split(',');
 			string[] outArguments = scenario[1].Length == 0 ? [] : scenario[1].Split(',');
 			string returnValue = scenario[2];
@@ -61,6 +62,8 @@ public static class CollisionAlgorithmSerializer
 				arguments.Select((a, j) => GetValue(parameters[j].Split(' ')[0], a)).ToList(),
 				outArguments.Select((a, j) => GetValue(outParameters[j].Split(' ')[0], a)).ToList(),
 				GetValue(returnTypeName, returnValue)));
+
+			i++;
 		}
 
 		return new CollisionAlgorithm(

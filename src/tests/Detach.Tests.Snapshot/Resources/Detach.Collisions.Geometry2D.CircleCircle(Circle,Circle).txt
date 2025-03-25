@@ -1,4 +1,4 @@
-Detach.Collisions.Geometry2D.CircleCircle;Detach.Collisions.Primitives2D.Circle circle1,Detach.Collisions.Primitives2D.Circle circle2;;System.Boolean;12
+Detach.Collisions.Geometry2D.CircleCircle;Detach.Collisions.Primitives2D.Circle circle1,Detach.Collisions.Primitives2D.Circle circle2;;System.Boolean
 0 0 1,0 0 1;;True
 0 0 0.62,0 0 1;;True
 0 0 0.62,-1.327 0 1;;True
