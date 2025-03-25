@@ -8,6 +8,7 @@
   </Folder>
   <Folder Name="/internals/">
     <Project Path="internals\CollisionFormats\CollisionFormats.csproj" Type="Classic C#" />
+    <Project Path="internals\ExecutableCollisionAlgorithmsGenerator\ExecutableCollisionAlgorithmsGenerator.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/libs/">
     <Project Path="libs\Detach.AlExtensions\Detach.AlExtensions.csproj" Type="Classic C#" />
