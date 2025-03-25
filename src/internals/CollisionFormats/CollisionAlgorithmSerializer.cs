@@ -77,6 +77,8 @@ public static class CollisionAlgorithmSerializer
 		{
 			_ when value is bool boolean => Serializer.Write(boolean),
 			_ when value is float single => Serializer.Write(single),
+			_ when value is Vector2 vector2 => Serializer.Write(vector2),
+			_ when value is Vector3 vector3 => Serializer.Write(vector3),
 
 			_ when value is Circle circle => Serializer.Write(circle),
 			_ when value is CircleCast circleCast => Serializer.Write(circleCast),
@@ -108,6 +110,8 @@ public static class CollisionAlgorithmSerializer
 		{
 			_ when typeName == typeof(bool).FullName => Serializer.ReadBool(argument),
 			_ when typeName == typeof(float).FullName => Serializer.ReadFloat(argument),
+			_ when typeName == typeof(Vector2).FullName => Serializer.ReadVector2(argument),
+			_ when typeName == typeof(Vector3).FullName => Serializer.ReadVector3(argument),
 
 			_ when typeName == typeof(Circle).FullName => Serializer.ReadCircle(argument),
 			_ when typeName == typeof(CircleCast).FullName => Serializer.ReadCircleCast(argument),
@@ -356,22 +360,34 @@ public static class CollisionAlgorithmSerializer
 			return new Triangle3D(ReadVector3(parts[0], parts[1], parts[2]), ReadVector3(parts[3], parts[4], parts[5]), ReadVector3(parts[6], parts[7], parts[8]));
 		}
 
-		private static string Write(Vector2 value)
+		public static string Write(Vector2 value)
 		{
 			return $"{value.X}{_separator}{value.Y}";
 		}
 
-		private static Vector2 ReadVector2(string x, string y)
+		public static Vector2 ReadVector2(string value)
+		{
+			string[] parts = value.Split(_separator);
+			return new Vector2(float.Parse(parts[0], CultureInfo.InvariantCulture), float.Parse(parts[1], CultureInfo.InvariantCulture));
+		}
+
+		public static Vector2 ReadVector2(string x, string y)
 		{
 			return new Vector2(float.Parse(x, CultureInfo.InvariantCulture), float.Parse(y, CultureInfo.InvariantCulture));
 		}
 
-		private static string Write(Vector3 value)
+		public static string Write(Vector3 value)
 		{
 			return $"{value.X}{_separator}{value.Y}{_separator}{value.Z}";
 		}
 
-		private static Vector3 ReadVector3(string x, string y, string z)
+		public static Vector3 ReadVector3(string value)
+		{
+			string[] parts = value.Split(_separator);
+			return new Vector3(float.Parse(parts[0], CultureInfo.InvariantCulture), float.Parse(parts[1], CultureInfo.InvariantCulture), float.Parse(parts[2], CultureInfo.InvariantCulture));
+		}
+
+		public static Vector3 ReadVector3(string x, string y, string z)
 		{
 			return new Vector3(float.Parse(x, CultureInfo.InvariantCulture), float.Parse(y, CultureInfo.InvariantCulture), float.Parse(z, CultureInfo.InvariantCulture));
 		}
