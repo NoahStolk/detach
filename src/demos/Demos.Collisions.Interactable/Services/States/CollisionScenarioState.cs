@@ -26,7 +26,7 @@ internal sealed class CollisionScenarioState
 			List<CollisionAlgorithmParameter> parameters = executableCollisionAlgorithm.Parameters.Select(p => new CollisionAlgorithmParameter(p.Type.FullName ?? p.Type.Name, p.Name)).ToList();
 			List<CollisionAlgorithmParameter> outParameters = executableCollisionAlgorithm.OutParameters.Select(p => new CollisionAlgorithmParameter(p.Type.FullName ?? p.Type.Name, p.Name)).ToList();
 
-			string methodSignature = $"{executableCollisionAlgorithm.Name}({string.Join(',', executableCollisionAlgorithm.Parameters.Concat(executableCollisionAlgorithm.OutParameters).Select(p => p.Type.FullName ?? p.Type.Name))})";
+			string methodSignature = executableCollisionAlgorithm.Name;
 			List<CollisionAlgorithmScenario> scenarios = [];
 			string scenariosFilePath = Path.Combine(_baseDirectory, $"{methodSignature}.txt");
 			if (File.Exists(scenariosFilePath))

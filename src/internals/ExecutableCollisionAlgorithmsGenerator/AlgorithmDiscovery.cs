@@ -24,11 +24,15 @@ internal static class AlgorithmDiscovery
 			if (_excludedMethodNames.Any(s => s == method.Name))
 				continue;
 
-			List<Parameter> parameters = method.GetParameters().Where(p => !p.IsOut).Select(p => new Parameter(p.ParameterType, p.Name ?? string.Empty)).ToList();
-			List<Parameter> outParameters = method.GetParameters().Where(p => p.IsOut).Select(p => new Parameter(p.ParameterType, p.Name ?? string.Empty)).ToList();
+			ParameterInfo[] parameterInfos = method.GetParameters();
+			if (parameterInfos.Any(pi => pi.ParameterType.IsByRefLike)) // Ignore ref structs for now.
+				continue;
+
+			List<Parameter> parameters = parameterInfos.Where(p => !p.IsOut).Select(p => new Parameter(p.ParameterType, p.Name ?? string.Empty)).ToList();
+			List<Parameter> outParameters = parameterInfos.Where(p => p.IsOut).Select(p => new Parameter(p.ParameterType, p.Name ?? string.Empty)).ToList();
 			Type returnValue = method.ReturnType;
 
-			string methodSignature = $"{geometryType.FullName}.{method.Name}({string.Join(',', parameters.Concat(outParameters).Select(p => p.Type.FullName))})";
+			string methodSignature = $"{geometryType.FullName}.{method.Name}({string.Join(',', parameters.Concat(outParameters).Select(p => p.FormattableTypeName))})";
 			models.Add(new Algorithm(methodSignature, parameters, outParameters, returnValue));
 		}
 
