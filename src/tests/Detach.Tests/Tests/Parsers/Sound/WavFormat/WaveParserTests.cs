@@ -29,9 +29,9 @@ public class WaveParserTests
 
 	[DataTestMethod]
 	[DataRow("Font.tga")]
-	public void TestWaveParse_Invalid(string fileName)
+	public void TestInvalidWaveParse(string fileName)
 	{
 		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath(fileName));
-		Assert.ThrowsException<WaveParseException>(() => WaveParser.Parse(bytes));
+		Assert.ThrowsExactly<WaveParseException>(() => _ = WaveParser.Parse(bytes));
 	}
 }

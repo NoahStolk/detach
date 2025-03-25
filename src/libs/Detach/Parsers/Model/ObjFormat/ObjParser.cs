@@ -17,6 +17,7 @@ public static class ObjParser
 		string currentGroupName = string.Empty;
 		string currentMaterialName = string.Empty;
 		List<string> materialLibraries = [];
+		List<Face> faces = [];
 		foreach (string line in lines)
 		{
 			string[] values = line.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -35,7 +36,7 @@ public static class ObjParser
 						break;
 
 					string[] rawIndices = values[1..];
-					List<Face> faces = [];
+					faces.Clear();
 					for (int j = 0; j < rawIndices.Length; j++)
 					{
 						string[] indexEntries = rawIndices[j].Split('/');
