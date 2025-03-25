@@ -1,4 +1,4 @@
-Detach.Collisions.Geometry3D.Raycast(Sphere,Ray,Single);Detach.Collisions.Primitives3D.Sphere sphere,Detach.Collisions.Primitives3D.Ray ray;System.Single distance;System.Boolean;12
+Detach.Collisions.Geometry3D.Raycast(Sphere,Ray,Single);Detach.Collisions.Primitives3D.Sphere sphere,Detach.Collisions.Primitives3D.Ray ray;System.Single distance;System.Boolean;9
 0 0 0 1,0 -0.37 0 1 0 0;0.9290317;True
 0 0 0 1,0 -1.269 0 1 0 0;0;False
 0 2.91 0 0.743,0 -1.269 0 0.70710677 0.70710677 0;0;False

@@ -42,10 +42,7 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 		}
 
 		ImGui.SeparatorText("Return value");
-		if (collisionAlgorithmState.ReturnValue is bool or Vector3)
-			ImGui.Text(collisionAlgorithmState.ReturnValue?.ToString());
-		else
-			ImGui.TextColored(Rgba.Red, "Unsupported type");
+		ImGui.Text(collisionAlgorithmState.ReturnValue?.ToString());
 
 		if (ImGui.Button("Add scenario") || glfwInput.IsKeyPressed(Keys.Q))
 		{
