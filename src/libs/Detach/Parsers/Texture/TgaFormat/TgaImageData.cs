@@ -1,11 +1,13 @@
 using Detach.Numerics;
 using Detach.Utils;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Detach.Parsers.Texture.TgaFormat;
 
 [StructLayout(LayoutKind.Sequential)]
+[SuppressMessage("Major Code Smell", "S127:\"for\" loop stop conditions should be invariant", Justification = "Readability")]
 internal readonly struct TgaImageData
 {
 	private readonly ushort _width;
@@ -18,8 +20,8 @@ internal readonly struct TgaImageData
 
 	public TgaImageData(ushort width, ushort height, ImmutableArray<byte> data, bool rightToLeft, bool topToBottom, bool runLengthEncoding, TgaPixelDepth pixelDepth)
 	{
-		if (!Enum.IsDefined(typeof(TgaPixelDepth), pixelDepth))
-			throw new ArgumentOutOfRangeException(nameof(pixelDepth), pixelDepth, "Invalid pixel depth.");
+		if (!Enum.IsDefined(pixelDepth))
+			throw new ArgumentOutOfRangeException(nameof(pixelDepth), pixelDepth, $"Invalid pixel depth: {pixelDepth}");
 
 		_width = width;
 		_height = height;
@@ -40,77 +42,84 @@ internal readonly struct TgaImageData
 
 		// Output is always RGBA (top to bottom, left to right).
 		byte[] bytes = new byte[_width * _height * 4];
+		Span<byte> byteSpan = bytes.AsSpan();
 
 		if (_runLengthEncoding)
+			ReadRunLengthEncodedData(rowStart, rowIncrement, columnStart, columnIncrement, bytesPerPixel, byteSpan);
+		else
+			ReadRawData(rowStart, rowIncrement, columnStart, columnIncrement, bytesPerPixel, byteSpan);
+
+		return bytes;
+	}
+
+	private void ReadRunLengthEncodedData(int rowStart, int rowIncrement, int columnStart, int columnIncrement, int bytesPerPixel, Span<byte> byteSpan)
+	{
+		int readPosition = 0;
+
+		for (int i = rowStart; _topToBottom ? i < _height : i >= 0; i += rowIncrement)
 		{
-			int readPosition = 0;
-
-			for (int i = rowStart; _topToBottom ? i < _height : i >= 0; i += rowIncrement)
+			for (int j = columnStart; _rightToLeft ? j >= 0 : j < _width;)
 			{
-				for (int j = columnStart; _rightToLeft ? j >= 0 : j < _width;)
-				{
-					// Read the packet header.
-					// In case of RLE packet, there is one color which is repeated packetLength times.
-					// In case of raw packet, there are packetLength colors.
-					bool isRlePacket = BitUtils.IsBitSet(_data[readPosition], 7);
-					int packetLength = (_data[readPosition++] & 0b0111_1111) + 1;
+				// Read the packet header.
+				// In case of RLE packet, there is one color which is repeated packetLength times.
+				// In case of raw packet, there are packetLength colors.
+				bool isRlePacket = BitUtils.IsBitSet(_data[readPosition], 7);
+				int packetLength = (_data[readPosition++] & 0b0111_1111) + 1;
 
-					if (isRlePacket)
+				if (isRlePacket)
+				{
+					Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
+					readPosition += bytesPerPixel;
+
+					for (int k = 0; k < packetLength; k++)
+					{
+						int pixelWriteIndex = (i * _width + j) * 4;
+						byteSpan[pixelWriteIndex + 0] = rgba.R;
+						byteSpan[pixelWriteIndex + 1] = rgba.G;
+						byteSpan[pixelWriteIndex + 2] = rgba.B;
+						byteSpan[pixelWriteIndex + 3] = rgba.A;
+
+						j += columnIncrement;
+					}
+				}
+				else
+				{
+					for (int k = 0; k < packetLength; k++)
 					{
 						Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
 						readPosition += bytesPerPixel;
 
-						for (int k = 0; k < packetLength; k++)
-						{
-							int pixelWriteIndex = (i * _width + j) * 4;
-							bytes[pixelWriteIndex + 0] = rgba.R;
-							bytes[pixelWriteIndex + 1] = rgba.G;
-							bytes[pixelWriteIndex + 2] = rgba.B;
-							bytes[pixelWriteIndex + 3] = rgba.A;
+						int pixelWriteIndex = (i * _width + j) * 4;
+						byteSpan[pixelWriteIndex + 0] = rgba.R;
+						byteSpan[pixelWriteIndex + 1] = rgba.G;
+						byteSpan[pixelWriteIndex + 2] = rgba.B;
+						byteSpan[pixelWriteIndex + 3] = rgba.A;
 
-							j += columnIncrement;
-						}
-					}
-					else
-					{
-						for (int k = 0; k < packetLength; k++)
-						{
-							Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
-							readPosition += bytesPerPixel;
-
-							int pixelWriteIndex = (i * _width + j) * 4;
-							bytes[pixelWriteIndex + 0] = rgba.R;
-							bytes[pixelWriteIndex + 1] = rgba.G;
-							bytes[pixelWriteIndex + 2] = rgba.B;
-							bytes[pixelWriteIndex + 3] = rgba.A;
-
-							j += columnIncrement;
-						}
+						j += columnIncrement;
 					}
 				}
 			}
 		}
-		else
+	}
+
+	private void ReadRawData(int rowStart, int rowIncrement, int columnStart, int columnIncrement, int bytesPerPixel, Span<byte> byteSpan)
+	{
+		int writePosition = 0;
+
+		for (int i = rowStart; _topToBottom ? i < _height : i >= 0; i += rowIncrement)
 		{
-			int writePosition = 0;
-
-			for (int i = rowStart; _topToBottom ? i < _height : i >= 0; i += rowIncrement)
+			for (int j = columnStart; _rightToLeft ? j >= 0 : j < _width; j += columnIncrement)
 			{
-				for (int j = columnStart; _rightToLeft ? j >= 0 : j < _width; j += columnIncrement)
-				{
-					int pixelReadIndex = (i * _width + j) * bytesPerPixel;
-					Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(pixelReadIndex, bytesPerPixel).AsSpan());
+				int pixelReadIndex = (i * _width + j) * bytesPerPixel;
+				Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(pixelReadIndex, bytesPerPixel).AsSpan());
 
-					bytes[writePosition + 0] = rgba.R;
-					bytes[writePosition + 1] = rgba.G;
-					bytes[writePosition + 2] = rgba.B;
-					bytes[writePosition + 3] = rgba.A;
-					writePosition += 4;
-				}
+				byteSpan[writePosition + 0] = rgba.R;
+				byteSpan[writePosition + 1] = rgba.G;
+				byteSpan[writePosition + 2] = rgba.B;
+				byteSpan[writePosition + 3] = rgba.A;
+				writePosition += 4;
 			}
 		}
-
-		return bytes;
 	}
 
 	public void Write(BinaryWriter binaryWriter)

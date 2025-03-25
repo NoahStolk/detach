@@ -3,36 +3,20 @@ using System.Runtime.InteropServices;
 namespace Detach.Parsers.Texture.TgaFormat;
 
 [StructLayout(LayoutKind.Sequential)]
-internal readonly struct TgaHeader
+internal readonly struct TgaHeader(byte idLength, TgaColorMapType colorMapType, TgaImageType imageType, ushort colorMapStartIndex, ushort colorMapLength, byte colorMapEntrySize, ushort originX, ushort originY, ushort width, ushort height, byte pixelDepth, byte imageDescriptor)
 {
-	public readonly byte IdLength;
-	public readonly TgaColorMapType ColorMapType;
-	public readonly TgaImageType ImageType;
-	public readonly ushort ColorMapStartIndex;
-	public readonly ushort ColorMapLength;
-	public readonly byte ColorMapEntrySize;
-	public readonly ushort OriginX;
-	public readonly ushort OriginY;
-	public readonly ushort Width;
-	public readonly ushort Height;
-	public readonly byte PixelDepth;
-	public readonly byte ImageDescriptor;
-
-	public TgaHeader(byte idLength, TgaColorMapType colorMapType, TgaImageType imageType, ushort colorMapStartIndex, ushort colorMapLength, byte colorMapEntrySize, ushort originX, ushort originY, ushort width, ushort height, byte pixelDepth, byte imageDescriptor)
-	{
-		IdLength = idLength;
-		ColorMapType = colorMapType;
-		ImageType = imageType;
-		ColorMapStartIndex = colorMapStartIndex;
-		ColorMapLength = colorMapLength;
-		ColorMapEntrySize = colorMapEntrySize;
-		OriginX = originX;
-		OriginY = originY;
-		Width = width;
-		Height = height;
-		PixelDepth = pixelDepth;
-		ImageDescriptor = imageDescriptor;
-	}
+	public readonly byte IdLength = idLength;
+	public readonly TgaColorMapType ColorMapType = colorMapType;
+	public readonly TgaImageType ImageType = imageType;
+	public readonly ushort ColorMapStartIndex = colorMapStartIndex;
+	public readonly ushort ColorMapLength = colorMapLength;
+	public readonly byte ColorMapEntrySize = colorMapEntrySize;
+	public readonly ushort OriginX = originX;
+	public readonly ushort OriginY = originY;
+	public readonly ushort Width = width;
+	public readonly ushort Height = height;
+	public readonly byte PixelDepth = pixelDepth;
+	public readonly byte ImageDescriptor = imageDescriptor;
 
 	public static TgaHeader Read(BinaryReader br)
 	{
