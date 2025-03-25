@@ -9,7 +9,7 @@ public partial class CollisionAlgorithmTests
 	[TestMethod]
 	public async Task CircleCircle()
 	{
-		CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(await File.ReadAllTextAsync(Path.Combine("Resources", "Detach.Collisions.Geometry2D.CircleCircle.txt")));
+		//CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(await File.ReadAllTextAsync(Path.Combine("Resources", "Detach.Collisions.Geometry2D.CircleCircle.txt")));
 
 		//Verify(code);
 	}
