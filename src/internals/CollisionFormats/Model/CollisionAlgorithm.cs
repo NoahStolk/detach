@@ -1,7 +1,7 @@
 ﻿namespace CollisionFormats.Model;
 
 public sealed record CollisionAlgorithm(
-	string FullMethodName,
+	string MethodSignature,
 	List<CollisionAlgorithmParameter> Parameters,
 	List<CollisionAlgorithmParameter> OutParameters,
 	string ReturnTypeName,

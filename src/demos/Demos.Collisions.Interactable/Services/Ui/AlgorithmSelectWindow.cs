@@ -53,7 +53,7 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 				collisionAlgorithmState.Arguments,
 				[], // TODO
 				collisionAlgorithmState.ReturnValue);
-			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].FullMethodName, collisionAlgorithmScenario);
+			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].MethodSignature, collisionAlgorithmScenario);
 		}
 	}
 
