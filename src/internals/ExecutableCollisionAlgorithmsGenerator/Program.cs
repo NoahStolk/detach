@@ -1,6 +1,6 @@
 ﻿using ExecutableCollisionAlgorithmsGenerator;
 using ExecutableCollisionAlgorithmsGenerator.Model;
 
-List<Algorithm> models = AlgorithmDiscovery.Discover();
-foreach (Algorithm model in models)
-	Console.WriteLine(model);
+List<Algorithm> algorithms = AlgorithmDiscovery.Discover();
+string generatedCode = AlgorithmGenerator.Generate(algorithms);
+await File.WriteAllTextAsync("../../../../CollisionFormats/Execution/ExecutableCollisionAlgorithms.g.cs", generatedCode).ConfigureAwait(true);
