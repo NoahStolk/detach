@@ -51,7 +51,7 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 		{
 			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
 				collisionAlgorithmState.Arguments,
-				[], // TODO
+				collisionAlgorithmState.OutArguments,
 				collisionAlgorithmState.ReturnValue);
 			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].MethodSignature, collisionAlgorithmScenario);
 		}

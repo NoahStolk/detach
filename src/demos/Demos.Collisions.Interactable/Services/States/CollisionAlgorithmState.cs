@@ -11,6 +11,7 @@ internal sealed class CollisionAlgorithmState
 {
 	public IExecutableCollisionAlgorithm? SelectedAlgorithm { get; private set; }
 	public List<object> Arguments { get; } = [];
+	public List<object> OutArguments { get; } = [];
 	public object? ReturnValue { get; private set; }
 
 	[MemberNotNullWhen(true, nameof(SelectedAlgorithm))]
@@ -30,7 +31,10 @@ internal sealed class CollisionAlgorithmState
 		if (!StateIsValid)
 			return;
 
-		ReturnValue = SelectedAlgorithm.Execute(Arguments).ReturnValue;
+		ExecutionResult executionResult = SelectedAlgorithm.Execute(Arguments);
+		OutArguments.Clear();
+		OutArguments.AddRange(executionResult.OutArguments);
+		ReturnValue = executionResult.ReturnValue;
 	}
 
 	private static object GetDefault(Type type)
