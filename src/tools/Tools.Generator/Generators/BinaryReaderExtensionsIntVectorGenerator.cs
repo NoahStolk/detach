@@ -1,5 +1,4 @@
 ﻿using Detach.CodeGeneration;
-using Tools.Generator.Internals;
 
 namespace Tools.Generator.Generators;
 

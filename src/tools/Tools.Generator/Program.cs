@@ -1,5 +1,4 @@
 ﻿using Tools.Generator.Generators;
-using Tools.Generator.Internals;
 
 if (args.Length == 0)
 {

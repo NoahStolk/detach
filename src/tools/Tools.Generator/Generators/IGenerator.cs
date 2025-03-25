@@ -1,4 +1,4 @@
-﻿namespace Tools.Generator.Internals;
+﻿namespace Tools.Generator.Generators;
 
 internal interface IGenerator
 {
