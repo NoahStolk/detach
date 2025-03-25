@@ -1,7 +1,6 @@
 ﻿using CollisionFormats;
+using CollisionFormats.Execution;
 using CollisionFormats.Model;
-using Detach.Collisions;
-using System.Reflection;
 
 namespace Demos.Collisions.Interactable.Services.States;
 
@@ -11,8 +10,7 @@ internal sealed class CollisionScenarioState
 
 	public CollisionScenarioState()
 	{
-		CollectAlgorithms(typeof(Geometry2D));
-		CollectAlgorithms(typeof(Geometry3D));
+		CollectAlgorithms();
 
 		ComboString = string.Join("\0", CollisionAlgorithms.Select(ca => ca.FullMethodName));
 		ComboString += "\0";
@@ -21,28 +19,14 @@ internal sealed class CollisionScenarioState
 	public List<CollisionAlgorithm> CollisionAlgorithms { get; } = [];
 	public string ComboString { get; }
 
-	private void CollectAlgorithms(Type type)
+	private void CollectAlgorithms()
 	{
-		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
-		foreach (MethodInfo method in type.GetMethods(bindingFlags))
+		foreach (IExecutableCollisionAlgorithm executableCollisionAlgorithm in ExecutableCollisionAlgorithms.All)
 		{
-			List<CollisionAlgorithmParameter> parameters = [];
-			List<CollisionAlgorithmParameter> outParameters = [];
+			List<CollisionAlgorithmParameter> parameters = executableCollisionAlgorithm.Parameters.Select(p => new CollisionAlgorithmParameter(p.Type.FullName ?? p.Type.Name, p.Name)).ToList();
+			List<CollisionAlgorithmParameter> outParameters = executableCollisionAlgorithm.OutParameters.Select(p => new CollisionAlgorithmParameter(p.Type.FullName ?? p.Type.Name, p.Name)).ToList();
 
-			ParameterInfo[] parameterInfos = method.GetParameters();
-			foreach (ParameterInfo parameterInfo in parameterInfos)
-			{
-				if (parameterInfo.Name == null)
-					continue;
-
-				CollisionAlgorithmParameter parameter = new(parameterInfo.ParameterType.FullName ?? parameterInfo.ParameterType.Name, parameterInfo.Name);
-				if (parameterInfo.IsOut)
-					outParameters.Add(parameter);
-				else
-					parameters.Add(parameter);
-			}
-
-			string fullMethodName = $"{type.FullName}.{method.Name}";
+			string fullMethodName = executableCollisionAlgorithm.Name;
 			List<CollisionAlgorithmScenario> scenarios = [];
 			string scenariosFilePath = Path.Combine(_baseDirectory, $"{fullMethodName}.txt");
 			if (File.Exists(scenariosFilePath))
@@ -56,7 +40,7 @@ internal sealed class CollisionScenarioState
 				fullMethodName,
 				parameters,
 				outParameters,
-				method.ReturnType.FullName ?? method.ReturnType.Name,
+				executableCollisionAlgorithm.ReturnType.FullName ?? throw new InvalidOperationException($"The type {executableCollisionAlgorithm.ReturnType.Name} does not have a full name."),
 				scenarios);
 			CollisionAlgorithms.Add(collisionAlgorithm);
 		}

@@ -1,55 +1,21 @@
-﻿using CollisionFormats.Model;
+﻿using CollisionFormats.Execution;
+using CollisionFormats.Model;
 using Demos.Collisions.Interactable.Services.States;
 using Detach;
-using Detach.Collisions;
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.GlfwExtensions;
 using Detach.Numerics;
 using Hexa.NET.ImGui;
 using Silk.NET.GLFW;
-using System.Linq.Expressions;
 using System.Numerics;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace Demos.Collisions.Interactable.Services.Ui;
 
-internal sealed class AlgorithmSelectWindow
+internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState, GlfwInput glfwInput)
 {
-	private readonly Delegate[] _algorithms;
-
-	private readonly CollisionAlgorithmState _collisionAlgorithmState;
-	private readonly CollisionScenarioState _collisionScenarioState;
-	private readonly GlfwInput _glfwInput;
-
 	private int _selectedAlgorithmIndex;
-
-	public AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState, GlfwInput glfwInput)
-	{
-		_collisionAlgorithmState = collisionAlgorithmState;
-		_collisionScenarioState = collisionScenarioState;
-		_glfwInput = glfwInput;
-
-		// TODO: Rewrite to use something else that supports out parameters.
-		const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.Public;
-		MethodInfo[] methods = typeof(Geometry2D).GetMethods(bindingFlags).Concat(typeof(Geometry3D).GetMethods(bindingFlags)).ToArray();
-		_algorithms = new Delegate[methods.Length];
-		for (int i = 0; i < methods.Length; i++)
-			_algorithms[i] = CreateDelegate(methods[i]);
-
-		static Delegate CreateDelegate(MethodInfo method)
-		{
-			return Delegate.CreateDelegate(
-				type: Expression.GetDelegateType(
-					method.GetParameters()
-						.Select(p => p.ParameterType)
-						.Concat([method.ReturnType])
-						.ToArray()),
-				firstArgument: null,
-				method: method);
-		}
-	}
 
 	public void Render()
 	{
@@ -62,32 +28,32 @@ internal sealed class AlgorithmSelectWindow
 
 	private void RenderAlgorithmSelector()
 	{
-		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, _collisionScenarioState.ComboString, 50))
-			_collisionAlgorithmState.SelectAlgorithm(_algorithms[_selectedAlgorithmIndex]);
+		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50))
+			collisionAlgorithmState.SelectAlgorithm(ExecutableCollisionAlgorithms.All[_selectedAlgorithmIndex]);
 
-		if (_collisionAlgorithmState.SelectedAlgorithm == null)
+		if (collisionAlgorithmState.SelectedAlgorithm == null)
 			return;
 
-		ParameterInfo[] parameters = _collisionAlgorithmState.SelectedAlgorithm.Method.GetParameters();
-		for (int i = 0; i < parameters.Length; i++)
+		IReadOnlyList<(Type Type, string Name)> parameters = collisionAlgorithmState.SelectedAlgorithm.Parameters;
+		for (int i = 0; i < parameters.Count; i++)
 		{
-			ParameterInfo parameter = parameters[i];
-			RenderParameter(parameter.Name, i, parameter.ParameterType, ref CollectionsMarshal.AsSpan(_collisionAlgorithmState.Arguments)[i]);
+			(Type Type, string Name) parameter = parameters[i];
+			RenderParameter(parameter.Name, i, parameter.Type, ref CollectionsMarshal.AsSpan(collisionAlgorithmState.Arguments)[i]);
 		}
 
 		ImGui.SeparatorText("Return value");
-		if (_collisionAlgorithmState.ReturnValue is bool or Vector3)
-			ImGui.Text(_collisionAlgorithmState.ReturnValue?.ToString());
+		if (collisionAlgorithmState.ReturnValue is bool or Vector3)
+			ImGui.Text(collisionAlgorithmState.ReturnValue?.ToString());
 		else
 			ImGui.TextColored(Rgba.Red, "Unsupported type");
 
-		if (ImGui.Button("Add scenario") || _glfwInput.IsKeyPressed(Keys.Q))
+		if (ImGui.Button("Add scenario") || glfwInput.IsKeyPressed(Keys.Q))
 		{
 			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
-				_collisionAlgorithmState.Arguments,
+				collisionAlgorithmState.Arguments,
 				[], // TODO
-				_collisionAlgorithmState.ReturnValue);
-			_collisionScenarioState.AddScenario(_collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].FullMethodName, collisionAlgorithmScenario);
+				collisionAlgorithmState.ReturnValue);
+			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].FullMethodName, collisionAlgorithmScenario);
 		}
 	}
 

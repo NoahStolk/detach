@@ -1,28 +1,28 @@
-﻿using Detach.Collisions.Primitives2D;
+﻿using CollisionFormats.Execution;
+using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using System.Reflection;
 
 namespace Demos.Collisions.Interactable.Services.States;
 
 internal sealed class CollisionAlgorithmState
 {
-	public Delegate? SelectedAlgorithm { get; private set; }
+	public IExecutableCollisionAlgorithm? SelectedAlgorithm { get; private set; }
 	public List<object> Arguments { get; } = [];
 	public object? ReturnValue { get; private set; }
 
 	[MemberNotNullWhen(true, nameof(SelectedAlgorithm))]
 	public bool StateIsValid => SelectedAlgorithm != null && !Arguments.Contains(DBNull.Value);
 
-	public void SelectAlgorithm(Delegate algorithm)
+	public void SelectAlgorithm(IExecutableCollisionAlgorithm algorithm)
 	{
 		SelectedAlgorithm = algorithm;
 
 		Arguments.Clear();
-		foreach (ParameterInfo parameter in algorithm.Method.GetParameters())
-			Arguments.Add(GetDefault(parameter.ParameterType));
+		foreach ((Type Type, string Name) parameter in algorithm.Parameters)
+			Arguments.Add(GetDefault(parameter.Type));
 	}
 
 	public void ExecuteAlgorithm()
@@ -30,27 +30,7 @@ internal sealed class CollisionAlgorithmState
 		if (!StateIsValid)
 			return;
 
-		MethodInfo method = SelectedAlgorithm.Method;
-
-		if (method.ReturnType == typeof(bool))
-			ReturnValue = ExecuteAlgorithm<bool>();
-		else if (method.ReturnType == typeof(Vector3))
-			ReturnValue = ExecuteAlgorithm<Vector3>();
-		else
-			ReturnValue = null;
-	}
-
-	private TResult ExecuteAlgorithm<TResult>()
-	{
-		if (!StateIsValid)
-			throw new InvalidOperationException("The algorithm or its arguments are not set.");
-
-		object?[] argsArray = Arguments.ToArray(); // Must use array because of params.
-		TResult? result = (TResult?)SelectedAlgorithm.DynamicInvoke(argsArray);
-		if (result is null)
-			throw new InvalidOperationException("The algorithm did not return a result.");
-
-		return result;
+		ReturnValue = SelectedAlgorithm.Execute(Arguments).ReturnValue;
 	}
 
 	private static object GetDefault(Type type)
