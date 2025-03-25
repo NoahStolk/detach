@@ -4,4 +4,8 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
+  </ItemGroup>
+
 </Project>

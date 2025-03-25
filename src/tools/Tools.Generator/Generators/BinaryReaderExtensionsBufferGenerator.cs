@@ -1,4 +1,5 @@
-﻿using Tools.Generator.Internals;
+﻿using Detach.CodeGeneration;
+using Tools.Generator.Internals;
 
 namespace Tools.Generator.Generators;
 
@@ -22,8 +23,7 @@ internal sealed class BinaryReaderExtensionsBufferGenerator : IGenerator
 	public string Generate()
 	{
 		CodeWriter codeWriter = new();
-
-		codeWriter.WriteLine(GeneratorConstants.Header);
+		codeWriter.WriteHeader();
 		codeWriter.WriteLine();
 		codeWriter.WriteLine("using Detach.Buffers;");
 		codeWriter.WriteLine("using Detach.Numerics;");

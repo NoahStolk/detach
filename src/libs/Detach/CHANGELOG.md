@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.26.0
+
+### Added
+
+- Added `Detach.CodeWriter` type.
+
 ## 0.25.2
 
 ### Added
