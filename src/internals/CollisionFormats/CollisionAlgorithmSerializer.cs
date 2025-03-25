@@ -14,7 +14,7 @@ public static class CollisionAlgorithmSerializer
 	public static string SerializeText(CollisionAlgorithm collisionAlgorithm)
 	{
 		StringBuilder sb = new();
-		sb.Append(collisionAlgorithm.FullMethodName);
+		sb.Append(collisionAlgorithm.MethodSignature);
 		sb.Append(';');
 		sb.AppendJoin(',', collisionAlgorithm.Parameters.Select(p => $"{p.TypeName} {p.Name}"));
 		sb.Append(';');

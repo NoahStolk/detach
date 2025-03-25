@@ -12,7 +12,7 @@ internal sealed class CollisionScenarioState
 	{
 		CollectAlgorithms();
 
-		ComboString = string.Join("\0", CollisionAlgorithms.Select(ca => ca.FullMethodName));
+		ComboString = string.Join("\0", CollisionAlgorithms.Select(ca => ca.MethodSignature));
 		ComboString += "\0";
 	}
 
@@ -26,36 +26,36 @@ internal sealed class CollisionScenarioState
 			List<CollisionAlgorithmParameter> parameters = executableCollisionAlgorithm.Parameters.Select(p => new CollisionAlgorithmParameter(p.Type.FullName ?? p.Type.Name, p.Name)).ToList();
 			List<CollisionAlgorithmParameter> outParameters = executableCollisionAlgorithm.OutParameters.Select(p => new CollisionAlgorithmParameter(p.Type.FullName ?? p.Type.Name, p.Name)).ToList();
 
-			string fullMethodName = executableCollisionAlgorithm.Name;
+			string methodSignature = $"{executableCollisionAlgorithm.Name}({string.Join(',', executableCollisionAlgorithm.Parameters.Concat(executableCollisionAlgorithm.OutParameters).Select(p => p.Type.FullName ?? p.Type.Name))})";
 			List<CollisionAlgorithmScenario> scenarios = [];
-			string scenariosFilePath = Path.Combine(_baseDirectory, $"{fullMethodName}.txt");
+			string scenariosFilePath = Path.Combine(_baseDirectory, $"{methodSignature}.txt");
 			if (File.Exists(scenariosFilePath))
 			{
-				string json = File.ReadAllText(scenariosFilePath);
-				CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(json);
+				string text = File.ReadAllText(scenariosFilePath);
+				CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(text);
 				scenarios = algorithm.Scenarios;
 			}
 
 			CollisionAlgorithm collisionAlgorithm = new(
-				fullMethodName,
-				parameters,
-				outParameters,
-				executableCollisionAlgorithm.ReturnType.FullName ?? throw new InvalidOperationException($"The type {executableCollisionAlgorithm.ReturnType.Name} does not have a full name."),
-				scenarios);
+				MethodSignature: methodSignature,
+				Parameters: parameters,
+				OutParameters: outParameters,
+				ReturnTypeName: executableCollisionAlgorithm.ReturnType.FullName ?? throw new InvalidOperationException($"The type {executableCollisionAlgorithm.ReturnType.Name} does not have a full name."),
+				Scenarios: scenarios);
 			CollisionAlgorithms.Add(collisionAlgorithm);
 		}
 	}
 
 	public void AddScenario(string algorithmName, CollisionAlgorithmScenario scenario)
 	{
-		CollisionAlgorithm? algorithm = CollisionAlgorithms.Find(ca => ca.FullMethodName == algorithmName);
+		CollisionAlgorithm? algorithm = CollisionAlgorithms.Find(ca => ca.MethodSignature == algorithmName);
 		if (algorithm == null)
 			return;
 
 		algorithm.Scenarios.Add(scenario.DeepCopy());
 
 		string json = CollisionAlgorithmSerializer.SerializeText(algorithm);
-		string path = Path.Combine(_baseDirectory, $"{algorithm.FullMethodName}.txt");
+		string path = Path.Combine(_baseDirectory, $"{algorithm.MethodSignature}.txt");
 		File.WriteAllText(path, json);
 	}
 }

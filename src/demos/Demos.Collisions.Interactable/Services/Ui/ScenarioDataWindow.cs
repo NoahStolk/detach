@@ -26,7 +26,7 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 	{
 		CollisionAlgorithm algorithm = collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex];
 
-		ImGui.Text(algorithm.FullMethodName);
+		ImGui.Text(algorithm.MethodSignature);
 
 		ImGui.SeparatorText("Parameters");
 		foreach (CollisionAlgorithmParameter parameter in algorithm.Parameters)
