@@ -70,7 +70,7 @@ internal sealed class CollisionScenarioState
 		SaveFile(algorithm);
 	}
 
-	private static void SaveFile(CollisionAlgorithm algorithm)
+	public static void SaveFile(CollisionAlgorithm algorithm)
 	{
 		string text = CollisionAlgorithmSerializer.SerializeText(algorithm);
 		string path = Path.Combine(_baseDirectory, $"{algorithm.MethodSignature}.txt");

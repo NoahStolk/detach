@@ -67,7 +67,8 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 				if (ImGui.Button(Inline.Utf8($"Delete##{i}")))
 					collisionScenarioState.RemoveScenarioAt(algorithm.MethodSignature, i);
 				ImGui.SameLine();
-				ImGui.Checkbox(Inline.Utf8($"##Incorrect_{i}"), ref scenario.Incorrect);
+				if (ImGui.Checkbox(Inline.Utf8($"##Incorrect_{i}"), ref scenario.Incorrect))
+					CollisionScenarioState.SaveFile(algorithm);
 				ImGui.SameLine();
 				ImGui.Text(scenario.Incorrect ? "INCORRECT" : "OK");
 
