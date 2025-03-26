@@ -14,9 +14,6 @@ internal sealed class CollisionAlgorithmState
 	public List<object> OutArguments { get; } = [];
 	public object? ReturnValue { get; private set; }
 
-	[MemberNotNullWhen(true, nameof(SelectedAlgorithm))]
-	public bool StateIsValid => SelectedAlgorithm != null && !Arguments.Contains(DBNull.Value);
-
 	public void SelectAlgorithm(IExecutableCollisionAlgorithm algorithm)
 	{
 		SelectedAlgorithm = algorithm;
@@ -28,7 +25,7 @@ internal sealed class CollisionAlgorithmState
 
 	public void ExecuteAlgorithm()
 	{
-		if (!StateIsValid)
+		if (SelectedAlgorithm == null || Arguments.Contains(DBNull.Value))
 			return;
 
 		ExecutionResult executionResult = SelectedAlgorithm.Execute(Arguments);

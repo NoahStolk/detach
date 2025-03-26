@@ -23,6 +23,7 @@ namespace Demos.Collisions.Interactable;
 
 [Register<CollisionAlgorithmState>(Scope.SingleInstance)]
 [Register<CollisionScenarioState>(Scope.SingleInstance)]
+[Register<SelectionState>(Scope.SingleInstance)]
 
 [Register<LazyProgramContainer>(Scope.SingleInstance)]
 #pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.

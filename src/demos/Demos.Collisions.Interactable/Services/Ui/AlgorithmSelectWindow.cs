@@ -13,24 +13,37 @@ using System.Runtime.InteropServices;
 
 namespace Demos.Collisions.Interactable.Services.Ui;
 
-internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState, GlfwInput glfwInput)
+internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState, SelectionState selectionState, GlfwInput glfwInput)
 {
-	private int _selectedAlgorithmIndex;
-
 	public void Render()
 	{
 		ImGui.SetNextWindowSizeConstraints(new Vector2(960, 320), new Vector2(4096));
 		if (ImGui.Begin("Algorithm Selector"))
-			RenderAlgorithmSelector();
+		{
+			if (ImGui.BeginChild("AlgorithmSelectorLeft", new Vector2(480, 0)))
+				RenderAlgorithmSelector();
+
+			ImGui.EndChild();
+
+			ImGui.SameLine();
+
+			if (ImGui.BeginChild("AlgorithmSelectorRight", new Vector2(480, 0)))
+				RenderAlgorithmParameters();
+
+			ImGui.EndChild();
+		}
 
 		ImGui.End();
 	}
 
 	private void RenderAlgorithmSelector()
 	{
-		if (ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50))
-			collisionAlgorithmState.SelectAlgorithm(ExecutableCollisionAlgorithms.All[_selectedAlgorithmIndex]);
+		if (ImGui.Combo("Algorithm", ref selectionState.SelectedAlgorithmIndex, collisionScenarioState.ComboString, 50))
+			collisionAlgorithmState.SelectAlgorithm(ExecutableCollisionAlgorithms.All[selectionState.SelectedAlgorithmIndex]);
+	}
 
+	private void RenderAlgorithmParameters()
+	{
 		if (collisionAlgorithmState.SelectedAlgorithm == null)
 			return;
 
@@ -50,7 +63,7 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 				collisionAlgorithmState.Arguments,
 				collisionAlgorithmState.OutArguments,
 				collisionAlgorithmState.ReturnValue);
-			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex].MethodSignature, collisionAlgorithmScenario);
+			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[selectionState.SelectedAlgorithmIndex].MethodSignature, collisionAlgorithmScenario);
 		}
 	}
 
