@@ -1,13 +1,13 @@
-Detach.Collisions.Geometry2D.CircleRectangle;Detach.Collisions.Primitives2D.Circle circle,Detach.Collisions.Primitives2D.Rectangle rectangle;;System.Boolean
-0 0 1,0.151 0 0.622 1;;True
-0 0 1,0.3705 0 1.061 1;;True
-0 0 1,0.3705 -1.405 1.061 1;;True
-0 0 1,0.3705 -1.5409999 1.061 1;;False
-0 0 1,-0.921 -1.4799999 1.132 1.122;;True
-1.19 0 1,-0.921 -1.4799999 1.132 1.122;;False
-1.19 0 0.748,-0.921 -1.4799999 1.132 1.122;;False
-1.19 0 1.253,-0.921 -1.4799999 1.132 1.122;;False
-1.19 0 2.393,-0.921 -1.4799999 1.132 1.122;;True
-1.19 -2.585 2.393,-0.921 -1.4799999 1.132 1.122;;True
-1.19 -2.585 1.707,-0.921 -1.4799999 1.132 1.122;;True
-1.19 -2.585 1.441,-0.921 -1.4799999 1.132 1.122;;False
+Detach.Collisions.Geometry2D.CircleRectangle(Circle,Rectangle);Detach.Collisions.Primitives2D.Circle circle,Detach.Collisions.Primitives2D.Rectangle rectangle;;System.Boolean
+0 0 1,0.773 1 0.622 1;;True;OK
+0 0 1,1.4315 1 1.061 1;;True;OK
+0 0 1,1.4315 -0.40499997 1.061 1;;True;OK
+0 0 1,1.4315 -0.5409999 1.061 1;;False;OK
+0 0 1,0.21099997 -0.35799992 1.132 1.122;;True;OK
+1.19 0 1,0.21099997 -0.35799992 1.132 1.122;;False;OK
+1.19 0 0.748,0.21099997 -0.35799992 1.132 1.122;;False;OK
+1.19 0 1.253,0.21099997 -0.35799992 1.132 1.122;;False;OK
+1.19 0 2.393,0.21099997 -0.35799992 1.132 1.122;;True;OK
+1.19 -2.585 2.393,0.21099997 -0.35799992 1.132 1.122;;True;OK
+1.19 -2.585 1.707,0.21099997 -0.35799992 1.132 1.122;;True;OK
+1.19 -2.585 1.441,0.21099997 -0.35799992 1.132 1.122;;False;OK

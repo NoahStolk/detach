@@ -1,6 +1,7 @@
 ﻿using CollisionFormats.Model;
 using Demos.Collisions.Interactable.Services.States;
 using Detach;
+using Detach.Numerics;
 using Hexa.NET.ImGui;
 using System.Numerics;
 
@@ -39,7 +40,7 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 		ImGui.SeparatorText("Scenarios");
 
 		int columnCount = algorithm.Parameters.Count + algorithm.OutParameters.Count + 2;
-		if (ImGui.BeginTable("ScenarioTable", columnCount, ImGuiTableFlags.Resizable))
+		if (ImGui.BeginTable("ScenarioTable", columnCount, ImGuiTableFlags.Resizable | ImGuiTableFlags.Borders))
 		{
 			ImGui.TableSetupColumn("Actions");
 
@@ -60,11 +61,17 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 				ImGui.TableNextRow();
 
 				ImGui.TableNextColumn();
-				if (ImGui.SmallButton(Inline.Utf8($"Select##{i}")))
+				if (ImGui.Button(Inline.Utf8($"Select##{i}")))
 					collisionAlgorithmState.SetArguments(scenario.Arguments);
 				ImGui.SameLine();
-				if (ImGui.SmallButton(Inline.Utf8($"Delete##{i}")))
-					algorithm.Scenarios.RemoveAt(i);
+				if (ImGui.Button(Inline.Utf8($"Delete##{i}")))
+					collisionScenarioState.RemoveScenarioAt(algorithm.MethodSignature, i);
+				ImGui.SameLine();
+				ImGui.Checkbox(Inline.Utf8($"##Incorrect_{i}"), ref scenario.Incorrect);
+				ImGui.SameLine();
+				ImGui.Text(scenario.Incorrect ? "INCORRECT" : "OK");
+
+				ImGui.PushStyleColor(ImGuiCol.Text, scenario.Incorrect ? Rgba.Red : Rgba.White);
 
 				foreach (object argument in scenario.Arguments)
 				{
@@ -80,6 +87,8 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 
 				ImGui.TableNextColumn();
 				ImGui.Text(scenario.ReturnValue?.ToString() ?? "null");
+
+				ImGui.PopStyleColor();
 			}
 
 			ImGui.EndTable();

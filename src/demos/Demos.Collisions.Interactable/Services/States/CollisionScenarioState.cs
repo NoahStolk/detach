@@ -57,9 +57,23 @@ internal sealed class CollisionScenarioState
 			return;
 
 		algorithm.Scenarios.Add(scenario.DeepCopy());
+		SaveFile(algorithm);
+	}
 
-		string json = CollisionAlgorithmSerializer.SerializeText(algorithm);
+	public void RemoveScenarioAt(string algorithmName, int index)
+	{
+		CollisionAlgorithm? algorithm = CollisionAlgorithms.Find(ca => ca.MethodSignature == algorithmName);
+		if (algorithm == null)
+			return;
+
+		algorithm.Scenarios.RemoveAt(index);
+		SaveFile(algorithm);
+	}
+
+	private static void SaveFile(CollisionAlgorithm algorithm)
+	{
+		string text = CollisionAlgorithmSerializer.SerializeText(algorithm);
 		string path = Path.Combine(_baseDirectory, $"{algorithm.MethodSignature}.txt");
-		File.WriteAllText(path, json);
+		File.WriteAllText(path, text);
 	}
 }
