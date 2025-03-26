@@ -1,5 +1,6 @@
 ﻿[
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 1 },
       Rectangle { Position = <0.773, 1>, Size = <0.622, 1>, Center = <1.084, 1.5> }
@@ -9,6 +10,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 1 },
       Rectangle { Position = <1.4315, 1>, Size = <1.061, 1>, Center = <1.9619999, 1.5> }
@@ -18,6 +20,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 1 },
       Rectangle { Position = <1.4315, -0.40499997>, Size = <1.061, 1>, Center = <1.9619999, 0.09500003> }
@@ -27,6 +30,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 1 },
       Rectangle { Position = <1.4315, -0.5409999>, Size = <1.061, 1>, Center = <1.9619999, -0.04099989> }
@@ -36,6 +40,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 1 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -45,6 +50,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, 0>, Radius = 1 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -54,6 +60,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, 0>, Radius = 0.748 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -63,6 +70,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, 0>, Radius = 1.253 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -72,6 +80,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, 0>, Radius = 2.393 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -81,6 +90,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, -2.585>, Radius = 2.393 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -90,6 +100,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, -2.585>, Radius = 1.707 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }
@@ -99,6 +110,7 @@
     }
   },
   {
+    Incorrect: false,
     Arguments: [
       Circle { Center = <1.19, -2.585>, Radius = 1.441 },
       Rectangle { Position = <0.21099997, -0.35799992>, Size = <1.132, 1.122>, Center = <0.77699995, 0.20300007> }

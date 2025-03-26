@@ -19,18 +19,18 @@ public partial class CollisionAlgorithmTests
 		CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(File.ReadAllText(Path.Combine("Resources", fileName)));
 #pragma warning restore CA1849
 
-		IExecutableCollisionAlgorithm? executableCollisionAlgorithm = ExecutableCollisionAlgorithms.All.FirstOrDefault(ea => ea.Name == algorithm.MethodSignature);
+		IExecutableCollisionAlgorithm? executableCollisionAlgorithm = ExecutableCollisionAlgorithms.All.FirstOrDefault(a => a.Name == algorithm.MethodSignature);
 		if (executableCollisionAlgorithm == null)
 			Assert.Fail($"The algorithm {algorithm.MethodSignature} was not found.");
 
-		List<Result> results = algorithm.Scenarios.ConvertAll(scenario =>
+		List<Result> results = algorithm.Scenarios.ConvertAll(s =>
 		{
-			ExecutionResult executionResult = executableCollisionAlgorithm.Execute(scenario.Arguments);
-			return new Result(scenario.Arguments.ConvertAll(a => a.ToString() ?? "<NULL>"), executionResult);
+			ExecutionResult executionResult = executableCollisionAlgorithm.Execute(s.Arguments);
+			return new Result(s.Incorrect, s.Arguments.ConvertAll(a => a.ToString() ?? "<NULL>"), executionResult);
 		});
 
 		return Verify(results);
 	}
 
-	private sealed record Result(List<string> Arguments, ExecutionResult ExecutionResult);
+	private sealed record Result(bool Incorrect, List<string> Arguments, ExecutionResult ExecutionResult);
 }
