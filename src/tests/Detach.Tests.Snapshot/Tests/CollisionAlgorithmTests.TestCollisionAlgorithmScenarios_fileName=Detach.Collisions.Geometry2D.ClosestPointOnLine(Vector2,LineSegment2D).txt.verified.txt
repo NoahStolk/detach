@@ -1,0 +1,14 @@
+﻿[
+  {
+    Arguments: [
+      <0.918, 0>,
+      LineSegment2D { Start = <0, 0>, End = <1, 1>, Length = 1.4142135, LengthSquared = 2 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.459,
+        Y: 0.459
+      }
+    }
+  }
+]
