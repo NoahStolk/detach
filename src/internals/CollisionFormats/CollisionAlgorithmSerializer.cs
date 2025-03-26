@@ -343,7 +343,7 @@ public static class CollisionAlgorithmSerializer
 
 		public static string Write(SphereCast value)
 		{
-			return $"{Write(value.Start)}{_separator}{Write(value.End)},{value.Radius}";
+			return $"{Write(value.Start)}{_separator}{Write(value.End)}{_separator}{value.Radius}";
 		}
 
 		public static SphereCast ReadSphereCast(string value)

@@ -5,27 +5,19 @@ using System.Numerics;
 
 namespace Demos.Collisions.Interactable.Services.Ui;
 
-internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenarioState)
+internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenarioState, SelectionState selectionState)
 {
-	private int _selectedAlgorithmIndex;
-
 	public void Render()
 	{
 		ImGui.SetNextWindowSizeConstraints(new Vector2(960, 320), new Vector2(4096));
 		if (ImGui.Begin("Scenarios"))
-		{
-			ImGui.Combo("Algorithm", ref _selectedAlgorithmIndex, collisionScenarioState.ComboString, 50);
-
-			RenderAlgorithm();
-		}
+			RenderAlgorithm(collisionScenarioState.CollisionAlgorithms[selectionState.SelectedAlgorithmIndex]);
 
 		ImGui.End();
 	}
 
-	private void RenderAlgorithm()
+	private static void RenderAlgorithm(CollisionAlgorithm algorithm)
 	{
-		CollisionAlgorithm algorithm = collisionScenarioState.CollisionAlgorithms[_selectedAlgorithmIndex];
-
 		ImGui.Text(algorithm.MethodSignature);
 
 		ImGui.SeparatorText("Parameters");
