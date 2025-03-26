@@ -15,6 +15,14 @@ internal sealed class CollisionScenarioState
 
 	public List<CollisionAlgorithm> CollisionAlgorithms { get; } = [];
 
+	public CollisionAlgorithm? GetAlgorithm(int index)
+	{
+		if (index < 0 || index >= CollisionAlgorithms.Count)
+			return null;
+
+		return CollisionAlgorithms[index];
+	}
+
 	private void CollectAlgorithms()
 	{
 		foreach (IExecutableCollisionAlgorithm executableCollisionAlgorithm in ExecutableCollisionAlgorithms.All)

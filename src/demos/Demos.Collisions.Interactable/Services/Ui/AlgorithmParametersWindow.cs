@@ -40,11 +40,15 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 
 		if (ImGui.Button("Add scenario") || glfwInput.IsKeyPressed(Keys.Q))
 		{
-			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
-				collisionAlgorithmState.Arguments,
-				collisionAlgorithmState.OutArguments,
-				collisionAlgorithmState.ReturnValue);
-			collisionScenarioState.AddScenario(collisionScenarioState.CollisionAlgorithms[selectionState.SelectedAlgorithmIndex].MethodSignature, collisionAlgorithmScenario);
+			CollisionAlgorithm? algorithm = collisionScenarioState.GetAlgorithm(selectionState.SelectedAlgorithmIndex);
+			if (algorithm != null)
+			{
+				CollisionAlgorithmScenario collisionAlgorithmScenario = new(
+					collisionAlgorithmState.Arguments,
+					collisionAlgorithmState.OutArguments,
+					collisionAlgorithmState.ReturnValue);
+				collisionScenarioState.AddScenario(algorithm.MethodSignature, collisionAlgorithmScenario);
+			}
 		}
 	}
 

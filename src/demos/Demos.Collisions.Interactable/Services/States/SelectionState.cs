@@ -2,5 +2,5 @@
 
 internal sealed class SelectionState
 {
-	public int SelectedAlgorithmIndex;
+	public int SelectedAlgorithmIndex = -1;
 }

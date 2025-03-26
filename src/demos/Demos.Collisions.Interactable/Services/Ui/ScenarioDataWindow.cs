@@ -1,22 +1,27 @@
 ﻿using CollisionFormats.Model;
 using Demos.Collisions.Interactable.Services.States;
+using Detach;
 using Hexa.NET.ImGui;
 using System.Numerics;
 
 namespace Demos.Collisions.Interactable.Services.Ui;
 
-internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenarioState, SelectionState selectionState)
+internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgorithmState, CollisionScenarioState collisionScenarioState, SelectionState selectionState)
 {
 	public void Render()
 	{
 		ImGui.SetNextWindowSizeConstraints(new Vector2(960, 320), new Vector2(4096));
 		if (ImGui.Begin("Scenarios"))
-			RenderAlgorithm(collisionScenarioState.CollisionAlgorithms[selectionState.SelectedAlgorithmIndex]);
+		{
+			CollisionAlgorithm? algorithm = collisionScenarioState.GetAlgorithm(selectionState.SelectedAlgorithmIndex);
+			if (algorithm != null)
+				RenderAlgorithm(algorithm);
+		}
 
 		ImGui.End();
 	}
 
-	private static void RenderAlgorithm(CollisionAlgorithm algorithm)
+	private void RenderAlgorithm(CollisionAlgorithm algorithm)
 	{
 		ImGui.Text(algorithm.MethodSignature);
 
@@ -33,9 +38,11 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 
 		ImGui.SeparatorText("Scenarios");
 
-		int columnCount = algorithm.Parameters.Count + algorithm.OutParameters.Count + 1;
+		int columnCount = algorithm.Parameters.Count + algorithm.OutParameters.Count + 2;
 		if (ImGui.BeginTable("ScenarioTable", columnCount, ImGuiTableFlags.Resizable))
 		{
+			ImGui.TableSetupColumn("Actions");
+
 			foreach (CollisionAlgorithmParameter parameter in algorithm.Parameters)
 				ImGui.TableSetupColumn($"{parameter.TypeName} {parameter.Name}");
 
@@ -43,12 +50,21 @@ internal sealed class ScenarioDataWindow(CollisionScenarioState collisionScenari
 				ImGui.TableSetupColumn($"{parameter.TypeName} {parameter.Name}");
 
 			ImGui.TableSetupColumn("Return");
+
 			ImGui.TableSetupScrollFreeze(0, 1);
 			ImGui.TableHeadersRow();
 
-			foreach (CollisionAlgorithmScenario scenario in algorithm.Scenarios)
+			for (int i = 0; i < algorithm.Scenarios.Count; i++)
 			{
+				CollisionAlgorithmScenario scenario = algorithm.Scenarios[i];
 				ImGui.TableNextRow();
+
+				ImGui.TableNextColumn();
+				if (ImGui.SmallButton(Inline.Utf8($"Select##{i}")))
+					collisionAlgorithmState.SetArguments(scenario.Arguments);
+				ImGui.SameLine();
+				if (ImGui.SmallButton(Inline.Utf8($"Delete##{i}")))
+					algorithm.Scenarios.RemoveAt(i);
 
 				foreach (object argument in scenario.Arguments)
 				{

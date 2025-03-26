@@ -22,6 +22,12 @@ internal sealed class CollisionAlgorithmState
 			Arguments.Add(GetDefault(parameter.Type));
 	}
 
+	public void SetArguments(List<object> arguments)
+	{
+		Arguments.Clear();
+		Arguments.AddRange(arguments);
+	}
+
 	public void ExecuteAlgorithm()
 	{
 		if (SelectedAlgorithm == null || Arguments.Contains(DBNull.Value))
