@@ -2,7 +2,6 @@
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
-using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace Demos.Collisions.Interactable.Services.States;

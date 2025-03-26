@@ -18,6 +18,7 @@ namespace Demos.Collisions.Interactable;
 [Register<GeometryRenderer>(Scope.SingleInstance)]
 [Register<Camera>(Scope.SingleInstance)]
 
+[Register<AlgorithmParametersWindow>(Scope.SingleInstance)]
 [Register<AlgorithmSelectWindow>(Scope.SingleInstance)]
 [Register<ScenarioDataWindow>(Scope.SingleInstance)]
 

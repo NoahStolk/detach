@@ -11,13 +11,9 @@ internal sealed class CollisionScenarioState
 	public CollisionScenarioState()
 	{
 		CollectAlgorithms();
-
-		ComboString = string.Join("\0", CollisionAlgorithms.Select(ca => ca.MethodSignature));
-		ComboString += "\0";
 	}
 
 	public List<CollisionAlgorithm> CollisionAlgorithms { get; } = [];
-	public string ComboString { get; }
 
 	private void CollectAlgorithms()
 	{
