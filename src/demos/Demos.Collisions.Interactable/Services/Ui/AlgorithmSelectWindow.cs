@@ -31,10 +31,11 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 		for (int i = 0; i < ExecutableCollisionAlgorithms.All.Count; i++)
 		{
 			IExecutableCollisionAlgorithm algorithm = ExecutableCollisionAlgorithms.All[i];
+			int count = collisionScenarioState.CollisionAlgorithms[i].Scenarios.Count;
 
 			ImGui.TableNextRow();
 
-			ImGui.TableSetBgColor(ImGuiTableBgTarget.RowBg0, collisionScenarioState.CollisionAlgorithms[i].Scenarios.Count == 0 ? 0x88000000 : 0x88444444);
+			ImGui.TableSetBgColor(ImGuiTableBgTarget.RowBg0, count == 0 ? 0x88000000 : 0x88444444);
 
 			ImGui.TableNextColumn();
 			if (ImGui.Selectable(algorithm.Name, selectionState.SelectedAlgorithmIndex == i, ImGuiSelectableFlags.SpanAllColumns))
@@ -44,7 +45,7 @@ internal sealed class AlgorithmSelectWindow(CollisionAlgorithmState collisionAlg
 			}
 
 			ImGui.TableNextColumn();
-			ImGui.Text(Inline.Utf8(collisionScenarioState.CollisionAlgorithms[i].Scenarios.Count));
+			ImGui.Text(Inline.Utf8(count));
 		}
 
 		ImGui.EndTable();
