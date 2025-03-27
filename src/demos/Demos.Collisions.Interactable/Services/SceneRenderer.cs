@@ -4,7 +4,6 @@ using Demos.Collisions.Interactable.Shaders;
 using Demos.Collisions.Interactable.Utils;
 using Detach.GlExtensions;
 using Detach.Numerics;
-using Detach.Utils;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
@@ -38,7 +37,7 @@ internal sealed unsafe class SceneRenderer(
 
 		float aspectRatio = width / (float)height;
 		Matrix4x4 viewMatrix = Matrix4x4.CreateLookAt(camera.Position, camera.Target, Vector3.UnitY);
-		Matrix4x4 projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView(MathUtils.ToRadians(camera.FieldOfView), aspectRatio, _nearPlaneDistance, _farPlaneDistance);
+		Matrix4x4 projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView(float.DegreesToRadians(camera.FieldOfView), aspectRatio, _nearPlaneDistance, _farPlaneDistance);
 
 		const float fadeOutMinDistance = 10;
 		const float fadeOutMaxDistance = 50;

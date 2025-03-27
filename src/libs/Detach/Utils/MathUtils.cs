@@ -5,33 +5,6 @@ namespace Detach.Utils;
 
 public static class MathUtils
 {
-	private const float _toRad = MathF.PI / 180;
-	private const float _toDeg = 180 / MathF.PI;
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static float ToDegrees(float radians)
-	{
-		return radians * _toDeg;
-	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Vector3 ToDegrees(Vector3 radians)
-	{
-		return radians * 180 / MathF.PI;
-	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static float ToRadians(float degrees)
-	{
-		return degrees * _toRad;
-	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Vector3 ToRadians(Vector3 degrees)
-	{
-		return degrees * MathF.PI / 180;
-	}
-
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Matrix4x4 CreateRotationMatrixFromEulerAngles(Vector3 eulerAngles)
 	{

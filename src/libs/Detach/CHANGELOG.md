@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.26.1
+
+### Removed
+
+- Removed `MathUtils.ToDegrees(float)` and `MathUtils.ToRadians(float)`. Use `float.DegreesToRadians` and `float.RadiansToDegrees` instead.
+- Removed `MathUtils.ToDegrees(Vector3)` and `MathUtils.ToRadians(Vector3)`. Use `Vector3.DegreesToRadians` and `Vector3.RadiansToDegrees` instead.
+
 ## 0.26.0
 
 ### Added

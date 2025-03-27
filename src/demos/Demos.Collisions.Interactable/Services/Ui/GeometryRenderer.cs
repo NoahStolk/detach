@@ -165,7 +165,7 @@ internal sealed class GeometryRenderer
 				const int lineSegments = 8;
 				for (int i = 0; i < lineSegments; i++)
 				{
-					float angle = MathUtils.ToRadians(i / (float)lineSegments * 360);
+					float angle = float.DegreesToRadians(i / (float)lineSegments * 360);
 					Vector3 offset = Vector3.Transform(new Vector3(MathF.Sin(angle), 0, MathF.Cos(angle)) * sphereCast.Radius, orientationMatrix);
 					Vector3 start = sphereCast.Start + offset;
 					Vector3 end = sphereCast.End + offset;
