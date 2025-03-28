@@ -1,7 +1,9 @@
 using Detach.Numerics;
 using Detach.Utils;
+using System.Buffers.Binary;
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Detach.Parsers.Texture.TgaFormat;
@@ -40,19 +42,28 @@ internal readonly struct TgaImageData
 		int columnStart = _rightToLeft ? _width - 1 : 0;
 		int columnIncrement = _rightToLeft ? -1 : 1;
 
+		ReadOnlySpan<byte> inputSpan = _data.AsSpan();
+
 		// Output is always RGBA (top to bottom, left to right).
-		byte[] bytes = new byte[_width * _height * 4];
-		Span<byte> byteSpan = bytes.AsSpan();
+		byte[] output = new byte[_width * _height * 4];
+		Span<byte> outputSpan = output.AsSpan();
 
 		if (_runLengthEncoding)
-			ReadRunLengthEncodedData(rowStart, rowIncrement, columnStart, columnIncrement, bytesPerPixel, byteSpan);
+			ReadRunLengthEncodedData(rowStart, rowIncrement, columnStart, columnIncrement, bytesPerPixel, inputSpan, outputSpan);
 		else
-			ReadRawData(rowStart, rowIncrement, columnStart, columnIncrement, bytesPerPixel, byteSpan);
+			ReadRawData(rowStart, rowIncrement, columnStart, columnIncrement, bytesPerPixel, inputSpan, outputSpan);
 
-		return bytes;
+		return output;
 	}
 
-	private void ReadRunLengthEncodedData(int rowStart, int rowIncrement, int columnStart, int columnIncrement, int bytesPerPixel, Span<byte> byteSpan)
+	private void ReadRunLengthEncodedData(
+		int rowStart,
+		int rowIncrement,
+		int columnStart,
+		int columnIncrement,
+		int bytesPerPixel,
+		ReadOnlySpan<byte> inputSpan,
+		Span<byte> outputSpan)
 	{
 		int readPosition = 0;
 
@@ -63,21 +74,19 @@ internal readonly struct TgaImageData
 				// Read the packet header.
 				// In case of RLE packet, there is one color which is repeated packetLength times.
 				// In case of raw packet, there are packetLength colors.
-				bool isRlePacket = BitUtils.IsBitSet(_data[readPosition], 7);
-				int packetLength = (_data[readPosition++] & 0b0111_1111) + 1;
+				bool isRlePacket = BitUtils.IsBitSet(inputSpan[readPosition], 7);
+				int packetLength = (inputSpan[readPosition++] & 0b0111_1111) + 1;
 
 				if (isRlePacket)
 				{
-					Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
+					Rgba rgba = ReadAsRgba(_pixelDepth, inputSpan.Slice(readPosition, bytesPerPixel));
+					int rgbaInt = Unsafe.BitCast<Rgba, int>(rgba);
 					readPosition += bytesPerPixel;
 
 					for (int k = 0; k < packetLength; k++)
 					{
 						int pixelWriteIndex = (i * _width + j) * 4;
-						byteSpan[pixelWriteIndex + 0] = rgba.R;
-						byteSpan[pixelWriteIndex + 1] = rgba.G;
-						byteSpan[pixelWriteIndex + 2] = rgba.B;
-						byteSpan[pixelWriteIndex + 3] = rgba.A;
+						BinaryPrimitives.WriteInt32LittleEndian(outputSpan.Slice(pixelWriteIndex, 4), rgbaInt);
 
 						j += columnIncrement;
 					}
@@ -86,14 +95,11 @@ internal readonly struct TgaImageData
 				{
 					for (int k = 0; k < packetLength; k++)
 					{
-						Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(readPosition, bytesPerPixel).AsSpan());
+						Rgba rgba = ReadAsRgba(_pixelDepth, inputSpan.Slice(readPosition, bytesPerPixel));
 						readPosition += bytesPerPixel;
 
 						int pixelWriteIndex = (i * _width + j) * 4;
-						byteSpan[pixelWriteIndex + 0] = rgba.R;
-						byteSpan[pixelWriteIndex + 1] = rgba.G;
-						byteSpan[pixelWriteIndex + 2] = rgba.B;
-						byteSpan[pixelWriteIndex + 3] = rgba.A;
+						BinaryPrimitives.WriteInt32LittleEndian(outputSpan.Slice(pixelWriteIndex, 4), Unsafe.BitCast<Rgba, int>(rgba));
 
 						j += columnIncrement;
 					}
@@ -102,7 +108,14 @@ internal readonly struct TgaImageData
 		}
 	}
 
-	private void ReadRawData(int rowStart, int rowIncrement, int columnStart, int columnIncrement, int bytesPerPixel, Span<byte> byteSpan)
+	private void ReadRawData(
+		int rowStart,
+		int rowIncrement,
+		int columnStart,
+		int columnIncrement,
+		int bytesPerPixel,
+		ReadOnlySpan<byte> inputSpan,
+		Span<byte> outputSpan)
 	{
 		int writePosition = 0;
 
@@ -111,12 +124,9 @@ internal readonly struct TgaImageData
 			for (int j = columnStart; _rightToLeft ? j >= 0 : j < _width; j += columnIncrement)
 			{
 				int pixelReadIndex = (i * _width + j) * bytesPerPixel;
-				Rgba rgba = ReadRgba(_pixelDepth, _data.Slice(pixelReadIndex, bytesPerPixel).AsSpan());
+				Rgba rgba = ReadAsRgba(_pixelDepth, inputSpan.Slice(pixelReadIndex, bytesPerPixel));
 
-				byteSpan[writePosition + 0] = rgba.R;
-				byteSpan[writePosition + 1] = rgba.G;
-				byteSpan[writePosition + 2] = rgba.B;
-				byteSpan[writePosition + 3] = rgba.A;
+				BinaryPrimitives.WriteInt32LittleEndian(outputSpan.Slice(writePosition, 4), Unsafe.BitCast<Rgba, int>(rgba));
 				writePosition += 4;
 			}
 		}
@@ -179,6 +189,33 @@ internal readonly struct TgaImageData
 				}
 			}
 		}
+	}
+
+	private static Rgba ReadAsRgba(TgaPixelDepth pixelDepth, ReadOnlySpan<byte> data)
+	{
+		return pixelDepth switch
+		{
+			TgaPixelDepth.Bgra => ReadBgra(data),
+			TgaPixelDepth.Bgr => ReadBgr(data),
+			_ => throw new InvalidOperationException($"Invalid pixel depth: {pixelDepth}"),
+		};
+	}
+
+	private static Rgba ReadBgra(ReadOnlySpan<byte> span)
+	{
+		byte b = span[0];
+		byte g = span[1];
+		byte r = span[2];
+		byte a = span[3];
+		return new Rgba(r, g, b, a);
+	}
+
+	private static Rgba ReadBgr(ReadOnlySpan<byte> span)
+	{
+		byte b = span[0];
+		byte g = span[1];
+		byte r = span[2];
+		return new Rgba(r, g, b);
 	}
 
 	private static Rgba ReadRgba(TgaPixelDepth pixelDepth, ReadOnlySpan<byte> span)
