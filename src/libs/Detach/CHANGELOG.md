@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.26.2
+
+### Changed
+
+- Improved performance of `TgaImageData.Read` method.
+
 ## 0.26.1
 
 ### Removed
