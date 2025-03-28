@@ -4,11 +4,4 @@
     <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NoahStolk.UnionStruct" Version="0.0.0-alpha.6">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive; compile</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-
 </Project>
