@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
+  </ItemGroup>
+
+</Project>
