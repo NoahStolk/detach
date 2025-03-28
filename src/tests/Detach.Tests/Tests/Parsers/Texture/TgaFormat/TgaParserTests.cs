@@ -1,6 +1,7 @@
 using Detach.Parsers.Texture;
 using Detach.Parsers.Texture.TgaFormat;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Diagnostics;
 
 namespace Detach.Tests.Tests.Parsers.Texture.TgaFormat;
 
@@ -48,6 +49,22 @@ public class TgaParserTests
 		Assert.AreEqual(0x6A, texture.ColorData[72 * 6 * 4 + 4 * 4 + 1]);
 		Assert.AreEqual(0x00, texture.ColorData[72 * 6 * 4 + 4 * 4 + 2]);
 		Assert.AreEqual(0xFF, texture.ColorData[72 * 6 * 4 + 4 * 4 + 3]);
+	}
+
+	[DataTestMethod]
+	[DataRow("Large_NoCompression.tga")]
+	[DataRow("Large_RleCompression.tga")]
+	public void TestLarge(string fileName)
+	{
+		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath(fileName));
+
+		long timestamp = Stopwatch.GetTimestamp();
+		TextureData texture = TgaParser.Parse(bytes);
+		Console.WriteLine(Stopwatch.GetElapsedTime(timestamp));
+
+		Assert.AreEqual(800, texture.Width);
+		Assert.AreEqual(600, texture.Height);
+		Assert.AreEqual(800 * 600 * 4, texture.ColorData.Length);
 	}
 
 	[DataTestMethod]
