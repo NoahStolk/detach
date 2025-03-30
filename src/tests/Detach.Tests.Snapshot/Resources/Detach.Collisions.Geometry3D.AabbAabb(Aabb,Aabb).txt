@@ -1,0 +1,10 @@
+Detach.Collisions.Geometry3D.AabbAabb(Aabb,Aabb);Detach.Collisions.Primitives3D.Aabb aabb1,Detach.Collisions.Primitives3D.Aabb aabb2;;System.Boolean
+0 0 0 1 1 1,0 0 0 1 1 1;;True;OK
+0 0 0 1 1 1,0.952 0 0 1 1 1;;True;OK
+0 0 0 1 1 1,0.952 0 0 1.603 1 1;;True;OK
+0 0 0 1 1 1,0.952 0 0 1.603 0.556 1;;True;OK
+0 0 0 1 1 1,0.952 0.899 0 1.603 0.556 1;;False;OK
+0 0 0 1 1 1.947,0.952 0.899 0 1.603 0.556 1;;False;OK
+0 -1.481 0 1 1 1.947,0.952 0.899 0 1.603 0.556 1;;False;OK
+0 -1.481 0 3 3 1.947,0.952 0.899 0 1.603 0.556 1;;False;OK
+0 -0.687 0 3 3 1.947,0.952 0.899 0 1.603 0.556 1;;True;OK

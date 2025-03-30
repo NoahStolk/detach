@@ -104,6 +104,9 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			LineSegment2D cast = (LineSegment2D)value;
 			ImGui.SliderFloat2($"{parameterName}.Start##{index}", ref cast.Start.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat2($"{parameterName}.End##{index}", ref cast.End.X, -maxDistance, maxDistance);
+			if (ImGui.Button($"Swap line positions##{index}"))
+				cast = new LineSegment2D(cast.End, cast.Start);
+
 			value = cast;
 		}
 		else if (type == typeof(OrientedRectangle))
@@ -127,6 +130,9 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			ImGui.SliderFloat2($"{parameterName}.A##{index}", ref cast.A.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat2($"{parameterName}.B##{index}", ref cast.B.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat2($"{parameterName}.C##{index}", ref cast.C.X, -maxDistance, maxDistance);
+			if (ImGui.Button($"Swap triangle positions##{index}"))
+				cast = new Triangle2D(cast.C, cast.A, cast.B);
+
 			value = cast;
 		}
 		else if (type == typeof(Vector3))
@@ -164,6 +170,9 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			LineSegment3D cast = (LineSegment3D)value;
 			ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref cast.Start.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref cast.End.X, -maxDistance, maxDistance);
+			if (ImGui.Button(Inline.Utf8($"Swap line positions##{index}")))
+				cast = new LineSegment3D(cast.End, cast.Start);
+
 			value = cast;
 		}
 		else if (type == typeof(Obb))
@@ -228,6 +237,9 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			ImGui.SliderFloat3(Inline.Utf8($"Position A##{index}"), ref cast.A.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat3(Inline.Utf8($"Position B##{index}"), ref cast.B.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat3(Inline.Utf8($"Position C##{index}"), ref cast.C.X, -maxDistance, maxDistance);
+			if (ImGui.Button(Inline.Utf8($"Swap triangle positions##{index}")))
+				cast = new Triangle3D(cast.C, cast.A, cast.B);
+
 			value = cast;
 		}
 		else
