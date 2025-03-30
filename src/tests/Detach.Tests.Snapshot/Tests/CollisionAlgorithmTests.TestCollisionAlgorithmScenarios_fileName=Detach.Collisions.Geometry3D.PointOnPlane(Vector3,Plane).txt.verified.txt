@@ -1,0 +1,112 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      {Normal:<0, 1, 0> D:1}
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      {Normal:<0, 1, 0> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0.954, 0>,
+      {Normal:<0, 1, 0> D:0.954}
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0.954, 0>,
+      {Normal:<0.46864328, 0.8092998, -0.3541288> D:0.954}
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0.531, 0>,
+      {Normal:<0.46864328, 0.8092998, -0.3541288> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      {Normal:<0.46864328, 0.8092998, -0.3541288> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0.671, 0.74, -0.047>,
+      {Normal:<0.6710547, 0.7399379, -0.046662748> D:0.773}
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <5, 0, 0>,
+      {Normal:<0, 0, -1> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <5, 0, 0>,
+      {Normal:<0, 0.70710677, -0.70710677> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <5, 0, 0>,
+      {Normal:<0, -0.81649655, -0.57735026> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <5, 0, 0>,
+      {Normal:<0, -0.81649655, -0.57735026> D:0.016}
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]

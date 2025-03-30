@@ -5,6 +5,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Internal dependencies">
+    <ProjectReference Include="..\..\internals\CollisionFormats\CollisionFormats.csproj" />
     <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
     <ProjectReference Include="..\..\libs\Detach.ImGuiBackend.GlfwHexa\Detach.ImGuiBackend.GlfwHexa.csproj"/>
   </ItemGroup>

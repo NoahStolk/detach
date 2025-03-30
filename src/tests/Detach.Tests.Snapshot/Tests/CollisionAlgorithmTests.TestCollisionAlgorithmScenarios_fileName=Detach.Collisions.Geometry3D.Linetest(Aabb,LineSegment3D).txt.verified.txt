@@ -1,0 +1,62 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      LineSegment3D { Start = <0.582, 0, 0>, End = <1, 1, 1>, Length = 1.4746946, LengthSquared = 2.174724 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Aabb { Center = <-0.265, -0.212, 0>, Size = <1, 1, 1> },
+      LineSegment3D { Start = <0.582, 0, 0>, End = <1, 1, 1>, Length = 1.4746946, LengthSquared = 2.174724 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Aabb { Center = <0.687, -0.212, 0>, Size = <1, 1, 1> },
+      LineSegment3D { Start = <0.582, 0, 0>, End = <1, 1, 1>, Length = 1.4746946, LengthSquared = 2.174724 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Aabb { Center = <0.687, -0.212, 1.053>, Size = <1, 1, 1> },
+      LineSegment3D { Start = <0.582, 0, 0>, End = <1, 1, 1>, Length = 1.4746946, LengthSquared = 2.174724 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      LineSegment3D { Start = <0, 0, 0>, End = <0.312, 0.418, 0.263>, Length = 0.58415496, LengthSquared = 0.34123704 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]

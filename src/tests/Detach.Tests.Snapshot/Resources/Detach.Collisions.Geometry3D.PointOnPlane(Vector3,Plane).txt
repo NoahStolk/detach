@@ -1,0 +1,12 @@
+Detach.Collisions.Geometry3D.PointOnPlane(Vector3,Plane);System.Numerics.Vector3 point,System.Numerics.Plane plane;;System.Boolean
+0 0 0,0 1 0 1;;False;OK
+0 0 0,0 1 0 0;;True;OK
+0 0.954 0,0 1 0 0.954;;True;OK
+0 0.954 0,0.46864328 0.8092998 -0.3541288 0.954;;False;OK
+0 0.531 0,0.46864328 0.8092998 -0.3541288 0;;False;OK
+0 0 0,0.46864328 0.8092998 -0.3541288 0;;True;OK
+0.671 0.74 -0.047,0.6710547 0.7399379 -0.046662748 0.773;;False;OK
+5 0 0,0 0 -1 0;;True;OK
+5 0 0,0 0.70710677 -0.70710677 0;;True;OK
+5 0 0,0 -0.81649655 -0.57735026 0;;True;OK
+5 0 0,0 -0.81649655 -0.57735026 0.016;;False;OK

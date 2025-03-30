@@ -6,6 +6,10 @@
     <Project Path="demos\Demos.ImGuiBackend.GlfwImGuiNET\Demos.ImGuiBackend.GlfwImGuiNET.csproj" Type="Classic C#" />
     <Project Path="demos\Demos.Plot\Demos.Plot.csproj" Type="Classic C#" />
   </Folder>
+  <Folder Name="/internals/">
+    <Project Path="internals\CollisionFormats\CollisionFormats.csproj" Type="Classic C#" />
+    <Project Path="internals\ExecutableCollisionAlgorithmsGenerator\ExecutableCollisionAlgorithmsGenerator.csproj" Type="Classic C#" />
+  </Folder>
   <Folder Name="/libs/">
     <Project Path="libs\Detach.AlExtensions\Detach.AlExtensions.csproj" Type="Classic C#" />
     <Project Path="libs\Detach.GlExtensions\Detach.GlExtensions.csproj" Type="Classic C#" />
@@ -16,7 +20,8 @@
     <Project Path="libs\Detach\Detach.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests\Detach.Tests\Detach.Tests.csproj" Type="Classic C#" />
+    <Project Path="tests\Detach.Tests.Snapshot\Detach.Tests.Snapshot.csproj" Type="Classic C#" />
+    <Project Path="tests\Detach.Tests.Unit\Detach.Tests.Unit.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tools/">
     <Project Path="tools\Tools.Generator\Tools.Generator.csproj" Type="Classic C#" />

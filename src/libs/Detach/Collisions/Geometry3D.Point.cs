@@ -63,6 +63,7 @@ public static partial class Geometry3D
 		return dot is >= 1 - float.Epsilon and <= 1 + float.Epsilon;
 	}
 
+	// TODO: This might be broken.
 	public static bool PointInTriangle(Vector3 point, Triangle3D triangle)
 	{
 		Vector3 a = triangle.A - point;

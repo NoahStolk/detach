@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup Label="Project under test">
+    <ProjectReference Include="..\..\internals\CollisionFormats\CollisionFormats.csproj"/>
+    <ProjectReference Include="..\..\libs\Detach\Detach.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Test resources">
+    <None Update="Resources\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Verify.MSTest" Version="28.16.0"/>
+  </ItemGroup>
+
+</Project>

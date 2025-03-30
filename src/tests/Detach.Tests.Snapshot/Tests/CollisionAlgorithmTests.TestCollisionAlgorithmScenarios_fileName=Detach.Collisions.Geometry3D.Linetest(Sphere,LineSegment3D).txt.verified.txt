@@ -1,0 +1,162 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 1 },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.429, 0>, Radius = 1 },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.429, 0>, Radius = 1.306 },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.429, 0>, Radius = 1.306 },
+      LineSegment3D { Start = <1.323, 0, 0>, End = <1, 1, 1>, Length = 1.4506305, LengthSquared = 2.104329 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.429, 0>, Radius = 1.306 },
+      LineSegment3D { Start = <1.323, 1.005, 0>, End = <1, 1, 1>, Length = 1.0508825, LengthSquared = 1.1043539 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.429, 0>, Radius = 1.306 },
+      LineSegment3D { Start = <1.323, 1.27, 0>, End = <1, 1, 1>, Length = 1.0850018, LengthSquared = 1.1772289 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 1 },
+      LineSegment3D { Start = <0, 0, 0>, End = <0.312, 0.365, 0.368>, Length = 0.60497355, LengthSquared = 0.36599302 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 1 },
+      LineSegment3D { Start = <0, 0, 0>, End = <-0.058, -0.005, -0.316>, Length = 0.3213176, LengthSquared = 0.10324501 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.171 },
+      LineSegment3D { Start = <0, 0, 0>, End = <-0.058, -0.005, -0.316>, Length = 0.3213176, LengthSquared = 0.10324501 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.378 },
+      LineSegment3D { Start = <0, 0, 0>, End = <-0.058, -0.005, -0.316>, Length = 0.3213176, LengthSquared = 0.10324501 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.741, 0>, Radius = 0.378 },
+      LineSegment3D { Start = <0, 0, 0>, End = <-0.058, -0.005, -0.316>, Length = 0.3213176, LengthSquared = 0.10324501 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.741, 0>, Radius = 0.378 },
+      LineSegment3D { Start = <0, 0.582, 0>, End = <-0.058, -0.005, -0.316>, Length = 0.66917044, LengthSquared = 0.44778904 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.741, 0>, Radius = 0.378 },
+      LineSegment3D { Start = <0, 0.952, 0>, End = <-0.058, -0.005, -0.316>, Length = 1.0094895, LengthSquared = 1.0190691 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.741, 0>, Radius = 0.378 },
+      LineSegment3D { Start = <0, 0.952, 0>, End = <-0.058, 0.789, -0.316>, Length = 0.36026242, LengthSquared = 0.12978902 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.741, 0>, Radius = 0.378 },
+      LineSegment3D { Start = <0, 0.952, 0>, End = <-0.058, 0.789, -0.105>, Length = 0.20238087, LengthSquared = 0.040958017 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.741, 0>, Radius = 2.156 },
+      LineSegment3D { Start = <0, 0.952, 0>, End = <-0.058, 0.789, -0.105>, Length = 0.20238087, LengthSquared = 0.040958017 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

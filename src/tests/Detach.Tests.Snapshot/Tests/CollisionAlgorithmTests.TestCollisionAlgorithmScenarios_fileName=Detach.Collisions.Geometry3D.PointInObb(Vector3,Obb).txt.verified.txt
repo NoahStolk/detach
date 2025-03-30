@@ -1,0 +1,142 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 1.058, 0>,
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 0.8571673, 0.51503813> <0, -0.51503813, 0.8571673> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 1.058, 0.474>,
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 0.8571673, 0.51503813> <0, -0.51503813, 0.8571673> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 1.058, -0.789>,
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 0.8571673, 0.51503813> <0, -0.51503813, 0.8571673> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 1.058, -0.368>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 2.01, -0.368>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 2.01, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0.529, 2.01, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.164, 2.01, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.164, 1.375, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.164, -0.265, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0.794, -0.265, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <-0.423, -0.265, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.588, -0.265, -0.947>,
+      Obb { Center = <0.317, 0.847, -0.421>, HalfExtents = <1, 1, 1>, Orientation = <0.7193397, 0, -0.6946584> <0.35777557, 0.8571673, 0.3704874> <0.5954385, -0.51503813, 0.6165945> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]

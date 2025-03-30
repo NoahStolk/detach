@@ -1,4 +1,5 @@
-﻿using Demos.Collisions.Interactable.Services.Ui;
+﻿using Demos.Collisions.Interactable.Services.States;
+using Demos.Collisions.Interactable.Services.Ui;
 using Demos.Collisions.Interactable.Utils;
 using Detach.GlfwExtensions;
 using Detach.ImGuiBackend.GlfwHexa;
@@ -22,7 +23,9 @@ internal sealed class App
 	private readonly unsafe WindowHandle* _window;
 	private readonly GlfwInput _glfwInput;
 	private readonly ImGuiController _imGuiController;
+	private readonly AlgorithmParametersWindow _algorithmParametersWindow;
 	private readonly AlgorithmSelectWindow _algorithmSelectWindow;
+	private readonly ScenarioDataWindow _scenarioDataWindow;
 	private readonly SceneRenderer _sceneRenderer;
 	private readonly Camera _camera;
 	private readonly CollisionAlgorithmState _collisionAlgorithmState;
@@ -37,7 +40,9 @@ internal sealed class App
 		WindowHandle* window,
 		GlfwInput glfwInput,
 		ImGuiController imGuiController,
+		AlgorithmParametersWindow algorithmParametersWindow,
 		AlgorithmSelectWindow algorithmSelectWindow,
+		ScenarioDataWindow scenarioDataWindow,
 		SceneRenderer sceneRenderer,
 		Camera camera,
 		CollisionAlgorithmState collisionAlgorithmState)
@@ -46,7 +51,9 @@ internal sealed class App
 		_window = window;
 		_glfwInput = glfwInput;
 		_imGuiController = imGuiController;
+		_algorithmParametersWindow = algorithmParametersWindow;
 		_algorithmSelectWindow = algorithmSelectWindow;
+		_scenarioDataWindow = scenarioDataWindow;
 		_sceneRenderer = sceneRenderer;
 		_camera = camera;
 		_collisionAlgorithmState = collisionAlgorithmState;
@@ -105,12 +112,15 @@ internal sealed class App
 
 		ImGui.DockSpaceOverViewport(0, null, ImGuiDockNodeFlags.PassthruCentralNode);
 
-		_camera.Update(frameTime, true);
+		_camera.Update(frameTime, !ImGui.IsAnyItemHovered());
 		_collisionAlgorithmState.ExecuteAlgorithm();
 
 		_sceneRenderer.Render();
 
+		_algorithmParametersWindow.Render();
 		_algorithmSelectWindow.Render();
+		_scenarioDataWindow.Render();
+
 		_imGuiController.Render();
 
 		_glfwInput.EndFrame();

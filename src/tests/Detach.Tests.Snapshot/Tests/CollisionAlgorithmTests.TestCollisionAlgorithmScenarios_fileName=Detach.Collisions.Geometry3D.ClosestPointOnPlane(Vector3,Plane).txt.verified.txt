@@ -1,0 +1,223 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      {Normal:<0, 1, 0> D:1}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0.529, 0, 0>,
+      {Normal:<0, 1, 0> D:0.326}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.529,
+        Y: 0.326
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0.529, 0, 0>,
+      {Normal:<0.38319373, 0.6639724, 0.64210844> D:0.326}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.5762441,
+        Y: 0.0818615,
+        Z: 0.07916588
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 0, 0>,
+      {Normal:<0.38319373, 0.6639724, 0.64210844> D:0.326}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.6145431,
+        Y: -0.2277799,
+        Z: -0.22027934
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 1.587, 0>,
+      {Normal:<0.38319373, 0.6639724, 0.64210844> D:0.326}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.2107625,
+        Y: 0.65957636,
+        Z: -0.89688456
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 1.587, 1.158>,
+      {Normal:<0.38319373, 0.6639724, 0.64210844> D:0.326}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.9258344,
+        Y: 0.1658721,
+        Z: -0.21633172
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 1.587, 1.158>,
+      {Normal:<0.38319373, 0.6639724, 0.64210844> D:2.837}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.8880339,
+        Y: 1.8331066,
+        Z: 1.3960025
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 1.587, 1.158>,
+      {Normal:<0.38319373, 0.6639724, 0.64210844> D:1.727}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.4626888,
+        Y: 1.0960974,
+        Z: 0.6832622
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 1.587, 1.158>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:1.727}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.24268627,
+        Y: -1.3831395,
+        Z: -1.3742809
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, -2.513, 1.158>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:1.727}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.2891355,
+        Y: -3.4156404,
+        Z: 0.38842708
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, -2.513, -2.789>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:1.727}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 2.1480231,
+        Y: -1.7187117,
+        Z: -2.111806
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, -2.513, -2.789>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:2.656}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.814121,
+        Y: -2.3784115,
+        Z: -2.6742525
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, -2.513, -2.789>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:0}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 2.7687433,
+        Y: -0.49233747,
+        Z: -1.066224
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, -2.513, -2.789>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:-2}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 3.4875853,
+        Y: 0.9278991,
+        Z: 0.14464116
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.746, 5, -2.789>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:-2}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.5700314,
+        Y: 4.6523337,
+        Z: -3.0854132
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <1.825, 5, 1.474>,
+      {Normal:<-0.35942104, -0.7101183, -0.6054325> D:-2}
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.71117496,
+        Y: 2.7993844,
+        Z: -0.40220046
+      }
+    }
+  }
+]

@@ -1,0 +1,17 @@
+Detach.Collisions.Geometry3D.Linetest(Sphere,LineSegment3D);Detach.Collisions.Primitives3D.Sphere sphere,Detach.Collisions.Primitives3D.LineSegment3D line;;System.Boolean
+0 0 0 1,0 0 0 1 1 1;;True;OK
+0 1.429 0 1,0 0 0 1 1 1;;False;OK
+0 1.429 0 1.306,0 0 0 1 1 1;;True;OK
+0 1.429 0 1.306,1.323 0 0 1 1 1;;False;OK
+0 1.429 0 1.306,1.323 1.005 0 1 1 1;;False;OK
+0 1.429 0 1.306,1.323 1.27 0 1 1 1;;True;OK
+0 0 0 1,0 0 0 0.312 0.365 0.368;;True;OK
+0 0 0 1,0 0 0 -0.058 -0.005 -0.316;;True;OK
+0 0 0 0.171,0 0 0 -0.058 -0.005 -0.316;;True;OK
+0 0 0 0.378,0 0 0 -0.058 -0.005 -0.316;;True;OK
+0 0.741 0 0.378,0 0 0 -0.058 -0.005 -0.316;;False;OK
+0 0.741 0 0.378,0 0.582 0 -0.058 -0.005 -0.316;;True;OK
+0 0.741 0 0.378,0 0.952 0 -0.058 -0.005 -0.316;;True;OK
+0 0.741 0 0.378,0 0.952 0 -0.058 0.789 -0.316;;True;OK
+0 0.741 0 0.378,0 0.952 0 -0.058 0.789 -0.105;;True;OK
+0 0.741 0 2.156,0 0.952 0 -0.058 0.789 -0.105;;True;OK

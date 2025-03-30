@@ -1,0 +1,112 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 1 },
+      <0, 0, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 0.181 },
+      <0, 0, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 0.181 },
+      <0, 0.476, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 0.304 },
+      <0, 0.476, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 0.429 },
+      <0, 0.476, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.513, 0, 0>, End = <1, 1, 1>, Radius = 0.429 },
+      <0, 0.476, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.513, 1.852, -2.105>, End = <1, 1, 1>, Radius = 0.429 },
+      <0, 0.476, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.513, 1.852, -2.105>, End = <1, 1, 1>, Radius = 0.429 },
+      <0, 1.058, 0>
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.513, 1.852, -2.105>, End = <1, 1, 1>, Radius = 0.429 },
+      <0, 1.058, -0.789>
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.513, 1.852, -2.105>, End = <1, 1, 1>, Radius = 0.429 },
+      <-0.926, 1.058, -0.789>
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.513, 1.852, -2.105>, End = <1, 1, 1>, Radius = 0.429 },
+      <-1.984, 1.058, -0.789>
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]
