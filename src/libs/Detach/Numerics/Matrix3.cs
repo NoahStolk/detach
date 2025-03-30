@@ -43,6 +43,32 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>, ISpanFormattable, IUt
 		M33 = row3.Z;
 	}
 
+	public Matrix3(Matrix4 matrix4)
+	{
+		M11 = matrix4.M11;
+		M12 = matrix4.M12;
+		M13 = matrix4.M13;
+		M21 = matrix4.M21;
+		M22 = matrix4.M22;
+		M23 = matrix4.M23;
+		M31 = matrix4.M31;
+		M32 = matrix4.M32;
+		M33 = matrix4.M33;
+	}
+
+	public Matrix3(Matrix4x4 matrix4)
+	{
+		M11 = matrix4.M11;
+		M12 = matrix4.M12;
+		M13 = matrix4.M13;
+		M21 = matrix4.M21;
+		M22 = matrix4.M22;
+		M23 = matrix4.M23;
+		M31 = matrix4.M31;
+		M32 = matrix4.M32;
+		M33 = matrix4.M33;
+	}
+
 	public Matrix3(Span<float> span)
 	{
 		if (span.Length != 9)
@@ -102,6 +128,7 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>, ISpanFormattable, IUt
 			0, 0, 0, 1);
 	}
 
+	// ReSharper disable once InconsistentNaming
 	public Matrix4x4 ToMatrix4x4()
 	{
 		return new Matrix4x4(

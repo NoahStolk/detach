@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.26.3
+
+### Added
+
+- Added constructors accepting `Matrix4` and `Matrix4x4` to `Matrix3` struct.
+
 ## 0.26.2
 
 ### Changed
