@@ -1,0 +1,102 @@
+﻿[
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 },
+      Cylinder { BottomCenter = <2.222, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 },
+      Cylinder { BottomCenter = <1.693, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 },
+      Cylinder { BottomCenter = <1.693, 0.952, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 },
+      Cylinder { BottomCenter = <1.799, 0.952, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 },
+      Cylinder { BottomCenter = <1.799, 0.952, 1>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 },
+      Cylinder { BottomCenter = <1.799, 0.952, 0.684>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1.692, Height = 0.595 },
+      Cylinder { BottomCenter = <1.799, 0.952, 0.684>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1.692, Height = 1.278 },
+      Cylinder { BottomCenter = <1.799, 0.952, 0.684>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <1.323, -0.238, 0>, Radius = 1.692, Height = 0.725 },
+      Cylinder { BottomCenter = <1.799, 0.952, 0.684>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Cylinder { BottomCenter = <1.323, -0.238, 0>, Radius = 1.692, Height = 0.725 },
+      Cylinder { BottomCenter = <1.799, 0.317, 0.684>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

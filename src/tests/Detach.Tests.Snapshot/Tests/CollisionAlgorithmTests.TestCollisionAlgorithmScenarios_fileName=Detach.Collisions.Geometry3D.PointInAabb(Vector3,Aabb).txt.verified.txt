@@ -1,0 +1,82 @@
+﻿[
+  {
+    Incorrect: false,
+    Arguments: [
+      <0, 0, 0>,
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0, 0, 0>,
+      Aabb { Center = <0, 0, 0>, Size = <1, 1.54, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0, -1.005, 0>,
+      Aabb { Center = <0, 0, 0>, Size = <1, 1.54, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.952, -1.005, 0>,
+      Aabb { Center = <0, 0, 0>, Size = <1, 1.54, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.952, -1.005, -0.684>,
+      Aabb { Center = <0, 0, 0>, Size = <1, 1.54, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.952, -1.005, -0.684>,
+      Aabb { Center = <0, -0.899, 0>, Size = <1, 1.54, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.952, -1.005, -0.684>,
+      Aabb { Center = <0, -0.899, 0>, Size = <2.444, 1.54, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.952, -1.005, -0.684>,
+      Aabb { Center = <0, -0.899, 0>, Size = <2.444, 1.54, 1.789> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

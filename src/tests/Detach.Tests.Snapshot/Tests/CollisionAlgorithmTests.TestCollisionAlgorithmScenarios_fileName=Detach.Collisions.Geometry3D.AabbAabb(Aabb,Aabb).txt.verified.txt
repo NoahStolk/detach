@@ -1,0 +1,92 @@
+﻿[
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      Aabb { Center = <0.952, 0, 0>, Size = <1, 1, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      Aabb { Center = <0.952, 0, 0>, Size = <1.603, 1, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      Aabb { Center = <0.952, 0, 0>, Size = <1.603, 0.556, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      Aabb { Center = <0.952, 0.899, 0>, Size = <1.603, 0.556, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1.947> },
+      Aabb { Center = <0.952, 0.899, 0>, Size = <1.603, 0.556, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, -1.481, 0>, Size = <1, 1, 1.947> },
+      Aabb { Center = <0.952, 0.899, 0>, Size = <1.603, 0.556, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, -1.481, 0>, Size = <3, 3, 1.947> },
+      Aabb { Center = <0.952, 0.899, 0>, Size = <1.603, 0.556, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, -0.687, 0>, Size = <3, 3, 1.947> },
+      Aabb { Center = <0.952, 0.899, 0>, Size = <1.603, 0.556, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

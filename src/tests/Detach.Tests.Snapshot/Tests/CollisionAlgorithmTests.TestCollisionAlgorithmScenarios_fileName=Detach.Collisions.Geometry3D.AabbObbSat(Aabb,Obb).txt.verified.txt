@@ -1,0 +1,82 @@
+﻿[
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.7313537, 0, -0.6819984> <0, 1, 0> <0.6819984, 0, 0.7313537> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1.365, 1, 1> },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.7313537, 0, -0.6819984> <0.14179544, 0.9781476, 0.15205699> <0.66709507, -0.2079117, 0.7153719> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1.365, 1, 1> },
+      Obb { Center = <0, 1.799, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.7313537, 0, -0.6819984> <0.14179544, 0.9781476, 0.15205699> <0.66709507, -0.2079117, 0.7153719> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1.365, 1, 1> },
+      Obb { Center = <-0.847, 1.799, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.41459918, 0.2859827, -0.8638989> <0.07482478, 0.9354072, 0.34556422> <0.9069227, -0.2079117, 0.36642048> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1.365, 1, 1> },
+      Obb { Center = <-0.847, 1.799, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.4174294, 0.5610425, -0.7148315> <-0.05695562, 0.8012516, 0.5956106> <0.9069227, -0.2079117, 0.36642048> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, 0, 0>, Size = <1.365, 1, 1> },
+      Obb { Center = <-0.847, 2.169, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.4174294, 0.5610425, -0.7148315> <-0.05695562, 0.8012516, 0.5956106> <0.9069227, -0.2079117, 0.36642048> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, -0.423, 0>, Size = <1.365, 1, 1> },
+      Obb { Center = <-0.847, 1.746, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.4174294, 0.5610425, -0.7148315> <-0.05695562, 0.8012516, 0.5956106> <0.9069227, -0.2079117, 0.36642048> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Aabb { Center = <0, -0.423, 0>, Size = <1.365, 1.635, 1> },
+      Obb { Center = <-0.847, 1.746, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.4174294, 0.5610425, -0.7148315> <-0.05695562, 0.8012516, 0.5956106> <0.9069227, -0.2079117, 0.36642048> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

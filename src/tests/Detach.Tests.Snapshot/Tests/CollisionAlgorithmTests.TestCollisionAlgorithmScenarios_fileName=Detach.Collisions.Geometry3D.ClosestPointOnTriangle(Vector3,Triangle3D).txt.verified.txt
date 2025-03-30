@@ -1,0 +1,420 @@
+﻿[
+  {
+    Incorrect: false,
+    Arguments: [
+      <0, 0, 0>,
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {}
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.741, -0.582, 0>,
+      Triangle3D { A = <0, 0, 0>, B = <1, 1.053, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.741
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.741, -0.582, 1.158>,
+      Triangle3D { A = <0, 0, 0>, B = <1, 1.053, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.741,
+        Y: 0.27221388,
+        Z: 0.2585128
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.741, -0.582, 2.842>,
+      Triangle3D { A = <0, 0, 0>, B = <1, 1.053, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.95539933,
+        Y: 1.0060354,
+        Z: 0.95539933
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0, 0, 0>,
+      Triangle3D { A = <0.265, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.265
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0, 0, 0>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.2904567,
+        Y: -0.17927483,
+        Z: 0.25456712
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.529, 0, 0>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.60361964,
+        Y: -0.07083739,
+        Z: 0.10460279
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.529, 0.794, 0>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.79857594,
+        Y: 0.53808814,
+        Z: 0.37789503
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.529, 0.794, -1.474>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.0772102,
+        Y: 0.2735771
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 0.582, -0.474>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.76121575,
+        Y: 0.16030037,
+        Z: 0.1487073
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 0.582, 0.263>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.49399817,
+        Y: 0.41397342,
+        Z: 0.5111183
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 0.582, 0.895>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.34304905,
+        Y: 0.65273607,
+        Z: 0.7804906
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 0.582, 1.579>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.36252114,
+        Y: 0.9607842,
+        Z: 0.97521126
+      }
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      <0.317, 0.582, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.87086225,
+        Y: 0.05621147
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 0.106, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.36354506,
+        Y: 0.97698283,
+        Z: 0.98545057
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, -0.741, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.32539934,
+        Y: 0.37351745,
+        Z: 0.60399336
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, -1.693, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.2825248,
+        Y: -0.3047576,
+        Z: 0.17524806
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, -2.434, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.265,
+        Y: -0.582
+      }
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      <0.317, 0.212, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.6861123,
+        Y: -0.138403
+      }
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      <0.317, 0.847, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.0031832,
+        Y: 0.19559753
+      }
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      <0.317, 1.429, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.29379,
+        Y: 0.50172085
+      }
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.37,
+        Y: 0.582
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, -0.587, 1>, C = <1.37, 0.582, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.8474182,
+        Y: -0.02585888,
+        Z: 0.519982
+      }
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 0.154, 1>, C = <1.37, 0.582, -2.474> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.265,
+        Y: -0.582
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, -2.474> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.1587026,
+        Y: -0.44308448,
+        Z: 0.18874393
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, -0.579> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.1652595,
+        Y: -0.040943384,
+        Z: -0.13827848
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, -0.158> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.3699999,
+        Y: 0.582,
+        Z: -0.15799999
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.317, 2.011, 2.368>,
+      Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, 1.158> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.3699999,
+        Y: 0.582,
+        Z: 1.158
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.026, -0.397, -0.211>,
+      Triangle3D { A = <0.265, 0.265, 0>, B = <-0.238, 0.154, 0.368>, C = <1.37, 0.582, 0.053> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.11934042,
+        Y: 0.23285642,
+        Z: 0.10656604
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.026, -0.397, -0.211>,
+      Triangle3D { A = <0.265, 0.265, 0>, B = <-0.238, -0.693, 0.368>, C = <1.37, 0.582, 0.053> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.004386306,
+        Y: -0.23135766,
+        Z: 0.19066766
+      }
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      <0.026, -0.397, -0.211>,
+      Triangle3D { A = <0.265, 0.265, 0>, B = <-0.238, -3.921, 0.368>, C = <1.37, 0.582, 0.053> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.18598208,
+        Y: -0.39259225,
+        Z: 0.057810307
+      }
+    }
+  }
+]

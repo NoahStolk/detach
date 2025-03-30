@@ -1,0 +1,212 @@
+﻿[
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 1.159, 1>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 1.159, 1>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, 1, 1>, Length = 2.0048046, LengthSquared = 4.0192413 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 1.159, -0.211>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, 1, 1>, Length = 2.0048046, LengthSquared = 4.0192413 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 1.159, 1.263>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, 1, 1>, Length = 2.0048046, LengthSquared = 4.0192413 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 1.159, 0.947>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, 1, 1>, Length = 2.0048046, LengthSquared = 4.0192413 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 0.947, 0.947>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, 1, 1>, Length = 2.0048046, LengthSquared = 4.0192413 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 0.947, 0.947>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, 0.153, 1>, Length = 1.7443194, LengthSquared = 3.0426502 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <1.159, 0.947, 0.947>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, -0.27, 1>, Length = 1.7584485, LengthSquared = 3.0921412 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0, -0.421>, End = <1, -0.27, 1>, Length = 1.7584485, LengthSquared = 3.0921412 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.106, -0.421>, End = <1, -0.27, 1>, Length = 1.7778125, LengthSquared = 3.160617 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.159, -0.421>, End = <1, -0.27, 1>, Length = 1.7897716, LengthSquared = 3.203282 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.159, -0.526>, End = <1, -0.27, 1>, Length = 1.8742244, LengthSquared = 3.512717 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.159, -0.526>, End = <1, -0.27, 0.421>, Length = 1.4425153, LengthSquared = 2.0808501 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.159, -0.263>, End = <1, -0.746, 0.421>, Length = 1.5122436, LengthSquared = 2.286881 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.476, -0.263>, End = <1, -1.063, 0.421>, Length = 1.9586672, LengthSquared = 3.8363771 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0.474>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <0, 0.476, -0.263>, End = <1, -1.063, 0.421>, Length = 1.9586672, LengthSquared = 3.8363771 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0.474>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0.421> },
+      LineSegment3D { Start = <0, 0.476, -0.263>, End = <1, -1.063, 0.421>, Length = 1.9586672, LengthSquared = 3.8363771 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0.474>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0.421> },
+      LineSegment3D { Start = <1, -1.063, 0.421>, End = <0, 0.476, -0.263>, Length = 1.9586672, LengthSquared = 3.8363771 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0.474>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <1, -1.063, 0.421>, End = <0, 0.476, -0.263>, Length = 1.9586672, LengthSquared = 3.8363771 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <1, -1.063, 0.421>, End = <0, 0.476, -0.263>, Length = 1.9586672, LengthSquared = 3.8363771 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Triangle3D { A = <-0.794, 0, 0>, B = <0.079, 0.947, -2.79>, C = <1, 0, 0> },
+      LineSegment3D { Start = <1, -0.746, 0.421>, End = <0, 0.159, -0.263>, Length = 1.5122436, LengthSquared = 2.286881 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

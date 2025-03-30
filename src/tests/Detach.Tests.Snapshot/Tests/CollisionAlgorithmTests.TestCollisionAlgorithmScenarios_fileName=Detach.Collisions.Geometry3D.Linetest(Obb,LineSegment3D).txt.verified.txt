@@ -1,0 +1,102 @@
+﻿[
+  {
+    Incorrect: true,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1.159, 1>, Length = 1.8284642, LengthSquared = 3.3432813 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 0.7193397, 0.6946584> <0, -0.6946584, 0.7193397> },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1.159, 1>, Length = 1.8284642, LengthSquared = 3.3432813 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <0, 0, 0>, End = <1, 1.159, 1>, Length = 1.8284642, LengthSquared = 3.3432813 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <-3.069, 0, 0>, End = <1, 1.159, 1>, Length = 4.347418, LengthSquared = 18.900043 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <1.481, 0.952, 0>, End = <1, 1.159, 1>, Length = 1.1288091, LengthSquared = 1.27421 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <-0.265, 0.952, 0.211>, End = <1, 1.159, -1.105>, Length = 1.8370982, LengthSquared = 3.37493 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <1.216, 0.952, 0.211>, End = <1, 1.159, -1.105>, Length = 1.349578, LengthSquared = 1.821361 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Incorrect: false,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <-0.636, 0.476, 0.211>, End = <1, -0.005, -1.105>, Length = 2.1539993, LengthSquared = 4.639713 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Incorrect: true,
+    Arguments: [
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
+      LineSegment3D { Start = <-0.636, 0.476, 0.211>, End = <1, -0.005, 0.421>, Length = 1.7181259, LengthSquared = 2.9519567 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]
