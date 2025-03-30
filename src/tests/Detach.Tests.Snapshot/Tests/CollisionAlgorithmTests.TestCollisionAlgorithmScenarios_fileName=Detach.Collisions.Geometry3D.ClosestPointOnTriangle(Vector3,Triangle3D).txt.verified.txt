@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0, 0, 0>,
       Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
@@ -10,7 +10,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.741, -0.582, 0>,
       Triangle3D { A = <0, 0, 0>, B = <1, 1.053, 1>, C = <1, 0, 0> }
@@ -22,7 +22,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.741, -0.582, 1.158>,
       Triangle3D { A = <0, 0, 0>, B = <1, 1.053, 1>, C = <1, 0, 0> }
@@ -36,7 +36,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.741, -0.582, 2.842>,
       Triangle3D { A = <0, 0, 0>, B = <1, 1.053, 1>, C = <1, 0, 0> }
@@ -50,7 +50,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0, 0, 0>,
       Triangle3D { A = <0.265, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
@@ -62,7 +62,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0, 0, 0>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -76,7 +76,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0, 0>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -90,7 +90,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.794, 0>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -104,7 +104,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.794, -1.474>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -117,7 +117,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 0.582, -0.474>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -131,7 +131,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 0.582, 0.263>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -145,7 +145,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 0.582, 0.895>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -159,7 +159,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 0.582, 1.579>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -173,7 +173,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       <0.317, 0.582, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -186,7 +186,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 0.106, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -200,7 +200,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, -0.741, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -214,7 +214,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, -1.693, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -228,7 +228,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, -2.434, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -241,7 +241,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       <0.317, 0.212, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -254,7 +254,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       <0.317, 0.847, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -267,7 +267,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       <0.317, 1.429, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -280,7 +280,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 1, 1>, C = <1.37, 0.582, 0> }
@@ -293,7 +293,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, -0.587, 1>, C = <1.37, 0.582, 0> }
@@ -307,7 +307,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <0.365, 0.154, 1>, C = <1.37, 0.582, -2.474> }
@@ -320,7 +320,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, -2.474> }
@@ -334,7 +334,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, -0.579> }
@@ -348,7 +348,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, -0.158> }
@@ -362,7 +362,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.317, 2.011, 2.368>,
       Triangle3D { A = <0.265, -0.582, 0>, B = <5, 0.154, 1>, C = <1.37, 0.582, 1.158> }
@@ -376,7 +376,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.026, -0.397, -0.211>,
       Triangle3D { A = <0.265, 0.265, 0>, B = <-0.238, 0.154, 0.368>, C = <1.37, 0.582, 0.053> }
@@ -390,7 +390,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.026, -0.397, -0.211>,
       Triangle3D { A = <0.265, 0.265, 0>, B = <-0.238, -0.693, 0.368>, C = <1.37, 0.582, 0.053> }
@@ -404,7 +404,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.026, -0.397, -0.211>,
       Triangle3D { A = <0.265, 0.265, 0>, B = <-0.238, -3.921, 0.368>, C = <1.37, 0.582, 0.053> }

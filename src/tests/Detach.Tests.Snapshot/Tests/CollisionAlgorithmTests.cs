@@ -47,11 +47,11 @@ public partial class CollisionAlgorithmTests
 		List<Result> results = algorithm.Scenarios.ConvertAll(s =>
 		{
 			ExecutionResult executionResult = executableCollisionAlgorithm.Execute(s.Arguments);
-			return new Result(s.Incorrect, s.Arguments.ConvertAll(a => a.ToString() ?? "<NULL>"), executionResult);
+			return new Result(s.Incorrect ? "Incorrect" : "OK", s.Arguments.ConvertAll(a => a.ToString() ?? "<NULL>"), executionResult);
 		});
 
 		return Verify(results);
 	}
 
-	private sealed record Result(bool Incorrect, List<string> Arguments, ExecutionResult ExecutionResult);
+	private sealed record Result(string Status, List<string> Arguments, ExecutionResult ExecutionResult);
 }

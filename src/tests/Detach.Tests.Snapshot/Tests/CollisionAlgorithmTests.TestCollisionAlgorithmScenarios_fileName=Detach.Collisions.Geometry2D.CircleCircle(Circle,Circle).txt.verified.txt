@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 1 },
       Circle { Center = <0, 0>, Radius = 1 }
@@ -10,7 +10,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.62 },
       Circle { Center = <0, 0>, Radius = 1 }
@@ -20,7 +20,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.62 },
       Circle { Center = <-1.327, 0>, Radius = 1 }
@@ -30,7 +30,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.62 },
       Circle { Center = <-1.327, -0.714>, Radius = 1 }
@@ -40,7 +40,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.62 },
       Circle { Center = <-1.327, -0.714>, Radius = 0.808 }
@@ -50,7 +50,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.798 },
       Circle { Center = <-1.327, -0.714>, Radius = 0.808 }
@@ -60,7 +60,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <-1.293, 0>, Radius = 0.798 },
       Circle { Center = <-1.327, -0.714>, Radius = 0.808 }
@@ -70,7 +70,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <-1.293, -2.313>, Radius = 0.798 },
       Circle { Center = <-1.327, -0.714>, Radius = 0.808 }
@@ -80,7 +80,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <-1.293, -2.483>, Radius = 0.798 },
       Circle { Center = <-1.327, -0.714>, Radius = 0.808 }
@@ -90,7 +90,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <-1.293, -2.483>, Radius = 0.798 },
       Circle { Center = <-1.327, 0.068>, Radius = 2.077 }
@@ -100,7 +100,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <-1.293, -2.483>, Radius = 0.798 },
       Circle { Center = <-1.327, 0.748>, Radius = 2.077 }
@@ -110,7 +110,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <-1.293, -2.483>, Radius = 0.798 },
       Circle { Center = <1.36, 0.748>, Radius = 2.077 }
@@ -120,7 +120,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.62 },
       Circle { Center = <0, 0>, Radius = 1 }
@@ -130,7 +130,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Circle { Center = <0, 0>, Radius = 0.62 },
       Circle { Center = <0.136, 0>, Radius = 1 }

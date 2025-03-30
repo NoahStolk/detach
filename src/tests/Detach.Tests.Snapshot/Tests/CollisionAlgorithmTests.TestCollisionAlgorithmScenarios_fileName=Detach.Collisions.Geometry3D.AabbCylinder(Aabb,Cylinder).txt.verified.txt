@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
       Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
@@ -10,7 +10,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
       Cylinder { BottomCenter = <0, 0.556, 0>, Radius = 1.138, Height = 0.803 }
@@ -20,7 +20,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -30,7 +30,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <0, 0, 0>, Size = <1, 1.794, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -40,7 +40,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <0, 0, 0>, Size = <1, 0.492, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -50,7 +50,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <2.54, 0, 0>, Size = <2.587, 0.746, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -60,7 +60,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <2.54, 0, 0>, Size = <3, 0.746, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -70,7 +70,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <1.878, 0, 0>, Size = <2.381, 0.746, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -80,7 +80,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <-2.09, 0, 0>, Size = <2.381, 0.746, 1> },
       Cylinder { BottomCenter = <0, 0.291, 0>, Radius = 1.138, Height = 0.803 }
@@ -90,7 +90,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Aabb { Center = <-1.032, 0, 0>, Size = <2.381, 0.746, 1> },
       Cylinder { BottomCenter = <0, -1.561, 0>, Radius = 0.102, Height = 1.805 }

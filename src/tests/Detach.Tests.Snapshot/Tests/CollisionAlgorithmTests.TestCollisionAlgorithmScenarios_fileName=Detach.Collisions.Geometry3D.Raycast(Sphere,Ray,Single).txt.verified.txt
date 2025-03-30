@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <0, 0, 0>, Radius = 1 },
       Ray { Origin = <0, -0.37, 0>, Direction = <1, 0, 0> }
@@ -13,7 +13,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <0, 0, 0>, Radius = 1 },
       Ray { Origin = <0, -1.269, 0>, Direction = <1, 0, 0> }
@@ -26,7 +26,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <0, 2.91, 0>, Radius = 0.743 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }
@@ -39,7 +39,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <0, -1.138, 0>, Radius = 0.743 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }
@@ -52,7 +52,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <1.905, -1.138, 0>, Radius = 0.743 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }
@@ -65,7 +65,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <1.905, 0.449, 0>, Radius = 0.743 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }
@@ -78,7 +78,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <4.577, 3.413, 0>, Radius = 0.743 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }
@@ -91,7 +91,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <4.577, 3.413, 0>, Radius = 0.032 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }
@@ -104,7 +104,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       Sphere { Center = <4.577, 3.413, 0>, Radius = 0.116 },
       Ray { Origin = <0, -1.269, 0>, Direction = <0.7071068, 0.7071068, 0> }

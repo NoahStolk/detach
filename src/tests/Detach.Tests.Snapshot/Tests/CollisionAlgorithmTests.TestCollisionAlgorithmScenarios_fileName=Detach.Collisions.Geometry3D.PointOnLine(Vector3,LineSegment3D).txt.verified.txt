@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0, 0, 0>,
       LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
@@ -10,7 +10,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <1, 1, 1>,
       LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
@@ -20,7 +20,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <1.01, 1, 1>,
       LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
@@ -30,7 +30,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <1, 1, 1>,
       LineSegment3D { Start = <2, 2, 2>, End = <4, 4, 4>, Length = 3.4641016, LengthSquared = 12 }
@@ -40,7 +40,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <3, 3, 3>,
       LineSegment3D { Start = <2, 2, 2>, End = <4, 4, 4>, Length = 3.4641016, LengthSquared = 12 }

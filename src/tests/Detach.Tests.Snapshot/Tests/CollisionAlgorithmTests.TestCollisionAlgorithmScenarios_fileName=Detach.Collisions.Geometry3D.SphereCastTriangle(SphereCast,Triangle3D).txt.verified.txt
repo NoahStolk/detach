@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       SphereCast { Start = <0, 0.899, 0>, End = <1, 1, 1>, Radius = 0.27 },
       Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
@@ -10,7 +10,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <0, 0.899, 0>, End = <1, 1, 1>, Radius = 0.27 },
       Triangle3D { A = <0, 0, 0>, B = <1, 1.106, 1>, C = <1, 0, 0> }
@@ -20,7 +20,7 @@
     }
   },
   {
-    Incorrect: true,
+    Status: Incorrect,
     Arguments: [
       SphereCast { Start = <0, 0.899, 0>, End = <1, 1, 1>, Radius = 0.27 },
       Triangle3D { A = <0, 0, 0>, B = <1, 1.106, 1.211>, C = <1, 0, 0> }

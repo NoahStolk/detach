@@ -1,6 +1,6 @@
 ﻿[
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0, 0, 0>,
       Sphere { Center = <0, 0, 0>, Radius = 1 }
@@ -10,7 +10,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0, 0>,
       Sphere { Center = <0, 0, 0>, Radius = 1 }
@@ -20,7 +20,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, 0>,
       Sphere { Center = <0, 0, 0>, Radius = 1 }
@@ -30,7 +30,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0, 0, 0>, Radius = 1 }
@@ -40,7 +40,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0, 0, 0>, Radius = 0.98 }
@@ -50,7 +50,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0, 0, 0>, Radius = 1.187 }
@@ -60,7 +60,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0, 0.794, 0>, Radius = 1.187 }
@@ -70,7 +70,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0, 0.794, 0>, Radius = 0.906 }
@@ -80,7 +80,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0, 0.794, 0>, Radius = 0.492 }
@@ -90,7 +90,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0.741, 0.794, 0>, Radius = 0.492 }
@@ -100,7 +100,7 @@
     }
   },
   {
-    Incorrect: false,
+    Status: OK,
     Arguments: [
       <0.529, 0.476, -0.684>,
       Sphere { Center = <0.741, 0.794, -0.632>, Radius = 0.492 }
