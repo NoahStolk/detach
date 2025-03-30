@@ -1,0 +1,372 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> },
+      Sphere { Center = <0, 0, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> },
+      Sphere { Center = <-0.741, 0, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> },
+      Sphere { Center = <-1.006, 0, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 0.803 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <-1.085, 0.82, 0> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 0.803 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <0.979, 0.82, 0> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 0.803 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 0.803 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 0.744 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-0.953, 0, 0>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-0.953, -1.561, 0>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <0.528, -1.455, 0>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <0.528, -1.455, -1.316>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <0.528, -1.402, -0.263>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.115, -1.402, -0.263>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.115, -1.402, -0.684>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-1.906, -1.402, 2.684>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-1.906, -1.402, 0.895>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <-1.906, -0.873, 0.895>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <0.344, -0.873, 0.895>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <0.344, -0.45, 0.211>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <1.085, -0.45, 0.053>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <1.085, 1.19, 0.053>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.672, 1.19, 0.053>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.084, -0.895>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.566, 1.084, -0.895>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.725, 1.084, -0.106>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.725, 1.084, -0.632>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.513, 1.084, -0.632>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 0.542 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 1.085 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 0.231 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.269 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 3 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.27 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <-1.984, -0.82, 1.263>, B = <1.772, -1.349, -0.789>, C = <2.407, 1.085, -0.789> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.27 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <2.407, 1.085, -0.789>, B = <-1.984, -0.82, 1.263>, C = <1.772, -1.349, -0.789> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.27 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  }
+]

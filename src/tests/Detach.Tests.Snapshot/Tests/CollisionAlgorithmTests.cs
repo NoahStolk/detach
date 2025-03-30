@@ -34,6 +34,7 @@ public partial class CollisionAlgorithmTests
 	[DataRow("Detach.Collisions.Geometry3D.Raycast(Sphere,Ray,Single).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastPoint(SphereCast,Vector3).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastTriangle(SphereCast,Triangle3D).txt")]
+	[DataRow("Detach.Collisions.Geometry3D.TriangleSphere(Triangle3D,Sphere).txt")]
 	public Task TestCollisionAlgorithmScenarios(string fileName)
 	{
 #pragma warning disable CA1849
