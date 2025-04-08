@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.26.4
+
+### Fixed
+
+- Fixed not being able to read WAV files where the `data` chunk was not aligned to 4 bytes.
+
 ## 0.26.3
 
 ### Added

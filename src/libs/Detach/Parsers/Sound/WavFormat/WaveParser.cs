@@ -62,11 +62,14 @@ public static class WaveParser
 		if (blockAlign != expectedBlockAlign)
 			throw new WaveParseException($"Expected block align to be {expectedBlockAlign} (got {blockAlign}).");
 
-		for (long i = br.BaseStream.Position; i < br.BaseStream.Length - (DataHeader.Length + sizeof(int)); i += 4)
+		while (br.BaseStream.Position < br.BaseStream.Length - (DataHeader.Length + sizeof(int)))
 		{
 			ReadOnlySpan<byte> dataHeader = br.ReadBytes(4);
 			if (!dataHeader.SequenceEqual(DataHeader))
+			{
+				br.BaseStream.Seek(-3, SeekOrigin.Current);
 				continue;
+			}
 
 			int dataSize = br.ReadInt32();
 			byte[] data = br.ReadBytes(dataSize);
