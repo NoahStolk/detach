@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Detach.Tests.Unit.Tests.Parsers.Texture.TgaFormat;
 
 [TestClass]
-public class TgaImageTypeTests
+public sealed class TgaImageTypeTests
 {
 	[TestMethod]
 	public void TestRunLengthEncoded()

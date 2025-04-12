@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Detach.Tests.Unit.Tests.Parsers.Texture.TgaFormat;
 
 [TestClass]
-public class TgaPixelDepthTests
+public sealed class TgaPixelDepthTests
 {
 	[TestMethod]
 	public void TestBytesPerPixel()

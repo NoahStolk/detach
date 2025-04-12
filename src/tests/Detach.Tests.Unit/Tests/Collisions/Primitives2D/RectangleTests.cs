@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Collisions.Primitives2D;
 
 [TestClass]
-public class RectangleTests
+public sealed class RectangleTests
 {
 	[TestMethod]
 	public void MinMax()

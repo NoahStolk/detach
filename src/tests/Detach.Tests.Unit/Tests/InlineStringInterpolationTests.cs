@@ -4,7 +4,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests;
 
 [TestClass]
-public class InlineStringInterpolationTests
+public sealed class InlineStringInterpolationTests
 {
 	[TestMethod]
 	public void Utf8FormattingSpanFormattable()

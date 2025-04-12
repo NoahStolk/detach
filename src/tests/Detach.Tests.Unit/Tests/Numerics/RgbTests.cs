@@ -5,7 +5,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Numerics;
 
 [TestClass]
-public class RgbTests
+public sealed class RgbTests
 {
 	[DataTestMethod]
 	[DataRow(0, 0, 0)]

@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Detach.Tests.Unit.Tests.Parsers.Texture.TgaFormat;
 
 [TestClass]
-public class TgaWriterTests
+public sealed class TgaWriterTests
 {
 	[DataTestMethod]
 	[DataRow("Checkerboard_24Bit.tga")]

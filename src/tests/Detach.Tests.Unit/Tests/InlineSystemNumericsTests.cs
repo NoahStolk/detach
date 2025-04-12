@@ -4,7 +4,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests;
 
 [TestClass]
-public class InlineSystemNumericsTests
+public sealed class InlineSystemNumericsTests
 {
 	[TestMethod]
 	public void Vector2()

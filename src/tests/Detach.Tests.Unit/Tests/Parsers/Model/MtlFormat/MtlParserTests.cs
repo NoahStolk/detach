@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Parsers.Model.MtlFormat;
 
 [TestClass]
-public class MtlParserTests
+public sealed class MtlParserTests
 {
 	[TestMethod]
 	public void ParseMaterial()

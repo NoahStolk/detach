@@ -6,7 +6,7 @@ namespace Detach.Tests.Unit.Tests.Parsers.Sound.WavFormat;
 
 // TODO: Test JUNK header.
 [TestClass]
-public class WaveParserTests
+public sealed class WaveParserTests
 {
 	[DataTestMethod]
 	[DataRow("Sample1.wav", (short)1, 11000, 11000, (short)1, (short)8, 2208, 2208, 0.2)]

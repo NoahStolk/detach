@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Collisions;
 
 [TestClass]
-public class Geometry2DTests
+public sealed class Geometry2DTests
 {
 	[TestMethod]
 	public void PointOnLine()

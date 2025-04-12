@@ -5,7 +5,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Utils;
 
 [TestClass]
-public class VectorUtilsTests
+public sealed class VectorUtilsTests
 {
 	[DataTestMethod]
 	[DataRow(0, "1,0", "1,0")]

@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Collisions.Primitives3D;
 
 [TestClass]
-public class CylinderTests
+public sealed class CylinderTests
 {
 	[DataTestMethod]
 	[DataRow(true, 0, 0, 0)]

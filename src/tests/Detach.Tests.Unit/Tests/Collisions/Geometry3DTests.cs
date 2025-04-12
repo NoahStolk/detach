@@ -7,7 +7,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Collisions;
 
 [TestClass]
-public class Geometry3DTests
+public sealed class Geometry3DTests
 {
 	[TestMethod]
 	public void TriangleSphere()

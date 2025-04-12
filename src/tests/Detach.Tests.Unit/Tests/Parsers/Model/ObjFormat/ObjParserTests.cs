@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Detach.Tests.Unit.Tests.Parsers.Model.ObjFormat;
 
 [TestClass]
-public class ObjParserTests
+public sealed class ObjParserTests
 {
 	[DataTestMethod]
 	[DataRow("Cube.obj")]

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Detach.Tests.Unit.Tests.Numerics;
 
 [TestClass]
-public class MatricesTests
+public sealed class MatricesTests
 {
 	[TestMethod]
 	public void Matrix2Transpose()

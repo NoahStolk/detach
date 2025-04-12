@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Detach.Tests.Unit.Tests.Parsers.Texture.TgaFormat;
 
 [TestClass]
-public class TgaParserTests
+public sealed class TgaParserTests
 {
 	[DataTestMethod]
 	[DataRow("Font.tga", 1152, 12)]

@@ -3,7 +3,7 @@
 namespace Detach.Tests.Unit.Tests;
 
 [TestClass]
-public class InlineSpanFormattableTests
+public sealed class InlineSpanFormattableTests
 {
 	[TestMethod]
 	public void FloatingPoint32()

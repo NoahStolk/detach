@@ -3,7 +3,7 @@
 namespace Detach.Tests.Unit.Tests;
 
 [TestClass]
-public class InlineBoolTests
+public sealed class InlineBoolTests
 {
 	[TestMethod]
 	public void Bool()

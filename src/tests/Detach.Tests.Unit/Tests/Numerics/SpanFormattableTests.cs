@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Detach.Tests.Unit.Tests.Numerics;
 
 [TestClass]
-public class SpanFormattableTests
+public sealed class SpanFormattableTests
 {
 	[TestMethod]
 	public void IntVector2()
