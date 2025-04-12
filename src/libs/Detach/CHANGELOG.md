@@ -2,6 +2,17 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.26.5
+
+### Changed
+
+- Renamed `VectorExtensions.IsReal` to `VectorExtensions.IsFinite`.
+- Replaced `QuaternionExtensions.ContainsNaN` with `QuaternionExtensions.IsFinite`. Note that the new method returns the opposite value.
+
+### Removed
+
+- Removed `MathUtils.IsFloatReal`. Use `float.IsFinite` instead.
+
 ## 0.26.4
 
 ### Fixed

@@ -1,4 +1,3 @@
-using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Extensions;
@@ -20,18 +19,18 @@ public static partial class VectorExtensions
 		return new Vector4(MathF.Round(vector.X, digits), MathF.Round(vector.Y, digits), MathF.Round(vector.Z, digits), MathF.Round(vector.W, digits));
 	}
 
-	public static bool IsReal(this Vector2 vector)
+	public static bool IsFinite(this Vector2 vector)
 	{
-		return MathUtils.IsFloatReal(vector.X) && MathUtils.IsFloatReal(vector.Y);
+		return float.IsFinite(vector.X) && float.IsFinite(vector.Y);
 	}
 
-	public static bool IsReal(this Vector3 vector)
+	public static bool IsFinite(this Vector3 vector)
 	{
-		return MathUtils.IsFloatReal(vector.X) && MathUtils.IsFloatReal(vector.Y) && MathUtils.IsFloatReal(vector.Z);
+		return float.IsFinite(vector.X) && float.IsFinite(vector.Y) && float.IsFinite(vector.Z);
 	}
 
-	public static bool IsReal(this Vector4 vector)
+	public static bool IsFinite(this Vector4 vector)
 	{
-		return MathUtils.IsFloatReal(vector.X) && MathUtils.IsFloatReal(vector.Y) && MathUtils.IsFloatReal(vector.Z) && MathUtils.IsFloatReal(vector.W);
+		return float.IsFinite(vector.X) && float.IsFinite(vector.Y) && float.IsFinite(vector.Z) && float.IsFinite(vector.W);
 	}
 }

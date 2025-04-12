@@ -23,12 +23,6 @@ public static class MathUtils
 		return Lerp(value1, value2, Math.Clamp(amount, 0, 1));
 	}
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsFloatReal(float value)
-	{
-		return !float.IsNaN(value) && !float.IsInfinity(value);
-	}
-
 	/// <summary>
 	/// Returns the fractional part of the value. This is calculated as <c>value - MathF.Truncate(value)</c>.
 	/// </summary>

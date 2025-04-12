@@ -1,4 +1,3 @@
-using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Extensions;
@@ -18,8 +17,8 @@ public static class QuaternionExtensions
 		quaternion.W += random.RandomFloat(-randomizeAmount, randomizeAmount);
 	}
 
-	public static bool ContainsNaN(this Quaternion quaternion)
+	public static bool IsFinite(this Quaternion quaternion)
 	{
-		return !MathUtils.IsFloatReal(quaternion.X) || !MathUtils.IsFloatReal(quaternion.Y) || !MathUtils.IsFloatReal(quaternion.Z) || !MathUtils.IsFloatReal(quaternion.W);
+		return float.IsFinite(quaternion.X) && float.IsFinite(quaternion.Y) && float.IsFinite(quaternion.Z) && float.IsFinite(quaternion.W);
 	}
 }
