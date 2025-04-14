@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Fixed
+
+- Fixed `Geometry3D.PointInTriangle` returning false positives when the point is inside the triangle but outside the plane.
+
 ## 0.26.5
 
 ### Changed

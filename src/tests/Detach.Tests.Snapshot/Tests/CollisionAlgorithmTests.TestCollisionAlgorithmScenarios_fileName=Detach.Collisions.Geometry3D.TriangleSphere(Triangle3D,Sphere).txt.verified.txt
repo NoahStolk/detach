@@ -290,43 +290,43 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
       Sphere { Center = <2.407, 1.085, -0.789>, Radius = 0.542 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
       Sphere { Center = <2.407, 1.085, -0.789>, Radius = 1.085 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
       Sphere { Center = <2.407, 1.085, -0.789>, Radius = 0.231 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
       Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.269 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   },
   {
@@ -340,13 +340,13 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Triangle3D { A = <1.772, -1.349, -0.789>, B = <2.407, 1.085, -0.789>, C = <-1.984, -0.82, 1.263> },
       Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.27 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   },
   {
@@ -364,6 +364,16 @@
     Arguments: [
       Triangle3D { A = <2.407, 1.085, -0.789>, B = <-1.984, -0.82, 1.263>, C = <1.772, -1.349, -0.789> },
       Sphere { Center = <2.407, 1.085, -0.789>, Radius = 2.27 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Triangle3D { A = <2.407, 1.085, -0.789>, B = <-1.984, -0.82, 1.263>, C = <1.772, -1.349, -0.789> },
+      Sphere { Center = <2.407, 1.085, -0.789>, Radius = 10 }
     ],
     ExecutionResult: {
       ReturnValue: true

@@ -63,21 +63,44 @@ public static partial class Geometry3D
 		return dot is >= 1 - float.Epsilon and <= 1 + float.Epsilon;
 	}
 
-	// TODO: This might be broken.
 	public static bool PointInTriangle(Vector3 point, Triangle3D triangle)
 	{
-		Vector3 a = triangle.A - point;
-		Vector3 b = triangle.B - point;
-		Vector3 c = triangle.C - point;
+		const float epsilon = 0.01f;
 
-		Vector3 normPbc = Vector3.Cross(b, c);
-		Vector3 normPca = Vector3.Cross(c, a);
-		Vector3 normPab = Vector3.Cross(a, b);
+		Vector3 normal = Vector3.Cross(triangle.B - triangle.A, triangle.C - triangle.A);
+		normal = Vector3.Normalize(normal);
+		float distance = Vector3.Dot(point - triangle.A, normal);
 
-		if (Vector3.Dot(normPbc, normPca) < 0)
-			return false;
+		if (Math.Abs(distance) > epsilon)
+			return false; // Point is not in the plane of the triangle
 
-		return Vector3.Dot(normPbc, normPab) >= 0;
+		// Project the point onto the triangle's plane
+		Vector3 projectedPoint = point - distance * normal;
+		return PointInTriangleProjected(projectedPoint, triangle);
+	}
+
+	private static bool PointInTriangleProjected(Vector3 point, Triangle3D triangle)
+	{
+		Vector3 v0 = triangle.B - triangle.A;
+		Vector3 v1 = triangle.C - triangle.A;
+		Vector3 v2 = point - triangle.A;
+
+		float d00 = Vector3.Dot(v0, v0);
+		float d01 = Vector3.Dot(v0, v1);
+		float d11 = Vector3.Dot(v1, v1);
+		float d20 = Vector3.Dot(v2, v0);
+		float d21 = Vector3.Dot(v2, v1);
+
+		float denom = d00 * d11 - d01 * d01;
+		if (Math.Abs(denom) < 1e-6)
+			return false; // Degenerate triangle
+
+		float v = (d11 * d20 - d01 * d21) / denom;
+		float w = (d00 * d21 - d01 * d20) / denom;
+		float u = 1.0f - v - w;
+
+		// Point is inside the triangle if u, v, w are all >= 0 and <= 1
+		return u >= 0 && v >= 0 && w >= 0;
 	}
 
 	public static bool PointInViewFrustum(Vector3 point, ViewFrustum viewFrustum)
