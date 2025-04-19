@@ -2,7 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.GlfwExtensions</PackageId>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">

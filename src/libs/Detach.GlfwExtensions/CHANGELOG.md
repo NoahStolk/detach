@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.1
+
+### Changed
+
+- `GlfwInput.EndFrame` is now virtual.
+
 ## 0.3.0
 
 ### Changed

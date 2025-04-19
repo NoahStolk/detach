@@ -86,7 +86,7 @@ public class GlfwInput
 		return _keysChanged.Contains(key) && _keys.TryGetValue(key, out InputAction inputAction) && inputAction == InputAction.Release;
 	}
 
-	public void EndFrame()
+	public virtual void EndFrame()
 	{
 		_mouseButtonsChanged.Clear();
 		_keysChanged.Clear();
