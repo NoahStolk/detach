@@ -12,3 +12,4 @@ Detach.Collisions.Geometry3D.PointInPyramid(Vector3,Pyramid);System.Numerics.Vec
 2.116 -0.688 5,2.434 0.899 5 3 3 3;;False;OK
 2.116 -0.688 5,3.81 0.264 5 3 3 3;;False;OK
 2.116 -0.688 5,0.371 0.264 5 3 3 3;;False;OK
+5 5 5,5 5 5 2.079 1 2.242;;True;OK

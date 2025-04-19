@@ -128,5 +128,15 @@
     ExecutionResult: {
       ReturnValue: false
     }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <5, 5, 5>,
+      Pyramid { Center = <5, 5, 5>, Size = <2.079, 1, 2.242>, ApexVertex = <5, 5.5, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
   }
 ]

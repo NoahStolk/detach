@@ -38,5 +38,135 @@
     ExecutionResult: {
       ReturnValue: true
     }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      OrientedPyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      OrientedPyramid { Center = <0.847, 0, 0>, Size = <1, 1, 1>, Orientation = <0.82903755, 0, 0.55919296> <0, 1, 0> <-0.55919296, 0, 0.82903755>, ApexVertex = <0.847, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      <0.846, 0, 0>,
+      OrientedPyramid { Center = <0.847, 0, 0>, Size = <1, 1, 1>, Orientation = <0.82903755, 0, 0.55919296> <0, 1, 0> <-0.55919296, 0, 0.82903755>, ApexVertex = <0.847, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <-0.688, 0, 0>,
+      OrientedPyramid { Center = <0.847, 0, 0>, Size = <1, 1, 1>, Orientation = <0.82903755, 0, 0.55919296> <0, 1, 0> <-0.55919296, 0, 0.82903755>, ApexVertex = <0.847, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <-0.688, 0, 0>,
+      OrientedPyramid { Center = <-1.587, 0, 0>, Size = <1, 1.889, 3>, Orientation = <0.82903755, 0, 0.55919296> <0, 1, 0> <-0.55919296, 0, 0.82903755>, ApexVertex = <-1.587, 0.9445, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      <-1.535, 0, 0>,
+      OrientedPyramid { Center = <-1.587, 0, 0>, Size = <1, 1.826, 3>, Orientation = <0.82903755, 0, 0.55919296> <0, 1, 0> <-0.55919296, 0, 0.82903755>, ApexVertex = <-1.587, 0.913, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      OrientedPyramid { Center = <0.317, 0, 0>, Size = <1.444, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1>, ApexVertex = <0.317, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      OrientedPyramid { Center = <0.317, 0.476, 0>, Size = <1.444, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1>, ApexVertex = <0.317, 0.976, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      OrientedPyramid { Center = <0.317, 0.582, 0>, Size = <1.444, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1>, ApexVertex = <0.317, 1.082, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <5, 5, 5>,
+      OrientedPyramid { Center = <5, 5, 5>, Size = <1.444, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1>, ApexVertex = <5, 5.5, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      <5, 5, 5>,
+      OrientedPyramid { Center = <5, 5, 5>, Size = <1.444, 1, 1>, Orientation = <0.99026805, 0, -0.1391731> <0, 1, 0> <0.1391731, 0, 0.99026805>, ApexVertex = <5, 5.5, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      <5, 5, 5>,
+      OrientedPyramid { Center = <5, 5, 5>, Size = <1.444, 1, 1>, Orientation = <0.30901697, 0, -0.95105654> <0, 1, 0> <0.95105654, 0, 0.30901697>, ApexVertex = <5, 5.5, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: Incorrect,
+    Arguments: [
+      <5, 5, 5>,
+      OrientedPyramid { Center = <5, 5, 5>, Size = <1.444, 1, 1>, Orientation = <-0.8910066, 0, -0.45399037> <0, 1, 0> <0.45399037, 0, -0.8910066>, ApexVertex = <5, 5.5, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
   }
 ]
