@@ -156,7 +156,7 @@
       OrientedPyramid { Center = <-0.767, 0.979, -2.421>, Size = <3, 3, 3>, Orientation = <0.4694715, 0, -0.8829476> <0, 1, 0> <0.8829476, 0, 0.4694715>, ApexVertex = <-0.767, 2.479, -2.421>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
@@ -240,13 +240,13 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <26.933205, 9.091, -21.936>, End = <22.629, 10.032, -25.758>, Radius = 0.8 },
       OrientedPyramid { Center = <-29.047785, 12.999987, -29.126661>, Size = <11, 6, 15>, Orientation = <0.08700621, 0, 0.996> <0, 1, 0> <-0.996, 0, 0.087>, ApexVertex = <-29.047785, 15.999987, -29.126661>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
@@ -280,13 +280,13 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <26.933205, 9.091, -21.936>, End = <22.629, 10.032, -25.758>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 12.999987, -29.126661>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 15.999987, -29.126661>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
@@ -296,83 +296,93 @@
       OrientedPyramid { Center = <-3.624, 12.999987, -29.126661>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 15.999987, -29.126661>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22.629, 10.032, -25.758>, End = <26.933205, 9.091, -21.936>, Radius = 0.8 },
       OrientedPyramid { Center = <-29.047785, 12.999987, -29.126661>, Size = <11, 6, 15>, Orientation = <0.08700621, 0, 0.996> <0, 1, 0> <-0.996, 0, 0.087>, ApexVertex = <-29.047785, 15.999987, -29.126661>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <-5, -100, -5>, End = <22.629, 10.032, -22>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 12.999987, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 15.999987, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22, -100, -22>, End = <22.629, 10.032, -22>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 12.999987, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 15.999987, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22, -100, -22>, End = <22.629, 10, -22>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 12.999987, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 15.999987, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22, -100, -22>, End = <22.629, 0, -22>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 3, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 6, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22.629, 0, -22>, End = <22, -100, -22>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 3, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 6, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22, 0, -22>, End = <22, -100, -22>, Radius = 0.8 },
       OrientedPyramid { Center = <-3.624, 3, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 6, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
-      ReturnValue: true
+      ReturnValue: false
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       SphereCast { Start = <22, 0, -22>, End = <22, -100, -22>, Radius = 1 },
+      OrientedPyramid { Center = <-3.624, 3, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 6, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.831, 0, -22>, End = <5, -100, -22>, Radius = 1 },
       OrientedPyramid { Center = <-3.624, 3, -25>, Size = <11, 6, 15>, Orientation = <0.7313537, 0, 0.6819984> <0, 1, 0> <-0.6819984, 0, 0.7313537>, ApexVertex = <-3.624, 6, -25>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {

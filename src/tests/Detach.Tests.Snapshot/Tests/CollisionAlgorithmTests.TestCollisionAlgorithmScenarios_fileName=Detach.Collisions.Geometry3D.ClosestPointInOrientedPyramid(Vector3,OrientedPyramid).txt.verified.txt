@@ -754,28 +754,28 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       <22, 0, -22>,
       OrientedPyramid { Center = <0, 3, -24>, Size = <11, 6, 15>, Orientation = <0.7431448, 0, 0.6691306> <0, 1, 0> <-0.6691306, 0, 0.7431448>, ApexVertex = <0, 6, -24>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
       ReturnValue: {
-        X: 22.0,
-        Z: -22.0
+        X: 9.105776,
+        Z: -25.893368
       }
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       <22, 0, -22>,
       OrientedPyramid { Center = <0, 3, -24>, Size = <11, 6, 15>, Orientation = <0.57357645, 0, 0.81915206> <0, 1, 0> <-0.81915206, 0, 0.57357645>, ApexVertex = <0, 6, -24>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
     ],
     ExecutionResult: {
       ReturnValue: {
-        X: 22.0,
-        Z: -22.0
+        X: 9.298311,
+        Z: -23.796488
       }
     }
   },

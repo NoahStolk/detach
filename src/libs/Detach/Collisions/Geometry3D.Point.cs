@@ -156,12 +156,15 @@ public static partial class Geometry3D
 
 	public static bool PointInOrientedPyramid(Vector3 point, OrientedPyramid orientedPyramid)
 	{
-		// Transform the point to the local space of the oriented pyramid
-		Matrix3 inverseTransform = Matrix3.Inverse(orientedPyramid.Orientation);
-		Vector3 localPoint = Vector3.Transform(point, inverseTransform.ToMatrix4x4());
+		// Translate point into the local space of the pyramid
+		Vector3 translated = point - orientedPyramid.Center;
 
-		// Check if the local point is inside the standard pyramid
-		Pyramid pyramid = new(orientedPyramid.Center, orientedPyramid.Size);
+		// Apply inverse rotation
+		Matrix3 inverseTransform = Matrix3.Inverse(orientedPyramid.Orientation);
+		Vector3 localPoint = Vector3.Transform(translated, inverseTransform.ToMatrix4x4());
+
+		// Check against the axis-aligned pyramid
+		Pyramid pyramid = new(Vector3.Zero, orientedPyramid.Size); // Local pyramid at origin
 		return PointInPyramid(localPoint, pyramid);
 	}
 }

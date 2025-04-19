@@ -2,11 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## 0.26.6
 
 ### Fixed
 
 - Fixed `Geometry3D.PointInTriangle` returning false positives when the point is inside the triangle but outside the plane.
+- Fixed bugs in `Geometry3D.PointInOrientedPyramid`.
 
 ## 0.26.5
 
