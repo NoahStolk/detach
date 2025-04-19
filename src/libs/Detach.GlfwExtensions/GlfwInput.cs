@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Detach.GlfwExtensions;
 
-public sealed class GlfwInput
+public class GlfwInput
 {
 	private readonly Dictionary<MouseButton, InputAction> _mouseButtons = new();
 	private readonly List<MouseButton> _mouseButtonsChanged = [];
@@ -22,29 +22,29 @@ public sealed class GlfwInput
 
 	#region Callbacks
 
-	public void CursorPosCallback(double x, double y)
+	public virtual void CursorPosCallback(double x, double y)
 	{
 		CursorPosition = new Vector2((float)x, (float)y);
 	}
 
-	public void MouseWheelCallback(double deltaY)
+	public virtual void MouseWheelCallback(double deltaY)
 	{
 		MouseWheelY = (float)deltaY;
 	}
 
-	public void MouseButtonCallback(MouseButton button, InputAction state)
+	public virtual void MouseButtonCallback(MouseButton button, InputAction state)
 	{
 		_mouseButtonsChanged.Add(button);
 		_mouseButtons[button] = state;
 	}
 
-	public void KeyCallback(Keys key, InputAction state)
+	public virtual void KeyCallback(Keys key, InputAction state)
 	{
 		_keysChanged.Add(key);
 		_keys[key] = state;
 	}
 
-	public void CharCallback(uint codepoint)
+	public virtual void CharCallback(uint codepoint)
 	{
 		_charsPressed.Add(codepoint);
 	}
