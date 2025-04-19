@@ -28,6 +28,7 @@ public partial class CollisionAlgorithmTests
 	[DataRow("Detach.Collisions.Geometry3D.PointInAabb(Vector3,Aabb).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.PointInObb(Vector3,Obb).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.PointInOrientedPyramid(Vector3,OrientedPyramid).txt")]
+	[DataRow("Detach.Collisions.Geometry3D.PointInPyramid(Vector3,Pyramid).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.PointInSphere(Vector3,Sphere).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.PointInTriangle(Vector3,Triangle3D).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.PointOnLine(Vector3,LineSegment3D).txt")]

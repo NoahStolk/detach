@@ -1,0 +1,132 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0, 0>,
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0.952, 0>,
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0.952, 0>,
+      Pyramid { Center = <0, 0.899, 0>, Size = <1, 1, 1>, ApexVertex = <0, 1.3989999, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <0, 0.952, 0>,
+      Pyramid { Center = <2.434, 0.899, 0>, Size = <2.079, 1, 1>, ApexVertex = <2.434, 1.3989999, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, 0.952, 0>,
+      Pyramid { Center = <2.434, 0.899, 0>, Size = <2.079, 1, 1>, ApexVertex = <2.434, 1.3989999, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, 0.952, 5>,
+      Pyramid { Center = <2.434, 0.899, 4.684>, Size = <2.079, 1, 2.242>, ApexVertex = <2.434, 1.3989999, 4.684>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, 0.952, 5>,
+      Pyramid { Center = <2.434, 0.899, 4.684>, Size = <2.079, 1, 0.932>, ApexVertex = <2.434, 1.3989999, 4.684>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, 2.063, 5>,
+      Pyramid { Center = <2.434, 0.899, 5>, Size = <3, 3, 3>, ApexVertex = <2.434, 2.399, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, 1.111, 5>,
+      Pyramid { Center = <2.434, 0.899, 5>, Size = <3, 3, 3>, ApexVertex = <2.434, 2.399, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, -0.529, 5>,
+      Pyramid { Center = <2.434, 0.899, 5>, Size = <3, 3, 3>, ApexVertex = <2.434, 2.399, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, -0.688, 5>,
+      Pyramid { Center = <2.434, 0.899, 5>, Size = <3, 3, 3>, ApexVertex = <2.434, 2.399, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, -0.688, 5>,
+      Pyramid { Center = <3.81, 0.264, 5>, Size = <3, 3, 3>, ApexVertex = <3.81, 1.7639999, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      <2.116, -0.688, 5>,
+      Pyramid { Center = <0.371, 0.264, 5>, Size = <3, 3, 3>, ApexVertex = <0.371, 1.7639999, 5>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]
