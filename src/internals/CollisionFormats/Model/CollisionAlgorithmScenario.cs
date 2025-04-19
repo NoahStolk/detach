@@ -3,7 +3,6 @@
 public sealed record CollisionAlgorithmScenario(
 	List<object> Arguments,
 	List<object> OutArguments,
-	object? ReturnValue,
 	bool Incorrect)
 {
 #pragma warning disable SA1401 // Fields should be private

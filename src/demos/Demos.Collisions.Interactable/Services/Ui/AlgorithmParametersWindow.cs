@@ -53,7 +53,6 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
 				collisionAlgorithmState.Arguments,
 				collisionAlgorithmState.OutArguments,
-				collisionAlgorithmState.ReturnValue,
 				incorrect);
 			collisionScenarioState.AddScenario(algorithm.MethodSignature, collisionAlgorithmScenario);
 		}

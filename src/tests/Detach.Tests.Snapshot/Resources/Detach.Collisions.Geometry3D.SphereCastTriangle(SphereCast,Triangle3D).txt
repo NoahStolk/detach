@@ -1,4 +1,4 @@
 Detach.Collisions.Geometry3D.SphereCastTriangle(SphereCast,Triangle3D);Detach.Collisions.Primitives3D.SphereCast sphereCast,Detach.Collisions.Primitives3D.Triangle3D triangle;;System.Boolean
-0 0.899 0 1 1 1 0.27,0 0 0 1 1 1 1 0 0;;False;INCORRECT
-0 0.899 0 1 1 1 0.27,0 0 0 1 1.106 1 1 0 0;;True;OK
-0 0.899 0 1 1 1 0.27,0 0 0 1 1.106 1.211 1 0 0;;False;INCORRECT
+0 0.899 0 1 1 1 0.27,0 0 0 1 1 1 1 0 0;;INCORRECT
+0 0.899 0 1 1 1 0.27,0 0 0 1 1.106 1 1 0 0;;OK
+0 0.899 0 1 1 1 0.27,0 0 0 1 1.106 1.211 1 0 0;;INCORRECT

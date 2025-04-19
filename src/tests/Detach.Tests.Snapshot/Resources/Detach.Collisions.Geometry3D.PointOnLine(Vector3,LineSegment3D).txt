@@ -1,6 +1,6 @@
 Detach.Collisions.Geometry3D.PointOnLine(Vector3,LineSegment3D);System.Numerics.Vector3 point,Detach.Collisions.Primitives3D.LineSegment3D line;;System.Boolean
-0 0 0,0 0 0 1 1 1;;True;OK
-1 1 1,0 0 0 1 1 1;;True;OK
-1.01 1 1,0 0 0 1 1 1;;False;OK
-1 1 1,2 2 2 4 4 4;;False;OK
-3 3 3,2 2 2 4 4 4;;True;OK
+0 0 0,0 0 0 1 1 1;;OK
+1 1 1,0 0 0 1 1 1;;OK
+1.01 1 1,0 0 0 1 1 1;;OK
+1 1 1,2 2 2 4 4 4;;OK
+3 3 3,2 2 2 4 4 4;;OK

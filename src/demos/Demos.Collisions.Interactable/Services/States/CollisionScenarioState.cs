@@ -38,6 +38,15 @@ internal sealed class CollisionScenarioState
 				string text = File.ReadAllText(scenariosFilePath);
 				CollisionAlgorithm algorithm = CollisionAlgorithmSerializer.DeserializeText(text);
 				scenarios = algorithm.Scenarios;
+
+#if RESERIALIZE
+				string newText = CollisionAlgorithmSerializer.SerializeText(algorithm);
+				if (text != newText)
+				{
+					File.WriteAllText(scenariosFilePath, newText);
+					Console.WriteLine($"Updated {methodSignature}");
+				}
+#endif
 			}
 
 			CollisionAlgorithm collisionAlgorithm = new(

@@ -39,7 +39,7 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 
 		ImGui.SeparatorText("Scenarios");
 
-		int columnCount = algorithm.Parameters.Count + algorithm.OutParameters.Count + 2;
+		int columnCount = algorithm.Parameters.Count + algorithm.OutParameters.Count + 1;
 		if (ImGui.BeginTable("ScenarioTable", columnCount, ImGuiTableFlags.Resizable | ImGuiTableFlags.Borders))
 		{
 			ImGui.TableSetupColumn("Actions");
@@ -49,8 +49,6 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 
 			foreach (CollisionAlgorithmParameter parameter in algorithm.OutParameters)
 				ImGui.TableSetupColumn($"{parameter.TypeName} {parameter.Name}");
-
-			ImGui.TableSetupColumn("Return");
 
 			ImGui.TableSetupScrollFreeze(0, 1);
 			ImGui.TableHeadersRow();
@@ -85,9 +83,6 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 					ImGui.TableNextColumn();
 					ImGui.Text(outArgument.ToString());
 				}
-
-				ImGui.TableNextColumn();
-				ImGui.Text(scenario.ReturnValue?.ToString() ?? "null");
 
 				ImGui.PopStyleColor();
 			}
