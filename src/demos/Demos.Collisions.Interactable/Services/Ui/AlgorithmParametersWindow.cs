@@ -255,14 +255,25 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 	{
 		Matrix3.GetYawPitchRoll(orientation, out float yaw, out float pitch, out float roll);
 
-		ImGui.SliderAngle(Inline.Utf8($"Orientation.Yaw##{index}"), ref yaw, -180, 180);
-		ImGui.SliderAngle(Inline.Utf8($"Orientation.Pitch##{index}"), ref pitch, -90, 90);
-		ImGui.SliderAngle(Inline.Utf8($"Orientation.Roll##{index}"), ref roll, -180, 180);
+		bool y = ImGui.SliderAngle(Inline.Utf8($"Orientation.Yaw##{index}"), ref yaw, -180, 180);
+		bool p = ImGui.SliderAngle(Inline.Utf8($"Orientation.Pitch##{index}"), ref pitch, -90, 90);
+		bool r = ImGui.SliderAngle(Inline.Utf8($"Orientation.Roll##{index}"), ref roll, -180, 180);
+		if (y || p || r)
+			orientation = Matrix3.Rotation(yaw, pitch, roll);
 
-		orientation = Matrix3.Rotation(yaw, pitch, roll);
 		if (ImGui.Button(Inline.Utf8($"Identity##{index}")))
 			orientation = Matrix3.Identity;
 
 		ImGui.Text(Inline.Utf8(orientation, "0.00"));
+
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M11##{index}"), ref orientation.M11, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M12##{index}"), ref orientation.M12, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M13##{index}"), ref orientation.M13, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M21##{index}"), ref orientation.M21, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M22##{index}"), ref orientation.M22, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M23##{index}"), ref orientation.M23, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M31##{index}"), ref orientation.M31, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M32##{index}"), ref orientation.M32, -1, 1);
+		ImGui.SliderFloat(Inline.Utf8($"Orientation.M33##{index}"), ref orientation.M33, -1, 1);
 	}
 }

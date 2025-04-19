@@ -1,0 +1,5 @@
+Detach.Collisions.Geometry3D.PointInOrientedPyramid(Vector3,OrientedPyramid);System.Numerics.Vector3 point,Detach.Collisions.Primitives3D.OrientedPyramid orientedPyramid;;System.Boolean
+22 0 -22,0 3 -24 11 6 15 0.9335804 0 0.35836795 0 1 0 -0.35836795 0 0.9335804;;False;OK
+22 0 -22,0 3 -24 11 6 15 0.7880108 0 -0.6156615 0 1 0 0.6156615 0 0.7880108;;False;OK
+22 0 -22,0 3 -24 11 6 15 0.6819983 0 0.73135376 0 1 0 -0.73135376 0 0.6819983;;True;INCORRECT
+22 0 -22,0 3 -24 11 6 15 0.7986355 0 0.60181504 0 1 0 -0.60181504 0 0.7986355;;True;INCORRECT
