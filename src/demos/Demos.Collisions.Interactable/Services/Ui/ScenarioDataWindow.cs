@@ -58,9 +58,11 @@ internal sealed class ScenarioDataWindow(CollisionAlgorithmState collisionAlgori
 				CollisionAlgorithmScenario scenario = algorithm.Scenarios[i];
 				ImGui.TableNextRow();
 
+				ImGui.TableSetBgColor(ImGuiTableBgTarget.RowBg0, (uint)(collisionAlgorithmState.SelectedAlgorithmIndex == i ? 0x66666666 : 0x00000000));
+
 				ImGui.TableNextColumn();
 				if (ImGui.Button(Inline.Utf8($"Select##{i}")))
-					collisionAlgorithmState.SetArguments(scenario.Arguments);
+					collisionAlgorithmState.SetArguments(scenario.Arguments, i);
 				ImGui.SameLine();
 				if (ImGui.Button(Inline.Utf8($"Delete##{i}")))
 					collisionScenarioState.RemoveScenarioAt(algorithm.MethodSignature, i);

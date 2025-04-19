@@ -9,6 +9,7 @@ namespace Demos.Collisions.Interactable.Services.States;
 internal sealed class CollisionAlgorithmState
 {
 	public IExecutableCollisionAlgorithm? SelectedAlgorithm { get; private set; }
+	public int SelectedAlgorithmIndex { get; private set; } = -1;
 	public List<object> Arguments { get; } = [];
 	public List<object> OutArguments { get; } = [];
 	public object? ReturnValue { get; private set; }
@@ -16,16 +17,18 @@ internal sealed class CollisionAlgorithmState
 	public void SelectAlgorithm(IExecutableCollisionAlgorithm algorithm)
 	{
 		SelectedAlgorithm = algorithm;
+		SelectedAlgorithmIndex = -1;
 
 		Arguments.Clear();
 		foreach ((Type Type, string Name) parameter in algorithm.Parameters)
 			Arguments.Add(GetDefault(parameter.Type));
 	}
 
-	public void SetArguments(List<object> arguments)
+	public void SetArguments(List<object> arguments, int index)
 	{
 		Arguments.Clear();
 		Arguments.AddRange(arguments);
+		SelectedAlgorithmIndex = index;
 	}
 
 	public void ExecuteAlgorithm()
