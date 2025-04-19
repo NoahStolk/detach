@@ -229,6 +229,9 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			ImGui.SliderFloat3(Inline.Utf8($"Start##{index}"), ref cast.Start.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat3(Inline.Utf8($"End##{index}"), ref cast.End.X, -maxDistance, maxDistance);
 			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, maxSize);
+			if (ImGui.Button(Inline.Utf8($"Swap sphere cast positions##{index}")))
+				cast = new SphereCast(cast.End, cast.Start, cast.Radius);
+
 			value = cast;
 		}
 		else if (type == typeof(Triangle3D))

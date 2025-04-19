@@ -1,0 +1,202 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 1 },
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0, 0, 0>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.64, 0, 0>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.64, -1.561, 0>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.64, -1.561, -1.211>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <1, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <0.365, 1, 1>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <0.365, 1, 0.195>, ApexVertex = <0, 0.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <0.365, 0, 0.195>, ApexVertex = <0, 0, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <0.365, 0.508, 0.195>, ApexVertex = <0, 0.254, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <0, 0, 0>, ApexVertex = <0, 0, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <3, 3, 3>, ApexVertex = <0, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <1.164, 0, 0>, Size = <3, 3, 3>, ApexVertex = <1.164, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <1.323, 0, 0>, Size = <3, 3, 3>, ApexVertex = <1.323, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <1.323, 0.847, 0>, Size = <3, 3, 3>, ApexVertex = <1.323, 2.3470001, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1, -1, -1>, End = <1, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <1.323, 0.847, -1.737>, Size = <3, 3, 3>, ApexVertex = <1.323, 2.3470001, -1.737>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-5, -5, -5>, End = <5, 1, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <3, 3, 3>, ApexVertex = <0, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-5, -5, -5>, End = <5, 5, 1>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <3, 3, 3>, ApexVertex = <0, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-5, -5, -5>, End = <5, 5, 5>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <3, 3, 3>, ApexVertex = <0, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: true
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-5, -5, -5>, End = <-1.402, -2.249, -2.105>, Radius = 0.151 },
+      Pyramid { Center = <0, 0, 0>, Size = <3, 3, 3>, ApexVertex = <0, 1.5, 0>, BaseVertices = Detach.Buffers.Buffer4`1[System.Numerics.Vector3], Faces = Detach.Buffers.Buffer6`1[Detach.Collisions.Primitives3D.Triangle3D] }
+    ],
+    ExecutionResult: {
+      ReturnValue: false
+    }
+  }
+]

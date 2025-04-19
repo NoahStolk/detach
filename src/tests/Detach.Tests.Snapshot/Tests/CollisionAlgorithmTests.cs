@@ -32,7 +32,9 @@ public partial class CollisionAlgorithmTests
 	[DataRow("Detach.Collisions.Geometry3D.PointOnLine(Vector3,LineSegment3D).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.PointOnPlane(Vector3,Plane).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.Raycast(Sphere,Ray,Single).txt")]
+	[DataRow("Detach.Collisions.Geometry3D.SphereCastOrientedPyramid(SphereCast,OrientedPyramid).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastPoint(SphereCast,Vector3).txt")]
+	[DataRow("Detach.Collisions.Geometry3D.SphereCastPyramid(SphereCast,Pyramid).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastTriangle(SphereCast,Triangle3D).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.TriangleSphere(Triangle3D,Sphere).txt")]
 	public Task TestCollisionAlgorithmScenarios(string fileName)
