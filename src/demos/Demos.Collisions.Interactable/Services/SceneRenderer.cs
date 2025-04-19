@@ -39,8 +39,8 @@ internal sealed unsafe class SceneRenderer(
 		Matrix4x4 viewMatrix = Matrix4x4.CreateLookAt(camera.Position, camera.Target, Vector3.UnitY);
 		Matrix4x4 projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView(float.DegreesToRadians(camera.FieldOfView), aspectRatio, _nearPlaneDistance, _farPlaneDistance);
 
-		const float fadeOutMinDistance = 10;
-		const float fadeOutMaxDistance = 50;
+		const float fadeOutMinDistance = 100;
+		const float fadeOutMaxDistance = 500;
 
 		CachedProgram lineProgram = lazyProgramContainer.GetProgram("line_editor");
 		gl.UseProgram(lineProgram.ProgramId);
