@@ -21,6 +21,7 @@ namespace Demos.Collisions.Interactable;
 [Register<AlgorithmParametersWindow>(Scope.SingleInstance)]
 [Register<AlgorithmSelectWindow>(Scope.SingleInstance)]
 [Register<ScenarioDataWindow>(Scope.SingleInstance)]
+[Register<SceneWindow>(Scope.SingleInstance)]
 
 [Register<CollisionAlgorithmState>(Scope.SingleInstance)]
 [Register<CollisionScenarioState>(Scope.SingleInstance)]

@@ -4,40 +4,28 @@ using Demos.Collisions.Interactable.Shaders;
 using Demos.Collisions.Interactable.Utils;
 using Detach.GlExtensions;
 using Detach.Numerics;
-using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
 
 namespace Demos.Collisions.Interactable.Services;
 
-internal sealed unsafe class SceneRenderer(
-	WindowHandle* window,
-	Glfw glfw,
+internal sealed class SceneRenderer(
 	GL gl,
 	Camera camera,
 	LazyProgramContainer lazyProgramContainer,
 	GeometryRenderer geometryRenderer)
 {
-	private const float _nearPlaneDistance = 0.05f;
-	private const float _farPlaneDistance = 10_000f;
-
 	private readonly uint _lineVao = VaoUtils.CreateLineVao(gl, [Vector3.Zero, Vector3.UnitZ]);
 
 	private readonly Vector3 _clearColor = new(0, 0, 0);
 
-	public void Render()
+	public void Render(Matrix4x4 viewMatrix, Matrix4x4 projectionMatrix)
 	{
 		gl.ClearColor(_clearColor.X, _clearColor.Y, _clearColor.Z, 0);
 		gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		gl.Enable(EnableCap.CullFace);
 		gl.Enable(EnableCap.DepthTest);
-
-		glfw.GetWindowSize(window, out int width, out int height);
-
-		float aspectRatio = width / (float)height;
-		Matrix4x4 viewMatrix = Matrix4x4.CreateLookAt(camera.Position, camera.Target, Vector3.UnitY);
-		Matrix4x4 projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView(float.DegreesToRadians(camera.FieldOfView), aspectRatio, _nearPlaneDistance, _farPlaneDistance);
 
 		const float fadeOutMinDistance = 100;
 		const float fadeOutMaxDistance = 500;

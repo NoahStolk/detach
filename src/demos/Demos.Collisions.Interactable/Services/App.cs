@@ -20,14 +20,14 @@ internal sealed class App
 	private const double _mainLoopLength = 1 / _mainLoopRate;
 
 	private readonly Glfw _glfw;
+	private readonly GL _gl;
 	private readonly unsafe WindowHandle* _window;
 	private readonly GlfwInput _glfwInput;
 	private readonly ImGuiController _imGuiController;
 	private readonly AlgorithmParametersWindow _algorithmParametersWindow;
 	private readonly AlgorithmSelectWindow _algorithmSelectWindow;
 	private readonly ScenarioDataWindow _scenarioDataWindow;
-	private readonly SceneRenderer _sceneRenderer;
-	private readonly Camera _camera;
+	private readonly SceneWindow _sceneWindow;
 	private readonly CollisionAlgorithmState _collisionAlgorithmState;
 
 	private double _currentTime;
@@ -43,19 +43,18 @@ internal sealed class App
 		AlgorithmParametersWindow algorithmParametersWindow,
 		AlgorithmSelectWindow algorithmSelectWindow,
 		ScenarioDataWindow scenarioDataWindow,
-		SceneRenderer sceneRenderer,
-		Camera camera,
+		SceneWindow sceneWindow,
 		CollisionAlgorithmState collisionAlgorithmState)
 	{
 		_glfw = glfw;
+		_gl = gl;
 		_window = window;
 		_glfwInput = glfwInput;
 		_imGuiController = imGuiController;
 		_algorithmParametersWindow = algorithmParametersWindow;
 		_algorithmSelectWindow = algorithmSelectWindow;
 		_scenarioDataWindow = scenarioDataWindow;
-		_sceneRenderer = sceneRenderer;
-		_camera = camera;
+		_sceneWindow = sceneWindow;
 		_collisionAlgorithmState = collisionAlgorithmState;
 
 		_currentTime = glfw.GetTime();
@@ -112,14 +111,14 @@ internal sealed class App
 
 		ImGui.DockSpaceOverViewport(0, null, ImGuiDockNodeFlags.PassthruCentralNode);
 
-		_camera.Update(frameTime, !ImGui.IsAnyItemHovered());
-		_collisionAlgorithmState.ExecuteAlgorithm();
+		_gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
 
-		_sceneRenderer.Render();
+		_collisionAlgorithmState.ExecuteAlgorithm();
 
 		_algorithmParametersWindow.Render();
 		_algorithmSelectWindow.Render();
 		_scenarioDataWindow.Render();
+		_sceneWindow.Render(frameTime);
 
 		_imGuiController.Render();
 
