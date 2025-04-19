@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.2.6
+
+### Changed
+
+- Updated Detach.GlfwExtensions from 0.2.0 to 0.3.1.
+
 ## 0.2.5
 
 ### Changed
