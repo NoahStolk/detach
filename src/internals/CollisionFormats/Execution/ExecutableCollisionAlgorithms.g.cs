@@ -92,6 +92,7 @@ public static class ExecutableCollisionAlgorithms
 		new Detach_Collisions_Geometry3D_SpherePyramid_Sphere_Pyramid_(),
 		new Detach_Collisions_Geometry3D_SphereOrientedPyramid_Sphere_OrientedPyramid_(),
 		new Detach_Collisions_Geometry3D_SphereObbNormal_Sphere_Obb_(),
+		new Detach_Collisions_Geometry3D_SphereCylinderNormal_Sphere_Cylinder_(),
 		new Detach_Collisions_Geometry3D_SphereCastPoint_SphereCast_Vector3_(),
 		new Detach_Collisions_Geometry3D_SphereCastLine_SphereCast_LineSegment3D_(),
 		new Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_(),
@@ -2366,6 +2367,35 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument1 = (Obb)nonOutArguments[1];
 
 			Nullable<Vector3> returnValue = Detach.Collisions.Geometry3D.SphereObbNormal(argument0, argument1);
+			return new ExecutionResult(returnValue, []);
+		}
+	}
+
+	private sealed class Detach_Collisions_Geometry3D_SphereCylinderNormal_Sphere_Cylinder_ : IExecutableCollisionAlgorithm
+	{
+		public string Name => "Detach.Collisions.Geometry3D.SphereCylinderNormal(Sphere,Cylinder)";
+
+		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(Sphere), "sphere"),
+			(typeof(Cylinder), "cylinder"),
+		};
+
+		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
+		{
+		};
+
+		public Type ReturnType { get; } = typeof(Nullable<Vector3>);
+
+		public ExecutionResult Execute(List<object> nonOutArguments)
+		{
+			if (nonOutArguments.Count != Parameters.Count)
+				throw new ArgumentException("The number of arguments must be 2.");
+
+			Sphere argument0 = (Sphere)nonOutArguments[0];
+			Cylinder argument1 = (Cylinder)nonOutArguments[1];
+
+			Nullable<Vector3> returnValue = Detach.Collisions.Geometry3D.SphereCylinderNormal(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}

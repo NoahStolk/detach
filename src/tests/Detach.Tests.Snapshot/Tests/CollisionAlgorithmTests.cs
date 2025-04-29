@@ -38,6 +38,7 @@ public partial class CollisionAlgorithmTests
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastPoint(SphereCast,Vector3).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastPyramid(SphereCast,Pyramid).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereCastTriangle(SphereCast,Triangle3D).txt")]
+	[DataRow("Detach.Collisions.Geometry3D.SphereCylinderNormal(Sphere,Cylinder).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereObbNormal(Sphere,Obb).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereOrientedPyramid(Sphere,OrientedPyramid).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.TriangleSphere(Triangle3D,Sphere).txt")]

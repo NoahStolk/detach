@@ -1,0 +1,213 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, -0.106, 0>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, -0.212, 0>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.688, 0>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.423, 0>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.159, 0.423, 0>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.159, 0.423, 0.106>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.83205026,
+        Z: 0.5547002
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.159, 0.423, 0.423>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.35185084,
+        Z: 0.9360561
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 0.423, 0.423>, Radius = 0.15 },
+      Cylinder { BottomCenter = <0, 0, 0>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: -0.6583786,
+        Z: 0.75268686
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 0.423, 0.423>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0, -0.688, 0>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: -0.6583786,
+        Z: 0.75268686
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 0.423, 0.423>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0, -0.847, 0>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 0.423, 0.423>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, -0.847, 1.058>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 0.423, 0.423>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, -0.847, 1.534>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 0.423, 0.423>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, 0.476, 0.793>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.37, 1.957, 0.423>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, 1.428, 0.793>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: -0.9615799,
+        Z: -0.2745251
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.27, 1.957, 0.211>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, 1.428, 0.793>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.50882894,
+        Z: -0.8608677
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <2.328, 1.957, 0.211>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, 1.428, 0.793>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <2.169, 1.957, 0.211>, Radius = 0.165 },
+      Cylinder { BottomCenter = <0.926, 1.428, 0.793>, Radius = 1.351, Height = 1.336 }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.90564257,
+        Z: -0.42404187
+      }
+    }
+  }
+]

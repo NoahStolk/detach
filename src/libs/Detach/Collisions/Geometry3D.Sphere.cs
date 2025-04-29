@@ -192,4 +192,51 @@ public static partial class Geometry3D
 
 		return null;
 	}
+
+	public static Vector3? SphereCylinderNormal(Sphere sphere, Cylinder cylinder)
+	{
+		// Check intersection with bottom circle
+		Vector2 sphereXz = new(sphere.Center.X, sphere.Center.Z);
+		Vector2 cylinderXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
+		float distanceSquaredXz = Vector2.DistanceSquared(sphereXz, cylinderXz);
+		float radiusSum = sphere.Radius + cylinder.Radius;
+
+		// Check if sphere is within the cylinder's height range
+		float sphereMinY = sphere.Center.Y - sphere.Radius;
+		float sphereMaxY = sphere.Center.Y + sphere.Radius;
+		float cylinderMinY = cylinder.BottomCenter.Y;
+		float cylinderMaxY = cylinder.BottomCenter.Y + cylinder.Height;
+
+		// Check bottom circle
+		if (sphereMinY <= cylinderMinY && sphereMaxY >= cylinderMinY && distanceSquaredXz <= radiusSum * radiusSum)
+			return -Vector3.UnitY; // Normal points away from cylinder
+
+		// Check top circle
+		if (sphereMaxY >= cylinderMaxY && sphereMinY <= cylinderMaxY && distanceSquaredXz <= radiusSum * radiusSum)
+			return Vector3.UnitY; // Normal points away from cylinder
+
+		// Check side surface
+		if (sphereMaxY >= cylinderMinY && sphereMinY <= cylinderMaxY)
+		{
+			float distanceXz = MathF.Sqrt(distanceSquaredXz);
+			if (distanceXz <= cylinder.Radius + sphere.Radius)
+			{
+				// Special case: sphere is centered on cylinder's axis
+				const float epsilon = 0.001f;
+				if (distanceXz is > -epsilon and < epsilon)
+				{
+					// Return normal of the closest circle
+					float distanceToBottom = Math.Abs(sphere.Center.Y - cylinderMinY);
+					float distanceToTop = Math.Abs(sphere.Center.Y - cylinderMaxY);
+					return distanceToBottom < distanceToTop ? -Vector3.UnitY : Vector3.UnitY;
+				}
+
+				// Calculate normal pointing from cylinder center to sphere
+				Vector3 normal = new(sphere.Center.X - cylinder.BottomCenter.X, 0, sphere.Center.Z - cylinder.BottomCenter.Z);
+				return Vector3.Normalize(normal);
+			}
+		}
+
+		return null;
+	}
 }

@@ -6,7 +6,9 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Added `Geometry3D.SphereObbNormal` method.
+- Added new sphere intersection methods:
+  - `Geometry3D.SphereObbNormal`
+  - `Geometry3D.SphereCylinderNormal`
 
 ### Fixed
 
