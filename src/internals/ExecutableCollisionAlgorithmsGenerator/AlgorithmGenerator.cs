@@ -1,5 +1,6 @@
 ﻿using Detach.CodeGeneration;
 using ExecutableCollisionAlgorithmsGenerator.Model;
+using ExecutableCollisionAlgorithmsGenerator.Utils;
 
 namespace ExecutableCollisionAlgorithmsGenerator;
 
@@ -56,7 +57,7 @@ internal static class AlgorithmGenerator
 			codeWriter.WriteLine($"(typeof({parameter.FormattableTypeName}), \"{parameter.Name}\"),");
 		codeWriter.EndBlockWithSemicolon();
 		codeWriter.WriteLine();
-		codeWriter.WriteLine($$"""public Type ReturnType { get; } = typeof({{algorithm.ReturnValue.FullName}});""");
+		codeWriter.WriteLine($$"""public Type ReturnType { get; } = typeof({{algorithm.ReturnTypeName}});""");
 		codeWriter.WriteLine();
 		codeWriter.WriteLine("public ExecutionResult Execute(List<object> nonOutArguments)");
 		codeWriter.StartBlock();
@@ -73,7 +74,7 @@ internal static class AlgorithmGenerator
 		if (algorithm.OutParameters.Count > 0)
 			arguments += $", {string.Join(", ", Enumerable.Range(0, algorithm.OutParameters.Count).Select(i => $"out {algorithm.OutParameters[i].FormattableTypeName} outArgument{i}"))}";
 
-		codeWriter.WriteLine($"{algorithm.ReturnValue.FullName} returnValue = {algorithm.MethodCall}({arguments});");
+		codeWriter.WriteLine($"{algorithm.ReturnTypeName} returnValue = {algorithm.MethodCall}({arguments});");
 		if (algorithm.OutParameters.Count > 0)
 			codeWriter.WriteLine("return new ExecutionResult(returnValue, [" + string.Join(", ", Enumerable.Range(0, algorithm.OutParameters.Count).Select(i => $"outArgument{i}")) + "]);");
 		else

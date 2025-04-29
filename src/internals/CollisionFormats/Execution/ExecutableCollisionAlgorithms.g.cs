@@ -137,7 +137,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -147,7 +147,7 @@ public static class ExecutableCollisionAlgorithms
 			Circle argument0 = (Circle)nonOutArguments[0];
 			Circle argument1 = (Circle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.CircleCircle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.CircleCircle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -166,7 +166,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -176,7 +176,7 @@ public static class ExecutableCollisionAlgorithms
 			Circle argument0 = (Circle)nonOutArguments[0];
 			Rectangle argument1 = (Rectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.CircleRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.CircleRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -195,7 +195,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -205,7 +205,7 @@ public static class ExecutableCollisionAlgorithms
 			Circle argument0 = (Circle)nonOutArguments[0];
 			OrientedRectangle argument1 = (OrientedRectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.CircleOrientedRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.CircleOrientedRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -224,7 +224,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -234,7 +234,7 @@ public static class ExecutableCollisionAlgorithms
 			Circle argument0 = (Circle)nonOutArguments[0];
 			Triangle2D argument1 = (Triangle2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.CircleTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.CircleTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -253,7 +253,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -263,7 +263,7 @@ public static class ExecutableCollisionAlgorithms
 			CircleCast argument0 = (CircleCast)nonOutArguments[0];
 			Vector2 argument1 = (Vector2)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.CircleCastPoint(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.CircleCastPoint(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -282,7 +282,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -292,7 +292,7 @@ public static class ExecutableCollisionAlgorithms
 			CircleCast argument0 = (CircleCast)nonOutArguments[0];
 			LineSegment2D argument1 = (LineSegment2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.CircleCastLine(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.CircleCastLine(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -311,7 +311,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -321,7 +321,7 @@ public static class ExecutableCollisionAlgorithms
 			LineSegment2D argument0 = (LineSegment2D)nonOutArguments[0];
 			LineSegment2D argument1 = (LineSegment2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.LineLine(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.LineLine(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -340,7 +340,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -350,7 +350,7 @@ public static class ExecutableCollisionAlgorithms
 			LineSegment2D argument0 = (LineSegment2D)nonOutArguments[0];
 			Circle argument1 = (Circle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.LineCircle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.LineCircle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -369,7 +369,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -379,7 +379,7 @@ public static class ExecutableCollisionAlgorithms
 			LineSegment2D argument0 = (LineSegment2D)nonOutArguments[0];
 			Rectangle argument1 = (Rectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.LineRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.LineRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -398,7 +398,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -408,7 +408,7 @@ public static class ExecutableCollisionAlgorithms
 			LineSegment2D argument0 = (LineSegment2D)nonOutArguments[0];
 			OrientedRectangle argument1 = (OrientedRectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.LineOrientedRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.LineOrientedRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -427,7 +427,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -437,7 +437,7 @@ public static class ExecutableCollisionAlgorithms
 			LineSegment2D argument0 = (LineSegment2D)nonOutArguments[0];
 			Triangle2D argument1 = (Triangle2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.LineTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.LineTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -456,7 +456,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -466,7 +466,7 @@ public static class ExecutableCollisionAlgorithms
 			OrientedRectangle argument0 = (OrientedRectangle)nonOutArguments[0];
 			OrientedRectangle argument1 = (OrientedRectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.OrientedRectangleOrientedRectangleSat(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.OrientedRectangleOrientedRectangleSat(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -485,7 +485,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -495,7 +495,7 @@ public static class ExecutableCollisionAlgorithms
 			OrientedRectangle argument0 = (OrientedRectangle)nonOutArguments[0];
 			Triangle2D argument1 = (Triangle2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.OrientedRectangleTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.OrientedRectangleTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -515,7 +515,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -526,7 +526,7 @@ public static class ExecutableCollisionAlgorithms
 			LineSegment2D argument1 = (LineSegment2D)nonOutArguments[1];
 			Single argument2 = (Single)nonOutArguments[2];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.PointOnLine(argument0, argument1, argument2);
+			Boolean returnValue = Detach.Collisions.Geometry2D.PointOnLine(argument0, argument1, argument2);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -545,7 +545,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -555,7 +555,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			Circle argument1 = (Circle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.PointInCircle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.PointInCircle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -574,7 +574,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -584,7 +584,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			Rectangle argument1 = (Rectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.PointInRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.PointInRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -603,7 +603,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -613,7 +613,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			OrientedRectangle argument1 = (OrientedRectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.PointInOrientedRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.PointInOrientedRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -632,7 +632,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -642,7 +642,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			Triangle2D argument1 = (Triangle2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.PointInTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.PointInTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -661,7 +661,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector2);
+		public Type ReturnType { get; } = typeof(Vector2);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -671,7 +671,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			LineSegment2D argument1 = (LineSegment2D)nonOutArguments[1];
 
-			System.Numerics.Vector2 returnValue = Detach.Collisions.Geometry2D.ClosestPointOnLine(argument0, argument1);
+			Vector2 returnValue = Detach.Collisions.Geometry2D.ClosestPointOnLine(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -690,7 +690,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -700,7 +700,7 @@ public static class ExecutableCollisionAlgorithms
 			Rectangle argument0 = (Rectangle)nonOutArguments[0];
 			Rectangle argument1 = (Rectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.RectangleRectangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.RectangleRectangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -719,7 +719,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -729,7 +729,7 @@ public static class ExecutableCollisionAlgorithms
 			Rectangle argument0 = (Rectangle)nonOutArguments[0];
 			Rectangle argument1 = (Rectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.RectangleRectangleSat(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.RectangleRectangleSat(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -748,7 +748,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -758,7 +758,7 @@ public static class ExecutableCollisionAlgorithms
 			Rectangle argument0 = (Rectangle)nonOutArguments[0];
 			OrientedRectangle argument1 = (OrientedRectangle)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.RectangleOrientedRectangleSat(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.RectangleOrientedRectangleSat(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -777,7 +777,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -787,7 +787,7 @@ public static class ExecutableCollisionAlgorithms
 			Rectangle argument0 = (Rectangle)nonOutArguments[0];
 			Triangle2D argument1 = (Triangle2D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry2D.RectangleTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry2D.RectangleTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -806,7 +806,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -816,7 +816,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			Aabb argument1 = (Aabb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.AabbAabb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.AabbAabb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -835,7 +835,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -845,7 +845,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.AabbObbSat(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.AabbObbSat(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -864,7 +864,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -874,7 +874,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.AabbPlane(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.AabbPlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -893,7 +893,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -903,7 +903,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			Cylinder argument1 = (Cylinder)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.AabbCylinder(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.AabbCylinder(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -922,7 +922,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -932,7 +932,7 @@ public static class ExecutableCollisionAlgorithms
 			Cylinder argument0 = (Cylinder)nonOutArguments[0];
 			Cylinder argument1 = (Cylinder)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.CylinderCylinder(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.CylinderCylinder(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -951,7 +951,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -961,7 +961,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -980,7 +980,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -990,7 +990,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1009,7 +1009,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1019,7 +1019,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1038,7 +1038,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1048,7 +1048,7 @@ public static class ExecutableCollisionAlgorithms
 			Plane argument0 = (Plane)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1067,7 +1067,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1077,7 +1077,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Linetest(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1096,7 +1096,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1106,7 +1106,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.ObbObbSat(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.ObbObbSat(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1125,7 +1125,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1135,7 +1135,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.ObbPlane(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.ObbPlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1154,7 +1154,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1164,7 +1164,7 @@ public static class ExecutableCollisionAlgorithms
 			Plane argument0 = (Plane)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PlanePlane(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PlanePlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1183,7 +1183,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1193,7 +1193,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInSphere(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInSphere(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1212,7 +1212,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1222,7 +1222,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Aabb argument1 = (Aabb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInAabb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInAabb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1241,7 +1241,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1251,7 +1251,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInObb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInObb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1270,7 +1270,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1280,7 +1280,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointOnPlane(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointOnPlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1299,7 +1299,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1309,7 +1309,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointOnLine(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointOnLine(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1328,7 +1328,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1338,7 +1338,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointOnRay(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointOnRay(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1357,7 +1357,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1367,7 +1367,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1386,7 +1386,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1396,7 +1396,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			ViewFrustum argument1 = (ViewFrustum)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInViewFrustum(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInViewFrustum(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1415,7 +1415,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1425,7 +1425,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Cylinder argument1 = (Cylinder)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInCylinder(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInCylinder(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1444,7 +1444,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1454,7 +1454,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Pyramid argument1 = (Pyramid)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInPyramid(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1473,7 +1473,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1483,7 +1483,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			OrientedPyramid argument1 = (OrientedPyramid)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.PointInOrientedPyramid(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.PointInOrientedPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1502,7 +1502,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1512,7 +1512,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInSphere(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInSphere(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1531,7 +1531,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1541,7 +1541,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Aabb argument1 = (Aabb)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInAabb(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInAabb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1560,7 +1560,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1570,7 +1570,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInObb(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInObb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1589,7 +1589,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1599,7 +1599,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnPlane(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnPlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1618,7 +1618,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1628,7 +1628,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnLine(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnLine(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1647,7 +1647,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1657,7 +1657,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnRay(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnRay(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1676,7 +1676,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1686,7 +1686,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnTriangle(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointOnTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1705,7 +1705,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1715,7 +1715,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Pyramid argument1 = (Pyramid)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInPyramid(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1734,7 +1734,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1744,7 +1744,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			OrientedPyramid argument1 = (OrientedPyramid)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInOrientedPyramid(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.ClosestPointInOrientedPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -1764,7 +1764,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Single), "distance"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1774,7 +1774,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1794,7 +1794,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(RaycastResult), "result"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1804,7 +1804,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1824,7 +1824,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Single), "distance"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1834,7 +1834,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1854,7 +1854,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(RaycastResult), "result"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1864,7 +1864,7 @@ public static class ExecutableCollisionAlgorithms
 			Aabb argument0 = (Aabb)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1884,7 +1884,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Single), "distance"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1894,7 +1894,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1914,7 +1914,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(RaycastResult), "result"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1924,7 +1924,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1944,7 +1944,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Single), "distance"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1954,7 +1954,7 @@ public static class ExecutableCollisionAlgorithms
 			Plane argument0 = (Plane)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -1974,7 +1974,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(RaycastResult), "result"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -1984,7 +1984,7 @@ public static class ExecutableCollisionAlgorithms
 			Plane argument0 = (Plane)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -2004,7 +2004,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Single), "distance"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2014,7 +2014,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -2034,7 +2034,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(RaycastResult), "raycastResult"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2044,7 +2044,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out RaycastResult outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -2064,7 +2064,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Single), "distance"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2074,7 +2074,7 @@ public static class ExecutableCollisionAlgorithms
 			Cylinder argument0 = (Cylinder)nonOutArguments[0];
 			Ray argument1 = (Ray)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.Raycast(argument0, argument1, out Single outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -2093,7 +2093,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2103,7 +2103,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereSphere(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereSphere(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2122,7 +2122,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2132,7 +2132,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Aabb argument1 = (Aabb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereAabb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereAabb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2151,7 +2151,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2161,7 +2161,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereObb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereObb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2180,7 +2180,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2190,7 +2190,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SpherePlane(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SpherePlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2209,7 +2209,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2219,7 +2219,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			ViewFrustum argument1 = (ViewFrustum)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereViewFrustum(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereViewFrustum(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2238,7 +2238,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2248,7 +2248,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Cylinder argument1 = (Cylinder)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCylinder(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCylinder(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2267,7 +2267,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2277,7 +2277,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			ConeFrustum argument1 = (ConeFrustum)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereConeFrustum(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereConeFrustum(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2296,7 +2296,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2306,7 +2306,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Pyramid argument1 = (Pyramid)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SpherePyramid(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SpherePyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2325,7 +2325,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2335,7 +2335,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			OrientedPyramid argument1 = (OrientedPyramid)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereOrientedPyramid(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereOrientedPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2354,7 +2354,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2364,7 +2364,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Vector3 argument1 = (Vector3)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastPoint(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastPoint(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2383,7 +2383,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2393,7 +2393,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			LineSegment3D argument1 = (LineSegment3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastLine(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastLine(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2412,7 +2412,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2422,7 +2422,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastSphere(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastSphere(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2441,7 +2441,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2451,7 +2451,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			SphereCast argument1 = (SphereCast)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastSphereCast(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastSphereCast(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2470,7 +2470,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2480,7 +2480,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Aabb argument1 = (Aabb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastAabb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastAabb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2499,7 +2499,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2509,7 +2509,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastObb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastObb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2528,7 +2528,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2538,7 +2538,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2558,7 +2558,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(Vector3), "intersectionPoint"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2568,7 +2568,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastTriangle(argument0, argument1, out Vector3 outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastTriangle(argument0, argument1, out Vector3 outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -2587,7 +2587,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2597,7 +2597,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Cylinder argument1 = (Cylinder)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastCylinder(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastCylinder(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2616,7 +2616,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2626,7 +2626,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			ConeFrustum argument1 = (ConeFrustum)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastConeFrustum(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastConeFrustum(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2645,7 +2645,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2655,7 +2655,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Pyramid argument1 = (Pyramid)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastPyramid(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2674,7 +2674,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2684,7 +2684,7 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			OrientedPyramid argument1 = (OrientedPyramid)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastOrientedPyramid(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastOrientedPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2703,7 +2703,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2713,7 +2713,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.TriangleSphere(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.TriangleSphere(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2732,7 +2732,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2742,7 +2742,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Aabb argument1 = (Aabb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.TriangleAabb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.TriangleAabb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2761,7 +2761,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2771,7 +2771,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.TriangleObb(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.TriangleObb(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2790,7 +2790,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2800,7 +2800,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.TrianglePlane(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.TrianglePlane(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2819,7 +2819,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2829,7 +2829,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.TriangleTriangle(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.TriangleTriangle(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2848,7 +2848,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2858,7 +2858,7 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument0 = (Triangle3D)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.TriangleTriangleRobust(argument0, argument1);
+			Boolean returnValue = Detach.Collisions.Geometry3D.TriangleTriangleRobust(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2877,7 +2877,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Single);
+		public Type ReturnType { get; } = typeof(Single);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2887,7 +2887,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Plane argument1 = (Plane)nonOutArguments[1];
 
-			System.Single returnValue = Detach.Collisions.Geometry3D.PlaneEquation(argument0, argument1);
+			Single returnValue = Detach.Collisions.Geometry3D.PlaneEquation(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2908,7 +2908,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2920,7 +2920,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument2 = (Vector3)nonOutArguments[2];
 			Vector3 argument3 = (Vector3)nonOutArguments[3];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.SatCrossEdge(argument0, argument1, argument2, argument3);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.SatCrossEdge(argument0, argument1, argument2, argument3);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2939,7 +2939,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2949,7 +2949,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.Barycentric(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.Barycentric(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2968,7 +2968,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector2);
+		public Type ReturnType { get; } = typeof(Vector2);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2978,7 +2978,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			Vector2 argument1 = (Vector2)nonOutArguments[1];
 
-			System.Numerics.Vector2 returnValue = Detach.Collisions.Geometry3D.Project(argument0, argument1);
+			Vector2 returnValue = Detach.Collisions.Geometry3D.Project(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -2997,7 +2997,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -3007,7 +3007,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Vector3 argument1 = (Vector3)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.Project(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.Project(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -3026,7 +3026,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector2);
+		public Type ReturnType { get; } = typeof(Vector2);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -3036,7 +3036,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector2 argument0 = (Vector2)nonOutArguments[0];
 			Vector2 argument1 = (Vector2)nonOutArguments[1];
 
-			System.Numerics.Vector2 returnValue = Detach.Collisions.Geometry3D.Perpendicular(argument0, argument1);
+			Vector2 returnValue = Detach.Collisions.Geometry3D.Perpendicular(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -3055,7 +3055,7 @@ public static class ExecutableCollisionAlgorithms
 		{
 		};
 
-		public Type ReturnType { get; } = typeof(System.Numerics.Vector3);
+		public Type ReturnType { get; } = typeof(Vector3);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -3065,7 +3065,7 @@ public static class ExecutableCollisionAlgorithms
 			Vector3 argument0 = (Vector3)nonOutArguments[0];
 			Vector3 argument1 = (Vector3)nonOutArguments[1];
 
-			System.Numerics.Vector3 returnValue = Detach.Collisions.Geometry3D.Perpendicular(argument0, argument1);
+			Vector3 returnValue = Detach.Collisions.Geometry3D.Perpendicular(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
 		}
 	}
@@ -3085,7 +3085,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(CollisionManifold), "collisionManifold"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -3095,7 +3095,7 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.FindCollisionFeatures(argument0, argument1, out CollisionManifold outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.FindCollisionFeatures(argument0, argument1, out CollisionManifold outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -3115,7 +3115,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(CollisionManifold), "collisionManifold"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -3125,7 +3125,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.FindCollisionFeatures(argument0, argument1, out CollisionManifold outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.FindCollisionFeatures(argument0, argument1, out CollisionManifold outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
@@ -3145,7 +3145,7 @@ public static class ExecutableCollisionAlgorithms
 			(typeof(CollisionManifold), "collisionManifold"),
 		};
 
-		public Type ReturnType { get; } = typeof(System.Boolean);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -3155,7 +3155,7 @@ public static class ExecutableCollisionAlgorithms
 			Obb argument0 = (Obb)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			System.Boolean returnValue = Detach.Collisions.Geometry3D.FindCollisionFeatures(argument0, argument1, out CollisionManifold outArgument0);
+			Boolean returnValue = Detach.Collisions.Geometry3D.FindCollisionFeatures(argument0, argument1, out CollisionManifold outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}

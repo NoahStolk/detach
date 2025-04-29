@@ -1,5 +1,6 @@
 ﻿using Detach.Collisions;
 using ExecutableCollisionAlgorithmsGenerator.Model;
+using ExecutableCollisionAlgorithmsGenerator.Utils;
 using System.Reflection;
 
 namespace ExecutableCollisionAlgorithmsGenerator;
@@ -30,10 +31,10 @@ internal static class AlgorithmDiscovery
 
 			List<Parameter> parameters = parameterInfos.Where(p => !p.IsOut).Select(p => new Parameter(p.ParameterType, p.Name ?? string.Empty)).ToList();
 			List<Parameter> outParameters = parameterInfos.Where(p => p.IsOut).Select(p => new Parameter(p.ParameterType, p.Name ?? string.Empty)).ToList();
-			Type returnValue = method.ReturnType;
+			string returnTypeName = TypeUtils.FormatTypeName(method.ReturnType);
 
 			string methodSignature = $"{geometryType.FullName}.{method.Name}({string.Join(',', parameters.Concat(outParameters).Select(p => p.FormattableTypeName))})";
-			models.Add(new Algorithm(methodSignature, parameters, outParameters, returnValue));
+			models.Add(new Algorithm(methodSignature, parameters, outParameters, returnTypeName));
 		}
 
 		return models;
