@@ -2,6 +2,14 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Fixed
+
+- Fixed bugs in:
+  - `Geometry3D.Linetest(Aabb, LineSegment3D)`
+  - `Geometry3D.Linetest(Obb, LineSegment3D)`
+
 ## 0.26.6
 
 ### Fixed
