@@ -2,7 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach</PackageId>
-    <Version>0.26.6</Version>
+    <Version>0.27.0</Version>
   </PropertyGroup>
 
 </Project>
