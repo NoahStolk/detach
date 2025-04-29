@@ -1,11 +1,10 @@
 ﻿using Hexa.NET.ImGui;
-using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
 
 namespace Demos.Collisions.Interactable.Services.Ui;
 
-internal sealed unsafe class SceneWindow(Glfw glfw, GL gl, WindowHandle* window, SceneRenderer sceneRenderer, Camera camera)
+internal sealed class SceneWindow(GL gl, SceneRenderer sceneRenderer, Camera camera)
 {
 	private const float _nearPlaneDistance = 0.05f;
 	private const float _farPlaneDistance = 10_000f;
@@ -16,9 +15,9 @@ internal sealed unsafe class SceneWindow(Glfw glfw, GL gl, WindowHandle* window,
 	{
 		if (ImGui.Begin("Scene"))
 		{
-			glfw.GetWindowSize(window, out int width, out int height);
+			Vector2 windowSize = ImGui.GetWindowSize();
 
-			float aspectRatio = width / (float)height;
+			float aspectRatio = windowSize.X / windowSize.Y;
 			Matrix4x4 viewMatrix = Matrix4x4.CreateLookAt(camera.Position, camera.Target, Vector3.UnitY);
 			Matrix4x4 projectionMatrix = Matrix4x4.CreatePerspectiveFieldOfView(float.DegreesToRadians(camera.FieldOfView), aspectRatio, _nearPlaneDistance, _farPlaneDistance);
 

@@ -109,7 +109,10 @@ public static partial class Geometry3D
 	// Method is internal for testing purposes.
 	internal static Plane CreatePlaneFromTriangle(Triangle3D triangle)
 	{
-		Vector3 normal = Vector3.Normalize(Vector3.Cross(triangle.B - triangle.A, triangle.C - triangle.A));
+		// Use a fixed vertex order (A->B->C) to ensure consistent normal orientation.
+		Vector3 ab = triangle.B - triangle.A;
+		Vector3 ac = triangle.C - triangle.A;
+		Vector3 normal = Vector3.Normalize(Vector3.Cross(ab, ac));
 		return new Plane(normal, Vector3.Dot(normal, triangle.A));
 	}
 }

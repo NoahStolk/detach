@@ -14,6 +14,9 @@ public static partial class Geometry3D
 
 	public static bool Linetest(Aabb aabb, LineSegment3D line)
 	{
+		if (PointInAabb(line.Start, aabb) || PointInAabb(line.End, aabb))
+			return true;
+
 		Ray ray = new(line.Start, line.End - line.Start);
 		if (!Raycast(aabb, ray, out float distance))
 			return false;
@@ -23,6 +26,9 @@ public static partial class Geometry3D
 
 	public static bool Linetest(Obb obb, LineSegment3D line)
 	{
+		if (PointInObb(line.Start, obb) || PointInObb(line.End, obb))
+			return true;
+
 		Ray ray = new(line.Start, line.End - line.Start);
 		if (!Raycast(obb, ray, out float distance))
 			return false;

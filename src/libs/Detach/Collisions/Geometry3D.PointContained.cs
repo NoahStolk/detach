@@ -74,21 +74,37 @@ public static partial class Geometry3D
 		if (PointInTriangle(closest, triangle))
 			return closest;
 
+		// Check edges
 		Vector3 c1 = ClosestPointOnLine(point, new LineSegment3D(triangle.A, triangle.B));
 		Vector3 c2 = ClosestPointOnLine(point, new LineSegment3D(triangle.B, triangle.C));
 		Vector3 c3 = ClosestPointOnLine(point, new LineSegment3D(triangle.C, triangle.A));
 
+		// Check vertices
+		float dA = Vector3.DistanceSquared(point, triangle.A);
+		float dB = Vector3.DistanceSquared(point, triangle.B);
+		float dC = Vector3.DistanceSquared(point, triangle.C);
 		float d1 = Vector3.DistanceSquared(point, c1);
 		float d2 = Vector3.DistanceSquared(point, c2);
 		float d3 = Vector3.DistanceSquared(point, c3);
 
-		if (d1 < d2 && d1 < d3)
+		// Find the minimum distance among all candidates
+		float minDistance = Math.Min(Math.Min(Math.Min(Math.Min(Math.Min(dA, dB), dC), d1), d2), d3);
+
+		// Return the point with the minimum distance
+#pragma warning disable S1244
+		// ReSharper disable CompareOfFloatsByEqualityOperator
+		if (minDistance == dA)
+			return triangle.A;
+		if (minDistance == dB)
+			return triangle.B;
+		if (minDistance == dC)
+			return triangle.C;
+		if (minDistance == d1)
 			return c1;
+		return minDistance == d2 ? c2 : c3;
 
-		if (d2 < d1 && d2 < d3)
-			return c2;
-
-		return c3;
+		// ReSharper restore CompareOfFloatsByEqualityOperator
+#pragma warning restore S1244
 	}
 
 	public static Vector3 ClosestPointInPyramid(Vector3 point, Pyramid pyramid)

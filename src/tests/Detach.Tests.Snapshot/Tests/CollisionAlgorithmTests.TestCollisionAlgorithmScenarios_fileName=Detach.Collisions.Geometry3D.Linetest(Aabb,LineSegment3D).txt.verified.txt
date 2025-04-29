@@ -50,13 +50,13 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Aabb { Center = <0, 0, 0>, Size = <1, 1, 1> },
       LineSegment3D { Start = <0, 0, 0>, End = <0.312, 0.418, 0.263>, Length = 0.58415496, LengthSquared = 0.34123704 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   }
 ]
