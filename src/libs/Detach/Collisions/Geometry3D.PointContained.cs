@@ -91,7 +91,8 @@ public static partial class Geometry3D
 		float minDistance = Math.Min(Math.Min(Math.Min(Math.Min(Math.Min(dA, dB), dC), d1), d2), d3);
 
 		// Return the point with the minimum distance
-		// TODO: Improve this.
+#pragma warning disable S1244
+		// ReSharper disable CompareOfFloatsByEqualityOperator
 		if (minDistance == dA)
 			return triangle.A;
 		if (minDistance == dB)
@@ -100,9 +101,10 @@ public static partial class Geometry3D
 			return triangle.C;
 		if (minDistance == d1)
 			return c1;
-		if (minDistance == d2)
-			return c2;
-		return c3;
+		return minDistance == d2 ? c2 : c3;
+
+		// ReSharper restore CompareOfFloatsByEqualityOperator
+#pragma warning restore S1244
 	}
 
 	public static Vector3 ClosestPointInPyramid(Vector3 point, Pyramid pyramid)
