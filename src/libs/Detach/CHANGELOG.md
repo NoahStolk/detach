@@ -9,6 +9,8 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Fixed bugs in:
   - `Geometry3D.Linetest(Aabb, LineSegment3D)`
   - `Geometry3D.Linetest(Obb, LineSegment3D)`
+  - `Geometry3D.ClosestPointOnTriangle`
+  - `Geometry3D.TriangleSphere`
 
 ## 0.26.6
 
