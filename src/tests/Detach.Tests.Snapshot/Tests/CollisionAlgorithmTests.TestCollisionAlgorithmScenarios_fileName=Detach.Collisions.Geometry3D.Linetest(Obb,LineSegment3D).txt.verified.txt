@@ -1,12 +1,12 @@
 ﻿[
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> },
       LineSegment3D { Start = <0, 0, 0>, End = <1, 1, 1>, Length = 1.7320508, LengthSquared = 3 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   },
   {
@@ -90,13 +90,13 @@
     }
   },
   {
-    Status: Incorrect,
+    Status: OK,
     Arguments: [
       Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.64278764, 0, -0.76604444> <0.5321392, 0.7193397, 0.44651783> <0.5510462, -0.6946584, 0.46238267> },
       LineSegment3D { Start = <-0.636, 0.476, 0.211>, End = <1, -0.005, 0.421>, Length = 1.7181259, LengthSquared = 2.9519567 }
     ],
     ExecutionResult: {
-      ReturnValue: false
+      ReturnValue: true
     }
   }
 ]
