@@ -129,4 +129,67 @@ public static partial class Geometry3D
 		float distanceSquared = Vector3.DistanceSquared(sphere.Center, closestPoint);
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
+
+	public static Vector3? SphereObbNormal(Sphere sphere, Obb obb)
+	{
+		// Transform sphere center into OBB's local space
+		Vector3 localCenter = Vector3.Transform(sphere.Center - obb.Center, obb.Orientation.ToMatrix4x4());
+
+		// Find the closest intersecting plane
+		float closestDistance = float.MaxValue;
+		int closestAxis = -1;
+
+		// Check each axis-aligned plane in local space
+		for (int i = 0; i < 3; i++)
+		{
+			// Calculate distance from sphere center to plane
+			float distance = Math.Abs(localCenter[i]) - obb.HalfExtents[i];
+
+			// Only consider planes that the sphere is intersecting
+			if (distance <= sphere.Radius)
+			{
+				// Check if the sphere's projection onto the other axes is within the OBB's bounds
+				bool isWithinBounds = true;
+				for (int j = 0; j < 3; j++)
+				{
+					if (i == j)
+						continue; // Skip the current axis
+
+					if (Math.Abs(localCenter[j]) > obb.HalfExtents[j] + sphere.Radius)
+					{
+						isWithinBounds = false;
+						break;
+					}
+				}
+
+				if (isWithinBounds)
+				{
+					// Use the absolute value of the distance to the plane
+					float absDistance = Math.Abs(distance);
+					if (absDistance < closestDistance)
+					{
+						closestDistance = absDistance;
+						closestAxis = i;
+					}
+				}
+			}
+		}
+
+		if (closestAxis != -1)
+		{
+			// Get the normal in world space
+			Vector3 normal = new(
+				obb.Orientation[closestAxis * 3 + 0],
+				obb.Orientation[closestAxis * 3 + 1],
+				obb.Orientation[closestAxis * 3 + 2]);
+
+			// Ensure normal points away from the sphere
+			if (Vector3.Dot(sphere.Center - obb.Center, normal) < 0)
+				normal = -normal;
+
+			return normal;
+		}
+
+		return null;
+	}
 }

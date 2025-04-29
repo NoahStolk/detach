@@ -41,7 +41,7 @@ internal sealed class GeometryRenderer
 		Vector4 collideColor = _collisionAlgorithmState.ReturnValue is true ? Vector4.One : Vector4.Zero;
 		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(0.5f, 0.0f, 1, 1) + collideColor);
 
-		foreach (object? arg in _collisionAlgorithmState.Arguments)
+		foreach (object arg in _collisionAlgorithmState.Arguments)
 			RenderShape(lineProgram, arg);
 	}
 

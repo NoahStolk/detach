@@ -1,0 +1,264 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.376, 0, 0>, Radius = 0.491 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.9563047, 0, -0.29237172> <0, 1, 0> <0.29237172, 0, 0.9563047> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.9563047,
+        Z: -0.29237172
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.376, 0, 0>, Radius = 0.259 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.9563047, 0, -0.29237172> <0, 1, 0> <0.29237172, 0, 0.9563047> }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <3.545, 0, 0>, Radius = 0.259 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.9563047, 0, -0.29237172> <0, 1, 0> <0.29237172, 0, 0.9563047> }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <3.545, 0, 0>, Radius = 0.259 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1.048, 1>, Orientation = <0.9563047, 0, -0.29237172> <0.13273399, 0.8910065, 0.4341533> <0.2605051, -0.45399052, 0.8520737> }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <3.545, 0, 0>, Radius = 0.259 },
+      Obb { Center = <-1.905, 0, 0>, HalfExtents = <1, 1.048, 1>, Orientation = <0.9563047, 0, -0.29237172> <0.13273399, 0.8910065, 0.4341533> <0.2605051, -0.45399052, 0.8520737> }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.688, 0, 0>, Radius = 0.259 },
+      Obb { Center = <-1.905, 0, 0>, HalfExtents = <1, 1.048, 1>, Orientation = <0.9563047, 0, -0.29237172> <0.13273399, 0.8910065, 0.4341533> <0.2605051, -0.45399052, 0.8520737> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.9563047,
+        Z: -0.29237172
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 1>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Z: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Z: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.635, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Z: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.005, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.99254614, 0, -0.12186935> <0, 1, 0> <0.12186935, 0, 0.99254614> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.12186935,
+        Z: 0.99254614
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.005, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.98162717, 0, -0.19080901> <0, 1, 0> <0.19080901, 0, 0.98162717> }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.005, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.06975651, 0, -0.9975641> <0, 1, 0> <0.9975641, 0, 0.06975651> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.9975641,
+        Z: 0.06975651
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.005, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0.423, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.121869326, 0, -0.99254614> <0, 1, 0> <0.99254614, 0, 0.121869326> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: -0.121869326,
+        Z: 0.99254614
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.005, 0.265, 1.106>, Radius = 0.194 },
+      Obb { Center = <0.423, 0.159, 1.481>, HalfExtents = <1, 1, 1>, Orientation = <0.121869326, 0, -0.99254614> <0, 1, 0> <0.99254614, 0, 0.121869326> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.99254614,
+        Z: 0.121869326
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0.212, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0.212, 0, -0.317>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Z: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0.212, 0, 0.37>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Z: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0.212, 0.423, -0.37>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: -1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0.212, -0.424, -0.37>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        Y: 1.0
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <2.143, 0, 0>, Radius = 0.282 },
+      Obb { Center = <1.72, -0.424, -3.466>, HalfExtents = <1, 1, 1>, Orientation = <0.51253504, -0.64484215, -0.5669978> <0.7072201, 0.69150853, -0.14715897> <0.48697814, -0.32556814, 0.81046766> }
+    ],
+    ExecutionResult: {}
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <2.143, 0, -2.011>, Radius = 0.282 },
+      Obb { Center = <1.72, -0.424, -3.466>, HalfExtents = <1, 1, 1>, Orientation = <0.51253504, -0.64484215, -0.5669978> <0.7072201, 0.69150853, -0.14715897> <0.48697814, -0.32556814, 0.81046766> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: 0.48697814,
+        Y: -0.32556814,
+        Z: 0.81046766
+      }
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.826, 0, -2.381>, Radius = 0.282 },
+      Obb { Center = <1.72, -0.424, -3.466>, HalfExtents = <1, 1, 1>, Orientation = <0.51253504, -0.64484215, -0.5669978> <0.7072201, 0.69150853, -0.14715897> <0.48697814, -0.32556814, 0.81046766> }
+    ],
+    ExecutionResult: {
+      ReturnValue: {
+        X: -0.51253504,
+        Y: 0.64484215,
+        Z: 0.5669978
+      }
+    }
+  }
+]
