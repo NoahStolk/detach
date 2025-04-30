@@ -2,6 +2,7 @@
 using Demos.Collisions.Interactable.Shaders;
 using Demos.Collisions.Interactable.Utils;
 using Detach.Buffers;
+using Detach.Collisions;
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.GlExtensions;
@@ -186,6 +187,11 @@ internal sealed class GeometryRenderer
 				RenderLine(lineProgram, new LineSegment3D(triangle3D.A, triangle3D.B));
 				RenderLine(lineProgram, new LineSegment3D(triangle3D.B, triangle3D.C));
 				RenderLine(lineProgram, new LineSegment3D(triangle3D.C, triangle3D.A));
+				break;
+
+			case IntersectionResult intersectionResult:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(intersectionResult.IntersectionPoint, intersectionResult.IntersectionPoint + intersectionResult.Normal));
 				break;
 		}
 	}

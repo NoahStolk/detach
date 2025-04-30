@@ -130,8 +130,10 @@ public static partial class Geometry3D
 		return distanceSquared <= sphere.Radius * sphere.Radius;
 	}
 
-	public static Vector3? SphereObbNormal(Sphere sphere, Obb obb)
+	public static bool SphereObb(Sphere sphere, Obb obb, out IntersectionResult result)
 	{
+		result = default;
+
 		// Transform sphere center into OBB's local space
 		Vector3 localCenter = Vector3.Transform(sphere.Center - obb.Center, obb.Orientation.ToMatrix4x4());
 
@@ -187,10 +189,19 @@ public static partial class Geometry3D
 			if (Vector3.Dot(sphere.Center - obb.Center, normal) < 0)
 				normal = -normal;
 
-			return normal;
+			// Calculate intersection point
+			Vector3 intersectionPoint = sphere.Center - normal * (sphere.Radius - closestDistance);
+
+			result = new IntersectionResult
+			{
+				Normal = normal,
+				IntersectionPoint = intersectionPoint,
+			};
+
+			return true;
 		}
 
-		return null;
+		return false;
 	}
 
 	public static Vector3? SphereCylinderNormal(Sphere sphere, Cylinder cylinder)
