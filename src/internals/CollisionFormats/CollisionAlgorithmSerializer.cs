@@ -217,7 +217,7 @@ public static class CollisionAlgorithmSerializer
 		public static Rectangle ReadRectangle(string value)
 		{
 			string[] parts = value.Split(_separator);
-			return Rectangle.FromTopLeft(ReadVector2(parts[0], parts[1]), ReadVector2(parts[2], parts[3]));
+			return Rectangle.FromCenter(ReadVector2(parts[0], parts[1]), ReadVector2(parts[2], parts[3]));
 		}
 
 		public static string Write(Triangle2D value)
