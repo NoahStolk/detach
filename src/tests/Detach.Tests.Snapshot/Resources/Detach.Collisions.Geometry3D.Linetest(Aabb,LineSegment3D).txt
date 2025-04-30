@@ -1,7 +1,7 @@
 Detach.Collisions.Geometry3D.Linetest(Aabb,LineSegment3D);Detach.Collisions.Primitives3D.Aabb aabb,Detach.Collisions.Primitives3D.LineSegment3D line;;System.Boolean
-0 0 0 1 1 1,0 0 0 1 1 1;;OK
-0 0 0 1 1 1,0.582 0 0 1 1 1;;OK
--0.265 -0.212 0 1 1 1,0.582 0 0 1 1 1;;OK
-0.687 -0.212 0 1 1 1,0.582 0 0 1 1 1;;OK
-0.687 -0.212 1.053 1 1 1,0.582 0 0 1 1 1;;OK
-0 0 0 1 1 1,0 0 0 0.312 0.418 0.263;;OK
+0 0 0 1 1 1,0 0 0 1 1 1;OK
+0 0 0 1 1 1,0.582 0 0 1 1 1;OK
+-0.265 -0.212 0 1 1 1,0.582 0 0 1 1 1;OK
+0.687 -0.212 0 1 1 1,0.582 0 0 1 1 1;OK
+0.687 -0.212 1.053 1 1 1,0.582 0 0 1 1 1;OK
+0 0 0 1 1 1,0 0 0 0.312 0.418 0.263;OK

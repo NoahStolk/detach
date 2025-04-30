@@ -50,10 +50,7 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 		CollisionAlgorithm? algorithm = collisionScenarioState.GetAlgorithm(selectionState.SelectedAlgorithmIndex);
 		if (algorithm != null)
 		{
-			CollisionAlgorithmScenario collisionAlgorithmScenario = new(
-				collisionAlgorithmState.Arguments,
-				collisionAlgorithmState.OutArguments,
-				incorrect);
+			CollisionAlgorithmScenario collisionAlgorithmScenario = new(collisionAlgorithmState.Arguments, incorrect);
 			collisionScenarioState.AddScenario(algorithm.MethodSignature, collisionAlgorithmScenario);
 		}
 	}

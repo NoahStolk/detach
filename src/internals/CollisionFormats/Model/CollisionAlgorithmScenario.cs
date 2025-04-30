@@ -1,9 +1,6 @@
 ﻿namespace CollisionFormats.Model;
 
-public sealed record CollisionAlgorithmScenario(
-	List<object> Arguments,
-	List<object> OutArguments,
-	bool Incorrect)
+public sealed record CollisionAlgorithmScenario(List<object> Arguments, bool Incorrect)
 {
 #pragma warning disable SA1401 // Fields should be private
 	public bool Incorrect = Incorrect;
@@ -14,9 +11,6 @@ public sealed record CollisionAlgorithmScenario(
 		List<object> arguments = [];
 		arguments.AddRange(Arguments);
 
-		List<object> outArguments = [];
-		outArguments.AddRange(OutArguments);
-
-		return this with { Arguments = arguments, OutArguments = outArguments };
+		return this with { Arguments = arguments };
 	}
 }

@@ -26,8 +26,6 @@ public static class CollisionAlgorithmSerializer
 		{
 			sb.AppendJoin(',', scenario.Arguments.Select(SerializeValue));
 			sb.Append(';');
-			sb.AppendJoin(',', scenario.OutArguments.Select(SerializeValue));
-			sb.Append(';');
 			sb.Append(scenario.Incorrect ? "INCORRECT" : "OK");
 			sb.AppendLine();
 		}
@@ -55,12 +53,10 @@ public static class CollisionAlgorithmSerializer
 				break;
 
 			string[] arguments = scenario[0].Length == 0 ? [] : scenario[0].Split(',');
-			string[] outArguments = scenario[1].Length == 0 ? [] : scenario[1].Split(',');
-			string incorrect = scenario[2];
+			string incorrect = scenario[1];
 
 			scenarios.Add(new CollisionAlgorithmScenario(
 				arguments.Select((a, j) => GetValue(parameters[j].Split(' ')[0], a)).ToList(),
-				outArguments.Select((a, j) => GetValue(outParameters[j].Split(' ')[0], a)).ToList(),
 				incorrect == "INCORRECT"));
 
 			i++;
