@@ -2,6 +2,22 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Added
+
+- Added new sphere intersection methods:
+  - `Geometry3D.SphereObb`
+  - `Geometry3D.SphereCylinder`
+  - `Geometry3D.SphereConeFrustum`
+- Added `IntersectionResult` struct.
+
+### Removed
+
+- Removed previously added sphere intersection methods:
+  - `Geometry3D.SphereObbNormal`
+  - `Geometry3D.SphereCylinderNormal`
+
 ## 0.27.0
 
 ### Added

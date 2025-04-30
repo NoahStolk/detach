@@ -1,0 +1,526 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0, 0>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <0, 0, 0>, BottomRadius = 1, TopRadius = 0.5, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          PenetrationDepth: 0.219
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.635, 0>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <0, 0, 0>, BottomRadius = 1, TopRadius = 0.5, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            Y: 1.0
+          },
+          PenetrationDepth: 0.584
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.635, 0>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <0.767, 0.635, 0>, BottomRadius = 0.995, TopRadius = 0.5, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            Y: 0.635
+          },
+          PenetrationDepth: 0.219
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.635, 0>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <1.032, 0.635, 0>, BottomRadius = 0.995, TopRadius = 0.5, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8962124,
+            Y: 0.44362512
+          },
+          IntersectionPoint: {
+            X: 0.03699994,
+            Y: 0.635
+          },
+          PenetrationDepth: 0.18200006
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 0.635, 0>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <1.032, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            Y: 0.635
+          },
+          PenetrationDepth: 0.219
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.058, 0>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <1.032, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.63674635,
+            Y: 0.698585,
+            Z: -0.32639423
+          },
+          IntersectionPoint: {
+            X: 0.029960394,
+            Y: 1.058,
+            Z: 0.015357614
+          },
+          PenetrationDepth: 0.18533278
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.058, 0.343>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <1.032, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.7041813,
+            Y: 0.698585,
+            Z: -0.1269164
+          },
+          IntersectionPoint: {
+            X: -0.076161146,
+            Y: 1.058,
+            Z: 0.32927328
+          },
+          PenetrationDepth: 0.29638827
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.001, 0.343>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-0.979, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.7029527,
+            Y: 0.698585,
+            Z: -0.13355382
+          },
+          IntersectionPoint: {
+            X: 0.1818999,
+            Y: 1.001,
+            Z: 0.30844086
+          },
+          PenetrationDepth: 0.4041537
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.001, 0.343>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.7091243,
+            Y: 0.698585,
+            Z: -0.095508404
+          },
+          IntersectionPoint: {
+            X: -0.20990801,
+            Y: 1.001,
+            Z: 0.37127146
+          },
+          PenetrationDepth: 0.007196665
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.001, 0.343>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 2.233, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.8691994,
+            Y: -0.48040336,
+            Z: -0.11706812
+          },
+          IntersectionPoint: {
+            X: 0.34291112,
+            Y: 1.001,
+            Z: 0.296815
+          },
+          PenetrationDepth: 0.5650073
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.001, 0.343>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.097, TopRadius = 2.233, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.7378867,
+            Y: -0.6675675,
+            Z: -0.09938227
+          },
+          IntersectionPoint: {
+            X: 0.031404972,
+            Y: 1.001,
+            Z: 0.3387702
+          },
+          PenetrationDepth: 0.25068843
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0, 1.691, 0.343>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.977, 1.978, 0.572>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.71150833,
+            Y: 0.698585,
+            Z: 0.075729914
+          },
+          IntersectionPoint: {
+            X: -1.0806962,
+            Y: 1.902,
+            Z: 0.56096303
+          },
+          PenetrationDepth: 0.08996226
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-1.092, 1.978, 0.572>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.7077361,
+            Y: 0.698585,
+            Z: 0.105303384
+          },
+          IntersectionPoint: {
+            X: -1.0822884,
+            Y: 1.902,
+            Z: 0.573445
+          },
+          PenetrationDepth: 0.14236829
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-1.379, 1.978, 0.572>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: -1.379,
+            Y: 1.902,
+            Z: 0.572
+          },
+          PenetrationDepth: 0.1429999
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-1.379, 1.863, 0.572>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: -1.379,
+            Y: 1.902,
+            Z: 0.572
+          },
+          PenetrationDepth: 0.2579999
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-1.379, 0.714, 0.572>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.635, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            X: -1.379,
+            Y: 0.635,
+            Z: 0.572
+          },
+          PenetrationDepth: 0.29799998
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-1.379, 0.714, 0.572>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 0.75, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            X: -1.379,
+            Y: 0.75,
+            Z: 0.572
+          },
+          PenetrationDepth: 0.18299998
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.977, 1.978, 0.972>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.48214668,
+            Y: 0.698585,
+            Z: 0.5286905
+          },
+          IntersectionPoint: {
+            X: -0.8492204,
+            Y: 1.978,
+            Z: 1.1121148
+          },
+          PenetrationDepth: 0.4086306
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.977, 2.84, 0.972>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.977, 0.714, 0.972>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.172, 1.633, 0.972>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.6718454,
+            Y: 0.698585,
+            Z: 0.2461766
+          },
+          IntersectionPoint: {
+            X: -0.3237257,
+            Y: 1.633,
+            Z: 0.91640496
+          },
+          PenetrationDepth: 0.05740948
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <2.357, 1.633, 0.972>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-5, 1.633, 0.972>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-5, 1.633, -5>, Radius = 0.219 },
+      ConeFrustum { BottomCenter = <-1.381, 1.21, 0.529>, BottomRadius = 1.539, TopRadius = 0.302, Height = 1.267 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  }
+]
