@@ -205,9 +205,9 @@ public static partial class Geometry3D
 		bool isInsideVertical = sphereCenter.Y >= bottom.Y && sphereCenter.Y <= top.Y;
 		bool isInsideRadial = distXz <= radiusAtY;
 
+		Vector2 radialDir;
 		if (isInsideVertical && isInsideRadial)
 		{
-			// Inside the frustum
 			float toBottom = sphereCenter.Y - bottom.Y;
 			float toTop = top.Y - sphereCenter.Y;
 			float toSide = radiusAtY - distXz;
@@ -228,11 +228,14 @@ public static partial class Geometry3D
 			}
 			else
 			{
-				// Closest to side
-				Vector2 radialDir = distXz > 0.0001f ? toAxisXz / distXz : Vector2.UnitX;
+				// Closest to side — calculate slope normal
+				radialDir = distXz > 0.0001f ? toAxisXz / distXz : Vector2.UnitX;
+				float slope = (coneFrustum.TopRadius - coneFrustum.BottomRadius) / coneFrustum.Height;
+
+				Vector3 sideNormal = Vector3.Normalize(new Vector3(radialDir.X, -slope, radialDir.Y));
 				Vector2 sidePointXz = new Vector2(bottom.X, bottom.Z) + radialDir * radiusAtY;
 				closestPoint = new Vector3(sidePointXz.X, clampedY, sidePointXz.Y);
-				normal = new Vector3(radialDir.X, 0, radialDir.Y);
+				normal = sideNormal;
 				penetration = radiusAtY - distXz + sphere.Radius;
 			}
 
@@ -240,20 +243,12 @@ public static partial class Geometry3D
 			return true;
 		}
 
-		// Sphere is outside: compute the closest point on frustum
-		Vector2 closestXz;
-
-		if (distXz > radiusAtY)
-		{
-			Vector2 radialDir = toAxisXz / distXz;
-			closestXz = new Vector2(bottom.X, bottom.Z) + radialDir * radiusAtY;
-		}
-		else
-		{
-			closestXz = new Vector2(sphereCenter.X, sphereCenter.Z);
-		}
-
+		// Sphere is outside: find the closest point on cone frustum surface
+		Vector2 dirXz = toAxisXz;
+		radialDir = distXz > 0.0001f ? dirXz / distXz : Vector2.UnitX;
+		Vector2 closestXz = new Vector2(bottom.X, bottom.Z) + radialDir * radiusAtY;
 		closestPoint = new Vector3(closestXz.X, clampedY, closestXz.Y);
+
 		Vector3 toCenter = sphereCenter - closestPoint;
 		float distToSurface = toCenter.Length();
 
@@ -263,7 +258,11 @@ public static partial class Geometry3D
 			return false;
 		}
 
-		normal = distToSurface > 0.0001f ? Vector3.Normalize(toCenter) : Vector3.UnitY;
+		// Always use slope-tilted normal for side
+		float sideSlope = (coneFrustum.TopRadius - coneFrustum.BottomRadius) / coneFrustum.Height;
+		Vector3 slopeNormal = Vector3.Normalize(new Vector3(radialDir.X, -sideSlope, radialDir.Y));
+		normal = slopeNormal;
+
 		penetration = sphere.Radius - distToSurface;
 
 		result = new IntersectionResult(normal, closestPoint, penetration);
