@@ -1,5 +1,4 @@
 ﻿using Detach.Collisions.Primitives3D;
-using Detach.Numerics;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -8,83 +7,49 @@ public static partial class Geometry3D
 {
 	public static bool SphereObb(Sphere sphere, Obb obb, out IntersectionResult result)
 	{
-		result = default;
+		Matrix4x4 obbOrientation = obb.Orientation.ToMatrix4x4();
 
-		// Step 1: Transform sphere center into OBB local space
-		Matrix3 invOrientation = Matrix3.Transpose(obb.Orientation); // Assuming Orthogonal matrix
-		Vector3 localCenter = invOrientation * (sphere.Center - obb.Center);
+		// Transform the sphere center into OBB local space
+		Matrix4x4 inverseOrientation = Matrix4x4.Transpose(obbOrientation); // Because it's orthonormal
+		Vector3 localCenter = Vector3.Transform(sphere.Center - obb.Center, inverseOrientation);
 
-		// Step 2: Clamp local center to OBB bounds
+		// Clamp the local point to the box's extents to find the closest point on the box
 		Vector3 clamped = Vector3.Clamp(localCenter, -obb.HalfExtents, obb.HalfExtents);
 
-		// Step 3: Get vector from clamped point to local sphere center
-		Vector3 localDelta = localCenter - clamped;
-		float distanceSq = localDelta.LengthSquared();
+		// Back-transform to world space to get the closest point on the OBB
+		Vector3 closestPointWorld = Vector3.Transform(clamped, obbOrientation) + obb.Center;
 
-		// Step 4: Check intersection
+		// Compute vector from the closest point to sphere center
+		Vector3 toCenter = sphere.Center - closestPointWorld;
+		float distanceSq = toCenter.LengthSquared();
+
 		if (distanceSq > sphere.Radius * sphere.Radius)
-			return false;
-
-		// Step 5: Determine best face normal (in local space)
-		Vector3 bestNormal = Vector3.Zero;
-		float maxDot = float.NegativeInfinity;
-
-		// Avoid zero vector if sphere center is inside OBB
-		if (localDelta.LengthSquared() > 1e-6f)
 		{
-			Vector3 localNormal = Vector3.Normalize(localDelta);
-
-			// Compare against each axis
-			for (int i = 0; i < 3; i++)
-			{
-				Vector3 axis = i switch
-				{
-					0 => Vector3.UnitX,
-					1 => Vector3.UnitY,
-					_ => Vector3.UnitZ,
-				};
-				float dot = MathF.Abs(Vector3.Dot(localNormal, axis));
-				if (dot > maxDot)
-				{
-					maxDot = dot;
-					bestNormal = axis * MathF.Sign(Vector3.Dot(localNormal, axis));
-				}
-			}
+			result = default;
+			return false; // No intersection
 		}
+
+		// Determine which face was hit most based on which axis had the greatest clamping
+		Vector3 delta = localCenter - clamped;
+		float absX = Math.Abs(delta.X);
+		float absY = Math.Abs(delta.Y);
+		float absZ = Math.Abs(delta.Z);
+
+		Vector3 localNormal;
+
+		if (absX > absY && absX > absZ)
+			localNormal = new Vector3(delta.X < 0 ? -1 : 1, 0, 0);
+		else if (absY > absZ)
+			localNormal = new Vector3(0, delta.Y < 0 ? -1 : 1, 0);
 		else
-		{
-			// Sphere center is inside OBB: pick the face with minimal penetration
-			Vector3 distances = obb.HalfExtents - Vector3.Abs(localCenter);
-			if (distances.X <= distances.Y && distances.X <= distances.Z)
-				bestNormal = new Vector3(MathF.Sign(localCenter.X), 0, 0);
-			else if (distances.Y <= distances.X && distances.Y <= distances.Z)
-				bestNormal = new Vector3(0, MathF.Sign(localCenter.Y), 0);
-			else
-				bestNormal = new Vector3(0, 0, MathF.Sign(localCenter.Z));
-		}
+			localNormal = new Vector3(0, 0, delta.Z < 0 ? -1 : 1);
 
-		// Step 6: Compute intersection point on the best face (in local space)
-		Vector3 localIntersection = clamped;
-		if (MathF.Abs(bestNormal.X) > 0)
-			localIntersection.X = bestNormal.X * obb.HalfExtents.X;
-		if (MathF.Abs(bestNormal.Y) > 0)
-			localIntersection.Y = bestNormal.Y * obb.HalfExtents.Y;
-		if (MathF.Abs(bestNormal.Z) > 0)
-			localIntersection.Z = bestNormal.Z * obb.HalfExtents.Z;
+		// Transform the normal back to world space
+		Vector3 worldNormal = Vector3.TransformNormal(localNormal, obbOrientation);
+		worldNormal = Vector3.Normalize(worldNormal);
 
-		// Step 7: Transform results to world space
-		Vector3 worldIntersection = obb.Center + obb.Orientation * localIntersection;
-		Vector3 worldNormal = Vector3.Normalize(obb.Orientation * bestNormal);
-
-		result = new IntersectionResult(worldNormal, worldIntersection);
+		result = new IntersectionResult(worldNormal, closestPointWorld);
 		return true;
-
-		static Vector3 TransformWithZFlip(Matrix3 m, Vector3 v)
-		{
-			Vector3 result = m * v;
-			result.Z = -result.Z;
-			return result;
-		}
 	}
 
 	public static bool SphereCylinder(Sphere sphere, Cylinder cylinder, out IntersectionResult result)
