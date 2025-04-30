@@ -35,6 +35,13 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 			RenderParameter(parameter.Name, i, parameter.Type, ref CollectionsMarshal.AsSpan(collisionAlgorithmState.Arguments)[i]);
 		}
 
+		ImGui.SeparatorText("Out parameters");
+		for (int i = 0; i < collisionAlgorithmState.OutArguments.Count; i++)
+		{
+			object value = collisionAlgorithmState.OutArguments[i];
+			ImGui.Text(value.ToString() ?? "<NULL>");
+		}
+
 		ImGui.SeparatorText("Return value");
 		ImGui.Text(collisionAlgorithmState.ReturnValue?.ToString() ?? "<NULL>");
 

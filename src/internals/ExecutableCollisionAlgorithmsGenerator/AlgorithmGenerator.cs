@@ -1,6 +1,5 @@
 ﻿using Detach.CodeGeneration;
 using ExecutableCollisionAlgorithmsGenerator.Model;
-using ExecutableCollisionAlgorithmsGenerator.Utils;
 
 namespace ExecutableCollisionAlgorithmsGenerator;
 
