@@ -114,6 +114,14 @@ public record struct Matrix3 : IMatrixOperations<Matrix3>, ISpanFormattable, IUt
 		return Matrices.Multiply<Matrix3, Matrix3, Matrix3>(left, right);
 	}
 
+	public static Vector3 operator *(Matrix3 m, Vector3 v)
+	{
+		return new Vector3(
+			m.M11 * v.X + m.M12 * v.Y + m.M13 * v.Z,
+			m.M21 * v.X + m.M22 * v.Y + m.M23 * v.Z,
+			m.M31 * v.X + m.M32 * v.Y + m.M33 * v.Z);
+	}
+
 	public Span<float> AsSpan()
 	{
 		return MemoryMarshal.CreateSpan(ref M11, 9);
