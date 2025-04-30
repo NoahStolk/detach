@@ -1,5 +1,4 @@
 ﻿using CollisionFormats.Model;
-using Detach.Collisions;
 using Detach.Collisions.Primitives2D;
 using Detach.Collisions.Primitives3D;
 using Detach.Numerics;
@@ -100,8 +99,6 @@ public static class CollisionAlgorithmSerializer
 			_ when value is SphereCast sphereCast => Serializer.Write(sphereCast),
 			_ when value is Triangle3D triangle3D => Serializer.Write(triangle3D),
 
-			_ when value is IntersectionResult intersectionResult => Serializer.Write(intersectionResult),
-
 			_ => throw new NotSupportedException($"The type {value.GetType()} is not supported."),
 		};
 	}
@@ -134,8 +131,6 @@ public static class CollisionAlgorithmSerializer
 			_ when typeName == typeof(Sphere).FullName => Serializer.ReadSphere(argument),
 			_ when typeName == typeof(SphereCast).FullName => Serializer.ReadSphereCast(argument),
 			_ when typeName == typeof(Triangle3D).FullName => Serializer.ReadTriangle3D(argument),
-
-			_ when typeName == typeof(IntersectionResult).FullName => Serializer.ReadIntersectionResult(argument),
 
 			_ => throw new NotSupportedException($"The type {typeName} is not supported."),
 		};
@@ -362,17 +357,6 @@ public static class CollisionAlgorithmSerializer
 		{
 			string[] parts = value.Split(_separator);
 			return new Triangle3D(ReadVector3(parts[0], parts[1], parts[2]), ReadVector3(parts[3], parts[4], parts[5]), ReadVector3(parts[6], parts[7], parts[8]));
-		}
-
-		public static string Write(IntersectionResult intersectionResult)
-		{
-			return $"{Write(intersectionResult.Normal)}{_separator}{Write(intersectionResult.IntersectionPoint)}";
-		}
-
-		public static IntersectionResult ReadIntersectionResult(string value)
-		{
-			string[] parts = value.Split(_separator);
-			return new IntersectionResult(ReadVector3(parts[0], parts[1], parts[2]), ReadVector3(parts[3], parts[4], parts[5]));
 		}
 
 		public static string Write(Vector2 value)
