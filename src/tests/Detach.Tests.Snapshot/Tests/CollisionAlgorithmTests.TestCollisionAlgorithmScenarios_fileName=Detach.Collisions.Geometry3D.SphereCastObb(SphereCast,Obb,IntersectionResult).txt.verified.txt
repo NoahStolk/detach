@@ -1,0 +1,337 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 0, 0>, End = <-1.011, 1.345, 0.6>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.52991927,
+            Z: 0.8480481
+          },
+          IntersectionPoint: {
+            X: -1.0882146,
+            Y: 1.2909098,
+            Z: 0.5758705
+          },
+          PenetrationDepth: 0.09731426
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 0, 0>, End = <-1.011, 0.655, 0.543>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.52991927,
+            Z: 0.8480481
+          },
+          IntersectionPoint: {
+            X: -1.248152,
+            Y: 0.57409656,
+            Z: 0.47593048
+          },
+          PenetrationDepth: 0.2593931
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 0, 0>, End = <-1.011, 0.655, 0.2>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: -1.1761444,
+            Y: 0.59866166,
+            Z: 0.18279743
+          },
+          PenetrationDepth: 0.1753356
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <-1.011, 0.655, 0.2>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: -1.1761444,
+            Y: 0.83098185,
+            Z: 0.18279743
+          },
+          PenetrationDepth: 0.2419467
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <-1.011, 0.655, 0.2>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, 0>, HalfExtents = <1, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: -1.7075601,
+            Y: 1.3972716,
+            Z: 0.1274417
+          },
+          PenetrationDepth: 1.0205036
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <-1.011, 0.655, 0.2>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <1.828, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: -2.0573344,
+            Y: 1.77,
+            Z: 0.091006696
+          },
+          PenetrationDepth: 1.5329448
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <2.069, -4.138, 0.2>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <1.828, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: -2.1126578,
+            Y: 1.5816714,
+            Z: 0.03273356
+          },
+          PenetrationDepth: 7.087234
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <2.069, -4.138, -2.329>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <1.828, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: -1.747823,
+            Y: 1.0826504,
+            Z: -0.551124
+          },
+          PenetrationDepth: 6.7070236
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <5, -4.138, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <1.828, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: -1.7647069,
+            Y: 1.6952909,
+            Z: -0.5241041
+          },
+          PenetrationDepth: 9.435544
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <5, -3.197, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <1.828, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: -1.6790907,
+            Y: 1.77,
+            Z: -0.5625779
+          },
+          PenetrationDepth: 8.848156
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <5, 0.862, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <1.828, 1.431, 1.48>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: 1.0840952,
+            Y: 1.77,
+            Z: -1.804287
+          },
+          PenetrationDepth: 4.388093
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-2.931, 2.701, 0>, End = <5, -0.059, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <3, 3.5, 0.3>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: 0.16998863,
+            Y: 1.6218512,
+            Z: -1.3935096
+          },
+          PenetrationDepth: 5.5556545
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-3.107, 2.701, 0>, End = <0.529, -0.059, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <3, 3.5, 0.3>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-3.107, 2.701, 0>, End = <-5, -0.059, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <3, 3.5, 0.3>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-3.107, 2.701, 0>, End = <5, -0.059, -3.564>, Radius = 0.339 },
+      Obb { Center = <0.517, 0, -0.743>, HalfExtents = <3, 3.5, 0.3>, Orientation = <0.52991927, 0, -0.8480481> <0, 1, 0> <0.8480481, 0, 0.52991927> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8480481,
+            Z: -0.52991927
+          },
+          IntersectionPoint: {
+            X: 0.21058452,
+            Y: 1.5715399,
+            Z: -1.4584765
+          },
+          PenetrationDepth: 5.479999
+        }
+      ]
+    }
+  }
+]
