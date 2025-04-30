@@ -9,46 +9,81 @@ public static partial class Geometry3D
 	{
 		Matrix4x4 obbOrientation = obb.Orientation.ToMatrix4x4();
 
-		// Transform the sphere center into OBB local space
-		Matrix4x4 inverseOrientation = Matrix4x4.Transpose(obbOrientation); // Because it's orthonormal
+		Matrix4x4 inverseOrientation = Matrix4x4.Transpose(obbOrientation); // Because rotation matrix is orthonormal
 		Vector3 localCenter = Vector3.Transform(sphere.Center - obb.Center, inverseOrientation);
 
-		// Clamp the local point to the box's extents to find the closest point on the box
-		Vector3 clamped = Vector3.Clamp(localCenter, -obb.HalfExtents, obb.HalfExtents);
+		bool isInside =
+			Math.Abs(localCenter.X) <= obb.HalfExtents.X &&
+			Math.Abs(localCenter.Y) <= obb.HalfExtents.Y &&
+			Math.Abs(localCenter.Z) <= obb.HalfExtents.Z;
 
-		// Back-transform to world space to get the closest point on the OBB
+		Vector3 clamped = Vector3.Clamp(localCenter, -obb.HalfExtents, obb.HalfExtents);
 		Vector3 closestPointWorld = Vector3.Transform(clamped, obbOrientation) + obb.Center;
 
-		// Compute vector from the closest point to sphere center
-		Vector3 toCenter = sphere.Center - closestPointWorld;
-		float distanceSq = toCenter.LengthSquared();
-
-		if (distanceSq > sphere.Radius * sphere.Radius)
+		if (!isInside)
 		{
-			result = default;
-			return false; // No intersection
+			Vector3 toCenter = sphere.Center - closestPointWorld;
+			float distanceSq = toCenter.LengthSquared();
+
+			if (distanceSq > sphere.Radius * sphere.Radius)
+			{
+				result = default;
+				return false; // No intersection
+			}
+
+			Vector3 delta = localCenter - clamped;
+			float absX = Math.Abs(delta.X);
+			float absY = Math.Abs(delta.Y);
+			float absZ = Math.Abs(delta.Z);
+
+			Vector3 localNormal;
+
+			if (absX > absY && absX > absZ)
+				localNormal = new Vector3(delta.X < 0 ? -1 : 1, 0, 0);
+			else if (absY > absZ)
+				localNormal = new Vector3(0, delta.Y < 0 ? -1 : 1, 0);
+			else
+				localNormal = new Vector3(0, 0, delta.Z < 0 ? -1 : 1);
+
+			Vector3 worldNormal = Vector3.TransformNormal(localNormal, obbOrientation);
+			worldNormal = Vector3.Normalize(worldNormal);
+
+			result = new IntersectionResult(worldNormal, closestPointWorld);
+		}
+		else
+		{
+			// Find the closest face to "exit" toward
+			float dx = obb.HalfExtents.X - Math.Abs(localCenter.X);
+			float dy = obb.HalfExtents.Y - Math.Abs(localCenter.Y);
+			float dz = obb.HalfExtents.Z - Math.Abs(localCenter.Z);
+
+			Vector3 localNormal;
+			Vector3 localPoint = localCenter;
+
+			if (dx < dy && dx < dz)
+			{
+				localNormal = new Vector3(localCenter.X < 0 ? -1 : 1, 0, 0);
+				localPoint.X = localNormal.X * obb.HalfExtents.X;
+			}
+			else if (dy < dz)
+			{
+				localNormal = new Vector3(0, localCenter.Y < 0 ? -1 : 1, 0);
+				localPoint.Y = localNormal.Y * obb.HalfExtents.Y;
+			}
+			else
+			{
+				localNormal = new Vector3(0, 0, localCenter.Z < 0 ? -1 : 1);
+				localPoint.Z = localNormal.Z * obb.HalfExtents.Z;
+			}
+
+			Vector3 worldNormal = Vector3.TransformNormal(localNormal, obbOrientation);
+			worldNormal = Vector3.Normalize(worldNormal);
+
+			Vector3 worldPoint = Vector3.Transform(localPoint, obbOrientation) + obb.Center;
+
+			result = new IntersectionResult(worldNormal, worldPoint);
 		}
 
-		// Determine which face was hit most based on which axis had the greatest clamping
-		Vector3 delta = localCenter - clamped;
-		float absX = Math.Abs(delta.X);
-		float absY = Math.Abs(delta.Y);
-		float absZ = Math.Abs(delta.Z);
-
-		Vector3 localNormal;
-
-		if (absX > absY && absX > absZ)
-			localNormal = new Vector3(delta.X < 0 ? -1 : 1, 0, 0);
-		else if (absY > absZ)
-			localNormal = new Vector3(0, delta.Y < 0 ? -1 : 1, 0);
-		else
-			localNormal = new Vector3(0, 0, delta.Z < 0 ? -1 : 1);
-
-		// Transform the normal back to world space
-		Vector3 worldNormal = Vector3.TransformNormal(localNormal, obbOrientation);
-		worldNormal = Vector3.Normalize(worldNormal);
-
-		result = new IntersectionResult(worldNormal, closestPointWorld);
 		return true;
 	}
 
