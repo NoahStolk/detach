@@ -1,0 +1,396 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.37, 0>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.529, 0>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.21524651,
+            Y: -0.41363803,
+            Z: -0.88463134
+          },
+          IntersectionPoint: {
+            X: 0.76857984,
+            Y: 0.582,
+            Z: 0.11334908
+          },
+          PenetrationDepth: 0.02086857
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.846, 0>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.23641993,
+            Z: -0.97165096
+          },
+          IntersectionPoint: {
+            X: 0.76857984,
+            Y: 0.846,
+            Z: 0.11334908
+          },
+          PenetrationDepth: 0.032343835
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.111, 0.212>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.28945956,
+            Z: -0.9571902
+          },
+          IntersectionPoint: {
+            X: 0.7155404,
+            Y: 1.111,
+            Z: 0.12780982
+          },
+          PenetrationDepth: 0.23695554
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.111, 0.582>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.46473038,
+            Z: -0.8854523
+          },
+          IntersectionPoint: {
+            X: 0.5402696,
+            Y: 1.111,
+            Z: 0.19954777
+          },
+          PenetrationDepth: 0.5809287
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.111, 0.847>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: 0.741,
+            Y: 1.582,
+            Z: 0.847
+          },
+          PenetrationDepth: 0.62000006
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.111, 1.587>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.46545577,
+            Z: 0.88507116
+          },
+          IntersectionPoint: {
+            X: 0.5395442,
+            Y: 1.111,
+            Z: 1.9700712
+          },
+          PenetrationDepth: 0.581814
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.111, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.32545874,
+            Z: 0.9455562
+          },
+          IntersectionPoint: {
+            X: 0.67954123,
+            Y: 1.111,
+            Z: 2.0305562
+          },
+          PenetrationDepth: 0.33783728
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.688, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            X: 0.741,
+            Y: 0.582,
+            Z: 1.852
+          },
+          PenetrationDepth: 0.255
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.587, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: 0.741,
+            Y: 1.582,
+            Z: 1.852
+          },
+          PenetrationDepth: 0.14400001
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.846, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 0.748, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.32545912,
+            Z: 0.9455562
+          },
+          IntersectionPoint: {
+            X: 0.76155686,
+            Y: 0.846,
+            Z: 1.7922761
+          },
+          PenetrationDepth: 0.085837334
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.846, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 0.486, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 0.846, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1.618, Height = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            X: 0.741,
+            Y: 0.582,
+            Z: 1.852
+          },
+          PenetrationDepth: 0.413
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.851, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1.173, Height = 1.638 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.32545874,
+            Z: 0.9455562
+          },
+          IntersectionPoint: {
+            X: 0.6232369,
+            Y: 1.851,
+            Z: 2.1941376
+          },
+          PenetrationDepth: 0.51083726
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.851, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1.173, Height = 1.569 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: 0.741,
+            Y: 2.151,
+            Z: 1.852
+          },
+          PenetrationDepth: 0.44900006
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.851, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1.173, Height = 1.129 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: 0.741,
+            Y: 1.711,
+            Z: 1.852
+          },
+          PenetrationDepth: 0.009000018
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.851, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 1.173, Height = 0.981 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.741, 1.851, 1.852>, Radius = 0.149 },
+      Cylinder { BottomCenter = <1.005, 0.582, 1.085>, Radius = 0.881, Height = 1.643 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.32545874,
+            Z: 0.9455562
+          },
+          IntersectionPoint: {
+            X: 0.7182709,
+            Y: 1.851,
+            Z: 1.918035
+          },
+          PenetrationDepth: 0.21883728
+        }
+      ]
+    }
+  }
+]

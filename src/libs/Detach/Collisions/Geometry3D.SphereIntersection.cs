@@ -95,64 +95,93 @@ public static partial class Geometry3D
 
 	public static bool SphereCylinder(Sphere sphere, Cylinder cylinder, out IntersectionResult result)
 	{
-		result = default;
+		Vector3 sphereCenter = sphere.Center;
+		Vector3 bottom = cylinder.BottomCenter;
+		Vector3 top = bottom + Vector3.UnitY * cylinder.Height;
 
-		// Check intersection with bottom circle
-		Vector2 sphereXz = new(sphere.Center.X, sphere.Center.Z);
-		Vector2 cylinderXz = new(cylinder.BottomCenter.X, cylinder.BottomCenter.Z);
-		float distanceSquaredXz = Vector2.DistanceSquared(sphereXz, cylinderXz);
-		float radiusSum = sphere.Radius + cylinder.Radius;
+		// Step 1: Clamp sphere center's Y to cylinder height (for closest point on side wall or caps)
+		float clampedY = Math.Clamp(sphereCenter.Y, bottom.Y, top.Y);
 
-		// Check if sphere is within the cylinder's height range
-		float sphereMinY = sphere.Center.Y - sphere.Radius;
-		float sphereMaxY = sphere.Center.Y + sphere.Radius;
-		float cylinderMinY = cylinder.BottomCenter.Y;
-		float cylinderMaxY = cylinder.BottomCenter.Y + cylinder.Height;
+		// Step 2: Project sphere center onto cylinder axis to get the height
+		Vector3 axisPoint = new Vector3(sphereCenter.X, clampedY, sphereCenter.Z);
+		Vector2 toAxisXZ = new Vector2(sphereCenter.X - bottom.X, sphereCenter.Z - bottom.Z);
 
-		// Check bottom circle
-		if (sphereMinY <= cylinderMinY && sphereMaxY >= cylinderMinY && distanceSquaredXz <= radiusSum * radiusSum)
+		// Step 3: Compute distance from axis in XZ plane
+		float distXZSq = toAxisXZ.LengthSquared();
+
+		Vector3 closestPoint;
+		Vector3 normal;
+		float penetration;
+
+		bool isInsideVertical = sphereCenter.Y >= bottom.Y && sphereCenter.Y <= top.Y;
+		bool isInsideRadial = distXZSq <= cylinder.Radius * cylinder.Radius;
+
+		if (isInsideVertical && isInsideRadial)
 		{
-			result = new IntersectionResult(-Vector3.UnitY, sphere.Center + Vector3.UnitY * (sphere.Radius - (cylinderMinY - sphereMinY)), 0);
-			return true;
-		}
+			// Sphere center is *inside* the cylinder
+			// Choose nearest "exit point" — top, bottom, or side
+			float toTop = top.Y - sphereCenter.Y;
+			float toBottom = sphereCenter.Y - bottom.Y;
+			float toSide = cylinder.Radius - MathF.Sqrt(distXZSq);
 
-		// Check top circle
-		if (sphereMaxY >= cylinderMaxY && sphereMinY <= cylinderMaxY && distanceSquaredXz <= radiusSum * radiusSum)
-		{
-			result = new IntersectionResult(Vector3.UnitY, sphere.Center - Vector3.UnitY * (sphere.Radius - (sphereMaxY - cylinderMaxY)), 0);
-			return true;
-		}
-
-		// Check side surface
-		if (sphereMaxY >= cylinderMinY && sphereMinY <= cylinderMaxY)
-		{
-			float distanceXz = MathF.Sqrt(distanceSquaredXz);
-			if (distanceXz <= cylinder.Radius + sphere.Radius)
+			if (toTop < toBottom && toTop < toSide)
 			{
-				Vector3 normal, intersectionPoint;
-
-				// Special case: sphere is centered on cylinder's axis
-				const float epsilon = 0.001f;
-				if (distanceXz is > -epsilon and < epsilon)
-				{
-					// Return normal of the closest circle
-					float distanceToBottom = Math.Abs(sphere.Center.Y - cylinderMinY);
-					float distanceToTop = Math.Abs(sphere.Center.Y - cylinderMaxY);
-					normal = distanceToBottom < distanceToTop ? -Vector3.UnitY : Vector3.UnitY;
-					intersectionPoint = sphere.Center - normal * (sphere.Radius - Math.Min(distanceToBottom, distanceToTop));
-					result = new IntersectionResult(normal, intersectionPoint, 0);
-					return true;
-				}
-
-				// Calculate normal pointing from cylinder center to sphere
-				normal = new Vector3(sphere.Center.X - cylinder.BottomCenter.X, 0, sphere.Center.Z - cylinder.BottomCenter.Z);
-				normal = Vector3.Normalize(normal);
-				intersectionPoint = sphere.Center - normal * (sphere.Radius - (cylinder.Radius - distanceXz));
-				result = new IntersectionResult(normal, intersectionPoint, 0);
-				return true;
+				// Closest to top cap
+				normal = Vector3.UnitY;
+				closestPoint = new Vector3(sphereCenter.X, top.Y, sphereCenter.Z);
+				penetration = toTop + sphere.Radius;
 			}
+			else if (toBottom < toSide)
+			{
+				// Closest to bottom cap
+				normal = -Vector3.UnitY;
+				closestPoint = new Vector3(sphereCenter.X, bottom.Y, sphereCenter.Z);
+				penetration = toBottom + sphere.Radius;
+			}
+			else
+			{
+				// Closest to side
+				Vector2 radialDir = Vector2.Normalize(toAxisXZ);
+				Vector2 sidePoint = new Vector2(bottom.X, bottom.Z) + radialDir * cylinder.Radius;
+				closestPoint = new Vector3(sidePoint.X, clampedY, sidePoint.Y);
+				Vector3 outward = new Vector3(radialDir.X, 0, radialDir.Y);
+				normal = outward;
+				penetration = (cylinder.Radius - MathF.Sqrt(distXZSq)) + sphere.Radius;
+			}
+
+			result = new IntersectionResult(normal, closestPoint, penetration);
+			return true;
 		}
 
-		return false;
+		// Sphere is outside: compute the closest point on cylinder
+		Vector2 dirXZ = toAxisXZ;
+		float distXZ = MathF.Sqrt(distXZSq);
+
+		Vector2 closestXZ;
+		if (distXZ > cylinder.Radius)
+		{
+			Vector2 radialDir = dirXZ / distXZ;
+			closestXZ = new Vector2(bottom.X, bottom.Z) + radialDir * cylinder.Radius;
+		}
+		else
+		{
+			closestXZ = new Vector2(sphereCenter.X, sphereCenter.Z);
+		}
+
+		closestPoint = new Vector3(closestXZ.X, clampedY, closestXZ.Y);
+		Vector3 toCenter = sphereCenter - closestPoint;
+		float distToSurface = toCenter.Length();
+
+		if (distToSurface > sphere.Radius)
+		{
+			result = default;
+			return false; // No intersection
+		}
+
+		normal = distToSurface > 0.0001f ? Vector3.Normalize(toCenter) : Vector3.UnitY;
+		penetration = sphere.Radius - distToSurface;
+
+		result = new IntersectionResult(normal, closestPoint, penetration);
+		return true;
 	}
 }
