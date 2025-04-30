@@ -1,0 +1,404 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, 1>, Radius = 0.289 },
+      Sphere { Center = <0.118, -0.059, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.93605465,
+            Y: 0.27062994,
+            Z: 0.22485803
+          },
+          IntersectionPoint: {
+            X: -0.81805474,
+            Y: 0.21162999,
+            Z: 0.22485808
+          },
+          PenetrationDepth: 2.317497
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, 0.235>, Radius = 0.289 },
+      Sphere { Center = <0.118, -0.059, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.9639741,
+            Y: 0.2611368,
+            Z: 0.050610743
+          },
+          IntersectionPoint: {
+            X: -0.8459742,
+            Y: 0.20213681,
+            Z: 0.05061075
+          },
+          PenetrationDepth: 2.250431
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, -2>, Radius = 0.289 },
+      Sphere { Center = <0.118, -0.059, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.7371228,
+            Y: 0.33827093,
+            Z: -0.5849981
+          },
+          IntersectionPoint: {
+            X: -0.6191227,
+            Y: 0.27927095,
+            Z: -0.584998
+          },
+          PenetrationDepth: 2.301571
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, -2.529>, Radius = 0.289 },
+      Sphere { Center = <0.118, -0.059, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.118, -0.059, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.78880715,
+            Y: 0.5844831,
+            Z: -0.19016504
+          },
+          IntersectionPoint: {
+            X: 0.32919255,
+            Y: 0.5254833,
+            Z: -0.1901651
+          },
+          PenetrationDepth: 0.9554171
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.471, -0.059, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.6428732,
+            Y: 0.7272201,
+            Z: -0.2405512
+          },
+          IntersectionPoint: {
+            X: 0.8281265,
+            Y: 0.6682204,
+            Z: -0.24055131
+          },
+          PenetrationDepth: 0.38020518
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.941, 0, 0>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.9199262,
+            Y: 0.30109262,
+            Z: -0.25115538
+          },
+          IntersectionPoint: {
+            X: 1.022074,
+            Y: 0.83009255,
+            Z: -0.25115532
+          },
+          PenetrationDepth: 0.2591488
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0.118, 0, 0>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.98147714,
+            Y: 0.08118411,
+            Z: -0.17352764
+          },
+          IntersectionPoint: {
+            X: 0.9605229,
+            Y: 0.6101841,
+            Z: -0.17352766
+          },
+          PenetrationDepth: 0.5053203
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0.118, 0, 0>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.412>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <0.118, 0, 0>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8128422,
+            Y: 0.27238002,
+            Z: -0.5148755
+          },
+          IntersectionPoint: {
+            X: 1.1291578,
+            Y: 0.80138004,
+            Z: -0.16187553
+          },
+          PenetrationDepth: 0.16538382
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <1, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.74417365,
+            Y: 0.3731432,
+            Z: -0.55404854
+          },
+          IntersectionPoint: {
+            X: 1.197826,
+            Y: 0.90214336,
+            Z: -0.20104884
+          },
+          PenetrationDepth: 0.021531386
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <2.235, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.36025336,
+            Y: 0.5845072,
+            Z: -0.7270274
+          },
+          IntersectionPoint: {
+            X: 1.5817466,
+            Y: 1.1135074,
+            Z: -0.37402764
+          },
+          PenetrationDepth: 0.8407115
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <3.235, 1, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.06966327,
+            Y: 0.6356168,
+            Z: -0.76885515
+          },
+          IntersectionPoint: {
+            X: 2.0116632,
+            Y: 1.1646167,
+            Z: -0.4158551
+          },
+          PenetrationDepth: 1.2846302
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <5, -0.706, -0.353>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.10011451,
+            Y: 0.23154615,
+            Z: -0.9676587
+          },
+          IntersectionPoint: {
+            X: 1.8418854,
+            Y: 0.7605462,
+            Z: -0.614659
+          },
+          PenetrationDepth: 3.5779607
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <5, -0.706, -3.059>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <5, -0.706, 2.118>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.7429017,
+            Y: 0.5408264,
+            Z: -0.39446643
+          },
+          IntersectionPoint: {
+            X: 1.1990987,
+            Y: 1.069826,
+            Z: -0.041466236
+          },
+          PenetrationDepth: 5.0026793
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <5, -0.706, 3.236>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8087417,
+            Y: 0.5725055,
+            Z: -0.13481191
+          },
+          IntersectionPoint: {
+            X: 1.1332579,
+            Y: 1.1015058,
+            Z: 0.21818799
+          },
+          PenetrationDepth: 5.481813
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      SphereCast { Start = <-1.235, 2.294, -1.412>, End = <5, -0.706, 8>, Radius = 0.289 },
+      Sphere { Center = <1.942, 0.529, 0.353>, Radius = 1 }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  }
+]

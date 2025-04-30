@@ -89,4 +89,82 @@ public static partial class Geometry3D
 		result = new IntersectionResult(worldNormal, worldHit, penetration);
 		return true;
 	}
+
+	public static bool SphereCastSphere(SphereCast sphereCast, Sphere target, out IntersectionResult result)
+	{
+		Vector3 direction = sphereCast.End - sphereCast.Start;
+		float length = direction.Length();
+
+		float penetration;
+
+		// If the cast has no length, fall back to static sphere check
+		if (length < 1e-6f)
+		{
+			float distance = Vector3.Distance(sphereCast.Start, target.Center);
+			float combinedRadius = sphereCast.Radius + target.Radius;
+
+			if (distance <= combinedRadius)
+			{
+				Vector3 normal = Vector3.Normalize(target.Center - sphereCast.Start);
+				Vector3 point = sphereCast.Start + normal * sphereCast.Radius;
+				penetration = combinedRadius - distance;
+
+				result = new IntersectionResult(normal, point, penetration);
+				return true;
+			}
+
+			result = default;
+			return false;
+		}
+
+		Vector3 dirNormalized = direction / length;
+		Vector3 m = sphereCast.Start - target.Center;
+		float r = sphereCast.Radius + target.Radius;
+
+		float b = Vector3.Dot(m, dirNormalized);
+		float c = Vector3.Dot(m, m) - r * r;
+
+		// If the starting point is already intersecting
+		if (c <= 0f)
+		{
+			Vector3 normal = Vector3.Normalize(m);
+			Vector3 point = sphereCast.Start - normal * sphereCast.Radius;
+			penetration = r;
+
+			result = new IntersectionResult(normal, point, penetration);
+			return true;
+		}
+
+		// If moving away from the target, no intersection
+		if (b > 0f)
+		{
+			result = default;
+			return false;
+		}
+
+		float discriminant = b * b - c;
+		if (discriminant < 0f)
+		{
+			result = default;
+			return false;
+		}
+
+		// Intersection occurs
+		float t = -b - MathF.Sqrt(discriminant);
+		if (t > length)
+		{
+			result = default;
+			return false;
+		}
+
+		// Compute contact info
+		Vector3 contactPoint = sphereCast.Start + dirNormalized * t;
+		Vector3 contactNormal = Vector3.Normalize(contactPoint - target.Center);
+		Vector3 intersectionPoint = contactPoint - contactNormal * sphereCast.Radius;
+
+		penetration = (1.0f - t / length) * length;
+
+		result = new IntersectionResult(contactNormal, intersectionPoint, penetration);
+		return true;
+	}
 }
