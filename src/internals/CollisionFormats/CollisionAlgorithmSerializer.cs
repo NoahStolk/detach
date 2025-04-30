@@ -135,6 +135,8 @@ public static class CollisionAlgorithmSerializer
 			_ when typeName == typeof(SphereCast).FullName => Serializer.ReadSphereCast(argument),
 			_ when typeName == typeof(Triangle3D).FullName => Serializer.ReadTriangle3D(argument),
 
+			_ when typeName == typeof(IntersectionResult).FullName => Serializer.ReadIntersectionResult(argument),
+
 			_ => throw new NotSupportedException($"The type {typeName} is not supported."),
 		};
 	}
@@ -370,7 +372,7 @@ public static class CollisionAlgorithmSerializer
 		public static IntersectionResult ReadIntersectionResult(string value)
 		{
 			string[] parts = value.Split(_separator);
-			return new IntersectionResult(ReadVector3(parts[0]), ReadVector3(parts[1]));
+			return new IntersectionResult(ReadVector3(parts[0], parts[1], parts[2]), ReadVector3(parts[3], parts[4], parts[5]));
 		}
 
 		public static string Write(Vector2 value)
