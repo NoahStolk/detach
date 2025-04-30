@@ -1,0 +1,648 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 1.0
+          },
+          IntersectionPoint: {
+            X: 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 1.0
+          },
+          IntersectionPoint: {
+            X: 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 0.5>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 1.0
+          },
+          IntersectionPoint: {
+            X: 1.0,
+            Z: 0.5
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.188>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 1.0
+          },
+          IntersectionPoint: {
+            X: 1.0,
+            Z: 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Z: 1.0
+          },
+          IntersectionPoint: {
+            X: 1.0,
+            Z: 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <0.9945219, 0, -0.104528464> <0, 1, 0> <0.104528464, 0, 0.9945219> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.104528464,
+            Z: 0.9945219
+          },
+          IntersectionPoint: {
+            X: 1.0990504,
+            Z: 0.8899934
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1.032, 1.429>, Orientation = <0.7986355, 0, -0.60181504> <0, 1, 0> <0.60181504, 0, 0.7986355> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.60181504,
+            Z: 0.7986355
+          },
+          IntersectionPoint: {
+            X: 1.044898,
+            Z: 1.0019147
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.7986355, 0, -0.60181504> <0.0629068, 0.9945219, 0.08348014> <0.59851825, -0.104528464, 0.7942605> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.59851825,
+            Y: -0.104528464,
+            Z: 0.7942605
+          },
+          IntersectionPoint: {
+            X: 1.1369778,
+            Y: 0.0223585,
+            Z: 1.1241088
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.79863554, 0, -0.601815> <0.254338, 0.90630776, 0.33751798> <0.5454296, -0.42261827, 0.7238096> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.54542965,
+            Y: -0.4226183,
+            Z: 0.72380966
+          },
+          IntersectionPoint: {
+            X: 1.234686,
+            Y: 0.023488326,
+            Z: 1.253772
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.79863554, 0, -0.601815> <0.34518695, 0.819152, 0.4580786> <0.49297795, -0.5735765, 0.6542039> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.34518695,
+            Y: 0.819152,
+            Z: 0.4580786
+          },
+          IntersectionPoint: {
+            X: 1.2658923,
+            Y: 0.0021172722,
+            Z: 1.2951841
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.79863554, 0, -0.601815> <0.37873444, 0.7771459, 0.50259763> <0.46769807, -0.6293204, 0.6206564> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.37873447,
+            Y: 0.777146,
+            Z: 0.5025977
+          },
+          IntersectionPoint: {
+            X: 1.2280883,
+            Y: -0.07574103,
+            Z: 1.2450166
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <1.265, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.79863554, 0, -0.601815> <0.37873444, 0.7771459, 0.50259763> <0.46769807, -0.6293204, 0.6206564> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.79863554,
+            Z: 0.601815
+          },
+          IntersectionPoint: {
+            X: 1.0742688,
+            Y: 2.0823308E-09,
+            Z: 1.4377263
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.79863554, 0, -0.601815> <0.37873444, 0.7771459, 0.50259763> <0.46769807, -0.6293204, 0.6206564> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.79863554,
+            Z: 0.601815
+          },
+          IntersectionPoint: {
+            X: 0.9018705,
+            Y: -2.3513138E-08,
+            Z: 1.208946
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.8765829, 0.24015132, -0.41704887> <0.11340591, 0.73910975, 0.6639698> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.8765829,
+            Y: -0.24015132,
+            Z: 0.41704887
+          },
+          IntersectionPoint: {
+            X: 0.7343275,
+            Y: -0.0149782915,
+            Z: 1.3200115
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.8838352, 0.3406784, -0.3205834> <-0.009694546, 0.6984942, 0.7155501> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.009694546,
+            Y: 0.6984942,
+            Z: 0.7155501
+          },
+          IntersectionPoint: {
+            X: 0.7880142,
+            Y: 0.0710206,
+            Z: 1.366755
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.5 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.6832886,
+            Y: 0.18800865,
+            Z: 0.7055279
+          },
+          IntersectionPoint: {
+            X: 0.9196217,
+            Y: -0.035940915,
+            Z: 1.159127
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.199 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.6832886,
+            Y: 0.18800865,
+            Z: 0.7055279
+          },
+          IntersectionPoint: {
+            X: 0.9196217,
+            Y: -0.035940915,
+            Z: 1.159127
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.174 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.13 },
+      Obb { Center = <1.243, 0, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.13 },
+      Obb { Center = <1.243, 1.164, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.6832886,
+            Y: 0.18800865,
+            Z: 0.7055279
+          },
+          IntersectionPoint: {
+            X: 0.7700894,
+            Y: 0.005203247,
+            Z: 1.3135262
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.13 },
+      Obb { Center = <1.243, 1.481, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.4676981,
+            Y: -0.6293204,
+            Z: 0.62065643
+          },
+          IntersectionPoint: {
+            X: 0.81153464,
+            Y: -0.030321956,
+            Z: 1.3239045
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.13 },
+      Obb { Center = <1.243, 1.693, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.56069183,
+            Y: -0.7540614,
+            Z: -0.34207612
+          },
+          IntersectionPoint: {
+            X: 0.7987764,
+            Y: 0.12039912,
+            Z: 1.2713844
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.789, 0, 1.294>, Radius = 0.13 },
+      Obb { Center = <1.243, 1.958, 0>, HalfExtents = <1, 1.032, 1.571>, Orientation = <0.56069183, 0.7540614, 0.34207612> <-0.6832885, 0.18800864, 0.70552784> <0.4676981, -0.6293204, 0.62065643> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, 0, 0>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -1.0
+          },
+          IntersectionPoint: {
+            X: -1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, 0, 0.159>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Z: 1.0
+          },
+          IntersectionPoint: {
+            X: -0.111,
+            Z: 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, 0, -0.423>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            X: -0.111,
+            Z: -1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, 0.476, -0.423>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 1.0
+          },
+          IntersectionPoint: {
+            X: -0.111,
+            Y: 1.0,
+            Z: -0.423
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, -0.794, -0.423>, Radius = 0.5 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            X: -0.111,
+            Y: -1.0,
+            Z: -0.423
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, -0.794, -0.423>, Radius = 0.179 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: -1.0
+          },
+          IntersectionPoint: {
+            X: -0.111,
+            Y: -1.0,
+            Z: -0.423
+          }
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <-0.111, -0.635, -0.74>, Radius = 0.179 },
+      Obb { Center = <0, 0, 0>, HalfExtents = <1, 1, 1>, Orientation = <1, 0, 0> <0, 1, 0> <0, 0, 1> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            X: -0.111,
+            Y: -0.635,
+            Z: -1.0
+          }
+        }
+      ]
+    }
+  }
+]
