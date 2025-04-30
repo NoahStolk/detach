@@ -91,8 +91,6 @@ public static class ExecutableCollisionAlgorithms
 		new Detach_Collisions_Geometry3D_SphereConeFrustum_Sphere_ConeFrustum_(),
 		new Detach_Collisions_Geometry3D_SpherePyramid_Sphere_Pyramid_(),
 		new Detach_Collisions_Geometry3D_SphereOrientedPyramid_Sphere_OrientedPyramid_(),
-		new Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_(),
-		new Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereCastPoint_SphereCast_Vector3_(),
 		new Detach_Collisions_Geometry3D_SphereCastLine_SphereCast_LineSegment3D_(),
 		new Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_(),
@@ -105,6 +103,8 @@ public static class ExecutableCollisionAlgorithms
 		new Detach_Collisions_Geometry3D_SphereCastConeFrustum_SphereCast_ConeFrustum_(),
 		new Detach_Collisions_Geometry3D_SphereCastPyramid_SphereCast_Pyramid_(),
 		new Detach_Collisions_Geometry3D_SphereCastOrientedPyramid_SphereCast_OrientedPyramid_(),
+		new Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_(),
+		new Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_TriangleSphere_Triangle3D_Sphere_(),
 		new Detach_Collisions_Geometry3D_TriangleAabb_Triangle3D_Aabb_(),
 		new Detach_Collisions_Geometry3D_TriangleObb_Triangle3D_Obb_(),
@@ -2342,66 +2342,6 @@ public static class ExecutableCollisionAlgorithms
 		}
 	}
 
-	private sealed class Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_ : IExecutableCollisionAlgorithm
-	{
-		public string Name => "Detach.Collisions.Geometry3D.SphereObb(Sphere,Obb,IntersectionResult)";
-
-		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
-		{
-			(typeof(Sphere), "sphere"),
-			(typeof(Obb), "obb"),
-		};
-
-		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
-		{
-			(typeof(IntersectionResult), "result"),
-		};
-
-		public Type ReturnType { get; } = typeof(Boolean);
-
-		public ExecutionResult Execute(List<object> nonOutArguments)
-		{
-			if (nonOutArguments.Count != Parameters.Count)
-				throw new ArgumentException("The number of arguments must be 2.");
-
-			Sphere argument0 = (Sphere)nonOutArguments[0];
-			Obb argument1 = (Obb)nonOutArguments[1];
-
-			Boolean returnValue = Detach.Collisions.Geometry3D.SphereObb(argument0, argument1, out IntersectionResult outArgument0);
-			return new ExecutionResult(returnValue, [outArgument0]);
-		}
-	}
-
-	private sealed class Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_ : IExecutableCollisionAlgorithm
-	{
-		public string Name => "Detach.Collisions.Geometry3D.SphereCylinder(Sphere,Cylinder,IntersectionResult)";
-
-		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
-		{
-			(typeof(Sphere), "sphere"),
-			(typeof(Cylinder), "cylinder"),
-		};
-
-		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
-		{
-			(typeof(IntersectionResult), "result"),
-		};
-
-		public Type ReturnType { get; } = typeof(Boolean);
-
-		public ExecutionResult Execute(List<object> nonOutArguments)
-		{
-			if (nonOutArguments.Count != Parameters.Count)
-				throw new ArgumentException("The number of arguments must be 2.");
-
-			Sphere argument0 = (Sphere)nonOutArguments[0];
-			Cylinder argument1 = (Cylinder)nonOutArguments[1];
-
-			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCylinder(argument0, argument1, out IntersectionResult outArgument0);
-			return new ExecutionResult(returnValue, [outArgument0]);
-		}
-	}
-
 	private sealed class Detach_Collisions_Geometry3D_SphereCastPoint_SphereCast_Vector3_ : IExecutableCollisionAlgorithm
 	{
 		public string Name => "Detach.Collisions.Geometry3D.SphereCastPoint(SphereCast,Vector3)";
@@ -2748,6 +2688,66 @@ public static class ExecutableCollisionAlgorithms
 
 			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastOrientedPyramid(argument0, argument1);
 			return new ExecutionResult(returnValue, []);
+		}
+	}
+
+	private sealed class Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_ : IExecutableCollisionAlgorithm
+	{
+		public string Name => "Detach.Collisions.Geometry3D.SphereObb(Sphere,Obb,IntersectionResult)";
+
+		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(Sphere), "sphere"),
+			(typeof(Obb), "obb"),
+		};
+
+		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(IntersectionResult), "result"),
+		};
+
+		public Type ReturnType { get; } = typeof(Boolean);
+
+		public ExecutionResult Execute(List<object> nonOutArguments)
+		{
+			if (nonOutArguments.Count != Parameters.Count)
+				throw new ArgumentException("The number of arguments must be 2.");
+
+			Sphere argument0 = (Sphere)nonOutArguments[0];
+			Obb argument1 = (Obb)nonOutArguments[1];
+
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereObb(argument0, argument1, out IntersectionResult outArgument0);
+			return new ExecutionResult(returnValue, [outArgument0]);
+		}
+	}
+
+	private sealed class Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_ : IExecutableCollisionAlgorithm
+	{
+		public string Name => "Detach.Collisions.Geometry3D.SphereCylinder(Sphere,Cylinder,IntersectionResult)";
+
+		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(Sphere), "sphere"),
+			(typeof(Cylinder), "cylinder"),
+		};
+
+		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(IntersectionResult), "result"),
+		};
+
+		public Type ReturnType { get; } = typeof(Boolean);
+
+		public ExecutionResult Execute(List<object> nonOutArguments)
+		{
+			if (nonOutArguments.Count != Parameters.Count)
+				throw new ArgumentException("The number of arguments must be 2.");
+
+			Sphere argument0 = (Sphere)nonOutArguments[0];
+			Cylinder argument1 = (Cylinder)nonOutArguments[1];
+
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCylinder(argument0, argument1, out IntersectionResult outArgument0);
+			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
 
