@@ -1,4 +1,4 @@
-﻿using Detach.Collisions.Primitives3D;
+using Detach.Collisions.Primitives3D;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -9,7 +9,7 @@ public static partial class Geometry3D
 	{
 		Matrix4x4 obbOrientation = obb.Orientation.ToMatrix4x4();
 
-		Matrix4x4 inverseOrientation = Matrix4x4.Transpose(obbOrientation); // Because rotation matrix is orthonormal
+		Matrix4x4 inverseOrientation = Matrix4x4.Transpose(obbOrientation);
 		Vector3 localCenter = Vector3.Transform(sphere.Center - obb.Center, inverseOrientation);
 
 		bool isInside =
@@ -23,12 +23,12 @@ public static partial class Geometry3D
 		if (!isInside)
 		{
 			Vector3 toCenter = sphere.Center - closestPointWorld;
-			float distanceSq = toCenter.LengthSquared();
+			float distance = toCenter.Length();
 
-			if (distanceSq > sphere.Radius * sphere.Radius)
+			if (distance > sphere.Radius)
 			{
 				result = default;
-				return false; // No intersection
+				return false;
 			}
 
 			Vector3 delta = localCenter - clamped;
@@ -37,7 +37,6 @@ public static partial class Geometry3D
 			float absZ = Math.Abs(delta.Z);
 
 			Vector3 localNormal;
-
 			if (absX > absY && absX > absZ)
 				localNormal = new Vector3(delta.X < 0 ? -1 : 1, 0, 0);
 			else if (absY > absZ)
@@ -48,40 +47,47 @@ public static partial class Geometry3D
 			Vector3 worldNormal = Vector3.TransformNormal(localNormal, obbOrientation);
 			worldNormal = Vector3.Normalize(worldNormal);
 
-			result = new IntersectionResult(worldNormal, closestPointWorld);
+			float penetration = sphere.Radius - distance;
+
+			result = new IntersectionResult(worldNormal, closestPointWorld, penetration);
 		}
 		else
 		{
-			// Find the closest face to "exit" toward
+			// Inside case: find nearest face and project to exit point
 			float dx = obb.HalfExtents.X - Math.Abs(localCenter.X);
 			float dy = obb.HalfExtents.Y - Math.Abs(localCenter.Y);
 			float dz = obb.HalfExtents.Z - Math.Abs(localCenter.Z);
 
 			Vector3 localNormal;
 			Vector3 localPoint = localCenter;
+			float minDistance;
 
 			if (dx < dy && dx < dz)
 			{
 				localNormal = new Vector3(localCenter.X < 0 ? -1 : 1, 0, 0);
 				localPoint.X = localNormal.X * obb.HalfExtents.X;
+				minDistance = dx;
 			}
 			else if (dy < dz)
 			{
 				localNormal = new Vector3(0, localCenter.Y < 0 ? -1 : 1, 0);
 				localPoint.Y = localNormal.Y * obb.HalfExtents.Y;
+				minDistance = dy;
 			}
 			else
 			{
 				localNormal = new Vector3(0, 0, localCenter.Z < 0 ? -1 : 1);
 				localPoint.Z = localNormal.Z * obb.HalfExtents.Z;
+				minDistance = dz;
 			}
 
 			Vector3 worldNormal = Vector3.TransformNormal(localNormal, obbOrientation);
 			worldNormal = Vector3.Normalize(worldNormal);
 
 			Vector3 worldPoint = Vector3.Transform(localPoint, obbOrientation) + obb.Center;
+			float penetration = minDistance + sphere.Radius;
 
-			result = new IntersectionResult(worldNormal, worldPoint);
+			result = new IntersectionResult(worldNormal, worldPoint, penetration);
 		}
 
 		return true;
@@ -106,14 +112,14 @@ public static partial class Geometry3D
 		// Check bottom circle
 		if (sphereMinY <= cylinderMinY && sphereMaxY >= cylinderMinY && distanceSquaredXz <= radiusSum * radiusSum)
 		{
-			result = new IntersectionResult(-Vector3.UnitY, sphere.Center + Vector3.UnitY * (sphere.Radius - (cylinderMinY - sphereMinY)));
+			result = new IntersectionResult(-Vector3.UnitY, sphere.Center + Vector3.UnitY * (sphere.Radius - (cylinderMinY - sphereMinY)), 0);
 			return true;
 		}
 
 		// Check top circle
 		if (sphereMaxY >= cylinderMaxY && sphereMinY <= cylinderMaxY && distanceSquaredXz <= radiusSum * radiusSum)
 		{
-			result = new IntersectionResult(Vector3.UnitY, sphere.Center - Vector3.UnitY * (sphere.Radius - (sphereMaxY - cylinderMaxY)));
+			result = new IntersectionResult(Vector3.UnitY, sphere.Center - Vector3.UnitY * (sphere.Radius - (sphereMaxY - cylinderMaxY)), 0);
 			return true;
 		}
 
@@ -134,7 +140,7 @@ public static partial class Geometry3D
 					float distanceToTop = Math.Abs(sphere.Center.Y - cylinderMaxY);
 					normal = distanceToBottom < distanceToTop ? -Vector3.UnitY : Vector3.UnitY;
 					intersectionPoint = sphere.Center - normal * (sphere.Radius - Math.Min(distanceToBottom, distanceToTop));
-					result = new IntersectionResult(normal, intersectionPoint);
+					result = new IntersectionResult(normal, intersectionPoint, 0);
 					return true;
 				}
 
@@ -142,7 +148,7 @@ public static partial class Geometry3D
 				normal = new Vector3(sphere.Center.X - cylinder.BottomCenter.X, 0, sphere.Center.Z - cylinder.BottomCenter.Z);
 				normal = Vector3.Normalize(normal);
 				intersectionPoint = sphere.Center - normal * (sphere.Radius - (cylinder.Radius - distanceXz));
-				result = new IntersectionResult(normal, intersectionPoint);
+				result = new IntersectionResult(normal, intersectionPoint, 0);
 				return true;
 			}
 		}

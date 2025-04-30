@@ -201,6 +201,9 @@ internal sealed class GeometryRenderer
 				_gl.BindVertexArray(_centeredLineVao);
 				RenderLine(lineProgram, new LineSegment3D(intersectionResult.IntersectionPoint, intersectionResult.IntersectionPoint + intersectionResult.Normal));
 
+				_gl.LineWidth(6);
+				RenderLine(lineProgram, new LineSegment3D(intersectionResult.IntersectionPoint, intersectionResult.IntersectionPoint + intersectionResult.Normal * -intersectionResult.PenetrationDepth));
+
 				_gl.LineWidth(1);
 				break;
 		}
