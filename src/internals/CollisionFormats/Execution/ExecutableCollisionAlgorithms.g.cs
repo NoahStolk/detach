@@ -91,8 +91,8 @@ public static class ExecutableCollisionAlgorithms
 		new Detach_Collisions_Geometry3D_SphereConeFrustum_Sphere_ConeFrustum_(),
 		new Detach_Collisions_Geometry3D_SpherePyramid_Sphere_Pyramid_(),
 		new Detach_Collisions_Geometry3D_SphereOrientedPyramid_Sphere_OrientedPyramid_(),
-		new Detach_Collisions_Geometry3D_SphereObbNormal_Sphere_Obb_(),
-		new Detach_Collisions_Geometry3D_SphereCylinderNormal_Sphere_Cylinder_(),
+		new Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_(),
+		new Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereCastPoint_SphereCast_Vector3_(),
 		new Detach_Collisions_Geometry3D_SphereCastLine_SphereCast_LineSegment3D_(),
 		new Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_(),
@@ -2342,9 +2342,9 @@ public static class ExecutableCollisionAlgorithms
 		}
 	}
 
-	private sealed class Detach_Collisions_Geometry3D_SphereObbNormal_Sphere_Obb_ : IExecutableCollisionAlgorithm
+	private sealed class Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_ : IExecutableCollisionAlgorithm
 	{
-		public string Name => "Detach.Collisions.Geometry3D.SphereObbNormal(Sphere,Obb)";
+		public string Name => "Detach.Collisions.Geometry3D.SphereObb(Sphere,Obb,IntersectionResult)";
 
 		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
 		{
@@ -2354,9 +2354,10 @@ public static class ExecutableCollisionAlgorithms
 
 		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
 		{
+			(typeof(IntersectionResult), "result"),
 		};
 
-		public Type ReturnType { get; } = typeof(Nullable<Vector3>);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2366,14 +2367,14 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Obb argument1 = (Obb)nonOutArguments[1];
 
-			Nullable<Vector3> returnValue = Detach.Collisions.Geometry3D.SphereObbNormal(argument0, argument1);
-			return new ExecutionResult(returnValue, []);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereObb(argument0, argument1, out IntersectionResult outArgument0);
+			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
 
-	private sealed class Detach_Collisions_Geometry3D_SphereCylinderNormal_Sphere_Cylinder_ : IExecutableCollisionAlgorithm
+	private sealed class Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_ : IExecutableCollisionAlgorithm
 	{
-		public string Name => "Detach.Collisions.Geometry3D.SphereCylinderNormal(Sphere,Cylinder)";
+		public string Name => "Detach.Collisions.Geometry3D.SphereCylinder(Sphere,Cylinder,IntersectionResult)";
 
 		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
 		{
@@ -2383,9 +2384,10 @@ public static class ExecutableCollisionAlgorithms
 
 		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
 		{
+			(typeof(IntersectionResult), "result"),
 		};
 
-		public Type ReturnType { get; } = typeof(Nullable<Vector3>);
+		public Type ReturnType { get; } = typeof(Boolean);
 
 		public ExecutionResult Execute(List<object> nonOutArguments)
 		{
@@ -2395,8 +2397,8 @@ public static class ExecutableCollisionAlgorithms
 			Sphere argument0 = (Sphere)nonOutArguments[0];
 			Cylinder argument1 = (Cylinder)nonOutArguments[1];
 
-			Nullable<Vector3> returnValue = Detach.Collisions.Geometry3D.SphereCylinderNormal(argument0, argument1);
-			return new ExecutionResult(returnValue, []);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCylinder(argument0, argument1, out IntersectionResult outArgument0);
+			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}
 
