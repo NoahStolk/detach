@@ -1,4 +1,5 @@
 using Detach.Collisions.Primitives3D;
+using Detach.Utils;
 using System.Numerics;
 
 namespace Detach.Collisions;
@@ -153,13 +154,12 @@ public static partial class Geometry3D
 		}
 
 		// Sphere is outside: compute the closest point on cylinder
-		Vector2 dirXz = toAxisXz;
 		float distXz = MathF.Sqrt(distXzSq);
 
 		Vector2 closestXz;
 		if (distXz > cylinder.Radius)
 		{
-			Vector2 radialDir = dirXz / distXz;
+			Vector2 radialDir = toAxisXz / distXz;
 			closestXz = new Vector2(bottom.X, bottom.Z) + radialDir * cylinder.Radius;
 		}
 		else
@@ -175,6 +175,92 @@ public static partial class Geometry3D
 		{
 			result = default;
 			return false; // No intersection
+		}
+
+		normal = distToSurface > 0.0001f ? Vector3.Normalize(toCenter) : Vector3.UnitY;
+		penetration = sphere.Radius - distToSurface;
+
+		result = new IntersectionResult(normal, closestPoint, penetration);
+		return true;
+	}
+
+	public static bool SphereConeFrustum(Sphere sphere, ConeFrustum coneFrustum, out IntersectionResult result)
+	{
+		Vector3 sphereCenter = sphere.Center;
+		Vector3 bottom = coneFrustum.BottomCenter;
+		Vector3 top = bottom + Vector3.UnitY * coneFrustum.Height;
+
+		float clampedY = Math.Clamp(sphereCenter.Y, bottom.Y, top.Y);
+		float t = (clampedY - bottom.Y) / coneFrustum.Height;
+		float radiusAtY = MathUtils.Lerp(coneFrustum.BottomRadius, coneFrustum.TopRadius, t);
+
+		Vector2 toAxisXz = new(sphereCenter.X - bottom.X, sphereCenter.Z - bottom.Z);
+		float distXzSq = toAxisXz.LengthSquared();
+		float distXz = MathF.Sqrt(distXzSq);
+
+		Vector3 closestPoint;
+		Vector3 normal;
+		float penetration;
+
+		bool isInsideVertical = sphereCenter.Y >= bottom.Y && sphereCenter.Y <= top.Y;
+		bool isInsideRadial = distXz <= radiusAtY;
+
+		if (isInsideVertical && isInsideRadial)
+		{
+			// Inside the frustum
+			float toBottom = sphereCenter.Y - bottom.Y;
+			float toTop = top.Y - sphereCenter.Y;
+			float toSide = radiusAtY - distXz;
+
+			if (toTop < toBottom && toTop < toSide)
+			{
+				// Closest to top cap
+				normal = Vector3.UnitY;
+				closestPoint = new Vector3(sphereCenter.X, top.Y, sphereCenter.Z);
+				penetration = toTop + sphere.Radius;
+			}
+			else if (toBottom < toSide)
+			{
+				// Closest to bottom cap
+				normal = -Vector3.UnitY;
+				closestPoint = new Vector3(sphereCenter.X, bottom.Y, sphereCenter.Z);
+				penetration = toBottom + sphere.Radius;
+			}
+			else
+			{
+				// Closest to side
+				Vector2 radialDir = distXz > 0.0001f ? toAxisXz / distXz : Vector2.UnitX;
+				Vector2 sidePointXz = new Vector2(bottom.X, bottom.Z) + radialDir * radiusAtY;
+				closestPoint = new Vector3(sidePointXz.X, clampedY, sidePointXz.Y);
+				normal = new Vector3(radialDir.X, 0, radialDir.Y);
+				penetration = radiusAtY - distXz + sphere.Radius;
+			}
+
+			result = new IntersectionResult(normal, closestPoint, penetration);
+			return true;
+		}
+
+		// Sphere is outside: compute the closest point on frustum
+		Vector2 closestXz;
+
+		if (distXz > radiusAtY)
+		{
+			Vector2 radialDir = toAxisXz / distXz;
+			closestXz = new Vector2(bottom.X, bottom.Z) + radialDir * radiusAtY;
+		}
+		else
+		{
+			closestXz = new Vector2(sphereCenter.X, sphereCenter.Z);
+		}
+
+		closestPoint = new Vector3(closestXz.X, clampedY, closestXz.Y);
+		Vector3 toCenter = sphereCenter - closestPoint;
+		float distToSurface = toCenter.Length();
+
+		if (distToSurface > sphere.Radius)
+		{
+			result = default;
+			return false;
 		}
 
 		normal = distToSurface > 0.0001f ? Vector3.Normalize(toCenter) : Vector3.UnitY;
