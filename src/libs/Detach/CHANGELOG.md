@@ -2,6 +2,14 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.29.0
+
+### Added
+
+- Added new sphere cast intersection methods:
+  - `Geometry3D.SphereCastObb`
+  - `Geometry3D.SphereCastSphere`
+
 ## 0.28.0
 
 ### Added
