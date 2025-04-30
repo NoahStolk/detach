@@ -103,18 +103,17 @@ public static partial class Geometry3D
 		float clampedY = Math.Clamp(sphereCenter.Y, bottom.Y, top.Y);
 
 		// Step 2: Project sphere center onto cylinder axis to get the height
-		Vector3 axisPoint = new Vector3(sphereCenter.X, clampedY, sphereCenter.Z);
-		Vector2 toAxisXZ = new Vector2(sphereCenter.X - bottom.X, sphereCenter.Z - bottom.Z);
+		Vector2 toAxisXz = new(sphereCenter.X - bottom.X, sphereCenter.Z - bottom.Z);
 
 		// Step 3: Compute distance from axis in XZ plane
-		float distXZSq = toAxisXZ.LengthSquared();
+		float distXzSq = toAxisXz.LengthSquared();
 
 		Vector3 closestPoint;
 		Vector3 normal;
 		float penetration;
 
 		bool isInsideVertical = sphereCenter.Y >= bottom.Y && sphereCenter.Y <= top.Y;
-		bool isInsideRadial = distXZSq <= cylinder.Radius * cylinder.Radius;
+		bool isInsideRadial = distXzSq <= cylinder.Radius * cylinder.Radius;
 
 		if (isInsideVertical && isInsideRadial)
 		{
@@ -122,7 +121,7 @@ public static partial class Geometry3D
 			// Choose nearest "exit point" — top, bottom, or side
 			float toTop = top.Y - sphereCenter.Y;
 			float toBottom = sphereCenter.Y - bottom.Y;
-			float toSide = cylinder.Radius - MathF.Sqrt(distXZSq);
+			float toSide = cylinder.Radius - MathF.Sqrt(distXzSq);
 
 			if (toTop < toBottom && toTop < toSide)
 			{
@@ -141,12 +140,12 @@ public static partial class Geometry3D
 			else
 			{
 				// Closest to side
-				Vector2 radialDir = Vector2.Normalize(toAxisXZ);
+				Vector2 radialDir = Vector2.Normalize(toAxisXz);
 				Vector2 sidePoint = new Vector2(bottom.X, bottom.Z) + radialDir * cylinder.Radius;
 				closestPoint = new Vector3(sidePoint.X, clampedY, sidePoint.Y);
-				Vector3 outward = new Vector3(radialDir.X, 0, radialDir.Y);
+				Vector3 outward = new(radialDir.X, 0, radialDir.Y);
 				normal = outward;
-				penetration = (cylinder.Radius - MathF.Sqrt(distXZSq)) + sphere.Radius;
+				penetration = cylinder.Radius - MathF.Sqrt(distXzSq) + sphere.Radius;
 			}
 
 			result = new IntersectionResult(normal, closestPoint, penetration);
@@ -154,21 +153,21 @@ public static partial class Geometry3D
 		}
 
 		// Sphere is outside: compute the closest point on cylinder
-		Vector2 dirXZ = toAxisXZ;
-		float distXZ = MathF.Sqrt(distXZSq);
+		Vector2 dirXz = toAxisXz;
+		float distXz = MathF.Sqrt(distXzSq);
 
-		Vector2 closestXZ;
-		if (distXZ > cylinder.Radius)
+		Vector2 closestXz;
+		if (distXz > cylinder.Radius)
 		{
-			Vector2 radialDir = dirXZ / distXZ;
-			closestXZ = new Vector2(bottom.X, bottom.Z) + radialDir * cylinder.Radius;
+			Vector2 radialDir = dirXz / distXz;
+			closestXz = new Vector2(bottom.X, bottom.Z) + radialDir * cylinder.Radius;
 		}
 		else
 		{
-			closestXZ = new Vector2(sphereCenter.X, sphereCenter.Z);
+			closestXz = new Vector2(sphereCenter.X, sphereCenter.Z);
 		}
 
-		closestPoint = new Vector3(closestXZ.X, clampedY, closestXZ.Y);
+		closestPoint = new Vector3(closestXz.X, clampedY, closestXz.Y);
 		Vector3 toCenter = sphereCenter - closestPoint;
 		float distToSurface = toCenter.Length();
 
