@@ -36,8 +36,11 @@ internal sealed class GeometryRenderer
 
 	public void RenderGeometry(CachedProgram lineProgram)
 	{
-		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(0.1f, 1, 0, 1));
+		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(1, 1, 0, 1));
+
 		RenderShape(lineProgram, _collisionAlgorithmState.ReturnValue);
+		foreach (object arg in _collisionAlgorithmState.OutArguments)
+			RenderShape(lineProgram, arg);
 
 		Vector4 collideColor = _collisionAlgorithmState.ReturnValue is true ? Vector4.One : Vector4.Zero;
 		_gl.Uniform4(lineProgram.GetUniformLocation("color"), new Vector4(0.5f, 0.0f, 1, 1) + collideColor);
@@ -190,8 +193,15 @@ internal sealed class GeometryRenderer
 				break;
 
 			case IntersectionResult intersectionResult:
+				_gl.LineWidth(8);
+
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, new Sphere(intersectionResult.IntersectionPoint, 0.02f));
+
 				_gl.BindVertexArray(_centeredLineVao);
 				RenderLine(lineProgram, new LineSegment3D(intersectionResult.IntersectionPoint, intersectionResult.IntersectionPoint + intersectionResult.Normal));
+
+				_gl.LineWidth(1);
 				break;
 		}
 	}
