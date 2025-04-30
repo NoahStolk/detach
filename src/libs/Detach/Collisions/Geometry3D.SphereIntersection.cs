@@ -243,29 +243,62 @@ public static partial class Geometry3D
 			return true;
 		}
 
-		// Sphere is outside: find the closest point on cone frustum surface
-		Vector2 dirXz = toAxisXz;
-		radialDir = distXz > 0.0001f ? dirXz / distXz : Vector2.UnitX;
+		// Sphere is outside: check for side intersection
+		radialDir = distXz > 0.0001f ? toAxisXz / distXz : Vector2.UnitX;
 		Vector2 closestXz = new Vector2(bottom.X, bottom.Z) + radialDir * radiusAtY;
 		closestPoint = new Vector3(closestXz.X, clampedY, closestXz.Y);
 
 		Vector3 toCenter = sphereCenter - closestPoint;
 		float distToSurface = toCenter.Length();
 
-		if (distToSurface > sphere.Radius)
+		if (distToSurface <= sphere.Radius)
 		{
-			result = default;
-			return false;
+			float sideSlope = (coneFrustum.TopRadius - coneFrustum.BottomRadius) / coneFrustum.Height;
+			Vector3 slopeNormal = Vector3.Normalize(new Vector3(radialDir.X, -sideSlope, radialDir.Y));
+			normal = slopeNormal;
+
+			penetration = sphere.Radius - distToSurface;
+
+			result = new IntersectionResult(normal, closestPoint, penetration);
+			return true;
 		}
 
-		// Always use slope-tilted normal for side
-		float sideSlope = (coneFrustum.TopRadius - coneFrustum.BottomRadius) / coneFrustum.Height;
-		Vector3 slopeNormal = Vector3.Normalize(new Vector3(radialDir.X, -sideSlope, radialDir.Y));
-		normal = slopeNormal;
+		// --- Additional cap checks for sphere center outside vertical bounds ---
 
-		penetration = sphere.Radius - distToSurface;
+		// Check bottom cap
+		if (sphereCenter.Y < bottom.Y)
+		{
+			float verticalDist = bottom.Y - sphereCenter.Y;
+			if (verticalDist < sphere.Radius)
+			{
+				float radialDistSq = new Vector2(sphereCenter.X - bottom.X, sphereCenter.Z - bottom.Z).LengthSquared();
+				if (radialDistSq <= coneFrustum.BottomRadius * coneFrustum.BottomRadius)
+				{
+					Vector3 capPoint = new(sphereCenter.X, bottom.Y, sphereCenter.Z);
+					result = new IntersectionResult(-Vector3.UnitY, capPoint, sphere.Radius - verticalDist);
+					return true;
+				}
+			}
+		}
 
-		result = new IntersectionResult(normal, closestPoint, penetration);
-		return true;
+		// Check top cap
+		if (sphereCenter.Y > top.Y)
+		{
+			float verticalDist = sphereCenter.Y - top.Y;
+			if (verticalDist < sphere.Radius)
+			{
+				float radialDistSq = new Vector2(sphereCenter.X - top.X, sphereCenter.Z - top.Z).LengthSquared();
+				if (radialDistSq <= coneFrustum.TopRadius * coneFrustum.TopRadius)
+				{
+					Vector3 capPoint = new(sphereCenter.X, top.Y, sphereCenter.Z);
+					result = new IntersectionResult(Vector3.UnitY, capPoint, sphere.Radius - verticalDist);
+					return true;
+				}
+			}
+		}
+
+		// No collision
+		result = default;
+		return false;
 	}
 }
