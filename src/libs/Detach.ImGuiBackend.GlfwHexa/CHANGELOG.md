@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.2.7
+
+### Added
+
+- Added new constructor to `ImGuiController` to allow passing the shader yourself.
+
+### Deprecated
+
+- Deprecated the old `ImGuiController` constructor.
+
 ## 0.2.6
 
 ### Changed

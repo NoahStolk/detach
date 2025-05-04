@@ -58,12 +58,16 @@ public sealed class ImGuiController
 	private int _windowWidth;
 	private int _windowHeight;
 
+	[Obsolete("Provide your own logic to create the shader and use the constructor with shaderId, projectionMatrixLocation and imageLocation instead.")]
 	public ImGuiController(GL gl, GlfwInput glfwInput, int windowWidth, int windowHeight)
 	{
 		_gl = gl;
 		_glfwInput = glfwInput;
 		_windowWidth = windowWidth;
 		_windowHeight = windowHeight;
+		_shaderId = ShaderLoader.Load(_gl, _vertexShader, _fragmentShader);
+		_projectionMatrixLocation = _gl.GetUniformLocation(_shaderId, "projectionMatrix");
+		_imageLocation = _gl.GetUniformLocation(_shaderId, "image");
 
 		Context = ImGui.CreateContext();
 		ImGui.SetCurrentContext(Context);
@@ -75,10 +79,28 @@ public sealed class ImGuiController
 
 		_vbo = _gl.GenBuffer();
 		_ebo = _gl.GenBuffer();
+	}
 
-		_shaderId = ShaderLoader.Load(_gl, _vertexShader, _fragmentShader);
-		_projectionMatrixLocation = _gl.GetUniformLocation(_shaderId, "projectionMatrix");
-		_imageLocation = _gl.GetUniformLocation(_shaderId, "image");
+	public ImGuiController(GL gl, GlfwInput glfwInput, int windowWidth, int windowHeight, uint shaderId, int projectionMatrixLocation, int imageLocation)
+	{
+		_gl = gl;
+		_glfwInput = glfwInput;
+		_windowWidth = windowWidth;
+		_windowHeight = windowHeight;
+		_shaderId = shaderId;
+		_projectionMatrixLocation = projectionMatrixLocation;
+		_imageLocation = imageLocation;
+
+		Context = ImGui.CreateContext();
+		ImGui.SetCurrentContext(Context);
+		ImGui.StyleColorsDark();
+
+		ImGuiIOPtr io = ImGui.GetIO();
+		io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
+		io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
+
+		_vbo = _gl.GenBuffer();
+		_ebo = _gl.GenBuffer();
 	}
 
 	public ImGuiContextPtr Context { get; }
