@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Added
+
+- Added new sphere intersection method:
+  - `Geometry3D.SphereTriangle`
+
 ## 0.29.0
 
 ### Added

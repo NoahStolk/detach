@@ -1,0 +1,142 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.529, 0.412, 0>, Radius = 0.52 },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.70710677,
+            Z: -0.70710677
+          },
+          IntersectionPoint: {
+            X: 0.529,
+            Y: 0.20600002,
+            Z: 0.20599999
+          },
+          PenetrationDepth: 0.22867203
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.529, 0.412, 0>, Radius = 0.52 },
+      Triangle3D { A = <0.706, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.70710677,
+            Z: -0.70710677
+          },
+          IntersectionPoint: {
+            X: 0.7567223,
+            Y: 0.17252481,
+            Z: 0.17252481
+          },
+          PenetrationDepth: 0.14721233
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.529, 0.412, 0>, Radius = 0.52 },
+      Triangle3D { A = <0.706, 0, 0>, B = <1, 0.412, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.9246015,
+            Z: -0.38093582
+          },
+          IntersectionPoint: {
+            X: 0.7335482,
+            Y: 0.03860503,
+            Z: 0.093701534
+          },
+          PenetrationDepth: 0.084059894
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.529, 0.412, 0>, Radius = 0.52 },
+      Triangle3D { A = <0.706, 0, 0>, B = <1, -0.588, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.8620228,
+            Z: 0.50686944
+          },
+          IntersectionPoint: {
+            X: 0.706
+          },
+          PenetrationDepth: 0.07158834
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.529, 0.118, 0>, Radius = 0.52 },
+      Triangle3D { A = <0.706, 0, 0>, B = <1, -0.588, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.8620228,
+            Z: 0.50686944
+          },
+          IntersectionPoint: {
+            X: 0.706
+          },
+          PenetrationDepth: 0.30727246
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      Sphere { Center = <0.529, -0.411, 0>, Radius = 0.52 },
+      Triangle3D { A = <0.706, 0, 0>, B = <1, -0.588, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.8620228,
+            Z: 0.50686944
+          },
+          IntersectionPoint: {
+            X: 0.7449275,
+            Y: -0.07785504,
+            Z: 0.13240653
+          },
+          PenetrationDepth: 0.10150057
+        }
+      ]
+    }
+  }
+]

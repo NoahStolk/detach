@@ -301,4 +301,97 @@ public static partial class Geometry3D
 		result = default;
 		return false;
 	}
+
+	public static bool SphereTriangle(Sphere sphere, Triangle3D triangle, out IntersectionResult intersectionResult)
+	{
+		intersectionResult = default;
+
+		Vector3 normal = triangle.GetNormal();
+		float signedDistance = Vector3.Dot(sphere.Center - triangle.A, normal); // Signed distance between sphere and plane.
+		if (signedDistance < -sphere.Radius || signedDistance > sphere.Radius)
+			return false;
+
+		Vector3 point0 = sphere.Center - normal * signedDistance; // Projected sphere center on triangle plane.
+
+		// Now determine whether point0 is inside all triangle edges:
+		Vector3 c0 = Vector3.Cross(point0 - triangle.A, triangle.B - triangle.A);
+		Vector3 c1 = Vector3.Cross(point0 - triangle.B, triangle.C - triangle.B);
+		Vector3 c2 = Vector3.Cross(point0 - triangle.C, triangle.A - triangle.C);
+		if (Vector3.Dot(c0, normal) <= 0 && Vector3.Dot(c1, normal) <= 0 && Vector3.Dot(c2, normal) <= 0)
+		{
+			float distance = (point0 - sphere.Center).Length();
+
+			intersectionResult = new IntersectionResult
+			{
+				PenetrationDepth = sphere.Radius - distance,
+				IntersectionPoint = point0,
+				Normal = normal,
+			};
+
+			return true;
+		}
+
+		float sphereRadiusSq = sphere.Radius * sphere.Radius;
+
+		// Calculate the closest intersection point for every edge.
+		Vector3 point1 = ClosestPointOnLineSegment(triangle.A, triangle.B, sphere.Center);
+		Vector3 point2 = ClosestPointOnLineSegment(triangle.B, triangle.C, sphere.Center);
+		Vector3 point3 = ClosestPointOnLineSegment(triangle.C, triangle.A, sphere.Center);
+
+		// If no edges intersect, there is no collision.
+		bool intersects1 = IntersectsEdge(sphereRadiusSq, point1, sphere.Center);
+		bool intersects2 = IntersectsEdge(sphereRadiusSq, point2, sphere.Center);
+		bool intersects3 = IntersectsEdge(sphereRadiusSq, point3, sphere.Center);
+		if (!intersects1 && !intersects2 && !intersects3)
+			return false;
+
+		// Find the closest edge.
+		Vector3 closestPoint = GetClosestPoint(sphere.Center, point1, point2, point3);
+		float distanceToBestPoint = (closestPoint - sphere.Center).Length();
+
+		intersectionResult = new IntersectionResult
+		{
+			PenetrationDepth = sphere.Radius - distanceToBestPoint,
+			IntersectionPoint = closestPoint,
+			Normal = normal,
+		};
+
+		return true;
+
+		static Vector3 ClosestPointOnLineSegment(Vector3 lineA, Vector3 lineB, Vector3 spherePosition)
+		{
+			Vector3 ab = lineB - lineA;
+			float t = Vector3.Dot(spherePosition - lineA, ab) / Vector3.Dot(ab, ab);
+			return lineA + Math.Clamp(t, 0, 1) * ab;
+		}
+
+		static bool IntersectsEdge(float sphereRadiusSq, Vector3 closestPointOnLine, Vector3 spherePosition)
+		{
+			Vector3 diff = spherePosition - closestPointOnLine;
+			float distSq = Vector3.Dot(diff, diff);
+			return distSq < sphereRadiusSq;
+		}
+
+		static Vector3 GetClosestPoint(Vector3 spherePosition, Vector3 point1, Vector3 point2, Vector3 point3)
+		{
+			Vector3 d = spherePosition - point1;
+			float bestDistSq = Vector3.Dot(d, d);
+			Vector3 bestPoint = point1;
+
+			d = spherePosition - point2;
+			float distSq = Vector3.Dot(d, d);
+			if (distSq < bestDistSq)
+			{
+				bestDistSq = distSq;
+				bestPoint = point2;
+			}
+
+			d = spherePosition - point3;
+			distSq = Vector3.Dot(d, d);
+			if (distSq < bestDistSq)
+				bestPoint = point3;
+
+			return bestPoint;
+		}
+	}
 }

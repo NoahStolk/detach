@@ -1,0 +1,7 @@
+Detach.Collisions.Geometry3D.SphereTriangle(Sphere,Triangle3D,IntersectionResult);Detach.Collisions.Primitives3D.Sphere sphere,Detach.Collisions.Primitives3D.Triangle3D triangle;Detach.Collisions.IntersectionResult intersectionResult;System.Boolean
+0.529 0.412 0 0.52,0 0 0 1 1 1 1 0 0;OK
+0.529 0.412 0 0.52,0.706 0 0 1 1 1 1 0 0;OK
+0.529 0.412 0 0.52,0.706 0 0 1 0.412 1 1 0 0;OK
+0.529 0.412 0 0.52,0.706 0 0 1 -0.588 1 1 0 0;OK
+0.529 0.118 0 0.52,0.706 0 0 1 -0.588 1 1 0 0;OK
+0.529 -0.411 0 0.52,0.706 0 0 1 -0.588 1 1 0 0;OK
