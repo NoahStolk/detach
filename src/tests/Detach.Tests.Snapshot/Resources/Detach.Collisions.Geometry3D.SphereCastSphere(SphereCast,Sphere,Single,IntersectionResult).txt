@@ -1,4 +1,4 @@
-Detach.Collisions.Geometry3D.SphereCastSphere(SphereCast,Sphere,IntersectionResult);Detach.Collisions.Primitives3D.SphereCast sphereCast,Detach.Collisions.Primitives3D.Sphere target;Detach.Collisions.IntersectionResult result;System.Boolean
+Detach.Collisions.Geometry3D.SphereCastSphere(SphereCast,Sphere,Single,IntersectionResult);Detach.Collisions.Primitives3D.SphereCast sphereCast,Detach.Collisions.Primitives3D.Sphere target;System.Single t;Detach.Collisions.IntersectionResult result;System.Boolean
 -1.941 0 0 1 1 1 0.289,0.118 -0.059 0 1;OK
 -1.941 0 0 1 1 0.235 0.289,0.118 -0.059 0 1;OK
 -1.941 0 0 1 1 -2 0.289,0.118 -0.059 0 1;OK

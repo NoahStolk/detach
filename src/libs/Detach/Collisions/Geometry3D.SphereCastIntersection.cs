@@ -90,8 +90,11 @@ public static partial class Geometry3D
 		return true;
 	}
 
-	public static bool SphereCastSphere(SphereCast sphereCast, Sphere target, out IntersectionResult result)
+	public static bool SphereCastSphere(SphereCast sphereCast, Sphere target, out float t, out IntersectionResult result)
 	{
+		t = float.MaxValue;
+		result = default;
+
 		Vector3 direction = sphereCast.End - sphereCast.Start;
 		float length = direction.Length();
 
@@ -109,11 +112,11 @@ public static partial class Geometry3D
 				Vector3 point = sphereCast.Start + normal * sphereCast.Radius;
 				penetration = combinedRadius - distance;
 
+				t = 0f;
 				result = new IntersectionResult(normal, point, penetration);
 				return true;
 			}
 
-			result = default;
 			return false;
 		}
 
@@ -131,39 +134,32 @@ public static partial class Geometry3D
 			Vector3 point = sphereCast.Start - normal * sphereCast.Radius;
 			penetration = r;
 
+			t = 0f;
 			result = new IntersectionResult(normal, point, penetration);
 			return true;
 		}
 
 		// If moving away from the target, no intersection
 		if (b > 0f)
-		{
-			result = default;
 			return false;
-		}
 
 		float discriminant = b * b - c;
 		if (discriminant < 0f)
-		{
-			result = default;
 			return false;
-		}
 
-		// Intersection occurs
-		float t = -b - MathF.Sqrt(discriminant);
-		if (t > length)
-		{
-			result = default;
+		float sqrtDiscriminant = MathF.Sqrt(discriminant);
+		float hitT = -b - sqrtDiscriminant;
+
+		if (hitT > length || hitT < 0f)
 			return false;
-		}
 
-		// Compute contact info
-		Vector3 contactPoint = sphereCast.Start + dirNormalized * t;
+		Vector3 contactPoint = sphereCast.Start + dirNormalized * hitT;
 		Vector3 contactNormal = Vector3.Normalize(contactPoint - target.Center);
 		Vector3 intersectionPoint = contactPoint - contactNormal * sphereCast.Radius;
 
-		penetration = (1.0f - t / length) * length;
+		penetration = (1.0f - hitT / length) * length;
 
+		t = hitT / length;
 		result = new IntersectionResult(contactNormal, intersectionPoint, penetration);
 		return true;
 	}

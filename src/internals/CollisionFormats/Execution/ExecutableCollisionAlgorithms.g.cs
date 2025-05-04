@@ -104,7 +104,7 @@ public static class ExecutableCollisionAlgorithms
 		new Detach_Collisions_Geometry3D_SphereCastPyramid_SphereCast_Pyramid_(),
 		new Detach_Collisions_Geometry3D_SphereCastOrientedPyramid_SphereCast_OrientedPyramid_(),
 		new Detach_Collisions_Geometry3D_SphereCastObb_SphereCast_Obb_IntersectionResult_(),
-		new Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_IntersectionResult_(),
+		new Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_Single_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereObb_Sphere_Obb_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereConeFrustum_Sphere_ConeFrustum_IntersectionResult_(),
@@ -2725,9 +2725,9 @@ public static class ExecutableCollisionAlgorithms
 		}
 	}
 
-	private sealed class Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_IntersectionResult_ : IExecutableCollisionAlgorithm
+	private sealed class Detach_Collisions_Geometry3D_SphereCastSphere_SphereCast_Sphere_Single_IntersectionResult_ : IExecutableCollisionAlgorithm
 	{
-		public string Name => "Detach.Collisions.Geometry3D.SphereCastSphere(SphereCast,Sphere,IntersectionResult)";
+		public string Name => "Detach.Collisions.Geometry3D.SphereCastSphere(SphereCast,Sphere,Single,IntersectionResult)";
 
 		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
 		{
@@ -2737,6 +2737,7 @@ public static class ExecutableCollisionAlgorithms
 
 		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
 		{
+			(typeof(Single), "t"),
 			(typeof(IntersectionResult), "result"),
 		};
 
@@ -2750,8 +2751,8 @@ public static class ExecutableCollisionAlgorithms
 			SphereCast argument0 = (SphereCast)nonOutArguments[0];
 			Sphere argument1 = (Sphere)nonOutArguments[1];
 
-			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastSphere(argument0, argument1, out IntersectionResult outArgument0);
-			return new ExecutionResult(returnValue, [outArgument0]);
+			Boolean returnValue = Detach.Collisions.Geometry3D.SphereCastSphere(argument0, argument1, out Single outArgument0, out IntersectionResult outArgument1);
+			return new ExecutionResult(returnValue, [outArgument0, outArgument1]);
 		}
 	}
 

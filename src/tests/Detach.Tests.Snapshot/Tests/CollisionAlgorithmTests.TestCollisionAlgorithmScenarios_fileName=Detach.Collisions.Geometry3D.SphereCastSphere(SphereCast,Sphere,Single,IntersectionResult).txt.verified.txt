@@ -8,6 +8,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.28984204,
         {
           Normal: {
             X: -0.93605465,
@@ -33,6 +34,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.27760535,
         {
           Normal: {
             X: -0.9639741,
@@ -58,6 +60,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.37703124,
         {
           Normal: {
             X: -0.7371228,
@@ -83,6 +86,7 @@
     ExecutionResult: {
       ReturnValue: false,
       OutArguments: [
+        3.4028235E+38,
         {}
       ]
     }
@@ -96,6 +100,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.69439894,
         {
           Normal: {
             X: -0.78880715,
@@ -121,6 +126,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.87838703,
         {
           Normal: {
             X: -0.6428732,
@@ -146,6 +152,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.9171083,
         {
           Normal: {
             X: -0.9199262,
@@ -171,6 +178,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.63364625,
         {
           Normal: {
             X: -0.98147714,
@@ -196,6 +204,7 @@
     ExecutionResult: {
       ReturnValue: false,
       OutArguments: [
+        3.4028235E+38,
         {}
       ]
     }
@@ -209,6 +218,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.88009787,
         {
           Normal: {
             X: -0.8128422,
@@ -234,6 +244,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.99228615,
         {
           Normal: {
             X: -0.74417365,
@@ -259,6 +270,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.78173876,
         {
           Normal: {
             X: -0.36025336,
@@ -284,6 +296,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.7308269,
         {
           Normal: {
             X: 0.06966327,
@@ -309,6 +322,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.48884562,
         {
           Normal: {
             X: -0.10011451,
@@ -334,6 +348,7 @@
     ExecutionResult: {
       ReturnValue: false,
       OutArguments: [
+        3.4028235E+38,
         {}
       ]
     }
@@ -347,6 +362,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.3559583,
         {
           Normal: {
             X: -0.7429017,
@@ -372,6 +388,7 @@
     ExecutionResult: {
       ReturnValue: true,
       OutArguments: [
+        0.34234667,
         {
           Normal: {
             X: -0.8087417,
@@ -397,6 +414,7 @@
     ExecutionResult: {
       ReturnValue: false,
       OutArguments: [
+        3.4028235E+38,
         {}
       ]
     }
