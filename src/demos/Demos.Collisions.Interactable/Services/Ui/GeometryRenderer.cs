@@ -167,10 +167,10 @@ internal sealed class GeometryRenderer
 				Quaternion rotation = QuaternionUtils.CreateFromRotationBetween(Vector3.UnitZ, Vector3.Normalize(sphereCast.End - sphereCast.Start));
 				Matrix4x4 orientationMatrix = Matrix4x4.CreateFromAxisAngle(Vector3.UnitX, MathF.PI * 0.5f) * Matrix4x4.CreateFromQuaternion(rotation);
 
-				const int lineSegments = 8;
-				for (int i = 0; i < lineSegments; i++)
+				const int lineSegmentsSphereCast = 8;
+				for (int i = 0; i < lineSegmentsSphereCast; i++)
 				{
-					float angle = float.DegreesToRadians(i / (float)lineSegments * 360);
+					float angle = float.DegreesToRadians(i / (float)lineSegmentsSphereCast * 360);
 					Vector3 offset = Vector3.Transform(new Vector3(MathF.Sin(angle), 0, MathF.Cos(angle)) * sphereCast.Radius, orientationMatrix);
 					Vector3 start = sphereCast.Start + offset;
 					Vector3 end = sphereCast.End + offset;
@@ -184,6 +184,37 @@ internal sealed class GeometryRenderer
 
 				_gl.UniformMatrix4x4(lineProgram.GetUniformLocation("model"), Matrix4x4.CreateScale(sphereCast.Radius) * orientationMatrix * Matrix4x4.CreateTranslation(sphereCast.End));
 				_gl.DrawArrays(PrimitiveType.Lines, 0, (uint)_sphereVertices.Length);
+				break;
+			case StandingCapsule standingCapsule:
+				_gl.BindVertexArray(_centeredLineVao);
+				const int lineSegmentsStandingCapsule = 8;
+				for (int i = 0; i < lineSegmentsStandingCapsule; i++)
+				{
+					float angle = float.DegreesToRadians(i / (float)lineSegmentsStandingCapsule * 360);
+					Vector3 offset = new Vector3(MathF.Sin(angle), 0, MathF.Cos(angle)) * standingCapsule.Radius;
+					Vector3 start = standingCapsule.BottomCenter + offset;
+					Vector3 end = standingCapsule.TopCenter + offset;
+					RenderLine(lineProgram, new LineSegment3D(start, end));
+				}
+
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, new Sphere(standingCapsule.BottomCenter, standingCapsule.Radius));
+				RenderSphere(lineProgram, new Sphere(standingCapsule.TopCenter, standingCapsule.Radius));
+				break;
+			case StandingCapsuleCast standingCapsuleCast:
+				_gl.BindVertexArray(_centeredLineVao);
+				RenderLine(lineProgram, new LineSegment3D(standingCapsuleCast.StartBottomCenter, standingCapsuleCast.EndBottomCenter));
+				RenderLine(lineProgram, new LineSegment3D(standingCapsuleCast.StartTopCenter, standingCapsuleCast.EndTopCenter));
+
+				RenderLine(lineProgram, new LineSegment3D(standingCapsuleCast.StartBottomCenter, standingCapsuleCast.StartTopCenter));
+				RenderLine(lineProgram, new LineSegment3D(standingCapsuleCast.EndBottomCenter, standingCapsuleCast.EndTopCenter));
+
+				_gl.BindVertexArray(_sphereVao);
+				RenderSphere(lineProgram, new Sphere(standingCapsuleCast.StartBottomCenter, standingCapsuleCast.Radius));
+				RenderSphere(lineProgram, new Sphere(standingCapsuleCast.StartTopCenter, standingCapsuleCast.Radius));
+
+				RenderSphere(lineProgram, new Sphere(standingCapsuleCast.EndBottomCenter, standingCapsuleCast.Radius));
+				RenderSphere(lineProgram, new Sphere(standingCapsuleCast.EndTopCenter, standingCapsuleCast.Radius));
 				break;
 			case Triangle3D triangle3D:
 				_gl.BindVertexArray(_centeredLineVao);

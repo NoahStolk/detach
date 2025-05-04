@@ -97,6 +97,8 @@ public static class CollisionAlgorithmSerializer
 			_ when value is Ray ray => Serializer.Write(ray),
 			_ when value is Sphere sphere => Serializer.Write(sphere),
 			_ when value is SphereCast sphereCast => Serializer.Write(sphereCast),
+			_ when value is StandingCapsule standingCapsule => Serializer.Write(standingCapsule),
+			_ when value is StandingCapsuleCast standingCapsuleCast => Serializer.Write(standingCapsuleCast),
 			_ when value is Triangle3D triangle3D => Serializer.Write(triangle3D),
 
 			_ => throw new NotSupportedException($"The type {value.GetType()} is not supported."),
@@ -130,6 +132,8 @@ public static class CollisionAlgorithmSerializer
 			_ when typeName == typeof(Ray).FullName => Serializer.ReadRay(argument),
 			_ when typeName == typeof(Sphere).FullName => Serializer.ReadSphere(argument),
 			_ when typeName == typeof(SphereCast).FullName => Serializer.ReadSphereCast(argument),
+			_ when typeName == typeof(StandingCapsule).FullName => Serializer.ReadStandingCapsule(argument),
+			_ when typeName == typeof(StandingCapsuleCast).FullName => Serializer.ReadStandingCapsuleCast(argument),
 			_ when typeName == typeof(Triangle3D).FullName => Serializer.ReadTriangle3D(argument),
 
 			_ => throw new NotSupportedException($"The type {typeName} is not supported."),
@@ -346,6 +350,28 @@ public static class CollisionAlgorithmSerializer
 		{
 			string[] parts = value.Split(_separator);
 			return new SphereCast(ReadVector3(parts[0], parts[1], parts[2]), ReadVector3(parts[3], parts[4], parts[5]), ReadFloat(parts[6]));
+		}
+
+		public static string Write(StandingCapsule value)
+		{
+			return $"{Write(value.BottomCenter)}{_separator}{value.Radius}{_separator}{value.Height}";
+		}
+
+		public static StandingCapsule ReadStandingCapsule(string value)
+		{
+			string[] parts = value.Split(_separator);
+			return new StandingCapsule(ReadVector3(parts[0], parts[1], parts[2]), ReadFloat(parts[3]), ReadFloat(parts[4]));
+		}
+
+		public static string Write(StandingCapsuleCast value)
+		{
+			return $"{Write(value.StartBottomCenter)}{_separator}{Write(value.EndBottomCenter)}{_separator}{value.Radius}{_separator}{value.Height}";
+		}
+
+		public static StandingCapsuleCast ReadStandingCapsuleCast(string value)
+		{
+			string[] parts = value.Split(_separator);
+			return new StandingCapsuleCast(ReadVector3(parts[0], parts[1], parts[2]), ReadVector3(parts[3], parts[4], parts[5]), ReadFloat(parts[6]), ReadFloat(parts[7]));
 		}
 
 		public static string Write(Triangle3D value)

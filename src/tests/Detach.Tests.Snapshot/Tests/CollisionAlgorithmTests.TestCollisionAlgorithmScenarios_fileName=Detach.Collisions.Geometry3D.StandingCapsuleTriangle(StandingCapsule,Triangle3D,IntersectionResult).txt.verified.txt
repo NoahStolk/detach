@@ -1,0 +1,347 @@
+﻿[
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0, 0>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1, 0> },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.70710677,
+            Z: -0.70710677
+          },
+          IntersectionPoint: {
+            X: 0.808
+          },
+          PenetrationDepth: 0.5
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.391, 0>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.391, 0> },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.70710677,
+            Z: -0.70710677
+          },
+          IntersectionPoint: {
+            X: 0.808,
+            Y: 0.19550002,
+            Z: 0.19549999
+          },
+          PenetrationDepth: 0.22352126
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.696, 0>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.696, 0> },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.70710677,
+            Z: -0.70710677
+          },
+          IntersectionPoint: {
+            X: 0.808,
+            Y: 0.34800002,
+            Z: 0.34799996
+          },
+          PenetrationDepth: 0.007853746
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.957, 0>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.957, 0> },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, 0.435>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, 0.435> },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Y: 0.70710677,
+            Z: -0.70710677
+          },
+          IntersectionPoint: {
+            X: 0.808,
+            Y: 0.4565,
+            Z: 0.4565
+          },
+          PenetrationDepth: 0.46959442
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.478>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.478> },
+      Triangle3D { A = <0, 0, 0>, B = <1, 1, 1>, C = <1, 0, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: false,
+      OutArguments: [
+        {}
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.478>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.478> },
+      Triangle3D { A = <-0.611, 0, 0>, B = <1, 1, 1>, C = <1.742, 0, -1.696> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.2897015,
+            Y: 0.8686358,
+            Z: -0.40192664
+          },
+          IntersectionPoint: {
+            X: 0.8648518,
+            Y: 0.3075368,
+            Z: -0.39912492
+          },
+          PenetrationDepth: 0.30375758
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.478>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.478> },
+      Triangle3D { A = <-0.611, 0, 0>, B = <1.699, 2.696, -1.957>, C = <1.742, 0, -1.696> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.5824785,
+            Y: -0.087524444,
+            Z: -0.8081202
+          },
+          IntersectionPoint: {
+            X: 0.52719164,
+            Y: 0.43580514,
+            Z: -0.8675885
+          },
+          PenetrationDepth: 0.017907709
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.478>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.478> },
+      Triangle3D { A = <-0.611, 1.696, 0>, B = <1.743, 2.696, -1.957>, C = <2.511, 1.609, 0.869> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.079083376,
+            Y: -0.92302424,
+            Z: -0.37652636
+          },
+          IntersectionPoint: {
+            X: 0.76897883,
+            Y: 1.9334369,
+            Z: -0.292215
+          },
+          PenetrationDepth: 0.0065817833
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.478>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.478> },
+      Triangle3D { A = <-0.611, 1.696, 0>, B = <1.743, 2.087, -1.957>, C = <2.511, 1.609, 0.869> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: 0.020471536,
+            Y: -0.9848587,
+            Z: -0.17214598
+          },
+          IntersectionPoint: {
+            X: 0.8013256,
+            Y: 1.7990975,
+            Z: -0.42187452
+          },
+          PenetrationDepth: 0.17396581
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.478>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.478> },
+      Triangle3D { A = <-0.611, 1.696, 0>, B = <1.743, 1.392, -1.957>, C = <2.511, 1.609, 0.869> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -0.05297479,
+            Y: -0.99446297,
+            Z: 0.090758346
+          },
+          IntersectionPoint: {
+            X: 0.8132042,
+            Y: 1.5756953,
+            Z: -0.486916
+          },
+          PenetrationDepth: 0.4017607
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.304>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.304> },
+      Triangle3D { A = <0.022, 1, 0>, B = <1.743, 0.261, 0.87>, C = <2.511, 1, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -1.9606792E-07,
+            Y: -1.9606792E-07,
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            X: 0.80800015,
+            Y: 1.0,
+            Z: 0.19600001
+          },
+          PenetrationDepth: 0.19600001
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.304>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.304> },
+      Triangle3D { A = <0.022, 1, 0>, B = <1.743, 0.739, 0.87>, C = <2.511, 1, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -1.9606792E-07,
+            Y: -1.9606792E-07,
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            X: 0.80800015,
+            Y: 1.0,
+            Z: 0.19600001
+          },
+          PenetrationDepth: 0.19600001
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.304>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.304> },
+      Triangle3D { A = <0.022, 1, 0>, B = <1.743, 1.304, 0.87>, C = <2.511, 1, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -1.9606792E-07,
+            Y: -1.9606792E-07,
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            X: 0.80800015,
+            Y: 1.0,
+            Z: 0.19600001
+          },
+          PenetrationDepth: 0.19600001
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0.808, 0.478, -0.304>, Radius = 0.5, Height = 2, TopCenter = <0.808, 1.4779999, -0.304> },
+      Triangle3D { A = <0.022, 1, 0>, B = <1.743, 1.478, 0.87>, C = <2.511, 1, 0> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            X: -1.9606792E-07,
+            Y: -1.9606792E-07,
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            X: 0.80800015,
+            Y: 1.0,
+            Z: 0.19600001
+          },
+          PenetrationDepth: 0.19600001
+        }
+      ]
+    }
+  }
+]

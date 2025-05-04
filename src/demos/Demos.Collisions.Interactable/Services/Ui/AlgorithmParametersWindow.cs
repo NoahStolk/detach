@@ -237,6 +237,23 @@ internal sealed class AlgorithmParametersWindow(CollisionAlgorithmState collisio
 
 			value = cast;
 		}
+		else if (type == typeof(StandingCapsule))
+		{
+			StandingCapsule cast = (StandingCapsule)value;
+			ImGui.SliderFloat3(Inline.Utf8($"BottomCenter##{index}"), ref cast.BottomCenter.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, maxSize);
+			ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref cast.Height, 0, maxSize);
+			value = cast;
+		}
+		else if (type == typeof(StandingCapsuleCast))
+		{
+			StandingCapsuleCast cast = (StandingCapsuleCast)value;
+			ImGui.SliderFloat3(Inline.Utf8($"StartBottomCenter##{index}"), ref cast.StartBottomCenter.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat3(Inline.Utf8($"EndBottomCenter##{index}"), ref cast.EndBottomCenter.X, -maxDistance, maxDistance);
+			ImGui.SliderFloat(Inline.Utf8($"Radius##{index}"), ref cast.Radius, 0, maxSize);
+			ImGui.SliderFloat(Inline.Utf8($"Height##{index}"), ref cast.Height, 0, maxSize);
+			value = cast;
+		}
 		else if (type == typeof(Triangle3D))
 		{
 			Triangle3D cast = (Triangle3D)value;

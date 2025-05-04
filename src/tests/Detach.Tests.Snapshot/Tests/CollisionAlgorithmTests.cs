@@ -45,6 +45,7 @@ public partial class CollisionAlgorithmTests
 	[DataRow("Detach.Collisions.Geometry3D.SphereObb(Sphere,Obb,IntersectionResult).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereOrientedPyramid(Sphere,OrientedPyramid).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.SphereTriangle(Sphere,Triangle3D,IntersectionResult).txt")]
+	[DataRow("Detach.Collisions.Geometry3D.StandingCapsuleTriangle(StandingCapsule,Triangle3D,IntersectionResult).txt")]
 	[DataRow("Detach.Collisions.Geometry3D.TriangleSphere(Triangle3D,Sphere).txt")]
 	public Task TestCollisionAlgorithmScenarios(string fileName)
 	{

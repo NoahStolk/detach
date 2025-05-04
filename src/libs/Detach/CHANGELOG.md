@@ -9,6 +9,11 @@ This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added new sphere intersection method:
   - `Geometry3D.SphereTriangle`
 - Added `out float t` parameter to `Geometry3D.SphereCastSphere`.
+- Added new collision types:
+  - `StandingCapsule`
+  - `StandingCapsuleCast`
+- Added new collision methods:
+  - `Geometry3D.StandingCapsuleTriangle`
 
 ## 0.29.0
 

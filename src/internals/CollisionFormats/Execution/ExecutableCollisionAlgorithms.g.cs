@@ -109,6 +109,7 @@ public static class ExecutableCollisionAlgorithms
 		new Detach_Collisions_Geometry3D_SphereCylinder_Sphere_Cylinder_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereConeFrustum_Sphere_ConeFrustum_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_SphereTriangle_Sphere_Triangle3D_IntersectionResult_(),
+		new Detach_Collisions_Geometry3D_StandingCapsuleTriangle_StandingCapsule_Triangle3D_IntersectionResult_(),
 		new Detach_Collisions_Geometry3D_TriangleSphere_Triangle3D_Sphere_(),
 		new Detach_Collisions_Geometry3D_TriangleAabb_Triangle3D_Aabb_(),
 		new Detach_Collisions_Geometry3D_TriangleObb_Triangle3D_Obb_(),
@@ -2872,6 +2873,36 @@ public static class ExecutableCollisionAlgorithms
 			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
 
 			Boolean returnValue = Detach.Collisions.Geometry3D.SphereTriangle(argument0, argument1, out IntersectionResult outArgument0);
+			return new ExecutionResult(returnValue, [outArgument0]);
+		}
+	}
+
+	private sealed class Detach_Collisions_Geometry3D_StandingCapsuleTriangle_StandingCapsule_Triangle3D_IntersectionResult_ : IExecutableCollisionAlgorithm
+	{
+		public string Name => "Detach.Collisions.Geometry3D.StandingCapsuleTriangle(StandingCapsule,Triangle3D,IntersectionResult)";
+
+		public IReadOnlyList<(Type Type, string Name)> Parameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(StandingCapsule), "capsule"),
+			(typeof(Triangle3D), "triangle"),
+		};
+
+		public IReadOnlyList<(Type Type, string Name)> OutParameters { get; } = new List<(Type Type, string Name)>
+		{
+			(typeof(IntersectionResult), "intersectionResult"),
+		};
+
+		public Type ReturnType { get; } = typeof(Boolean);
+
+		public ExecutionResult Execute(List<object> nonOutArguments)
+		{
+			if (nonOutArguments.Count != Parameters.Count)
+				throw new ArgumentException("The number of arguments must be 2.");
+
+			StandingCapsule argument0 = (StandingCapsule)nonOutArguments[0];
+			Triangle3D argument1 = (Triangle3D)nonOutArguments[1];
+
+			Boolean returnValue = Detach.Collisions.Geometry3D.StandingCapsuleTriangle(argument0, argument1, out IntersectionResult outArgument0);
 			return new ExecutionResult(returnValue, [outArgument0]);
 		}
 	}

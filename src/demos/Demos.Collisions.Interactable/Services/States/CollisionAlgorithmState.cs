@@ -64,6 +64,8 @@ internal sealed class CollisionAlgorithmState
 			_ when type == typeof(Ray) => new Ray(Vector3.Zero, Vector3.UnitX),
 			_ when type == typeof(Sphere) => new Sphere(Vector3.Zero, 1),
 			_ when type == typeof(SphereCast) => new SphereCast(Vector3.Zero, Vector3.One, 1),
+			_ when type == typeof(StandingCapsule) => new StandingCapsule(Vector3.Zero, 0.5f, 2),
+			_ when type == typeof(StandingCapsuleCast) => new StandingCapsuleCast(Vector3.Zero, Vector3.One, 0.5f, 2),
 			_ when type == typeof(Triangle3D) => new Triangle3D(Vector3.Zero, Vector3.One, Vector3.UnitX),
 			_ when type == typeof(ViewFrustum) => new ViewFrustum(Matrix4x4.Identity),
 
