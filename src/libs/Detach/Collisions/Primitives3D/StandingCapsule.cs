@@ -16,4 +16,11 @@ public record struct StandingCapsule
 	}
 
 	public Vector3 TopCenter => BottomCenter + new Vector3(0, Height - 2 * Radius, 0);
+
+	public Aabb GetBounds()
+	{
+		Vector3 min = BottomCenter - new Vector3(Radius);
+		Vector3 max = TopCenter + new Vector3(Radius);
+		return Aabb.FromMinMax(min, max);
+	}
 }

@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [unreleased]
+
+### Added
+
+- Added `StandingCapsule.GetBounds` method.
+
 ## 0.30.0
 
 ### Added
