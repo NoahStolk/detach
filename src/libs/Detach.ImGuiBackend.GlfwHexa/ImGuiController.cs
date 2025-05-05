@@ -51,9 +51,9 @@ public sealed class ImGuiController
 	private readonly GL _gl;
 	private readonly GlfwInput _glfwInput;
 
-	private readonly uint _shaderId;
-	private readonly int _projectionMatrixLocation;
-	private readonly int _imageLocation;
+	private uint _shaderId;
+	private int _projectionMatrixLocation;
+	private int _imageLocation;
 
 	private int _windowWidth;
 	private int _windowHeight;
@@ -65,9 +65,10 @@ public sealed class ImGuiController
 		_glfwInput = glfwInput;
 		_windowWidth = windowWidth;
 		_windowHeight = windowHeight;
-		_shaderId = ShaderLoader.Load(_gl, _vertexShader, _fragmentShader);
-		_projectionMatrixLocation = _gl.GetUniformLocation(_shaderId, "projectionMatrix");
-		_imageLocation = _gl.GetUniformLocation(_shaderId, "image");
+		SetShader(
+			shaderId: ShaderLoader.Load(_gl, _vertexShader, _fragmentShader),
+			projectionMatrixLocation: _gl.GetUniformLocation(_shaderId, "projectionMatrix"),
+			imageLocation: _gl.GetUniformLocation(_shaderId, "image"));
 
 		Context = ImGui.CreateContext();
 		ImGui.SetCurrentContext(Context);
@@ -87,9 +88,7 @@ public sealed class ImGuiController
 		_glfwInput = glfwInput;
 		_windowWidth = windowWidth;
 		_windowHeight = windowHeight;
-		_shaderId = shaderId;
-		_projectionMatrixLocation = projectionMatrixLocation;
-		_imageLocation = imageLocation;
+		SetShader(shaderId, projectionMatrixLocation, imageLocation);
 
 		Context = ImGui.CreateContext();
 		ImGui.SetCurrentContext(Context);
@@ -132,6 +131,13 @@ public sealed class ImGuiController
 	}
 
 	#endregion Initialization
+
+	public void SetShader(uint shaderId, int projectionMatrixLocation, int imageLocation)
+	{
+		_shaderId = shaderId;
+		_projectionMatrixLocation = projectionMatrixLocation;
+		_imageLocation = imageLocation;
+	}
 
 	public void Destroy()
 	{

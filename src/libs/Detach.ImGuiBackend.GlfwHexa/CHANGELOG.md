@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.2.8
+
+### Added
+
+- Added `ImGuiController.SetShader` method to allow setting the shader after the controller has been created.
+
 ## 0.2.7
 
 ### Added

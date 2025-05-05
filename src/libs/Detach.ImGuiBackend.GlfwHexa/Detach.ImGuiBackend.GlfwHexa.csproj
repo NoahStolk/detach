@@ -2,7 +2,7 @@
 
   <PropertyGroup Label="Package configuration">
     <PackageId>NoahStolk.Detach.ImGuiBackend.GlfwHexa</PackageId>
-    <Version>0.2.7</Version>
+    <Version>0.2.8</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">
