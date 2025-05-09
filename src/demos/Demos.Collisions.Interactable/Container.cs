@@ -82,9 +82,13 @@ internal sealed partial class Container : IContainer<App>
 	}
 
 	[Factory(Scope.SingleInstance)]
-	private static ImGuiController CreateImGuiController(GL gl, GlfwInput glfwInput)
+	private static ImGuiController CreateImGuiController(GL gl, GlfwInput glfwInput, LazyProgramContainer lazyProgramContainer)
 	{
-		ImGuiController imGuiController = new(gl, glfwInput, WindowConstants.WindowWidth, WindowConstants.WindowHeight);
+		CachedProgram uiShader = lazyProgramContainer.GetProgram("ui");
+		int projectionMatrixUniformLocation = uiShader.GetUniformLocation("projectionMatrix");
+		int imageUniformLocation = uiShader.GetUniformLocation("image");
+
+		ImGuiController imGuiController = new(gl, glfwInput, WindowConstants.WindowWidth, WindowConstants.WindowHeight, uiShader.ProgramId, projectionMatrixUniformLocation, imageUniformLocation);
 		imGuiController.CreateDefaultFont();
 		return imGuiController;
 	}
