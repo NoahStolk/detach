@@ -14,7 +14,9 @@
             Z: -0.70710677
           },
           IntersectionPoint: {
-            X: 0.808
+            X: 0.808,
+            Y: -0.35355338,
+            Z: 0.35355338
           },
           PenetrationDepth: 0.5
         }
@@ -37,8 +39,8 @@
           },
           IntersectionPoint: {
             X: 0.808,
-            Y: 0.19550002,
-            Z: 0.19549999
+            Y: 0.037446618,
+            Z: 0.35355338
           },
           PenetrationDepth: 0.22352126
         }
@@ -61,8 +63,8 @@
           },
           IntersectionPoint: {
             X: 0.808,
-            Y: 0.34800002,
-            Z: 0.34799996
+            Y: 0.3424466,
+            Z: 0.35355338
           },
           PenetrationDepth: 0.007853746
         }
@@ -98,8 +100,8 @@
           },
           IntersectionPoint: {
             X: 0.808,
-            Y: 0.4565,
-            Z: 0.4565
+            Y: 0.1244466,
+            Z: 0.78855336
           },
           PenetrationDepth: 0.46959442
         }
@@ -130,16 +132,16 @@
       OutArguments: [
         {
           Normal: {
-            X: -0.2897015,
-            Y: 0.8686358,
+            X: -0.2897014,
+            Y: 0.86863583,
             Z: -0.40192664
           },
           IntersectionPoint: {
-            X: 0.8648518,
-            Y: 0.3075368,
-            Z: -0.39912492
+            X: 0.9528507,
+            Y: 0.04368207,
+            Z: -0.27703667
           },
-          PenetrationDepth: 0.30375758
+          PenetrationDepth: 0.30375764
         }
       ]
     }
@@ -155,14 +157,14 @@
       OutArguments: [
         {
           Normal: {
-            X: -0.5824785,
-            Y: -0.087524444,
-            Z: -0.8081202
+            X: 0.58247846,
+            Y: 0.08752447,
+            Z: 0.80812025
           },
           IntersectionPoint: {
-            X: 0.52719164,
-            Y: 0.43580514,
-            Z: -0.8675885
+            X: 0.5167608,
+            Y: 0.43423775,
+            Z: -0.8820601
           },
           PenetrationDepth: 0.017907709
         }
@@ -180,16 +182,16 @@
       OutArguments: [
         {
           Normal: {
-            X: 0.079083376,
+            X: 0.07908341,
             Y: -0.92302424,
-            Z: -0.37652636
+            Z: -0.3765264
           },
           IntersectionPoint: {
-            X: 0.76897883,
-            Y: 1.9334369,
-            Z: -0.292215
+            X: 0.7684583,
+            Y: 1.939512,
+            Z: -0.2897368
           },
-          PenetrationDepth: 0.0065817833
+          PenetrationDepth: 0.006581813
         }
       ]
     }
@@ -205,16 +207,16 @@
       OutArguments: [
         {
           Normal: {
-            X: 0.020471536,
+            X: 0.020471508,
             Y: -0.9848587,
-            Z: -0.17214598
+            Z: -0.172146
           },
           IntersectionPoint: {
-            X: 0.8013256,
-            Y: 1.7990975,
-            Z: -0.42187452
+            X: 0.7977643,
+            Y: 1.9704293,
+            Z: -0.39192697
           },
-          PenetrationDepth: 0.17396581
+          PenetrationDepth: 0.17396593
         }
       ]
     }
@@ -230,16 +232,16 @@
       OutArguments: [
         {
           Normal: {
-            X: -0.05297479,
-            Y: -0.99446297,
-            Z: 0.090758346
+            X: -0.052974794,
+            Y: -0.9944629,
+            Z: 0.09075829
           },
           IntersectionPoint: {
-            X: 0.8132042,
-            Y: 1.5756953,
-            Z: -0.486916
+            X: 0.83448744,
+            Y: 1.9752314,
+            Z: -0.52337915
           },
-          PenetrationDepth: 0.4017607
+          PenetrationDepth: 0.40176082
         }
       ]
     }
@@ -340,6 +342,28 @@
             Z: 0.19600001
           },
           PenetrationDepth: 0.19600001
+        }
+      ]
+    }
+  },
+  {
+    Status: OK,
+    Arguments: [
+      StandingCapsule { BottomCenter = <0, 1.957, 0.174>, Radius = 1, Height = 4, TopCenter = <0, 3.957, 0.174> },
+      Triangle3D { A = <-1, 2, 1>, B = <1, 2.5, 1>, C = <1, 2.5, 3> }
+    ],
+    ExecutionResult: {
+      ReturnValue: true,
+      OutArguments: [
+        {
+          Normal: {
+            Z: -1.0
+          },
+          IntersectionPoint: {
+            Y: 2.25,
+            Z: 1.174
+          },
+          PenetrationDepth: 0.17400002
         }
       ]
     }

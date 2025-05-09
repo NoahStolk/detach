@@ -5,9 +5,17 @@ namespace Detach.Collisions;
 
 public static partial class Geometry3D
 {
+	// TODO: The IntersectionPoint returned here is not consistent.
 	public static bool StandingCapsuleTriangle(StandingCapsule capsule, Triangle3D triangle, out IntersectionResult intersectionResult)
 	{
 		intersectionResult = default;
+
+		// Check cylindrical segment
+		if (CapsuleSegmentTriangle(capsule.BottomCenter, capsule.TopCenter, capsule.Radius, triangle, out IntersectionResult cylResult))
+		{
+			intersectionResult = cylResult;
+			return true;
+		}
 
 		// Check bottom sphere
 		Sphere bottomSphere = new(capsule.BottomCenter, capsule.Radius);
@@ -22,13 +30,6 @@ public static partial class Geometry3D
 		if (SphereTriangle(topSphere, triangle, out IntersectionResult topResult))
 		{
 			intersectionResult = topResult;
-			return true;
-		}
-
-		// Check cylindrical segment
-		if (CapsuleSegmentTriangle(capsule.BottomCenter, capsule.TopCenter, capsule.Radius, triangle, out var cylResult))
-		{
-			intersectionResult = cylResult;
 			return true;
 		}
 

@@ -2,11 +2,15 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [unreleased]
+## 0.30.1
 
 ### Added
 
 - Added `StandingCapsule.GetBounds` method.
+
+### Fixed
+
+- Fixed `Geometry3D.StandingCapsuleTriangle` not always working correctly in some cases.
 
 ## 0.30.0
 
