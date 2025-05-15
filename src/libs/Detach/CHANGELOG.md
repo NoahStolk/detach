@@ -2,6 +2,13 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.30.2
+
+### Fixed
+
+- Fixed not being able to read WAV files with empty `data` chunk.
+- `RandomExtensions.Choose` now throws an exception when the `options` argument is empty.
+
 ## 0.30.1
 
 ### Added

@@ -106,6 +106,9 @@ public static class RandomExtensions
 	/// <returns>The randomly chosen item.</returns>
 	public static T Choose<T>(this Random random, params Span<T> options)
 	{
+		if (options.Length == 0)
+			throw new ArgumentException("options cannot be empty", nameof(options));
+
 		return options[random.Next(options.Length)];
 	}
 

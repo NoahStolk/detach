@@ -12,6 +12,7 @@ public sealed class WaveParserTests
 	[DataRow("Sample1.wav", (short)1, 11000, 11000, (short)1, (short)8, 2208, 2208, 0.2)]
 	[DataRow("Sample2.wav", (short)1, 11025, 22050, (short)2, (short)16, 61544, 30772, 2.791)]
 	[DataRow("Sample3.wav", (short)1, 44100, 88200, (short)2, (short)16, 18760, 9380, 0.221)]
+	[DataRow("Empty.wav", (short)2, 44100, 176400, (short)4, (short)16, 0, 0, 0.000)]
 	public void TestWaveParse(string fileName, short expectedChannels, int expectedSampleRate, int expectedByteRate, short expectedBlockAlign, short expectedBitsPerSample, int expectedDataSize, int expectedSampleCount, double expectedLengthInSeconds)
 	{
 		byte[] bytes = File.ReadAllBytes(ResourceUtils.GetResourcePath(fileName));
